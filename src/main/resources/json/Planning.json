@@ -1,0 +1,1545 @@
+{
+  "validUntil": "2024-02-14T14:37:29.379Z",
+  "options": [
+    {
+      "id": "string",
+      "from": {
+        "name": "string",
+        "stopReference": [
+          {
+            "type": "GTFS_STOP_ID",
+            "id": "string",
+            "country": "NL"
+          }
+        ],
+        "stationId": "string",
+        "coordinates": {
+          "lng": 6.169639,
+          "lat": 52.253279,
+          "alt": 0
+        },
+        "physicalAddress": {
+          "streetAddress": "example street 18, 2nd floor, 18-B33",
+          "street": "string",
+          "houseNumber": 0,
+          "houseNumberAddition": "string",
+          "addressAdditionalInfo": "string",
+          "areaReference": "Smallcity, Pinetree county",
+          "city": "string",
+          "province": "string",
+          "state": "string",
+          "postalCode": "string",
+          "country": "NL"
+        },
+        "extraInfo": {
+          "additionalProp1": {}
+        }
+      },
+      "callbackUrl": "string",
+      "to": {
+        "name": "string",
+        "stopReference": [
+          {
+            "type": "GTFS_STOP_ID",
+            "id": "string",
+            "country": "NL"
+          }
+        ],
+        "stationId": "string",
+        "coordinates": {
+          "lng": 6.169639,
+          "lat": 52.253279,
+          "alt": 0
+        },
+        "physicalAddress": {
+          "streetAddress": "example street 18, 2nd floor, 18-B33",
+          "street": "string",
+          "houseNumber": 0,
+          "houseNumberAddition": "string",
+          "addressAdditionalInfo": "string",
+          "areaReference": "Smallcity, Pinetree county",
+          "city": "string",
+          "province": "string",
+          "state": "string",
+          "postalCode": "string",
+          "country": "NL"
+        },
+        "extraInfo": {
+          "additionalProp1": {}
+        }
+      },
+      "customer": {
+        "isValidated": true,
+        "age": 0,
+        "referenceNumber": "string",
+        "cardTypes": [
+          {
+            "type": "ID",
+            "subType": "string",
+            "assetClass": "AIR",
+            "acceptors": [
+              "string"
+            ]
+          }
+        ],
+        "licenseTypes": [
+          {
+            "assetClass": "AIR",
+            "issuingCountry": "NL"
+          }
+        ],
+        "requirements": {
+          "abilities": [
+            {
+              "source": "string",
+              "category": "string",
+              "number": "st",
+              "type": "string",
+              "memo": "string",
+              "variable-number": 0,
+              "applicable-days": [
+                "MO"
+              ]
+            }
+          ],
+          "bringAlong": [
+            {
+              "source": "string",
+              "category": "string",
+              "number": "st",
+              "type": "string",
+              "memo": "string",
+              "variable-number": 0,
+              "applicable-days": [
+                "MO"
+              ]
+            }
+          ],
+          "additionalProp1": {}
+        },
+        "knownIdentifier": "string",
+        "knownIdentifierProvider": "string",
+        "id": "A0-123456",
+        "travelerReference": "string",
+        "initials": "string",
+        "firstName": "John",
+        "lastName": "Doe",
+        "middleName": "von",
+        "prefix": "string",
+        "postfix": "string",
+        "phones": [
+          {
+            "preferred": true,
+            "number": "+31-48934758 or +(0075)-834923384 or 020 1234 1234",
+            "kind": "LANDLINE",
+            "type": "PRIVATE"
+          }
+        ],
+        "email": "string",
+        "birthDate": "2024-02-14",
+        "address": {
+          "streetAddress": "example street 18, 2nd floor, 18-B33",
+          "street": "string",
+          "houseNumber": 0,
+          "houseNumberAddition": "string",
+          "addressAdditionalInfo": "string",
+          "areaReference": "Smallcity, Pinetree county",
+          "city": "string",
+          "province": "string",
+          "state": "string",
+          "postalCode": "string",
+          "country": "NL"
+        },
+        "photo": null,
+        "cards": [
+          {
+            "type": "ID",
+            "subType": "string",
+            "assetClass": "AIR",
+            "acceptors": [
+              "string"
+            ],
+            "cardDescription": "string",
+            "cardNumber": "string",
+            "cardAdditionalNumber": "string",
+            "validUntil": "2024-02-14",
+            "country": "NL"
+          }
+        ],
+        "licenses": [
+          {
+            "assetClass": "AIR",
+            "issuingCountry": "NL",
+            "number": "1287948792",
+            "licenseCode": "D4",
+            "validUntil": "2024-02-14"
+          }
+        ],
+        "extraInfo": {
+          "additionalProp1": {}
+        }
+      },
+      "extraInfo": {
+        "additionalProp1": {}
+      },
+      "state": "CONFIRMED",
+      "legs": [
+        {
+          "id": "string",
+          "from": {
+            "name": "string",
+            "stopReference": [
+              {
+                "type": "GTFS_STOP_ID",
+                "id": "string",
+                "country": "NL"
+              }
+            ],
+            "stationId": "string",
+            "coordinates": {
+              "lng": 6.169639,
+              "lat": 52.253279,
+              "alt": 0
+            },
+            "physicalAddress": {
+              "streetAddress": "example street 18, 2nd floor, 18-B33",
+              "street": "string",
+              "houseNumber": 0,
+              "houseNumberAddition": "string",
+              "addressAdditionalInfo": "string",
+              "areaReference": "Smallcity, Pinetree county",
+              "city": "string",
+              "province": "string",
+              "state": "string",
+              "postalCode": "string",
+              "country": "NL"
+            },
+            "extraInfo": {
+              "additionalProp1": {}
+            }
+          },
+          "to": {
+            "name": "string",
+            "stopReference": [
+              {
+                "type": "GTFS_STOP_ID",
+                "id": "string",
+                "country": "NL"
+              }
+            ],
+            "stationId": "string",
+            "coordinates": {
+              "lng": 6.169639,
+              "lat": 52.253279,
+              "alt": 0
+            },
+            "physicalAddress": {
+              "streetAddress": "example street 18, 2nd floor, 18-B33",
+              "street": "string",
+              "houseNumber": 0,
+              "houseNumberAddition": "string",
+              "addressAdditionalInfo": "string",
+              "areaReference": "Smallcity, Pinetree county",
+              "city": "string",
+              "province": "string",
+              "state": "string",
+              "postalCode": "string",
+              "country": "NL"
+            },
+            "extraInfo": {
+              "additionalProp1": {}
+            }
+          },
+          "departureTime": "2024-02-14T14:37:29.379Z",
+          "arrivalTime": "2024-02-14T14:37:29.379Z",
+          "actualArrivalTime": "2024-02-14T14:37:29.379Z",
+          "actualDepartureTime": "2024-02-14T14:37:29.379Z",
+          "travelerReferenceNumbers": [
+            "string"
+          ],
+          "assetType": {
+            "id": "string",
+            "stationId": "string",
+            "nrAvailable": 0,
+            "assets": [
+              {
+                "id": "string",
+                "isReserved": true,
+                "isReservedFrom": "2024-02-14T14:37:29.379Z",
+                "isReservedTo": "2024-02-14T14:37:29.379Z",
+                "isDisabled": true,
+                "availableUntil": "2024-02-14T14:37:29.379Z",
+                "mileage": 0,
+                "stateOfCharge": 100,
+                "maxRange": 100,
+                "licensePlate": "string",
+                "stationId": "string",
+                "homeStationId": "string",
+                "damages": [
+                  {
+                    "vehicleComponent": "FRONT",
+                    "description": "string",
+                    "pictures": [
+                      "string"
+                    ]
+                  }
+                ],
+                "overriddenProperties": {
+                  "name": "string",
+                  "location": {
+                    "name": "string",
+                    "stopReference": [
+                      {
+                        "type": "GTFS_STOP_ID",
+                        "id": "string",
+                        "country": "NL"
+                      }
+                    ],
+                    "stationId": "string",
+                    "coordinates": {
+                      "lng": 6.169639,
+                      "lat": 52.253279,
+                      "alt": 0
+                    },
+                    "physicalAddress": {
+                      "streetAddress": "example street 18, 2nd floor, 18-B33",
+                      "street": "string",
+                      "houseNumber": 0,
+                      "houseNumberAddition": "string",
+                      "addressAdditionalInfo": "string",
+                      "areaReference": "Smallcity, Pinetree county",
+                      "city": "string",
+                      "province": "string",
+                      "state": "string",
+                      "postalCode": "string",
+                      "country": "NL"
+                    },
+                    "extraInfo": {
+                      "additionalProp1": {}
+                    }
+                  },
+                  "brand": "string",
+                  "model": "string",
+                  "buildingYear": 0,
+                  "colour": "string",
+                  "maxSpeed": 0,
+                  "wheelCount": 0,
+                  "image": "https://files.fietsersbond.nl/app/uploads/2014/10/30151126/ST2_Men_Side_CityKit-Stromer.jpg",
+                  "icon": "string",
+                  "accessMethods": [
+                    "DEEPLINK"
+                  ],
+                  "fuel": "NONE",
+                  "propulsion": "MUSCLE",
+                  "energyLabel": "A",
+                  "ecoLabel": [
+                    {
+                      "countryCode": "NL",
+                      "ecoSticker": "string"
+                    }
+                  ],
+                  "co2PerKm": 0,
+                  "gears": 0,
+                  "gearbox": "MANUAL",
+                  "airConditioning": true,
+                  "cabrio": true,
+                  "towingHook": true,
+                  "winterTires": true,
+                  "nrOfDoors": 0,
+                  "nrOfHelmets": 0,
+                  "navigation": true,
+                  "cruiseControl": true,
+                  "persons": 1,
+                  "infantSeat": true,
+                  "pets": true,
+                  "smoking": true,
+                  "easyAccessibility": "LIFT",
+                  "ancillaries": [
+                    {
+                      "source": "string",
+                      "category": "string",
+                      "number": "st",
+                      "type": "string",
+                      "memo": "string",
+                      "variable-number": 0,
+                      "applicable-days": [
+                        "MO"
+                      ]
+                    }
+                  ],
+                  "regionId": "string",
+                  "cargo": "string",
+                  "cargoVolume": 0,
+                  "cargoLoad": 0,
+                  "travelAbroad": true,
+                  "undergroundParking": true,
+                  "helmetRequired": false,
+                  "defaultReserveTime": 0,
+                  "other": "string",
+                  "meta": {
+                    "additionalProp1": {}
+                  }
+                }
+              }
+            ],
+            "assetClass": "AIR",
+            "assetSubClass": "string",
+            "sharedProperties": {
+              "name": "string",
+              "location": {
+                "name": "string",
+                "stopReference": [
+                  {
+                    "type": "GTFS_STOP_ID",
+                    "id": "string",
+                    "country": "NL"
+                  }
+                ],
+                "stationId": "string",
+                "coordinates": {
+                  "lng": 6.169639,
+                  "lat": 52.253279,
+                  "alt": 0
+                },
+                "physicalAddress": {
+                  "streetAddress": "example street 18, 2nd floor, 18-B33",
+                  "street": "string",
+                  "houseNumber": 0,
+                  "houseNumberAddition": "string",
+                  "addressAdditionalInfo": "string",
+                  "areaReference": "Smallcity, Pinetree county",
+                  "city": "string",
+                  "province": "string",
+                  "state": "string",
+                  "postalCode": "string",
+                  "country": "NL"
+                },
+                "extraInfo": {
+                  "additionalProp1": {}
+                }
+              },
+              "brand": "string",
+              "model": "string",
+              "buildingYear": 0,
+              "colour": "string",
+              "maxSpeed": 0,
+              "wheelCount": 0,
+              "image": "https://files.fietsersbond.nl/app/uploads/2014/10/30151126/ST2_Men_Side_CityKit-Stromer.jpg",
+              "icon": "string",
+              "accessMethods": [
+                "DEEPLINK"
+              ],
+              "fuel": "NONE",
+              "propulsion": "MUSCLE",
+              "energyLabel": "A",
+              "ecoLabel": [
+                {
+                  "countryCode": "NL",
+                  "ecoSticker": "string"
+                }
+              ],
+              "co2PerKm": 0,
+              "gears": 0,
+              "gearbox": "MANUAL",
+              "airConditioning": true,
+              "cabrio": true,
+              "towingHook": true,
+              "winterTires": true,
+              "nrOfDoors": 0,
+              "nrOfHelmets": 0,
+              "navigation": true,
+              "cruiseControl": true,
+              "persons": 1,
+              "infantSeat": true,
+              "pets": true,
+              "smoking": true,
+              "easyAccessibility": "LIFT",
+              "ancillaries": [
+                {
+                  "source": "string",
+                  "category": "string",
+                  "number": "st",
+                  "type": "string",
+                  "memo": "string",
+                  "variable-number": 0,
+                  "applicable-days": [
+                    "MO"
+                  ]
+                }
+              ],
+              "regionId": "string",
+              "cargo": "string",
+              "cargoVolume": 0,
+              "cargoLoad": 0,
+              "travelAbroad": true,
+              "undergroundParking": true,
+              "helmetRequired": false,
+              "defaultReserveTime": 0,
+              "other": "string",
+              "meta": {
+                "additionalProp1": {}
+              }
+            },
+            "applicablePricings": [
+              {
+                "planId": "freeplan1",
+                "url": "https://www.rentmyfreebike.com/freeplan",
+                "name": "Free Plan",
+                "stationId": "string",
+                "regionId": "string",
+                "fare": {
+                  "estimated": true,
+                  "description": "string",
+                  "class": "string",
+                  "parts": [
+                    {
+                      "amount": 9.95,
+                      "amountExVat": 8.95,
+                      "currencyCode": "str",
+                      "vatRate": 21,
+                      "vatCountryCode": "NL",
+                      "type": "FIXED",
+                      "kind": "DEFAULT",
+                      "unitType": "KM",
+                      "units": 0,
+                      "scaleFrom": 0,
+                      "scaleTo": 0,
+                      "scaleType": "KM",
+                      "name": "string",
+                      "class": "FARE",
+                      "minimumAmount": 9,
+                      "maximumAmount": 11,
+                      "assetState": "IN_USE",
+                      "meta": {
+                        "additionalProp1": {}
+                      }
+                    }
+                  ]
+                },
+                "isTaxable": true,
+                "surgePricing": true,
+                "description": "Unlimited plan for free bikes, as long as you don't break them!"
+              }
+            ],
+            "defaultPricingPlan": {
+              "planId": "freeplan1",
+              "url": "https://www.rentmyfreebike.com/freeplan",
+              "name": "Free Plan",
+              "stationId": "string",
+              "regionId": "string",
+              "fare": {
+                "estimated": true,
+                "description": "string",
+                "class": "string",
+                "parts": [
+                  {
+                    "amount": 9.95,
+                    "amountExVat": 8.95,
+                    "currencyCode": "str",
+                    "vatRate": 21,
+                    "vatCountryCode": "NL",
+                    "type": "FIXED",
+                    "kind": "DEFAULT",
+                    "unitType": "KM",
+                    "units": 0,
+                    "scaleFrom": 0,
+                    "scaleTo": 0,
+                    "scaleType": "KM",
+                    "name": "string",
+                    "class": "FARE",
+                    "minimumAmount": 9,
+                    "maximumAmount": 11,
+                    "assetState": "IN_USE",
+                    "meta": {
+                      "additionalProp1": {}
+                    }
+                  }
+                ]
+              },
+              "isTaxable": true,
+              "surgePricing": true,
+              "description": "Unlimited plan for free bikes, as long as you don't break them!"
+            },
+            "conditions": [
+              {
+                "conditionType": "ConditionDeposit",
+                "id": "deposit50eu",
+                "amount": 9.95,
+                "amountExVat": 8.95,
+                "currencyCode": "str",
+                "vatRate": 21,
+                "vatCountryCode": "NL"
+              },
+              {
+                "conditionType": "ConditionPayWhenFinished",
+                "id": "deposit50eu"
+              },
+              {
+                "conditionType": "ConditionPostponedCommit",
+                "id": "deposit50eu",
+                "ultimateResponseTime": "2024-02-14T14:37:29.379Z"
+              },
+              {
+                "conditionType": "ConditionRequireBookingData",
+                "id": "deposit50eu",
+                "requiredFields": [
+                  "FROM_ADDRESS"
+                ],
+                "claims": [
+                  "string"
+                ]
+              },
+              {
+                "conditionType": "ConditionReturnArea",
+                "id": "deposit50eu",
+                "stationId": "string",
+                "returnArea": [
+                  [
+                    [
+                      1,
+                      1
+                    ],
+                    [
+                      0,
+                      1
+                    ],
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      1,
+                      0
+                    ],
+                    [
+                      1,
+                      1
+                    ]
+                  ]
+                ],
+                "coordinates": {
+                  "lng": 6.169639,
+                  "lat": 52.253279,
+                  "alt": 0
+                },
+                "returnHours": [
+                  {
+                    "userType": "MEMBER",
+                    "stationId": "string",
+                    "regionId": "string",
+                    "startTime": "string",
+                    "endTime": "string",
+                    "days": [
+                      "MON"
+                    ]
+                  }
+                ]
+              },
+              {
+                "conditionType": "ConditionUpfrontPayment",
+                "id": "deposit50eu"
+              },
+              {
+                "conditionType": "ConditionRequireEvidence",
+                "id": "deposit50eu",
+                "evidenceTypes": [
+                  "PARKED"
+                ]
+              },
+              {
+                "conditionType": "ConditionRequireOnboardingSteps",
+                "id": "deposit50eu",
+                "steps": [
+                  {
+                    "type": "URL",
+                    "url": "string",
+                    "goal": "INSTRUCTIONS",
+                    "text": "string",
+                    "action": "SEND_PREPARE"
+                  }
+                ]
+              },
+              {
+                "conditionType": "ConditionRequireOffboardingSteps",
+                "id": "deposit50eu",
+                "steps": [
+                  {
+                    "type": "URL",
+                    "url": "string",
+                    "goal": "INSTRUCTIONS",
+                    "text": "string",
+                    "action": "SEND_START_FINISHING"
+                  }
+                ]
+              },
+              {
+                "conditionType": "ConditionRequirePausingSteps",
+                "id": "deposit50eu",
+                "steps": [
+                  {
+                    "type": "URL",
+                    "url": "string",
+                    "goal": "INSTRUCTIONS",
+                    "text": "string",
+                    "action": "SEND_PAUSE"
+                  }
+                ]
+              },
+              {
+                "conditionType": "ConditionRequireResumingSteps",
+                "id": "deposit50eu",
+                "steps": [
+                  {
+                    "type": "URL",
+                    "url": "string",
+                    "goal": "INSTRUCTIONS",
+                    "text": "string",
+                    "action": "UNLOCK_ASSET"
+                  }
+                ]
+              }
+            ]
+          },
+          "legSequenceNumber": 0,
+          "asset": {
+            "id": "string",
+            "isReserved": true,
+            "isReservedFrom": "2024-02-14T14:37:29.379Z",
+            "isReservedTo": "2024-02-14T14:37:29.379Z",
+            "isDisabled": true,
+            "availableUntil": "2024-02-14T14:37:29.379Z",
+            "mileage": 0,
+            "stateOfCharge": 100,
+            "maxRange": 100,
+            "licensePlate": "string",
+            "stationId": "string",
+            "homeStationId": "string",
+            "damages": [
+              {
+                "vehicleComponent": "FRONT",
+                "description": "string",
+                "pictures": [
+                  "string"
+                ]
+              }
+            ],
+            "overriddenProperties": {
+              "name": "string",
+              "location": {
+                "name": "string",
+                "stopReference": [
+                  {
+                    "type": "GTFS_STOP_ID",
+                    "id": "string",
+                    "country": "NL"
+                  }
+                ],
+                "stationId": "string",
+                "coordinates": {
+                  "lng": 6.169639,
+                  "lat": 52.253279,
+                  "alt": 0
+                },
+                "physicalAddress": {
+                  "streetAddress": "example street 18, 2nd floor, 18-B33",
+                  "street": "string",
+                  "houseNumber": 0,
+                  "houseNumberAddition": "string",
+                  "addressAdditionalInfo": "string",
+                  "areaReference": "Smallcity, Pinetree county",
+                  "city": "string",
+                  "province": "string",
+                  "state": "string",
+                  "postalCode": "string",
+                  "country": "NL"
+                },
+                "extraInfo": {
+                  "additionalProp1": {}
+                }
+              },
+              "brand": "string",
+              "model": "string",
+              "buildingYear": 0,
+              "colour": "string",
+              "maxSpeed": 0,
+              "wheelCount": 0,
+              "image": "https://files.fietsersbond.nl/app/uploads/2014/10/30151126/ST2_Men_Side_CityKit-Stromer.jpg",
+              "icon": "string",
+              "accessMethods": [
+                "DEEPLINK"
+              ],
+              "fuel": "NONE",
+              "propulsion": "MUSCLE",
+              "energyLabel": "A",
+              "ecoLabel": [
+                {
+                  "countryCode": "NL",
+                  "ecoSticker": "string"
+                }
+              ],
+              "co2PerKm": 0,
+              "gears": 0,
+              "gearbox": "MANUAL",
+              "airConditioning": true,
+              "cabrio": true,
+              "towingHook": true,
+              "winterTires": true,
+              "nrOfDoors": 0,
+              "nrOfHelmets": 0,
+              "navigation": true,
+              "cruiseControl": true,
+              "persons": 1,
+              "infantSeat": true,
+              "pets": true,
+              "smoking": true,
+              "easyAccessibility": "LIFT",
+              "ancillaries": [
+                {
+                  "source": "string",
+                  "category": "string",
+                  "number": "st",
+                  "type": "string",
+                  "memo": "string",
+                  "variable-number": 0,
+                  "applicable-days": [
+                    "MO"
+                  ]
+                }
+              ],
+              "regionId": "string",
+              "cargo": "string",
+              "cargoVolume": 0,
+              "cargoLoad": 0,
+              "travelAbroad": true,
+              "undergroundParking": true,
+              "helmetRequired": false,
+              "defaultReserveTime": 0,
+              "other": "string",
+              "meta": {
+                "additionalProp1": {}
+              }
+            }
+          },
+          "pricing": {
+            "estimated": true,
+            "description": "string",
+            "class": "string",
+            "parts": [
+              {
+                "amount": 9.95,
+                "amountExVat": 8.95,
+                "currencyCode": "str",
+                "vatRate": 21,
+                "vatCountryCode": "NL",
+                "type": "FIXED",
+                "kind": "DEFAULT",
+                "unitType": "KM",
+                "units": 0,
+                "scaleFrom": 0,
+                "scaleTo": 0,
+                "scaleType": "KM",
+                "name": "string",
+                "class": "FARE",
+                "minimumAmount": 9,
+                "maximumAmount": 11,
+                "assetState": "IN_USE",
+                "meta": {
+                  "additionalProp1": {}
+                }
+              }
+            ]
+          },
+          "suboperator": {
+            "name": "string",
+            "maasId": "string",
+            "description": "string",
+            "contact": "string"
+          },
+          "conditions": [
+            {
+              "conditionType": "ConditionDeposit",
+              "id": "deposit50eu",
+              "amount": 9.95,
+              "amountExVat": 8.95,
+              "currencyCode": "str",
+              "vatRate": 21,
+              "vatCountryCode": "NL"
+            },
+            {
+              "conditionType": "ConditionPayWhenFinished",
+              "id": "deposit50eu"
+            },
+            {
+              "conditionType": "ConditionPostponedCommit",
+              "id": "deposit50eu",
+              "ultimateResponseTime": "2024-02-14T14:37:29.379Z"
+            },
+            {
+              "conditionType": "ConditionRequireBookingData",
+              "id": "deposit50eu",
+              "requiredFields": [
+                "FROM_ADDRESS"
+              ],
+              "claims": [
+                "string"
+              ]
+            },
+            {
+              "conditionType": "ConditionReturnArea",
+              "id": "deposit50eu",
+              "stationId": "string",
+              "returnArea": [
+                [
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1
+                  ]
+                ]
+              ],
+              "coordinates": {
+                "lng": 6.169639,
+                "lat": 52.253279,
+                "alt": 0
+              },
+              "returnHours": [
+                {
+                  "userType": "MEMBER",
+                  "stationId": "string",
+                  "regionId": "string",
+                  "startTime": "string",
+                  "endTime": "string",
+                  "days": [
+                    "MON"
+                  ]
+                }
+              ]
+            },
+            {
+              "conditionType": "ConditionUpfrontPayment",
+              "id": "deposit50eu"
+            },
+            {
+              "conditionType": "ConditionRequireEvidence",
+              "id": "deposit50eu",
+              "evidenceTypes": [
+                "PARKED"
+              ]
+            },
+            {
+              "conditionType": "ConditionRequireOnboardingSteps",
+              "id": "deposit50eu",
+              "steps": [
+                {
+                  "type": "URL",
+                  "url": "string",
+                  "goal": "INSTRUCTIONS",
+                  "text": "string",
+                  "action": "SEND_PREPARE"
+                }
+              ]
+            },
+            {
+              "conditionType": "ConditionRequireOffboardingSteps",
+              "id": "deposit50eu",
+              "steps": [
+                {
+                  "type": "URL",
+                  "url": "string",
+                  "goal": "INSTRUCTIONS",
+                  "text": "string",
+                  "action": "SEND_START_FINISHING"
+                }
+              ]
+            },
+            {
+              "conditionType": "ConditionRequirePausingSteps",
+              "id": "deposit50eu",
+              "steps": [
+                {
+                  "type": "URL",
+                  "url": "string",
+                  "goal": "INSTRUCTIONS",
+                  "text": "string",
+                  "action": "SEND_PAUSE"
+                }
+              ]
+            },
+            {
+              "conditionType": "ConditionRequireResumingSteps",
+              "id": "deposit50eu",
+              "steps": [
+                {
+                  "type": "URL",
+                  "url": "string",
+                  "goal": "INSTRUCTIONS",
+                  "text": "string",
+                  "action": "UNLOCK_ASSET"
+                }
+              ]
+            }
+          ],
+          "state": "NOT_STARTED",
+          "departureDelay": 11112,
+          "arrivalDelay": 11112,
+          "distance": 7250,
+          "progressGeometry": [
+            [
+              6.169639,
+              52.253279
+            ],
+            [
+              6.05623,
+              52.63473
+            ]
+          ],
+          "ticket": {
+            "validFrom": "2024-02-14T14:37:29.380Z",
+            "validUntil": "2024-02-14T14:37:29.380Z",
+            "tokenType": "tokenDefault",
+            "tokenData": {
+              "tokenType": "TokenDefault",
+              "url": "string"
+            }
+          },
+          "assetAccessData": {
+            "validFrom": "2024-02-14T14:37:29.380Z",
+            "validUntil": "2024-02-14T14:37:29.380Z",
+            "tokenType": "tokenDefault",
+            "tokenData": {
+              "tokenType": "TokenDefault",
+              "url": "string"
+            }
+          },
+          "allAssetAccessData": [
+            {
+              "validFrom": "2024-02-14T14:37:29.380Z",
+              "validUntil": "2024-02-14T14:37:29.380Z",
+              "tokenType": "tokenDefault",
+              "tokenData": {
+                "tokenType": "TokenDefault",
+                "url": "string"
+              }
+            }
+          ],
+          "userCommunication": [
+            {
+              "type": "URL",
+              "url": "string",
+              "goal": "INSTRUCTIONS",
+              "text": "string"
+            }
+          ],
+          "memo": "string"
+        }
+      ],
+      "pricing": {
+        "estimated": true,
+        "description": "string",
+        "class": "string",
+        "parts": [
+          {
+            "amount": 9.95,
+            "amountExVat": 8.95,
+            "currencyCode": "str",
+            "vatRate": 21,
+            "vatCountryCode": "NL",
+            "type": "FIXED",
+            "kind": "DEFAULT",
+            "unitType": "KM",
+            "units": 0,
+            "scaleFrom": 0,
+            "scaleTo": 0,
+            "scaleType": "KM",
+            "name": "string",
+            "class": "FARE",
+            "minimumAmount": 9,
+            "maximumAmount": 11,
+            "assetState": "IN_USE",
+            "meta": {
+              "additionalProp1": {}
+            }
+          }
+        ]
+      },
+      "departureTime": "2024-02-14T14:37:29.380Z",
+      "arrivalTime": "2024-02-14T14:37:29.380Z",
+      "actualDepartureTime": "2024-02-14T14:37:29.380Z",
+      "actualArrivalTime": "2024-02-14T14:37:29.380Z",
+      "mainAssetType": {
+        "id": "string",
+        "stationId": "string",
+        "nrAvailable": 0,
+        "assets": [
+          {
+            "id": "string",
+            "isReserved": true,
+            "isReservedFrom": "2024-02-14T14:37:29.380Z",
+            "isReservedTo": "2024-02-14T14:37:29.380Z",
+            "isDisabled": true,
+            "availableUntil": "2024-02-14T14:37:29.380Z",
+            "mileage": 0,
+            "stateOfCharge": 100,
+            "maxRange": 100,
+            "licensePlate": "string",
+            "stationId": "string",
+            "homeStationId": "string",
+            "damages": [
+              {
+                "vehicleComponent": "FRONT",
+                "description": "string",
+                "pictures": [
+                  "string"
+                ]
+              }
+            ],
+            "overriddenProperties": {
+              "name": "string",
+              "location": {
+                "name": "string",
+                "stopReference": [
+                  {
+                    "type": "GTFS_STOP_ID",
+                    "id": "string",
+                    "country": "NL"
+                  }
+                ],
+                "stationId": "string",
+                "coordinates": {
+                  "lng": 6.169639,
+                  "lat": 52.253279,
+                  "alt": 0
+                },
+                "physicalAddress": {
+                  "streetAddress": "example street 18, 2nd floor, 18-B33",
+                  "street": "string",
+                  "houseNumber": 0,
+                  "houseNumberAddition": "string",
+                  "addressAdditionalInfo": "string",
+                  "areaReference": "Smallcity, Pinetree county",
+                  "city": "string",
+                  "province": "string",
+                  "state": "string",
+                  "postalCode": "string",
+                  "country": "NL"
+                },
+                "extraInfo": {
+                  "additionalProp1": {}
+                }
+              },
+              "brand": "string",
+              "model": "string",
+              "buildingYear": 0,
+              "colour": "string",
+              "maxSpeed": 0,
+              "wheelCount": 0,
+              "image": "https://files.fietsersbond.nl/app/uploads/2014/10/30151126/ST2_Men_Side_CityKit-Stromer.jpg",
+              "icon": "string",
+              "accessMethods": [
+                "DEEPLINK"
+              ],
+              "fuel": "NONE",
+              "propulsion": "MUSCLE",
+              "energyLabel": "A",
+              "ecoLabel": [
+                {
+                  "countryCode": "NL",
+                  "ecoSticker": "string"
+                }
+              ],
+              "co2PerKm": 0,
+              "gears": 0,
+              "gearbox": "MANUAL",
+              "airConditioning": true,
+              "cabrio": true,
+              "towingHook": true,
+              "winterTires": true,
+              "nrOfDoors": 0,
+              "nrOfHelmets": 0,
+              "navigation": true,
+              "cruiseControl": true,
+              "persons": 1,
+              "infantSeat": true,
+              "pets": true,
+              "smoking": true,
+              "easyAccessibility": "LIFT",
+              "ancillaries": [
+                {
+                  "source": "string",
+                  "category": "string",
+                  "number": "st",
+                  "type": "string",
+                  "memo": "string",
+                  "variable-number": 0,
+                  "applicable-days": [
+                    "MO"
+                  ]
+                }
+              ],
+              "regionId": "string",
+              "cargo": "string",
+              "cargoVolume": 0,
+              "cargoLoad": 0,
+              "travelAbroad": true,
+              "undergroundParking": true,
+              "helmetRequired": false,
+              "defaultReserveTime": 0,
+              "other": "string",
+              "meta": {
+                "additionalProp1": {}
+              }
+            }
+          }
+        ],
+        "assetClass": "AIR",
+        "assetSubClass": "string",
+        "sharedProperties": {
+          "name": "string",
+          "location": {
+            "name": "string",
+            "stopReference": [
+              {
+                "type": "GTFS_STOP_ID",
+                "id": "string",
+                "country": "NL"
+              }
+            ],
+            "stationId": "string",
+            "coordinates": {
+              "lng": 6.169639,
+              "lat": 52.253279,
+              "alt": 0
+            },
+            "physicalAddress": {
+              "streetAddress": "example street 18, 2nd floor, 18-B33",
+              "street": "string",
+              "houseNumber": 0,
+              "houseNumberAddition": "string",
+              "addressAdditionalInfo": "string",
+              "areaReference": "Smallcity, Pinetree county",
+              "city": "string",
+              "province": "string",
+              "state": "string",
+              "postalCode": "string",
+              "country": "NL"
+            },
+            "extraInfo": {
+              "additionalProp1": {}
+            }
+          },
+          "brand": "string",
+          "model": "string",
+          "buildingYear": 0,
+          "colour": "string",
+          "maxSpeed": 0,
+          "wheelCount": 0,
+          "image": "https://files.fietsersbond.nl/app/uploads/2014/10/30151126/ST2_Men_Side_CityKit-Stromer.jpg",
+          "icon": "string",
+          "accessMethods": [
+            "DEEPLINK"
+          ],
+          "fuel": "NONE",
+          "propulsion": "MUSCLE",
+          "energyLabel": "A",
+          "ecoLabel": [
+            {
+              "countryCode": "NL",
+              "ecoSticker": "string"
+            }
+          ],
+          "co2PerKm": 0,
+          "gears": 0,
+          "gearbox": "MANUAL",
+          "airConditioning": true,
+          "cabrio": true,
+          "towingHook": true,
+          "winterTires": true,
+          "nrOfDoors": 0,
+          "nrOfHelmets": 0,
+          "navigation": true,
+          "cruiseControl": true,
+          "persons": 1,
+          "infantSeat": true,
+          "pets": true,
+          "smoking": true,
+          "easyAccessibility": "LIFT",
+          "ancillaries": [
+            {
+              "source": "string",
+              "category": "string",
+              "number": "st",
+              "type": "string",
+              "memo": "string",
+              "variable-number": 0,
+              "applicable-days": [
+                "MO"
+              ]
+            }
+          ],
+          "regionId": "string",
+          "cargo": "string",
+          "cargoVolume": 0,
+          "cargoLoad": 0,
+          "travelAbroad": true,
+          "undergroundParking": true,
+          "helmetRequired": false,
+          "defaultReserveTime": 0,
+          "other": "string",
+          "meta": {
+            "additionalProp1": {}
+          }
+        },
+        "applicablePricings": [
+          {
+            "planId": "freeplan1",
+            "url": "https://www.rentmyfreebike.com/freeplan",
+            "name": "Free Plan",
+            "stationId": "string",
+            "regionId": "string",
+            "fare": {
+              "estimated": true,
+              "description": "string",
+              "class": "string",
+              "parts": [
+                {
+                  "amount": 9.95,
+                  "amountExVat": 8.95,
+                  "currencyCode": "str",
+                  "vatRate": 21,
+                  "vatCountryCode": "NL",
+                  "type": "FIXED",
+                  "kind": "DEFAULT",
+                  "unitType": "KM",
+                  "units": 0,
+                  "scaleFrom": 0,
+                  "scaleTo": 0,
+                  "scaleType": "KM",
+                  "name": "string",
+                  "class": "FARE",
+                  "minimumAmount": 9,
+                  "maximumAmount": 11,
+                  "assetState": "IN_USE",
+                  "meta": {
+                    "additionalProp1": {}
+                  }
+                }
+              ]
+            },
+            "isTaxable": true,
+            "surgePricing": true,
+            "description": "Unlimited plan for free bikes, as long as you don't break them!"
+          }
+        ],
+        "defaultPricingPlan": {
+          "planId": "freeplan1",
+          "url": "https://www.rentmyfreebike.com/freeplan",
+          "name": "Free Plan",
+          "stationId": "string",
+          "regionId": "string",
+          "fare": {
+            "estimated": true,
+            "description": "string",
+            "class": "string",
+            "parts": [
+              {
+                "amount": 9.95,
+                "amountExVat": 8.95,
+                "currencyCode": "str",
+                "vatRate": 21,
+                "vatCountryCode": "NL",
+                "type": "FIXED",
+                "kind": "DEFAULT",
+                "unitType": "KM",
+                "units": 0,
+                "scaleFrom": 0,
+                "scaleTo": 0,
+                "scaleType": "KM",
+                "name": "string",
+                "class": "FARE",
+                "minimumAmount": 9,
+                "maximumAmount": 11,
+                "assetState": "IN_USE",
+                "meta": {
+                  "additionalProp1": {}
+                }
+              }
+            ]
+          },
+          "isTaxable": true,
+          "surgePricing": true,
+          "description": "Unlimited plan for free bikes, as long as you don't break them!"
+        },
+        "conditions": [
+          {
+            "conditionType": "ConditionDeposit",
+            "id": "deposit50eu",
+            "amount": 9.95,
+            "amountExVat": 8.95,
+            "currencyCode": "str",
+            "vatRate": 21,
+            "vatCountryCode": "NL"
+          },
+          {
+            "conditionType": "ConditionDeposit",
+            "id": "deposit50eu"
+          },
+          {
+            "conditionType": "ConditionDeposit",
+            "id": "deposit50eu",
+            "ultimateResponseTime": "2024-02-14T14:37:29.380Z"
+          },
+          {
+            "conditionType": "ConditionDeposit",
+            "id": "deposit50eu",
+            "requiredFields": [
+              "FROM_ADDRESS"
+            ],
+            "claims": [
+              "string"
+            ]
+          },
+          {
+            "conditionType": "ConditionDeposit",
+            "id": "deposit50eu",
+            "stationId": "string",
+            "returnArea": [
+              [
+                [
+                  1,
+                  1
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ]
+              ]
+            ],
+            "coordinates": {
+              "lng": 6.169639,
+              "lat": 52.253279,
+              "alt": 0
+            },
+            "returnHours": [
+              {
+                "userType": "MEMBER",
+                "stationId": "string",
+                "regionId": "string",
+                "startTime": "string",
+                "endTime": "string",
+                "days": [
+                  "MON"
+                ]
+              }
+            ]
+          },
+          {
+            "conditionType": "ConditionDeposit",
+            "id": "deposit50eu"
+          },
+          {
+            "conditionType": "ConditionDeposit",
+            "id": "deposit50eu",
+            "evidenceTypes": [
+              "PARKED"
+            ]
+          },
+          {
+            "conditionType": "ConditionDeposit",
+            "id": "deposit50eu",
+            "steps": [
+              {
+                "type": "URL",
+                "url": "string",
+                "goal": "INSTRUCTIONS",
+                "text": "string",
+                "action": "SEND_PREPARE"
+              }
+            ]
+          },
+          {
+            "conditionType": "ConditionDeposit",
+            "id": "deposit50eu",
+            "steps": [
+              {
+                "type": "URL",
+                "url": "string",
+                "goal": "INSTRUCTIONS",
+                "text": "string",
+                "action": "SEND_START_FINISHING"
+              }
+            ]
+          },
+          {
+            "conditionType": "ConditionDeposit",
+            "id": "deposit50eu",
+            "steps": [
+              {
+                "type": "URL",
+                "url": "string",
+                "goal": "INSTRUCTIONS",
+                "text": "string",
+                "action": "SEND_PAUSE"
+              }
+            ]
+          },
+          {
+            "conditionType": "ConditionDeposit",
+            "id": "deposit50eu",
+            "steps": [
+              {
+                "type": "URL",
+                "url": "string",
+                "goal": "INSTRUCTIONS",
+                "text": "string",
+                "action": "UNLOCK_ASSET"
+              }
+            ]
+          }
+        ]
+      },
+      "userCommunication": [
+        {
+          "type": "URL",
+          "url": "string",
+          "goal": "INSTRUCTIONS",
+          "text": "string"
+        }
+      ],
+      "memo": "string",
+      "extraData": {
+        "safeWaitTime": 0,
+        "maxWaitTime": 0,
+        "safeTravelTime": 0,
+        "maxTravelTime": 0,
+        "additionalProp1": {}
+      }
+    }
+  ]
+}
