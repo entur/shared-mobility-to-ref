@@ -1,6 +1,7 @@
 package no.entur.shared.mobility.to.ref.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.readValue
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.enums.ParameterIn
@@ -104,7 +105,7 @@ class PaymentController(private val objectMapper: ObjectMapper) {
         @RequestBody(required = false)
         extraCosts: ExtraCosts?,
     ): JournalEntry {
-        TODO()
+        return objectMapper.readValue(javaClass.getResourceAsStream("/json/JournalEntry.json")!!)
     }
 
     @Operation(
@@ -225,6 +226,6 @@ class PaymentController(private val objectMapper: ObjectMapper) {
         @RequestParam(value = "limit", required = false)
         limit: Int?,
     ): List<JournalEntry> {
-        TODO()
+        return listOf(objectMapper.readValue(javaClass.getResourceAsStream("/json/JournalEntry.json")!!))
     }
 }

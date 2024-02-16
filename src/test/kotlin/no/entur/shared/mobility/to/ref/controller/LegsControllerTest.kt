@@ -10,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest(classes = [Application::class], webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-
 class LegsControllerTest {
-
     @Autowired
     private lateinit var legsController: LegsController
 
@@ -65,7 +63,7 @@ class LegsControllerTest {
             api = "",
             apiVersion = "",
             id = "",
-            confirmationRequest = null
+            confirmationRequest = null,
         )
     }
 
@@ -78,7 +76,7 @@ class LegsControllerTest {
             maasId = "",
             id = "",
             addressedTo = "",
-            legEvent = null
+            legEvent = null,
         )
     }
 
@@ -103,7 +101,7 @@ class LegsControllerTest {
             maasId = "",
             id = "",
             addressedTo = "",
-            locationOnly = true
+            locationOnly = true,
         )
     }
 
@@ -116,7 +114,7 @@ class LegsControllerTest {
             maasId = "",
             id = "",
             addressedTo = "",
-            legProgress = null
+            legProgress = null,
         )
     }
 
@@ -129,7 +127,7 @@ class LegsControllerTest {
             maasId = "",
             id = "",
             addressedTo = "",
-            leg = Leg(from = Place(Coordinates(0F, 0F, 0F)), assetType = AssetType(id = ""))
+            leg = Leg(from = Place(Coordinates(0F, 0F, 0F)), assetType = AssetType(id = "")),
         )
     }
 }

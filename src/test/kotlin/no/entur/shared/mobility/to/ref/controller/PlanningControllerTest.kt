@@ -7,7 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest(classes = [Application::class], webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class PlanningControllerTest {
-
     @Autowired
     private lateinit var planningController: PlanningController
 
@@ -19,7 +18,7 @@ class PlanningControllerTest {
             "",
             "",
             "",
-            null
+            null,
         )
     }
 
@@ -31,7 +30,7 @@ class PlanningControllerTest {
             apiVersion = "",
             maasId = "",
             addressedTo = "",
-            planningRequest = null
+            planningRequest = null,
         )
     }
 }

@@ -25,4 +25,4 @@ data class ConditionRequireOnboardingSteps(
         description = "An identifier for this condition that can be used to refer to this condition",
     )
     val id: String? = null,
-): AssetTypeConditionsInner
+) : AssetTypeConditionsInner

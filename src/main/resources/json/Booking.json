@@ -1,0 +1,182 @@
+{
+  "id": "string",
+  "from": {
+    "name": "string",
+    "stopReference": [
+      {
+        "type": "GTFS_STOP_ID",
+        "id": "string",
+        "country": "NL"
+      }
+    ],
+    "stationId": "string",
+    "coordinates": {
+      "lng": 6.169639,
+      "lat": 52.253279,
+      "alt": 0
+    },
+    "physicalAddress": {
+      "streetAddress": "example street 18, 2nd floor, 18-B33",
+      "street": "string",
+      "houseNumber": 0,
+      "houseNumberAddition": "string",
+      "addressAdditionalInfo": "string",
+      "areaReference": "Smallcity, Pinetree county",
+      "city": "string",
+      "province": "string",
+      "state": "string",
+      "postalCode": "string",
+      "country": "NL"
+    },
+    "extraInfo": {
+      "additionalProp1": {}
+    }
+  },
+  "callbackUrl": "string",
+  "to": {
+    "name": "string",
+    "stopReference": [
+      {
+        "type": "GTFS_STOP_ID",
+        "id": "string",
+        "country": "NL"
+      }
+    ],
+    "stationId": "string",
+    "coordinates": {
+      "lng": 6.169639,
+      "lat": 52.253279,
+      "alt": 0
+    },
+    "physicalAddress": {
+      "streetAddress": "example street 18, 2nd floor, 18-B33",
+      "street": "string",
+      "houseNumber": 0,
+      "houseNumberAddition": "string",
+      "addressAdditionalInfo": "string",
+      "areaReference": "Smallcity, Pinetree county",
+      "city": "string",
+      "province": "string",
+      "state": "string",
+      "postalCode": "string",
+      "country": "NL"
+    },
+    "extraInfo": {
+      "additionalProp1": {}
+    }
+  },
+  "customer": {
+    "isValidated": true,
+    "age": 0,
+    "referenceNumber": "string",
+    "cardTypes": [
+      {
+        "type": "ID",
+        "subType": "string",
+        "assetClass": "AIR",
+        "acceptors": [
+          "string"
+        ]
+      }
+    ],
+    "licenseTypes": [
+      {
+        "assetClass": "AIR",
+        "issuingCountry": "NL"
+      }
+    ],
+    "requirements": {
+      "abilities": [
+        {
+          "source": "string",
+          "category": "string",
+          "number": "st",
+          "type": "string",
+          "memo": "string",
+          "variable-number": 0,
+          "applicable-days": [
+            "MO"
+          ]
+        }
+      ],
+      "bringAlong": [
+        {
+          "source": "string",
+          "category": "string",
+          "number": "st",
+          "type": "string",
+          "memo": "string",
+          "variable-number": 0,
+          "applicable-days": [
+            "MO"
+          ]
+        }
+      ],
+      "additionalProp1": {}
+    },
+    "knownIdentifier": "string",
+    "knownIdentifierProvider": "string",
+    "id": "A0-123456",
+    "travelerReference": "string",
+    "initials": "string",
+    "firstName": "John",
+    "lastName": "Doe",
+    "middleName": "von",
+    "prefix": "string",
+    "postfix": "string",
+    "phones": [
+      {
+        "preferred": true,
+        "number": "+31-48934758 or +(0075)-834923384 or 020 1234 1234",
+        "kind": "LANDLINE",
+        "type": "PRIVATE"
+      }
+    ],
+    "email": "string",
+    "birthDate": "2024-02-16",
+    "address": {
+      "streetAddress": "example street 18, 2nd floor, 18-B33",
+      "street": "string",
+      "houseNumber": 0,
+      "houseNumberAddition": "string",
+      "addressAdditionalInfo": "string",
+      "areaReference": "Smallcity, Pinetree county",
+      "city": "string",
+      "province": "string",
+      "state": "string",
+      "postalCode": "string",
+      "country": "NL"
+    },
+    "photo": null,
+    "cards": [
+      {
+        "type": "ID",
+        "subType": "string",
+        "assetClass": "AIR",
+        "acceptors": [
+          "string"
+        ],
+        "cardDescription": "string",
+        "cardNumber": "string",
+        "cardAdditionalNumber": "string",
+        "validUntil": "2024-02-16",
+        "country": "NL"
+      }
+    ],
+    "licenses": [
+      {
+        "assetClass": "AIR",
+        "issuingCountry": "NL",
+        "number": "1287948792",
+        "licenseCode": "D4",
+        "validUntil": "2024-02-16"
+      }
+    ],
+    "extraInfo": {
+      "additionalProp1": {}
+    }
+  },
+  "extraInfo": {
+    "additionalProp1": {}
+  }
+}

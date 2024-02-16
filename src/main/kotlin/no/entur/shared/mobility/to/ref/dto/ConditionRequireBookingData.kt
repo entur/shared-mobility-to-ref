@@ -37,7 +37,7 @@ data class ConditionRequireBookingData(
                 "https://github.com/TOMP-WG/TOMP-API/wiki/Blockchain---Verifiable-credentials",
     )
     val claims: List<String>? = null,
-): AssetTypeConditionsInner {
+) : AssetTypeConditionsInner {
     enum class RequiredFields {
         FROM_ADDRESS,
         TO_ADDRESS,

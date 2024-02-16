@@ -29,7 +29,6 @@ data class ConditionRequireEvidence(
     )
     val id: String? = null,
 ) : AssetTypeConditionsInner {
-
     enum class EvidenceTypes {
         PARKED,
         HELMET_IN_BASKET,

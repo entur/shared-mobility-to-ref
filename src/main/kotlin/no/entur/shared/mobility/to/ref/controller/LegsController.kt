@@ -1,6 +1,7 @@
 package no.entur.shared.mobility.to.ref.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.readValue
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.enums.ParameterIn
@@ -112,7 +113,7 @@ class LegsController(private val objectMapper: ObjectMapper) {
         @RequestHeader(value = "addressed-to", required = false)
         addressedTo: String?,
     ): Leg {
-        TODO()
+        return objectMapper.readValue(javaClass.getResourceAsStream("/json/Leg.json")!!)
     }
 
     @Operation(
@@ -194,7 +195,7 @@ class LegsController(private val objectMapper: ObjectMapper) {
         @RequestHeader(value = "addressed-to", required = false)
         addressedTo: String?,
     ): Leg {
-        TODO()
+        return objectMapper.readValue(javaClass.getResourceAsStream("/json/Leg.json")!!)
     }
 
     @Operation(
@@ -281,7 +282,7 @@ class LegsController(private val objectMapper: ObjectMapper) {
         @RequestParam(value = "limit", required = false)
         limit: Int?,
     ): List<Asset> {
-        TODO()
+        return objectMapper.readValue(javaClass.getResourceAsStream("/json/Assets.json")!!)
     }
 
     @Operation(
@@ -342,7 +343,7 @@ class LegsController(private val objectMapper: ObjectMapper) {
         @RequestBody(required = false)
         confirmationRequest: ConfirmationRequest?,
     ): Boolean {
-        TODO()
+        return true
     }
 
     @Operation(
@@ -435,7 +436,7 @@ class LegsController(private val objectMapper: ObjectMapper) {
         @RequestBody(required = false)
         legEvent: LegEvent?,
     ): Leg {
-        TODO()
+        return objectMapper.readValue(javaClass.getResourceAsStream("/json/Leg.json")!!)
     }
 
     @Operation(
@@ -506,7 +507,7 @@ class LegsController(private val objectMapper: ObjectMapper) {
         @RequestHeader(value = "addressed-to", required = false)
         addressedTo: String?,
     ): Leg {
-        TODO()
+        return objectMapper.readValue(javaClass.getResourceAsStream("/json/Leg.json")!!)
     }
 
     @Operation(
@@ -572,7 +573,7 @@ class LegsController(private val objectMapper: ObjectMapper) {
         @RequestParam(value = "location-only", required = false, defaultValue = "false")
         locationOnly: Boolean,
     ): LegProgress {
-        TODO()
+        return objectMapper.readValue(javaClass.getResourceAsStream("/json/LegProgress.json")!!)
     }
 
     @Operation(
@@ -645,7 +646,6 @@ class LegsController(private val objectMapper: ObjectMapper) {
         @RequestBody(required = false)
         legProgress: LegProgress?,
     ) {
-        TODO()
     }
 
     @Operation(
@@ -719,6 +719,5 @@ class LegsController(private val objectMapper: ObjectMapper) {
         @Parameter(description = "The ID of the maas operator that has to receive this message", `in` = ParameterIn.HEADER)
         @RequestHeader(value = "addressed-to", required = false) addressedTo: String?,
     ) {
-        TODO()
     }
 }

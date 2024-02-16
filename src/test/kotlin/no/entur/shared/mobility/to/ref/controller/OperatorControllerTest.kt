@@ -7,7 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest(classes = [Application::class], webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class OperatorControllerTest {
-
     @Autowired
     private lateinit var operatorController: OperatorController
 
@@ -37,7 +36,7 @@ class OperatorControllerTest {
             regionId = "",
             stationId = "",
             limit = 0,
-            offset = 2
+            offset = 2,
         )
     }
 
@@ -84,8 +83,7 @@ class OperatorControllerTest {
             addressedTo = "",
             regionId = "",
             stationId = "",
-
-            )
+        )
     }
 
     @Test
@@ -117,7 +115,7 @@ class OperatorControllerTest {
             maasId = "",
             addressedTo = "",
             offset = 0,
-            limit = 0
+            limit = 0,
         )
     }
 
@@ -134,7 +132,7 @@ class OperatorControllerTest {
             regionId = null,
             lon = 5F,
             lat = 4F,
-            radius = 3F
+            radius = 3F,
         )
     }
 }

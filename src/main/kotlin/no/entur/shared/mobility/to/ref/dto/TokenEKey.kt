@@ -19,4 +19,4 @@ data class TokenEKey(
     @field:Valid
     @Schema(example = "null", required = true)
     @get:JsonProperty("lock", required = true) val lock: TokenEKeyAllOfLock,
-): TokenTokenData
+) : TokenTokenData

@@ -8,7 +8,6 @@ import java.time.OffsetDateTime
 
 @SpringBootTest(classes = [Application::class], webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class PaymentControllerTest {
-
     @Autowired
     private lateinit var paymentController: PaymentController
 
@@ -21,7 +20,7 @@ class PaymentControllerTest {
             maasId = "",
             id = "",
             addressedTo = "",
-            extraCosts = null
+            extraCosts = null,
         )
     }
 
@@ -40,7 +39,6 @@ class PaymentControllerTest {
             state = null,
             category = null,
             addressedTo = "",
-
-            )
+        )
     }
 }

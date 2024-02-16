@@ -1,0 +1,31 @@
+{
+  "systemId": "XXTO0001",
+  "language": [
+    "fr-FR"
+  ],
+  "name": "FreeBike",
+  "shortName": "FB",
+  "operator": "FreeBike",
+  "url": "https://www.rentmyfreebike.com",
+  "purchaseUrl": "https://www.rentmyfreebike.com/purchase",
+  "discoveryUriAndroid": "string",
+  "discoveryUriIOS": "string",
+  "storeUriAndroid": "https://play.google.com/store/apps/details?id=com.rentmyfreebike.android",
+  "storeUriIOS": "itms-apps://itunes.apple.com/app/idcom.rentmyfreebike.ios",
+  "startDate": "2024-02-16",
+  "phoneNumber": "555-12345",
+  "email": "rent@freebike.com",
+  "feedContactEmail": "user@example.com",
+  "timezone": "IST",
+  "licenseUrl": "https://www.rentmyfreebike.com/license",
+  "typeOfSystem": "FREE_FLOATING",
+  "chamberOfCommerceInfo": {
+    "number": "string",
+    "place": "string"
+  },
+  "conditions": "string",
+  "productType": "RENTAL",
+  "assetClasses": [
+    "AIR"
+  ]
+}

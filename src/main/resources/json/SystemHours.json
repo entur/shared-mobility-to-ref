@@ -1,0 +1,12 @@
+[
+  {
+    "userType": "MEMBER",
+    "stationId": "string",
+    "regionId": "string",
+    "startTime": "string",
+    "endTime": "string",
+    "days": [
+      "MON"
+    ]
+  }
+]

@@ -3,7 +3,6 @@ package no.entur.shared.mobility.to.ref.controller
 import no.entur.shared.mobility.to.ref.Application
 import no.entur.shared.mobility.to.ref.dto.Booking
 import no.entur.shared.mobility.to.ref.dto.BookingRequest
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -11,7 +10,6 @@ import java.time.OffsetDateTime
 
 @SpringBootTest(classes = [Application::class], webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class BookingsControllerTest {
-
     @Autowired
     private lateinit var bookingsController: BookingsController
 
@@ -28,7 +26,7 @@ class BookingsControllerTest {
             maxTime = OffsetDateTime.now(),
             minPrice = null,
             maxPrice = null,
-            containsAssetType = ""
+            containsAssetType = "",
         )
     }
 
@@ -41,7 +39,7 @@ class BookingsControllerTest {
             maasId = "",
             id = "",
             addressedTo = "",
-            bookingOperation = null
+            bookingOperation = null,
         )
     }
 
@@ -78,7 +76,7 @@ class BookingsControllerTest {
             maasId = "",
             id = "",
             addressedTo = "",
-            notification = null
+            notification = null,
         )
     }
 
@@ -127,7 +125,7 @@ class BookingsControllerTest {
             apiVersion = "",
             maasId = "",
             addressedTo = "",
-            oneStopBookingRequest = null
+            oneStopBookingRequest = null,
         )
     }
 
@@ -139,7 +137,7 @@ class BookingsControllerTest {
             apiVersion = "",
             maasId = "",
             addressedTo = "",
-            bookingRequest = BookingRequest()
+            bookingRequest = BookingRequest(),
         )
     }
 }

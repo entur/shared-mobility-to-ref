@@ -16,4 +16,4 @@ data class TokenQR(
     @get:JsonProperty("base64", required = true) val base64: String,
     @Schema(example = "null")
     val version: String? = null,
-): TokenTokenData
+) : TokenTokenData

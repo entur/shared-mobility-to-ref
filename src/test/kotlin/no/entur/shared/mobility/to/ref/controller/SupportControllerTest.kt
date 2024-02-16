@@ -7,7 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest(classes = [Application::class], webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class SupportControllerTest {
-
     @Autowired
     private lateinit var supportController: SupportController
 
@@ -19,7 +18,7 @@ class SupportControllerTest {
             apiVersion = "",
             maasId = "",
             addressedTo = "",
-            id = ""
+            id = "",
         )
     }
 
@@ -31,7 +30,7 @@ class SupportControllerTest {
             apiVersion = "",
             maasId = "",
             addressedTo = "",
-            supportRequest = null
+            supportRequest = null,
         )
     }
 }

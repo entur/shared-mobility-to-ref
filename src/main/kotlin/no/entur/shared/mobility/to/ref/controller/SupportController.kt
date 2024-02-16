@@ -1,6 +1,7 @@
 package no.entur.shared.mobility.to.ref.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.readValue
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.enums.ParameterIn
@@ -97,7 +98,7 @@ class SupportController(private val objectMapper: ObjectMapper) {
         @RequestHeader(value = "addressed-to", required = false)
         addressedTo: String?,
     ): List<SupportStatus> {
-        TODO()
+        return listOf(objectMapper.readValue(javaClass.getResourceAsStream("/json/SupportStatus.json")!!))
     }
 
     @Operation(
@@ -171,6 +172,6 @@ class SupportController(private val objectMapper: ObjectMapper) {
         @RequestBody(required = false)
         supportRequest: SupportRequest?,
     ): SupportStatus {
-        TODO()
+        return objectMapper.readValue(javaClass.getResourceAsStream("/json/SupportStatus.json")!!)
     }
 }

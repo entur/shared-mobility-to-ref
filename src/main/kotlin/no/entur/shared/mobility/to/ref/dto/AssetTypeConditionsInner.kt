@@ -46,7 +46,7 @@ import io.swagger.v3.oas.annotations.media.Schema
     JsonSubTypes.Type(ConditionRequireOnboardingSteps::class),
     JsonSubTypes.Type(ConditionRequireOffboardingSteps::class),
     JsonSubTypes.Type(ConditionRequirePausingSteps::class),
-    JsonSubTypes.Type(ConditionRequireResumingSteps::class)
+    JsonSubTypes.Type(ConditionRequireResumingSteps::class),
 )
 interface AssetTypeConditionsInner {
     @get:Schema(

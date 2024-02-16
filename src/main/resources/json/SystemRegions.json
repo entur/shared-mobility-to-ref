@@ -1,0 +1,35 @@
+[
+  {
+    "regionId": "BikeRegion",
+    "name": "BikeTown",
+    "type": "OPERATING",
+    "typeUnit": "KMPH",
+    "typeValue": 0,
+    "areaStartTime": "2024-02-16T08:16:04.163Z",
+    "areaEndTime": "2024-02-16T08:16:04.163Z",
+    "serviceArea": [
+      [
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    ]
+  }
+]

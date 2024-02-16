@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import io.swagger.v3.oas.annotations.media.Schema
 import jakarta.validation.constraints.DecimalMin
 import jakarta.validation.constraints.Size
-import java.time.OffsetDateTime
 
 /**
  * in case the TO demands a deposit before usage. Requesting and refunding should be done using the /payment/claim-extra-costs endpoint.
@@ -44,4 +43,4 @@ data class ConditionDeposit(
     @Schema(example = "21.0", description = "value added tax rate (percentage of amount)") val vatRate: Float? = null,
     @get:Size(min = 2, max = 2)
     @Schema(example = "NL", description = "two-letter country codes according to ISO 3166-1") val vatCountryCode: String? = null,
-): AssetTypeConditionsInner
+) : AssetTypeConditionsInner

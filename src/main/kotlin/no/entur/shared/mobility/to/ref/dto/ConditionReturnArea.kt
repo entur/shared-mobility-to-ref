@@ -43,4 +43,4 @@ data class ConditionReturnArea(
     @field:Valid
     @Schema(example = "null", description = "the return hours of the facility (if different from operating-hours)")
     val returnHours: List<SystemHours>? = null,
-): AssetTypeConditionsInner
+) : AssetTypeConditionsInner

@@ -1,6 +1,7 @@
 package no.entur.shared.mobility.to.ref.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.readValue
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.enums.ParameterIn
@@ -64,10 +65,6 @@ class BookingsController(private val objectMapper: ObjectMapper) {
             SecurityRequirement(name = "OAuth", scopes = []),
         ],
     )
-
-
-
-
     @GetMapping("/bookings", produces = ["application/json"])
     fun bookingsGet(
         @Parameter(
@@ -141,7 +138,9 @@ class BookingsController(private val objectMapper: ObjectMapper) {
         @RequestParam(value = "contains-asset-type", required = false)
         containsAssetType: String?,
     ): List<Booking> {
-        TODO()
+
+        return listOf(objectMapper.readValue(javaClass.getResourceAsStream("/json/Booking.json")!!))
+
     }
 
     @Operation(
@@ -234,7 +233,7 @@ class BookingsController(private val objectMapper: ObjectMapper) {
         @Valid
         @RequestBody(required = false) bookingOperation: BookingOperation?,
     ): Booking {
-        TODO()
+        return objectMapper.readValue(javaClass.getResourceAsStream("/json/Booking.json")!!)
     }
 
     @Operation(
@@ -297,7 +296,7 @@ class BookingsController(private val objectMapper: ObjectMapper) {
         @RequestHeader(value = "addressed-to", required = false)
         addressedTo: String?,
     ): Booking {
-        TODO()
+        return objectMapper.readValue(javaClass.getResourceAsStream("/json/Booking.json")!!)
     }
 
     @Operation(
@@ -378,7 +377,8 @@ class BookingsController(private val objectMapper: ObjectMapper) {
         )
         addressedTo: String?,
     ): List<Notification> {
-        TODO()
+        return objectMapper.readValue(javaClass.getResourceAsStream("/json/Notifications.json")!!)
+
     }
 
     @Operation(
@@ -453,7 +453,7 @@ class BookingsController(private val objectMapper: ObjectMapper) {
         @RequestBody(required = false)
         notification: Notification?,
     ) {
-        TODO()
+
     }
 
     @Operation(
@@ -540,7 +540,7 @@ class BookingsController(private val objectMapper: ObjectMapper) {
         @RequestHeader(value = "addressed-to", required = false)
         addressedTo: String?,
     ): Booking {
-        TODO()
+        return objectMapper.readValue(javaClass.getResourceAsStream("/json/Booking.json")!!)
     }
 
     @Operation(
@@ -616,7 +616,7 @@ class BookingsController(private val objectMapper: ObjectMapper) {
         @RequestHeader(value = "addressed-to", required = false)
         addressedTo: String?,
     ) {
-        TODO()
+
     }
 
     @Operation(
@@ -689,7 +689,6 @@ class BookingsController(private val objectMapper: ObjectMapper) {
         @RequestHeader(value = "addressed-to", required = false)
         addressedTo: String?,
     ) {
-        TODO()
     }
 
     @Operation(
@@ -762,7 +761,7 @@ class BookingsController(private val objectMapper: ObjectMapper) {
         @RequestBody(required = false)
         oneStopBookingRequest: OneStopBookingRequest?,
     ): Booking {
-        TODO()
+        return objectMapper.readValue(javaClass.getResourceAsStream("/json/Booking.json")!!)
     }
 
     @Operation(
@@ -852,6 +851,6 @@ class BookingsController(private val objectMapper: ObjectMapper) {
             required = false,
         ) addressedTo: String?,
     ): Booking {
-        TODO()
+        return objectMapper.readValue(javaClass.getResourceAsStream("/json/Booking.json")!!)
     }
 }

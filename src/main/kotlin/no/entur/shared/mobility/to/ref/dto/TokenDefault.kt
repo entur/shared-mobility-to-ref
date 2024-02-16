@@ -13,4 +13,4 @@ data class TokenDefault(
     @get:JsonProperty("tokenType", required = true) override val tokenType: String,
     @Schema(example = "null", description = "download url for html/pdf")
     val url: String? = null,
-): TokenTokenData
+) : TokenTokenData

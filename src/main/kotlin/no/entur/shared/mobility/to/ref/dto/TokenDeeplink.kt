@@ -19,4 +19,4 @@ data class TokenDeeplink(
     val url: String? = null,
     @Schema(example = "[\"return-url\",\"error-url\",\"error-code\",\"error-description\"]")
     val knownParameters: List<String>? = null,
-): TokenTokenData
+) : TokenTokenData

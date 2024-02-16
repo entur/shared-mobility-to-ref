@@ -1,0 +1,22 @@
+[
+  {
+    "alertId": "string",
+    "alertType": "SYSTEM_CLOSURE",
+    "startAndEndTimes": [
+      [
+        "2024-02-16T08:00:39.320Z",
+        "2024-02-16T08:00:39.320Z"
+      ]
+    ],
+    "stationIds": [
+      "stationID0001"
+    ],
+    "regionId": [
+      "regionID0001"
+    ],
+    "url": "http://www.rentmyfreebike.com/alerts",
+    "summary": "station closed",
+    "description": "station closed indefinitely due to vandalism",
+    "lastUpdated": "2024-02-16T08:00:39.320Z"
+  }
+]

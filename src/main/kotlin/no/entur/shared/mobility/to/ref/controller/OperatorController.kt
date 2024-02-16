@@ -1,6 +1,7 @@
 package no.entur.shared.mobility.to.ref.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.readValue
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.enums.ParameterIn
@@ -115,7 +116,7 @@ class OperatorController(private val objectMapper: ObjectMapper) {
         @RequestParam(value = "stationId", required = false)
         stationId: String?,
     ): List<SystemAlert> {
-        TODO()
+        return objectMapper.readValue(javaClass.getResourceAsStream("/json/SystemAlerts.json")!!)
     }
 
     @Operation(
@@ -203,8 +204,8 @@ class OperatorController(private val objectMapper: ObjectMapper) {
         @RequestParam(value = "stationId", required = false)
         stationId: String?,
     ): List<AssetType> {
-        TODO()
-    }
+        return objectMapper.readValue(javaClass.getResourceAsStream("/json/AssetTypes.json")!!)
+            }
 
     @Operation(
         summary = "describes the system",
@@ -266,7 +267,7 @@ class OperatorController(private val objectMapper: ObjectMapper) {
         @RequestHeader(value = "addressed-to", required = false)
         addressedTo: String?,
     ): SystemInformation {
-        TODO()
+        return objectMapper.readValue(javaClass.getResourceAsStream("/json/SystemInformation.json")!!)
     }
 
     @Operation(
@@ -307,7 +308,7 @@ class OperatorController(private val objectMapper: ObjectMapper) {
         @RequestHeader(value = "addressed-to", required = false)
         addressedTo: String?,
     ): List<EndpointImplementation> {
-        TODO()
+        return objectMapper.readValue(javaClass.getResourceAsStream("/json/EndpointImplementations.json")!!)
     }
 
     @Operation(
@@ -380,7 +381,7 @@ class OperatorController(private val objectMapper: ObjectMapper) {
         @RequestParam(value = "stationId", required = false)
         stationId: String?,
     ): List<SystemCalendar> {
-        TODO()
+        return objectMapper.readValue(javaClass.getResourceAsStream("/json/SystemCalendars.json")!!)
     }
 
     @Operation(
@@ -450,7 +451,7 @@ class OperatorController(private val objectMapper: ObjectMapper) {
         @RequestParam(value = "stationId", required = false)
         stationId: String?,
     ): List<SystemHours> {
-        TODO()
+        return objectMapper.readValue(javaClass.getResourceAsStream("/json/SystemHours.json")!!)
     }
 
     @Operation(
@@ -487,7 +488,6 @@ class OperatorController(private val objectMapper: ObjectMapper) {
         @RequestHeader(value = "Accept-Language", required = true)
         acceptLanguage: String,
     ) {
-        TODO()
     }
 
     @Operation(
@@ -566,7 +566,7 @@ class OperatorController(private val objectMapper: ObjectMapper) {
         @RequestParam(value = "stationId", required = false)
         stationId: String?,
     ): List<SystemPricingPlan> {
-        TODO()
+        return objectMapper.readValue(javaClass.getResourceAsStream("/json/SystemPricingPlans.json")!!)
     }
 
     @Operation(
@@ -639,7 +639,8 @@ class OperatorController(private val objectMapper: ObjectMapper) {
         @RequestParam(value = "limit", required = false)
         limit: Int?,
     ): List<SystemRegion> {
-        TODO()
+        return objectMapper.readValue(javaClass.getResourceAsStream("/json/SystemRegions.json")!!)
+
     }
 
     @Operation(
@@ -732,6 +733,8 @@ class OperatorController(private val objectMapper: ObjectMapper) {
         @RequestParam(value = "radius", required = false)
         radius: Float?,
     ): List<StationInformation> {
-        TODO()
+        return objectMapper.readValue(javaClass.getResourceAsStream("/json/StationInformations.json")!!)
+
+
     }
 }
