@@ -31,7 +31,6 @@ data class Information(
 ) {
     /**
      * the type of the information provided
-     * Values: uRL,iMAGE,pLAINTEXT,hTML
      */
     enum class Type {
         URL,
@@ -42,7 +41,6 @@ data class Information(
 
     /**
      * the purpose of the information
-     * Values: iNSTRUCTIONS,sALES
      */
     enum class Goal {
         INSTRUCTIONS,
@@ -51,7 +49,6 @@ data class Information(
 
     /**
      * the moment when the information must be displayed
-     * Values: pLANNING,cOMMITTEDBOOKING,pREPARE,sETINUSE,pAUSE,oPENTRUNK,sTARTFINISHING,fINISH
      */
     enum class ShowTime {
         PLANNING,

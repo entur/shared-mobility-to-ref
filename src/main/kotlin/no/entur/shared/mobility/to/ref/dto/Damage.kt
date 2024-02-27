@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import io.swagger.v3.oas.annotations.media.Schema
 
 /**
- * A damage of the vehicle.
+ * Damage to the vehicle.
  * @param vehicleComponent Part/Component of the vehicle affected. If OTHER is specified the description needs to provide more
  * detail as to what part/component is affected.
  * @param description Description of the damage.
@@ -14,9 +14,8 @@ data class Damage(
     @Schema(
         example = "null",
         required = true,
-        description =
-            "Part/Component of the vehicle affected. If OTHER is specified the description needs to provide more detail " +
-                "as to what part/component is affected.",
+        description = """Part/Component of the vehicle affected. If OTHER is specified the description needs to provide more detail as 
+            |to what part/component is affected.""",
     )
     @get:JsonProperty("vehicleComponent", required = true) val vehicleComponent: VehicleComponent,
     @Schema(example = "null", required = true, description = "Description of the damage.")
@@ -30,7 +29,6 @@ data class Damage(
     /**
      * Part/Component of the vehicle affected. If OTHER is specified the description needs to provide more detail as to what
      * part/component is affected.
-     * Values: fRONT,rEAR,lEFT,rIGHT,tOP,bOTTOM,iNTERIOR,tIRE,aNCILLARY,oTHER
      */
     enum class VehicleComponent {
         FRONT,

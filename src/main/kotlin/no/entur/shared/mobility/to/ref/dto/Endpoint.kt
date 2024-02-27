@@ -14,7 +14,7 @@ import jakarta.validation.constraints.Min
  * limit=y. Only allowed at endpoints that have specified these query parameters.
  * @param maxPageSize the maximum size of the pages (only valid when supportsPaging=true). If the limit-parameter of the request is above
  * this amount, a http code 400 will be returned.
- * @param externalType this field must be used when adressing other standards for exchanging 'static' data (Level 1 MaaS)
+ * @param externalType this field must be used when addressing other standards for exchanging 'static' data (Level 1 MaaS)
  * @param useAssetTypes
  * @param useAssets
  */
@@ -36,22 +36,20 @@ data class Endpoint(
     val eventType: EventType? = null,
     @Schema(
         example = "null",
-        description =
-            "does this endpoint support paging? In that case this endpoint can be accessed using query parameters offset=x and" +
-                " limit=y. Only allowed at endpoints that have specified these query parameters.",
+        description = """does this endpoint support paging? In that case this endpoint can be accessed using query parameters offset=x 
+            |and limit=y. Only allowed at endpoints that have specified these query parameters.""",
     )
     val supportsPaging: Boolean? = false,
     @get:Min(1)
     @Schema(
         example = "null",
-        description =
-            "the maximum size of the pages (only valid when supportsPaging=true). If the limit-parameter of the request is" +
-                " above this amount, a http code 400 will be returned.",
+        description = """the maximum size of the pages (only valid when supportsPaging=true). If the limit-parameter of the request is 
+            |above this amount, a http code 400 will be returned.""",
     )
     val maxPageSize: Int? = null,
     @Schema(
         example = "null",
-        description = "this field must be used when adressing other standards for exchanging 'static' data (Level 1 MaaS)",
+        description = "this field must be used when addressing other standards for exchanging 'static' data (Level 1 MaaS)",
     )
     val externalType: ExternalType? = null,
     @Schema(example = "null")
@@ -59,10 +57,6 @@ data class Endpoint(
     @Schema(example = "null")
     val useAssets: List<String>? = null,
 ) {
-    /**
-     *
-     * Values: pOST,pUT,gET,dELETE,pATCH
-     */
     enum class Method {
         POST,
         PUT,
@@ -71,10 +65,6 @@ data class Endpoint(
         PATCH,
     }
 
-    /**
-     *
-     * Values: nOTIMPLEMENTED,dIALECT,iMPLEMENTED
-     */
     enum class Status {
         NOT_IMPLEMENTED,
         DIALECT,
@@ -83,7 +73,6 @@ data class Endpoint(
 
     /**
      * in case the path is ending in /events, the event type/operator enum should be added here.
-     * Values: pREPARE,aSSIGNASSET,sETINUSE,pAUSE,oPENTRUNK,sTARTFINISHING,fINISH,iSSUE,cANCEL,eXPIRE,dENY,cOMMIT
      */
     enum class EventType {
         PREPARE,
@@ -101,8 +90,7 @@ data class Endpoint(
     }
 
     /**
-     * this field must be used when adressing other standards for exchanging 'static' data (Level 1 MaaS)
-     * Values: gBFS,gTFS,neTEx,oSDMOffline,iXSI5,aPDS
+     * this field must be used when addressing other standards for exchanging 'static' data (Level 1 MaaS)
      */
     enum class ExternalType {
         GBFS,

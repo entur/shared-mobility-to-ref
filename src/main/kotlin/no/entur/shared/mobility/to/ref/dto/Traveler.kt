@@ -39,9 +39,8 @@ data class Traveler(
     val requirements: Requirements? = null,
     @Schema(
         example = "null",
-        description =
-            "identifier for this traveler in the personal data store. This identifier can be used to get personal " +
-                "information from the provider specified in the \"knownIdentifierProvider\"",
+        description = """identifier for this traveler in the personal data store. This identifier can be used to get personal information 
+            |from the provider specified in the "knownIdentifierProvider"""",
     )
     val knownIdentifier: String? = null,
     @Schema(example = "null", description = "provider for personal information. Can be a URI or identifier.")

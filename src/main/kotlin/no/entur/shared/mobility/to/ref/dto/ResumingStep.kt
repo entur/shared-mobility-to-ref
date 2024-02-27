@@ -16,7 +16,7 @@ import io.swagger.v3.oas.annotations.media.Schema
  * `TAKE_HELMET` - user action<br>
  * `LOCK_TRUNK` - user action<br>
  * `START_ASSET` - user action<br>
- * `SEND_SET_IN_USE` - the TO wants to be informed that the leg is resumed. Optionally triggers the unlock of the vehicle
+ * `SEND_SET_IN_USE` - the TO wants to be informed that the leg is resumed. Optionally triggers unlocking of the vehicle
  */
 data class ResumingStep(
     @Schema(example = "null", description = "the type of the information provided")
@@ -38,20 +38,19 @@ data class ResumingStep(
     val showTime: ShowTime? = null,
     @Schema(
         example = "null",
-        description =
-            "possible values<br> `UNLOCK_ASSET` - user action, could be triggered by SET_IN_USE event<br> " +
-                "`SEND_OPEN_TRUNK` - request TO to open trunk remotely<br> " +
-                "`UNLOCK_TRUNK` - user action<br> " +
-                "`TAKE_HELMET` - user action<br> " +
-                "`LOCK_TRUNK` - user action<br> " +
-                "`START_ASSET` - user action<br> " +
-                "`SEND_SET_IN_USE` - the TO wants to be informed that the leg is resumed. Optionally triggers the unlock of the vehicle",
+        description = """possible values<br> 
+            `UNLOCK_ASSET` - user action, could be triggered by SET_IN_USE event<br> 
+            |`SEND_OPEN_TRUNK` - request TO to open trunk remotely<br> 
+            |`UNLOCK_TRUNK` - user action<br> 
+            |`TAKE_HELMET` - user action<br> 
+            `LOCK_TRUNK` - user action<br> 
+            `START_ASSET` - user action<br> 
+            `SEND_SET_IN_USE` - the TO wants to be informed that the leg is resumed. Optionally triggers the unlock of the vehicle""",
     )
     val action: Action? = null,
 ) {
     /**
      * the type of the information provided
-     * Values: uRL,iMAGE,pLAINTEXT,hTML
      */
     enum class Type {
         URL,
@@ -62,7 +61,6 @@ data class ResumingStep(
 
     /**
      * the purpose of the information
-     * Values: iNSTRUCTIONS,sALES
      */
     enum class Goal {
         INSTRUCTIONS,
@@ -71,7 +69,6 @@ data class ResumingStep(
 
     /**
      * the moment when the information must be displayed
-     * Values: pLANNING,cOMMITTEDBOOKING,pREPARE,sETINUSE,pAUSE,oPENTRUNK,sTARTFINISHING,fINISH
      */
     enum class ShowTime {
         PLANNING,
@@ -85,14 +82,14 @@ data class ResumingStep(
     }
 
     /**
-     * possible values<br> `UNLOCK_ASSET` - user action, could be triggered by SET_IN_USE event<br>
+     * possible values<br>
+     * `UNLOCK_ASSET` - user action, could be triggered by SET_IN_USE event<br>
      * `SEND_OPEN_TRUNK` - request TO to open trunk remotely<br>
      * `UNLOCK_TRUNK` - user action<br>
      * `TAKE_HELMET` - user action<br>
      * `LOCK_TRUNK` - user action<br>
      * `START_ASSET` - user action<br>
-     * `SEND_SET_IN_USE` - the TO wants to be informed that the leg is resumed. Optionally triggers the unlock of the vehicle
-     * Values: UNLOCKASSET,SENDOPENTRUNK,UNLOCKTRUNK,TAKEHELMET,LOCKTRUNK,STARTASSET,SENDSETINUSE
+     * `SEND_SET_IN_USE` - the TO wants to be informed that the leg is resumed. Optionally triggers unlocking of the vehicle
      */
     enum class Action {
         UNLOCK_ASSET,

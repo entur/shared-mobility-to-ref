@@ -44,28 +44,26 @@ data class OffBoardingStep(
     val showTime: ShowTime? = null,
     @Schema(
         example = "null",
-        description =
-            "these actions are available<br> " +
-                "`SEND_START_FINISHING` - the TO needs to be informed the leg is about to finish<br> " +
-                "`PARK_ASSIST` - user action to park (stop) using the asset<br> " +
-                "`UNLOCK_LOCKER` - user action, could be triggered by the START_FINISH event<br> " +
-                "`CONNECT_CHARGER` - user action<br> " +
-                "`LOCK_ASSET` - user action, could be triggered by the FINISH event<br> " +
-                "`SEND_OPEN_TRUNK` - the TO opens the trunk remotely <br> " +
-                "`UNLOCK_TRUNK` - user action <br> " +
-                "`STOW_HELMET` - user action <br> " +
-                "`LOCK_TRUNK` - user action <br> " +
-                "`LOCK_LOCKER` - user action <br> " +
-                "`SEND_FINISH` - the TO wants to be informed about the end of the leg<br> " +
-                "`SEND_EVIDENCE_PARKED` - the TO requires parking evidence<br> " +
-                "`SEND_EVIDENCE_HELMET` - the TO requires evidence of storing the helmet<br> " +
-                "`SEND_EVIDENCE_CHARGER` - the TO requires evidence of correct usage of the charger",
+        description = """these actions are available<br> 
+            |`SEND_START_FINISHING` - the TO needs to be informed the leg is about to finish<br> 
+            |`PARK_ASSIST` - user action to park (stop) using the asset<br> 
+            |`UNLOCK_LOCKER` - user action, could be triggered by the START_FINISH event<br> 
+            |`CONNECT_CHARGER` - user action<br> 
+            |`LOCK_ASSET` - user action, could be triggered by the FINISH event<br> 
+            |`SEND_OPEN_TRUNK` - the TO opens the trunk remotely <br> 
+            |`UNLOCK_TRUNK` - user action <br> 
+            |`STOW_HELMET` - user action <br> 
+            |`LOCK_TRUNK` - user action <br> 
+            |`LOCK_LOCKER` - user action <br> 
+            |`SEND_FINISH` - the TO wants to be informed about the end of the leg<br> 
+            |`SEND_EVIDENCE_PARKED` - the TO requires parking evidence<br> 
+            |`SEND_EVIDENCE_HELMET` - the TO requires evidence of storing the helmet<br> 
+            |`SEND_EVIDENCE_CHARGER` - the TO requires evidence of correct usage of the charger""",
     )
     val action: Action? = null,
 ) {
     /**
      * the type of the information provided
-     * Values: uRL,iMAGE,pLAINTEXT,hTML
      */
     enum class Type {
         URL,
@@ -76,17 +74,12 @@ data class OffBoardingStep(
 
     /**
      * the purpose of the information
-     * Values: iNSTRUCTIONS,sALES
      */
     enum class Goal {
         INSTRUCTIONS,
         SALES,
     }
 
-    /**
-     * the moment when the information must be displayed
-     * Values: pLANNING,cOMMITTEDBOOKING,pREPARE,sETINUSE,pAUSE,oPENTRUNK,sTARTFINISHING,fINISH
-     */
     enum class ShowTime {
         PLANNING,
         COMMITTED_BOOKING,

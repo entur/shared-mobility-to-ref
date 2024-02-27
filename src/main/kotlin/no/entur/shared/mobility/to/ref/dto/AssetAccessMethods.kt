@@ -1,9 +1,5 @@
 package no.entur.shared.mobility.to.ref.dto
 
-/**
- *
- * Values: DEEPLINK,QR,AZTEC,TOMPMINUSAPI,AXAMINUSEKEYMINUSOTP,PHYSICALMINUSKEY,BARCODE,PDF,HTML,OVC,EMV,NONE
- */
 @Suppress("EnumEntryName")
 enum class AssetAccessMethods {
     DEEPLINK,

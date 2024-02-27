@@ -14,7 +14,7 @@ import java.time.OffsetDateTime
  * @param typeValue the value that belongs to the type (e.g. 8 MPH)
  * @param areaStartTime the start time of this area (mostly applicable in case of limitations)
  * @param areaEndTime the end time of this area (mostly applicable in case of limitations)
- * @param serviceArea geojson representation of a polygon. First and last point must be equal.
+ * @param serviceArea geoJSON representation of a polygon. First and last point must be equal.
  * See also https://geojson.org/geojson-spec.html#polygon and example https://geojson.org/geojson-spec.html#id4.
  * The order should be lon, lat [[[lon1, lat1], [lon2,lat2], [lon3,lat3], [lon1,lat1]]], the first point should match the last point.
  */
@@ -29,9 +29,8 @@ data class SystemRegion(
     @get:JsonProperty("name", required = true) val name: String,
     @Schema(
         example = "null",
-        description =
-            "the type of area. Default this is 'OPERATING', but other area's can be published here as well (since 1.3.0). " +
-                "Before 1.3.0, it was only allowed to communicate OPERATING area's.",
+        description = """the type of area. Default this is 'OPERATING', but other area's can be published here as well (since 1.3.0). 
+            |Before 1.3.0, it was only allowed to communicate OPERATING area's.""",
     )
     val type: Type? = Type.OPERATING,
     @Schema(example = "null", description = "in case the type needs a value (f.x. speed limit), this is the unit type.")
@@ -44,18 +43,15 @@ data class SystemRegion(
     val areaEndTime: OffsetDateTime? = null,
     @Schema(
         example = "[[[1.0,1.0],[0.0,1.0],[0.0,0.0],[1.0,0.0],[1.0,1.0]]]",
-        description =
-            "geojson representation of a polygon. First and last point must be equal. " +
-                "See also https://geojson.org/geojson-spec.html#polygon and example https://geojson.org/geojson-spec.html#id4. " +
-                "The order should be lon, lat [[[lon1, lat1], [lon2,lat2], [lon3,lat3], [lon1,lat1]]], " +
-                "the first point should match the last point.",
+        description = """geoJSON representation of a polygon. First and last point must be equal. See also 
+            |https://geojson.org/geojson-spec.html#polygon and example https://geojson.org/geojson-spec.html#id4. The order should be 
+            |lon, lat [[[lon1, lat1], [lon2,lat2], [lon3,lat3], [lon1,lat1]]], the first point should match the last point.""",
     )
-    val serviceArea: List<List<List<Float>>>? = null,
+    val serviceArea: GeoJsonPolygon? = null,
 ) {
     /**
      * the type of area. Default this is 'OPERATING', but other area's can be published here as well (since 1.3.0). Before 1.3.0,
      * it was only allowed to communicate OPERATING area's.
-     * Values: oPERATING,nOACCESS,nOPARKING,pARKING,dISCOUNT,sPEEDLIMIT
      */
     enum class Type {
         OPERATING,
@@ -68,7 +64,6 @@ data class SystemRegion(
 
     /**
      * in case the type needs a value (f.x. speed limit), this is the unit type.
-     * Values: kMPH,mPH
      */
     enum class TypeUnit {
         KMPH,

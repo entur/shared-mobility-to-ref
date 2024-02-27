@@ -5,14 +5,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo
 import io.swagger.v3.oas.annotations.media.Schema
 
 /**
- *
- * @param tokenType
- * @param ekey
- * @param lock
- * @param base64 base 64 QR code
- * @param url the base deeplink url for the MP app. Can be extended by the 'knownParamaters'. Including the scheme.
- * @param knownParameters
- * @param version
+ * @property tokenType
  */
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "tokenType", visible = true)

@@ -17,10 +17,8 @@ data class AmountOfMoney(
     @get:DecimalMin("0")
     @Schema(
         example = "9.95",
-        description =
-            "This should be in the base unit as defined by the ISO 4217 currency code with the appropriate number of decimal " +
-                "places and omitting the currency symbol. e.g. if the price is in US Dollars the price would be 9.95. " +
-                "This is inclusive VAT",
+        description = """This should be in the base unit as defined by the ISO 4217 currency code with the appropriate number of decimal 
+            |places and omitting the currency symbol. e.g. if the price is in US Dollars the price would be 9.95. This is inclusive VAT""",
     )
     val amount: Float? = null,
     @get:DecimalMin("0")
