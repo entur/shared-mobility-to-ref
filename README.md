@@ -1,6 +1,6 @@
 # shared-mobility-to-ref
 
-Reference implementation of a backend that implements a [TOMP API](https://github.com/TOMP-WG/TOMP-API) from the Transport Operator side.
+Reference implementation of a backend that implements a [TOMP API](https://github.com/TOMP-WG/TOMP-API) from the TO (Transport Operator) side.
 
 # Backend Setup Guide
 
