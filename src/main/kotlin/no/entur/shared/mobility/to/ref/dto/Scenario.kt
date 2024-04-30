@@ -1,9 +1,5 @@
 package no.entur.shared.mobility.to.ref.dto
 
-/**
- *
- * Values: pOSTPONEDCOMMIT,dEPOSIT,pAYWHENFINISHED,rEQUIREBOOKINGDATA,rETURNAREA,uPFRONTPAYMENT
- */
 enum class Scenario {
     POSTPONED_COMMIT,
     DEPOSIT,

@@ -30,16 +30,11 @@ data class Notification(
     val comment: String? = null,
     @Schema(
         example = "null",
-        description =
-            "whenever the booking contains multiple legs, this field is mandatory and contain the id of the leg related to the" +
-                " notification.",
+        description = """whenever the booking contains multiple legs, this field is mandatory and contain the id of the leg related to the 
+            |notification.""",
     )
     val legId: String? = null,
 ) {
-    /**
-     *
-     * Values: vEHICLENOTAVAILABLE,uSERNOSHOW,eTA,mESSAGETODRIVER,mESSAGETOENDUSER,uSEROUTOFLIMITS,oTHER
-     */
     enum class Type {
         VEHICLE_NOT_AVAILABLE,
         USER_NO_SHOW,

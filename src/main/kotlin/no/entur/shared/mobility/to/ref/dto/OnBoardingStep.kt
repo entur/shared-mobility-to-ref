@@ -43,27 +43,22 @@ data class OnBoardingStep(
     val showTime: ShowTime? = null,
     @Schema(
         example = "null",
-        description =
-            "The possible steps are described here<br> " +
-                "`SEND_PREPARE` - indicate the leg is going to start <br> " +
-                "`UNLOCK_LOCKER` - user action - optionally triggered by the PREPARE event<br> " +
-                "`DISCONNECT_CHARGER` - requested user action <br> " +
-                "`SHOW_DAMAGES` - show known damages to end user <br> " +
-                "`UNLOCK_ASSET` - requested user action or triggered by SET_IN_USE event <br> " +
-                "`START_ASSET` - requested user action <br> " +
-                "`SEND_OPEN_TRUNK` - request TO to open trunk/helmet case remotely<br> " +
-                "`UNLOCK_TRUNK` - requested user action <br> " +
-                "`TAKE_HELMET` - requested user action <br> " +
-                "`SEND_SET_IN_USE` - request to start leg <br> " +
-                "`SEND_ASSIGN_ASSET` - request to assign the specified asset to the leg <br> " +
-                "`LOCK_LOCKER` - requested user action",
+        description = """The possible steps are described here<br> 
+            |`SEND_PREPARE` - indicate the leg is going to start <br> 
+            |`UNLOCK_LOCKER` - user action - optionally triggered by the PREPARE event<br> 
+            |`DISCONNECT_CHARGER` - requested user action <br> 
+            |`SHOW_DAMAGES` - show known damages to end user <br> 
+            |`UNLOCK_ASSET` - requested user action or triggered by SET_IN_USE event <br> 
+            |`START_ASSET` - requested user action <br> 
+            |`SEND_OPEN_TRUNK` - request TO to open trunk/helmet case remotely<br> 
+            |`UNLOCK_TRUNK` - requested user action <br> 
+            |`TAKE_HELMET` - requested user action <br> 
+            |`SEND_SET_IN_USE` - request to start leg <br> 
+            |`SEND_ASSIGN_ASSET` - request to assign the specified asset to the leg <br> 
+            |`LOCK_LOCKER` - requested user action""",
     )
     val action: Action? = null,
 ) {
-    /**
-     * the type of the information provided
-     * Values: uRL,iMAGE,pLAINTEXT,hTML
-     */
     enum class Type {
         URL,
         IMAGE,
@@ -73,7 +68,6 @@ data class OnBoardingStep(
 
     /**
      * the purpose of the information
-     * Values: iNSTRUCTIONS,sALES
      */
     enum class Goal {
         INSTRUCTIONS,
@@ -82,7 +76,6 @@ data class OnBoardingStep(
 
     /**
      * the moment when the information must be displayed
-     * Values: pLANNING,cOMMITTEDBOOKING,pREPARE,sETINUSE,pAUSE,oPENTRUNK,sTARTFINISHING,fINISH
      */
     enum class ShowTime {
         PLANNING,

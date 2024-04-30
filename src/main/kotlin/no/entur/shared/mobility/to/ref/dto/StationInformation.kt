@@ -12,7 +12,7 @@ import jakarta.validation.Valid
  * @param contactPhone Contact phone of the station
  * @param physicalAddress
  * @param crossStreet Cross street of where the station is located. This field is intended to be a descriptive field for human consumption.
- * In cities, this would be a cross street, but could also be a description of a location in a park, etc, should match Content-Language
+ * In cities, this would be a cross street, but could also be a description of a location in a park, etc., should match Content-Language
  * @param regionId ID of the region where the station operates (see \"systemRegions\")
  * @param stationArea
  * @param parkingType parking_lot (Off-street parking lot) street_parking (Curbside parking) underground_parking (Parking that is below
@@ -20,7 +20,7 @@ import jakarta.validation.Valid
  * @param isVirtual Is this station a location with or without smart dock technology? true - The station is a location without smart
  * docking infrastructure. the station may be defined by a point (lat/lon) and/or station_area (below). false - The station consists of
  * smart docking infrastructure (docks). This field SHOULD be published by mobility systems that have station locations without standard,
- * internet connected physical docking infrastructure. These may be racks or geofenced areas designated for rental and/or return of
+ * internet connected physical docking infrastructure. These may be racks or geo-fenced areas designated for rental and/or return of
  * vehicles. Locations that fit within this description SHOULD have the is_virtual_station boolean set to true.
  * @param isValetStation Are valet services provided at this station? Valet service is defined as providing unlimited capacity at a
  * station.
@@ -65,50 +65,45 @@ data class StationInformation(
     val physicalAddress: Address? = null,
     @Schema(
         example = "on the corner with Secondary Road",
-        description =
-            "Cross street of where the station is located. This field is intended to be a descriptive field for human " +
-                "consumption. In cities, this would be a cross street, but could also be a description of a location in a park, etc, " +
-                "should match Content-Language",
+        description = """Cross street of where the station is located. This field is intended to be a descriptive field for human 
+            |consumption. In cities, this would be a cross street, but could also be a description of a location in a park, etc, should 
+            |match Content-Language""",
     )
     val crossStreet: String? = null,
     @Schema(example = "null", description = "ID of the region where the station operates (see \"systemRegions\")")
     val regionId: String? = null,
     @field:Valid
     @Schema(example = "null")
-    val stationArea: GeojsonGeometry? = null,
+    val stationArea: GeoJsonGeometry? = null,
     @Schema(
         example = "null",
-        description =
-            "parking_lot (Off-street parking lot) street_parking (Curbside parking) underground_parking (Parking that is " +
-                "below street level, station may be non-communicating) sidewalk_parking (Park vehicle on sidewalk, out of the pedestrian " +
-                "right of way) other",
+        description = """parking_lot (Off-street parking lot) street_parking (Curbside parking) underground_parking (Parking that is below 
+            |street level, station may be non-communicating) sidewalk_parking (Park vehicle on sidewalk, out of the pedestrian right of 
+            |way) other""",
     )
     val parkingType: ParkingType? = null,
     @Schema(
         example = "null",
-        description =
-            "Is this station a location with or without smart dock technology? true - The station is a location without smart " +
-                "docking infrastructure. the station may be defined by a point (lat/lon) and/or station_area (below). false - The " +
-                "station consists of smart docking infrastructure (docks). This field SHOULD be published by mobility systems that have " +
-                "station locations without standard, internet connected physical docking infrastructure. These may be racks or " +
-                "geofenced areas designated for rental and/or return of vehicles. Locations that fit within this description SHOULD have" +
-                " the is_virtual_station boolean set to true.",
+        description = """Is this station a location with or without smart dock technology? true - The station is a location without smart 
+            |docking infrastructure. the station may be defined by a point (lat/lon) and/or station_area (below). false - The station 
+            |consists of smart docking infrastructure (docks). This field SHOULD be published by mobility systems that have station 
+            |locations without standard, internet connected physical docking infrastructure. These may be racks or geo-fenced areas 
+            |designated for rental and/or return of vehicles. Locations that fit within this description SHOULD have the 
+            |is_virtual_station boolean set to true.""",
     )
     val isVirtual: Boolean? = null,
     @Schema(
         example = "null",
-        description =
-            "Are valet services provided at this station? Valet service is defined as providing unlimited capacity at a " +
-                "station.",
+        description = """Are valet services provided at this station? Valet service is defined as providing unlimited capacity at a 
+            |station.""",
     )
     val isValetStation: Boolean? = null,
     @Schema(example = "null", description = "Does the station support charging of electric vehicles?")
     val isChargingStation: Boolean? = null,
     @Schema(
         example = "null",
-        description =
-            "Parking hoops are lockable devices that are used to secure a parking space to prevent parking of unauthorized " +
-                "vehicles.",
+        description = """Parking hoops are lockable devices that are used to secure a parking space to prevent parking of unauthorized 
+            |vehicles.""",
     )
     val parkingHoop: Boolean? = null,
     @Schema(example = "null", description = "Is the station currently on the street?")
@@ -122,10 +117,9 @@ data class StationInformation(
     @field:Valid
     @Schema(
         example = "{\"child-bike-01\":3,\"general-bike\":18}",
-        description =
-            "An object used to describe the docking capacity of a station where each key is a reference to the ID of the " +
-                "assetType, and the value is a number representing the total docking points installed at this station, both available " +
-                "and unavailable for the specified vehicle type.",
+        description = """An object used to describe the docking capacity of a station where each key is a reference to the ID of the 
+            |assetType, and the value is a number representing the total docking points installed at this station, both available and 
+            |unavailable for the specified vehicle type.""",
     )
     val assetTypeCapacity: Map<String, Any>? = null,
     @Schema(example = "null", description = "the number of available assets in this station (total)")
@@ -133,9 +127,8 @@ data class StationInformation(
     @field:Valid
     @Schema(
         example = "{\"child-bike-01\":1,\"general-bike\":3}",
-        description =
-            "An object used to describe the available assets of a station where each key is a reference to the ID of the " +
-                "assetType, and the value is a number representing the total available asset of this type at this station.",
+        description = """An object used to describe the available assets of a station where each key is a reference to the ID of the 
+            |assetType, and the value is a number representing the total available asset of this type at this station.""",
     )
     val assetTypesAvailable: Map<String, Any>? = null,
     @Schema(example = "null", description = "the number of free docks")
@@ -143,9 +136,8 @@ data class StationInformation(
     @field:Valid
     @Schema(
         example = "{\"child-bike-01\":1,\"general-bike\":3}",
-        description =
-            "An object used to describe the free slots of a station where each key is a reference to the ID of the assetType, " +
-                "and the value is a number representing the total free docks for this assetType at this station.",
+        description = """An object used to describe the free slots of a station where each key is a reference to the ID of the assetType, 
+            |and the value is a number representing the total free docks for this assetType at this station.""",
     )
     val assetDocksAvailable: Map<String, Any>? = null,
     @Schema(
@@ -180,7 +172,6 @@ data class StationInformation(
     /**
      * parking_lot (Off-street parking lot) street_parking (Curbside parking) underground_parking (Parking that is below street level,
      * station may be non-communicating) sidewalk_parking (Park vehicle on sidewalk, out of the pedestrian right of way) other
-     * Values: pARKINGLOT,sTREETPARKING,uNDERGROUNDPARKING,sIDEWALKPARKING,oTHER
      */
     enum class ParkingType {
         PARKING_LOT,

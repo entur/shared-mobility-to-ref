@@ -5,11 +5,11 @@ import io.swagger.v3.oas.annotations.media.Schema
 import jakarta.validation.Valid
 
 /**
- * the total fare is the sum of all parts, except for the 'MAX' farePart. This one descripes the maximum price for the complete leg.
+ * the total fare is the sum of all parts, except for the 'MAX' farePart. This one describes the maximum price for the complete leg.
  * @param estimated is this fare an estimation?
  * @param parts
- * @param description user friendly description of the fare (e.g. 'full fare'), should match Content-Language
- * @param propertyClass in the future we'll set up an enumeration of possible \"fare classes\". For now it's free format.
+ * @param description user-friendly description of the fare (e.g. 'full fare'), should match Content-Language
+ * @param propertyClass in the future we'll set up an enumeration of possible \"fare classes\". For now, it's free format.
  */
 data class Fare(
     @Schema(example = "null", required = true, description = "is this fare an estimation?")

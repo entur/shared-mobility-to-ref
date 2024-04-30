@@ -34,24 +34,21 @@ data class SystemAlert(
     @get:JsonProperty("summary", required = true) val summary: String,
     @Schema(
         example = "null",
-        description =
-            "Array of hashes with the keys \"start\" and \"end\" indicating when the alert is in effect (e.g. when the system " +
-                "or station is actually closed, or when it is scheduled to be moved). If this array is omitted then the alert should be " +
-                "displayed as long as it is in the feed.",
+        description = """Array of hashes with the keys "start" and "end" indicating when the alert is in effect (e.g. when the system or 
+            |station is actually closed, or when it is scheduled to be moved). If this array is omitted then the alert should be displayed 
+            |as long as it is in the feed.""",
     )
     val startAndEndTimes: List<List<OffsetDateTime>>? = null,
     @Schema(
         example = "[\"stationID0001\"]",
-        description =
-            "Array of strings - If this is an alert that affects one or more stations, include their ids, otherwise omit this " +
-                "field. If both stationIDs and regionIDs are omitted, assume this alert affects the entire system",
+        description = """Array of strings - If this is an alert that affects one or more stations, include their ids, otherwise omit this 
+            |field. If both stationIDs and regionIDs are omitted, assume this alert affects the entire system""",
     )
     val stationIds: List<String>? = null,
     @Schema(
         example = "[\"regionID0001\"]",
-        description =
-            "Array of strings - If this system has regions, and if this alert only affects certain regions, include their ids," +
-                " otherwise, omit this field. If both stationIDs and regionIDs are omitted, assume this alert affects the entire system",
+        description = """Array of strings - If this system has regions, and if this alert only affects certain regions, include their ids, 
+            |otherwise, omit this field. If both stationIDs and regionIDs are omitted, assume this alert affects the entire system""",
     )
     val regionId: List<String>? = null,
     @Schema(
@@ -67,10 +64,6 @@ data class SystemAlert(
     @Schema(example = "null")
     val lastUpdated: OffsetDateTime? = null,
 ) {
-    /**
-     *
-     * Values: sYSTEMCLOSURE,sTATIONCLOSURE,sTATIONMOVE,oTHER
-     */
     enum class AlertType {
         SYSTEM_CLOSURE,
         STATION_CLOSURE,

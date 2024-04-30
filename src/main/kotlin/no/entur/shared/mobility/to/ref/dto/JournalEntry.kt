@@ -25,7 +25,7 @@ import java.time.OffsetDateTime
  * @param comment
  * @param distance the travelled distance. Only if applicable.
  * @param distanceType
- * @param usedTime the time in seconds that the assed is used. Only if applicable.
+ * @param usedTime the time in seconds that the asset is used. Only if applicable.
  * @param rentalStartMileage the mileage at the start of the rental. 'DistanceType' field is also applicable here
  * @param vatNumber VAT identification number.
  * @param bankAccount
@@ -35,10 +35,8 @@ data class JournalEntry(
     @get:DecimalMin("0")
     @Schema(
         example = "9.95",
-        description =
-            "This should be in the base unit as defined by the ISO 4217 currency code with the appropriate number of decimal " +
-                "places and omitting the currency symbol. e.g. if the price is in US Dollars the price would be 9.95. " +
-                "This is inclusive VAT",
+        description = """This should be in the base unit as defined by the ISO 4217 currency code with the appropriate number of decimal 
+            |places and omitting the currency symbol. e.g. if the price is in US Dollars the price would be 9.95. This is inclusive VAT""",
     )
     val amount: Float? = null,
     @get:DecimalMin("0")
@@ -80,7 +78,7 @@ data class JournalEntry(
     @Schema(example = "null")
     val distanceType: DistanceType? = null,
     @get:Min(0)
-    @Schema(example = "null", description = "the time in seconds that the assed is used. Only if applicable.")
+    @Schema(example = "null", description = "the time in seconds that the asset is used. Only if applicable.")
     val usedTime: Int? = null,
     @get:DecimalMin("0")
     @Schema(

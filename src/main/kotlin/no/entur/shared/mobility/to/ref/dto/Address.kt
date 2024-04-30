@@ -25,7 +25,7 @@ data class Address(
     @Schema(example = "example street 18, 2nd floor, 18-B33", required = true)
     @get:JsonProperty("streetAddress", required = true) val streetAddress: String,
     @Schema(
-        example = "Smallcity, Pinetree county",
+        example = "SmallCity, PineTree county",
         required = true,
         description = "city or town, principal subdivision such as province, state or county, could match Content-Language",
     )
@@ -37,9 +37,8 @@ data class Address(
     val houseNumber: Int? = null,
     @Schema(
         example = "null",
-        description =
-            "the additional part of the house number (f.x. 13bis, where 'bis' is the additional part), " +
-                "consistent with streetAddress",
+        description = """the additional part of the house number (f.x. 13bis, where 'bis' is the additional part), consistent with 
+            |streetAddress""",
     )
     val houseNumberAddition: String? = null,
     @Schema(example = "null", description = "additional information to find the address (f.x. just around the corner)")
