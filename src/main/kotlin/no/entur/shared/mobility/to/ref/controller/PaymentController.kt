@@ -148,10 +148,9 @@ class PaymentController(private val objectMapper: ObjectMapper) {
     @GetMapping(value = ["/payment/journal-entry"], produces = ["application/json"])
     fun paymentJournalEntryGet(
         @Parameter(
-            description =
-                "A list of the languages/localizations the user would like to see the results in. For user privacy and ease of " +
-                    "use on the TO side, this list should be kept as short as possible, ideally just one language tag from the list in " +
-                    "operator/information",
+            description = """A list of the languages/localizations the user would like to see the results in. For user privacy and ease of 
+                |use on the TO side, this list should be kept as short as possible, ideally just one language tag from the list in 
+                |operator/information""",
             `in` = ParameterIn.HEADER,
             required = true,
         )
@@ -194,23 +193,23 @@ class PaymentController(private val objectMapper: ObjectMapper) {
         @Parameter(
             description = "type of booking line (e.g. fare, addition costs, fines, ...)",
             schema =
-                Schema(
-                    allowableValues = [
-                        "ALL",
-                        "DAMAGE",
-                        "LOSS",
-                        "STOLEN",
-                        "EXTRA_USAGE",
-                        "REFUND",
-                        "FINE",
-                        "OTHER_ASSET_USED",
-                        "CREDIT",
-                        "VOUCHER",
-                        "DEPOSIT",
-                        "OTHER",
-                        "FARE",
-                    ],
-                ),
+            Schema(
+                allowableValues = [
+                    "ALL",
+                    "DAMAGE",
+                    "LOSS",
+                    "STOLEN",
+                    "EXTRA_USAGE",
+                    "REFUND",
+                    "FINE",
+                    "OTHER_ASSET_USED",
+                    "CREDIT",
+                    "VOUCHER",
+                    "DEPOSIT",
+                    "OTHER",
+                    "FARE",
+                ],
+            ),
         )
         @Valid
         @RequestParam(value = "category", required = false)

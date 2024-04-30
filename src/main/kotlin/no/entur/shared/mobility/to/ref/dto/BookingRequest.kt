@@ -7,11 +7,11 @@ import jakarta.validation.Valid
  * A booking requested by the MP
  * @param id A unique identifier for the TO to know this booking by
  * @param from
- * @param callbackUrl The callback URL of the Maas Provider, to use as base url for callback, f.x. the POST legs/{id}/events and
+ * @param callbackUrl The callback URL of the MaaS Provider, to use as base url for callback, f.x. the POST legs/{id}/events and
  * POST /bookings/{id}/events. Only to be provided when this deviates from standard or agreed URL.
  * @param to
  * @param customer
- * @param extraInfo dictionary for extra fields (bilatural agreements)
+ * @param extraInfo dictionary for extra fields (bilateral agreements)
  */
 data class BookingRequest(
     @Schema(example = "null", description = "A unique identifier for the TO to know this booking by")
@@ -21,9 +21,8 @@ data class BookingRequest(
     val from: Place? = null,
     @Schema(
         example = "null",
-        description =
-            "The callback URL of the Maas Provider, to use as base url for callback, f.x. the POST legs/{id}/events and " +
-                "POST /bookings/{id}/events. Only to be provided when this deviates from standard or agreed URL.",
+        description = """The callback URL of the MaaS Provider, to use as base url for callback, f.x. the POST legs/{id}/events and 
+            |POST /bookings/{id}/events. Only to be provided when this deviates from standard or agreed URL.""",
     )
     val callbackUrl: String? = null,
     @field:Valid
@@ -33,6 +32,6 @@ data class BookingRequest(
     @Schema(example = "null")
     val customer: Customer? = null,
     @field:Valid
-    @Schema(example = "null", description = "dictionary for extra fields (bilatural agreements)")
+    @Schema(example = "null", description = "dictionary for extra fields (bilateral agreements)")
     val extraInfo: Map<String, Any>? = null,
 )

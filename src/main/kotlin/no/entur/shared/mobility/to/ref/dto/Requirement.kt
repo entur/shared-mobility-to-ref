@@ -6,12 +6,12 @@ import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.Size
 
 /**
- * describes an (dis)ability or ancillary.
+ * describes a (dis)ability or ancillary.
  * @param category references to the first column of the specification initial values [ HR, AV, HV, AB, AER, K, ZR, RR ]
  * @param number references to the second column of the specification
  * @param source if obsolete, it is referencing the travelers' dictionary
  * (https://github.com/TOMP-WG/TOMP-API/blob/master/documents/CROW%20passenger%20characteristics.xlsx)
- * @param type conditionally extra information, referencing to the 3th column
+ * @param type conditionally extra information, referencing to the 3rd column
  * @param memo extra field for detailed information, not standardized
  * @param variableNumber in some requirements there is references to '[variable number]' e.g. of meters (like ZR06)
  * @param applicableDays days of week that are applicable
@@ -28,9 +28,8 @@ data class Requirement(
     @get:JsonProperty("number", required = true) val number: String,
     @Schema(
         example = "null",
-        description =
-            "if obsolete, it is referencing the travelers' dictionary " +
-                "(https://github.com/TOMP-WG/TOMP-API/blob/master/documents/CROW%20passenger%20characteristics.xlsx)",
+        description = """if obsolete, it is referencing the travelers' dictionary 
+            |(https://github.com/TOMP-WG/TOMP-API/blob/master/documents/CROW%20passenger%20characteristics.xlsx)""",
     )
     val source: String? = null,
     @Schema(example = "null", description = "conditionally extra information, referencing to the 3th column")

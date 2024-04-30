@@ -25,9 +25,8 @@ data class SystemHours(
     @Schema(
         example = "null",
         required = true,
-        description =
-            "An array of abbreviations (first 3 letters) of English names of the days of the week that this hour object " +
-                "applies to (i.e. [\"mon\", \"tue\"]). Each day can only appear once within all of the hours objects in this feed.",
+        description = """An array of abbreviations (first 3 letters) of English names of the days of the week that this hour object 
+            |applies to (i.e. ["mon", "tue"]). Each day can only appear once within all of the hours objects in this feed.""",
     )
     @get:JsonProperty("days", required = true) val days: List<Day>,
     @Schema(
@@ -37,22 +36,19 @@ data class SystemHours(
     val userType: UserType? = null,
     @Schema(
         example = "null",
-        description =
-            "If this parameter is present, it means that startTime and endTime correspond to the opening and closing hours of " +
-                "the station. (GET /operator/stations)",
+        description = """If this parameter is present, it means that startTime and endTime correspond to the opening and closing hours of 
+            |the station. (GET /operator/stations)""",
     )
     val stationId: String? = null,
     @Schema(
         example = "null",
-        description =
-            "If this parameter is present, it means that startTime and endTime correspond to the opening and closing hours " +
-                "for the region. (GET /operator/regions)",
+        description = """If this parameter is present, it means that startTime and endTime correspond to the opening and closing hours for 
+            |the region. (GET /operator/regions)""",
     )
     val regionId: String? = null,
 ) {
     /**
      * This indicates that this set of rental hours applies to either members or non-members only.
-     * Values: mEMBER,nONMEMBERS
      */
     enum class UserType {
         MEMBER,

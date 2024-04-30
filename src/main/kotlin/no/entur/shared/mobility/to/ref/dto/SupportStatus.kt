@@ -53,10 +53,6 @@ data class SupportStatus(
     @Schema(example = "null", description = "urls to clarify the support request e.g. pictures showing damage")
     val urls: List<String>? = null,
 ) {
-    /**
-     *
-     * Values: pROCESSING,uPDATEREQUESTED,rESOLVED,cANCELLED
-     */
     enum class Status {
         PROCESSING,
         UPDATE_REQUESTED,
@@ -80,7 +76,6 @@ data class SupportStatus(
 
     /**
      * the priority of the support request.
-     * Values: eRRORCANNOTCONTINUE,eRRORCANCONTINUE,dISTURBINGISSUE,qUESTION,oTHER
      */
     enum class Priority {
         ERROR_CANNOT_CONTINUE,

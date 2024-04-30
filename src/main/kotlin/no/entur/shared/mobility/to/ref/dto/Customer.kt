@@ -31,7 +31,7 @@ import java.time.LocalDate
  * @param photo base64 encoded
  * @param cards
  * @param licenses
- * @param extraInfo dictionary for extra fields (bilatural agreements)
+ * @param extraInfo dictionary for extra fields (bilateral agreements)
  */
 data class Customer(
     @Schema(example = "A0-123456", required = true, description = "The identifier MaaS uses to identify the customer")
@@ -59,9 +59,8 @@ data class Customer(
     val requirements: Requirements? = null,
     @Schema(
         example = "null",
-        description =
-            "identifier for this traveler in the personal data store. This identifier can be used to get personal " +
-                "information from the provider specified in the \"knownIdentifierProvider\"",
+        description = """identifier for this traveler in the personal data store. This identifier can be used to get personal information 
+            |from the provider specified in the "knownIdentifierProvider"""",
     )
     val knownIdentifier: String? = null,
     @Schema(example = "null", description = "provider for personal information. Can be a URI or identifier.")
@@ -100,7 +99,7 @@ data class Customer(
     @Schema(example = "null")
     val licenses: List<License>? = null,
     @field:Valid
-    @Schema(example = "null", description = "dictionary for extra fields (bilatural agreements)")
+    @Schema(example = "null", description = "dictionary for extra fields (bilateral agreements)")
     val extraInfo: Map<String, Any>? = null,
 ) {
     override fun equals(other: Any?): Boolean {

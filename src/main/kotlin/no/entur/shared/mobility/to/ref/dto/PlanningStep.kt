@@ -32,15 +32,13 @@ data class PlanningStep(
     val showTime: ShowTime? = null,
     @Schema(
         example = "null",
-        description =
-            "the `RESULT_SHOWN` action requires the MP to display some information to the customer when it is viewing" +
-                " the proposed legs.",
+        description = """the `RESULT_SHOWN` action requires the MP to display some information to the customer when it is viewing the 
+            |proposed legs.""",
     )
     val action: Action? = null,
 ) {
     /**
      * the type of the information provided
-     * Values: uRL,iMAGE,pLAINTEXT,hTML
      */
     enum class Type {
         URL,
@@ -51,7 +49,6 @@ data class PlanningStep(
 
     /**
      * the purpose of the information
-     * Values: iNSTRUCTIONS,sALES
      */
     enum class Goal {
         INSTRUCTIONS,
@@ -60,7 +57,6 @@ data class PlanningStep(
 
     /**
      * the moment when the information must be displayed
-     * Values: pLANNING,cOMMITTEDBOOKING,pREPARE,sETINUSE,pAUSE,oPENTRUNK,sTARTFINISHING,fINISH
      */
     enum class ShowTime {
         PLANNING,
@@ -75,7 +71,6 @@ data class PlanningStep(
 
     /**
      * the `RESULT_SHOWN` action requires the MP to display some information to the customer when it is viewing the proposed legs.
-     * Values: rESULTSHOWN
      */
     enum class Action {
         RESULT_SHOWN,

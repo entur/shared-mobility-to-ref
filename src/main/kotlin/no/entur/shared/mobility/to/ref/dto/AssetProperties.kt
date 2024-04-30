@@ -27,7 +27,7 @@ import jakarta.validation.constraints.Min
  * @param co2PerKm
  * @param gears number of gears of the asset
  * @param gearbox type of gearbox
- * @param airConditioning airconditioning available
+ * @param airConditioning air conditioning available
  * @param cabrio cabrio model
  * @param towingHook towing hook available
  * @param winterTires winter tires applied
@@ -89,9 +89,8 @@ data class AssetProperties(
     @field:Valid
     @Schema(
         example = "null",
-        description =
-            "access method for trip execution. Data will be delivered in the response of /booking/{id}/events - COMMIT " +
-                "or /leg/{id}/events - PREPARE (preferred) or GET /bookings/{id}.",
+        description = """access method for trip execution. Data will be delivered in the response of /booking/{id}/events - COMMIT 
+            |or /leg/{id}/events - PREPARE (preferred) or GET /bookings/{id}.""",
     )
     val accessMethods: List<AssetAccessMethods>? = null,
     @Schema(example = "null")
@@ -110,7 +109,7 @@ data class AssetProperties(
     val gears: Int? = null,
     @Schema(example = "null", description = "type of gearbox")
     val gearbox: Gearbox? = null,
-    @Schema(example = "null", description = "airconditioning available")
+    @Schema(example = "null", description = "air conditioning available")
     val airConditioning: Boolean? = null,
     @Schema(example = "null", description = "cabrio model")
     val cabrio: Boolean? = null,
@@ -157,12 +156,11 @@ data class AssetProperties(
     @get:Min(0)
     @Schema(
         example = "null",
-        description =
-            "Maximum time in minutes that a vehicle can be reserved before a rental begins. When a vehicle is reserved by a " +
-                "user, the vehicle remains locked until the rental begins. During this time the vehicle is unavailable and cannot be " +
-                "reserved or rented by other users. The vehicle status in free_bike_status.json MUST be set to is_reserved = true. " +
-                "If the value of default_reserve_time elapses without a rental beginning, the vehicle status MUST change to " +
-                "is_reserved = false. If default_reserve_time is set to 0, the vehicle type cannot be reserved.",
+        description = """Maximum time in minutes that a vehicle can be reserved before a rental begins. When a vehicle is reserved by a 
+            |user, the vehicle remains locked until the rental begins. During this time the vehicle is unavailable and cannot be reserved 
+            |or rented by other users. The vehicle status in free_bike_status.json MUST be set to is_reserved = true. If the value of 
+            |default_reserve_time elapses without a rental beginning, the vehicle status MUST change to is_reserved = false. 
+            |If default_reserve_time is set to 0, the vehicle type cannot be reserved.""",
     )
     val defaultReserveTime: Int? = null,
     @Schema(example = "null", description = "free text to describe asset, should match Content-Language")
@@ -170,17 +168,11 @@ data class AssetProperties(
     @field:Valid
     @Schema(
         example = "null",
-        description =
-            "this object can contain extra information about the type of asset. For instance values from the " +
-                "'Woordenboek Reizigerskenmerken'. [https://github.com/efel85/TOMP-API/issues/17]. These values can also be used " +
-                "in the planning.",
+        description = """this object can contain extra information about the type of asset. For instance values from the 'Woordenboek 
+            |Reizigerskenmerken'. [https://github.com/efel85/TOMP-API/issues/17]. These values can also be used in the planning.""",
     )
     val meta: Map<String, Any>? = null,
 ) {
-    /**
-     *
-     * Values: nONE,gASOLINE,dIESEL,eLECTRIC,hYBRIDGASOLINE,hYBRIDDIESEL,hYBRIDGAS,hYDROGEN,gAS,bIOMASS,kEROSINE,oTHER
-     */
     enum class Fuel {
         NONE,
         GASOLINE,
@@ -198,7 +190,6 @@ data class AssetProperties(
 
     /**
      * way in which the asset is powered
-     * Values: mUSCLE,eLECTRIC,gASOLINE,dIESEL,hYBRID,lPG,hYDROGEN
      */
     enum class Propulsion {
         MUSCLE,
@@ -212,7 +203,6 @@ data class AssetProperties(
 
     /**
      * Energy efficiency
-     * Values: a,b,c,d,e
      */
     enum class EnergyLabel {
         A,
@@ -224,7 +214,6 @@ data class AssetProperties(
 
     /**
      * type of gearbox
-     * Values: mANUAL,aUTOMATIC,sEMIAUTOMATIC
      */
     enum class Gearbox {
         MANUAL,
@@ -234,7 +223,6 @@ data class AssetProperties(
 
     /**
      * describes if asset is or needs to be easily accessible
-     * Values: lIFT,eSCALATOR,gROUNDLEVEL,sIGHTIMPAIRMENT,hEARINGIMPAIRMENT,wHEELCHAIR
      */
     enum class EasyAccessibility {
         LIFT,

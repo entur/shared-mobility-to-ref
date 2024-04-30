@@ -304,7 +304,7 @@
     },
     "conditions": [
       {
-        "conditionType": "string",
+        "conditionType": "ConditionDeposit",
         "id": "deposit50eu",
         "amount": 9.95,
         "amountExVat": 8.95,
@@ -313,16 +313,16 @@
         "vatCountryCode": "NL"
       },
       {
-        "conditionType": "string",
+        "conditionType": "ConditionPayWhenFinished",
         "id": "deposit50eu"
       },
       {
-        "conditionType": "string",
+        "conditionType": "ConditionPostponedCommit",
         "id": "deposit50eu",
         "ultimateResponseTime": "2024-02-16T08:02:07.271Z"
       },
       {
-        "conditionType": "string",
+        "conditionType": "ConditionRequireBookingData",
         "id": "deposit50eu",
         "requiredFields": [
           "FROM_ADDRESS"
@@ -332,7 +332,7 @@
         ]
       },
       {
-        "conditionType": "string",
+        "conditionType": "ConditionReturnArea",
         "id": "deposit50eu",
         "stationId": "string",
         "returnArea": [
@@ -378,18 +378,18 @@
         ]
       },
       {
-        "conditionType": "string",
+        "conditionType": "ConditionUpfrontPayment",
         "id": "deposit50eu"
       },
       {
-        "conditionType": "string",
+        "conditionType": "ConditionRequireEvidence",
         "id": "deposit50eu",
         "evidenceTypes": [
           "PARKED"
         ]
       },
       {
-        "conditionType": "string",
+        "conditionType": "ConditionRequireOnboardingSteps",
         "id": "deposit50eu",
         "steps": [
           {
@@ -402,7 +402,7 @@
         ]
       },
       {
-        "conditionType": "string",
+        "conditionType": "ConditionRequireOffboardingSteps",
         "id": "deposit50eu",
         "steps": [
           {
@@ -415,7 +415,7 @@
         ]
       },
       {
-        "conditionType": "string",
+        "conditionType": "ConditionRequirePausingSteps",
         "id": "deposit50eu",
         "steps": [
           {
@@ -428,7 +428,7 @@
         ]
       },
       {
-        "conditionType": "string",
+        "conditionType": "ConditionRequireResumingSteps",
         "id": "deposit50eu",
         "steps": [
           {

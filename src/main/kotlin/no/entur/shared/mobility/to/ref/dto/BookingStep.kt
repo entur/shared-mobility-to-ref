@@ -38,16 +38,12 @@ data class BookingStep(
     val showTime: ShowTime? = null,
     @Schema(
         example = "null",
-        description =
-            "The possible steps are described here<br> " +
-                "`PENDING` - to show whenever the booking is in PENDING state (not confirmed)<br> " +
-                "`WAITING` - to indicate that the TO is processing the booking, optionally after an extension of the expiry time<br> " +
-                "`WAITING_FOR_PAYMENT` - to indicate that the payment hasn't been settled, after an extension of the expiry time with " +
-                "reason payment<br> " +
-                "`CONFIRMED` - to show whenever the booking is in a COMMITTED state (confirmed)<br> " +
-                "`CANCELLED` - to show whenever the booking is cancelled<br> " +
-                "`CONDITIONAL_CONFIRMED` - to show whenever the booking is conditionally confirmed (see process identifiers)<br> " +
-                "`EXPIRED` - to show whenever the booking is expired (the expiry time has passed)<br>",
+        description = """The possible steps are described here<br> `PENDING` - to show whenever the booking is in PENDING state (not 
+            |confirmed)<br> `WAITING` - to indicate that the TO is processing the booking, optionally after an extension of the expiry 
+            |time<br> `WAITING_FOR_PAYMENT` - to indicate that the payment hasn't been settled, after an extension of the expiry time with 
+            |reason payment<br> `CONFIRMED` - to show whenever the booking is in a COMMITTED state (confirmed)<br> `CANCELLED` - to show 
+            |whenever the booking is cancelled<br> `CONDITIONAL_CONFIRMED` - to show whenever the booking is conditionally confirmed (see 
+            |process identifiers)<br> `EXPIRED` - to show whenever the booking is expired (the expiry time has passed)<br>""",
     )
     val action: Action? = null,
 ) {
@@ -64,7 +60,6 @@ data class BookingStep(
 
     /**
      * the purpose of the information
-     * Values: iNSTRUCTIONS,sALES
      */
     enum class Goal {
         INSTRUCTIONS,
@@ -73,7 +68,6 @@ data class BookingStep(
 
     /**
      * the moment when the information must be displayed
-     * Values: pLANNING,cOMMITTEDBOOKING,pREPARE,sETINUSE,pAUSE,oPENTRUNK,sTARTFINISHING,fINISH
      */
     enum class ShowTime {
         PLANNING,
@@ -95,7 +89,6 @@ data class BookingStep(
      * `CANCELLED` - to show whenever the booking is cancelled<br>
      * `CONDITIONAL_CONFIRMED` - to show whenever the booking is conditionally confirmed (see process identifiers)<br>
      * `EXPIRED` - to show whenever the booking is expired (the expiry time has passed)<br>
-     * Values: pENDING,wAITINGFORPAYMENT,cONFIRMED,cONDITIONALCONFIRMED,cANCELLED,eXPIRED
      */
     enum class Action {
         PENDING,

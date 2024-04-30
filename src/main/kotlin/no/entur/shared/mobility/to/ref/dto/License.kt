@@ -13,7 +13,7 @@ import java.time.LocalDate
  * @param issuingCountry two-letter country codes according to ISO 3166-1
  * @param number
  * @param licenseCode in most countries a driver license has also a code. As TO you can exactly verify, based on this code if the license
- * allows to operate it's assets, if the assetType too generic.
+ * allows to operate its assets, if the assetType too generic.
  * @param validUntil
  */
 data class License(
@@ -27,9 +27,8 @@ data class License(
     val number: String? = null,
     @Schema(
         example = "D4",
-        description =
-            "in most countries a driver license has also a code. As TO you can exactly verify, based on this code if the " +
-                "license allows to operate it's assets, if the assetType too generic.",
+        description = """in most countries a driver license has also a code. As TO you can exactly verify, based on this code if the 
+            |license allows to operate it's assets, if the assetType too generic.""",
     )
     val licenseCode: String? = null,
     @field:Valid

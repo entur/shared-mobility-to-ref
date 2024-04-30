@@ -205,7 +205,7 @@ class OperatorController(private val objectMapper: ObjectMapper) {
         stationId: String?,
     ): List<AssetType> {
         return objectMapper.readValue(javaClass.getResourceAsStream("/json/AssetTypes.json")!!)
-            }
+    }
 
     @Operation(
         summary = "describes the system",
@@ -640,7 +640,6 @@ class OperatorController(private val objectMapper: ObjectMapper) {
         limit: Int?,
     ): List<SystemRegion> {
         return objectMapper.readValue(javaClass.getResourceAsStream("/json/SystemRegions.json")!!)
-
     }
 
     @Operation(
@@ -734,7 +733,5 @@ class OperatorController(private val objectMapper: ObjectMapper) {
         radius: Float?,
     ): List<StationInformation> {
         return objectMapper.readValue(javaClass.getResourceAsStream("/json/StationInformations.json")!!)
-
-
     }
 }

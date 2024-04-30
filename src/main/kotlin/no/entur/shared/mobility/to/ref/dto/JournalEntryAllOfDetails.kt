@@ -14,12 +14,12 @@ import jakarta.validation.constraints.Size
  * @param amount This should be in the base unit as defined by the ISO 4217 currency code with the appropriate number of decimal places and
  * omitting the currency symbol. e.g. if the price is in US Dollars the price would be 9.95. This is inclusive VAT
  * @param category
- * @param propertyClass in the future we'll set up an enumeration of possible \"fare classes\". For now it's free format.
+ * @param propertyClass in the future we'll set up an enumeration of possible \"fare classes\". For now, it's free format.
  * @param amountExVat
  * @param currencyCode ISO 4217 currency code
  * @param vatRate value added tax rate (percentage of amount)
  * @param vatCountryCode two-letter country codes according to ISO 3166-1
- * @param number e.g. number of litres, number of kilowatthour, etc
+ * @param number e.g. number of litres, number of kilowatt-hour, etc
  * @param numberType
  * @param account
  * @param meta Arbitrary metadata that a TO can add, like voucher codes
@@ -40,10 +40,8 @@ data class JournalEntryAllOfDetails(
     @Schema(
         example = "9.95",
         required = true,
-        description =
-            "This should be in the base unit as defined by the ISO 4217 currency code with the appropriate number of decimal " +
-                "places and omitting the currency symbol. e.g. if the price is in US Dollars the price would be 9.95. " +
-                "This is inclusive VAT",
+        description = """This should be in the base unit as defined by the ISO 4217 currency code with the appropriate number of decimal 
+            |places and omitting the currency symbol. e.g. if the price is in US Dollars the price would be 9.95. This is inclusive VAT""",
     )
     @get:JsonProperty("amount", required = true) val amount: Float,
     @field:Valid
@@ -67,7 +65,7 @@ data class JournalEntryAllOfDetails(
     @Schema(example = "NL", description = "two-letter country codes according to ISO 3166-1")
     val vatCountryCode: String? = null,
     @get:DecimalMin("0")
-    @Schema(example = "null", description = "e.g. number of litres, number of kilowatthour, etc")
+    @Schema(example = "null", description = "e.g. number of litres, number of kilowatt-hour, etc")
     val number: Float? = null,
     @Schema(example = "null")
     val numberType: NumberType? = null,
@@ -78,10 +76,6 @@ data class JournalEntryAllOfDetails(
     @Schema(example = "null", description = "Arbitrary metadata that a TO can add, like voucher codes")
     val meta: Map<String, Any>? = null,
 ) {
-    /**
-     *
-     * Values: lITER,kILOWATTHOUR,cO2COMPENSATION,oTHER
-     */
     enum class NumberType {
         LITER,
         KILOWATTHOUR,

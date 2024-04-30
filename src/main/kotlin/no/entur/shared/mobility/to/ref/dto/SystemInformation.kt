@@ -30,9 +30,9 @@ import java.time.LocalDate
  * @param email A single contact email address for customers to address questions about the system
  * @param feedContactEmail A single contact email address for consumers of this feed to report technical issues.
  * @param licenseUrl A fully qualified URL of a page that defines the license terms for the GBFS data for this system, as well as any other
- * license terms the system would like to define (including the use of corporate trademarks, etc)
+ * license terms the system would like to define (including the use of corporate trademarks, etc.)
  * @param chamberOfCommerceInfo
- * @param conditions Added to include possibility to communicatie general rental conditions like minimum age, max. reservation time
+ * @param conditions Added to include possibility to communicate general rental conditions like minimum age, max. reservation time
  * etc. [amended]
  * @param productType the type of product offered. SHARING should also be used for public transport.
  * @param assetClasses
@@ -47,9 +47,8 @@ data class SystemInformation(
     @Schema(
         example = "null",
         required = true,
-        description =
-            "The languages supported by this operator for user-facing text. These can be requested using the Accept-Language " +
-                "header and should then be returned in Content-Language",
+        description = """The languages supported by this operator for user-facing text. These can be requested using the Accept-Language 
+            |header and should then be returned in Content-Language""",
     )
     @get:JsonProperty("language", required = true) val language: List<String>,
     @Schema(
@@ -61,10 +60,9 @@ data class SystemInformation(
     @Schema(
         example = "IST",
         required = true,
-        description =
-            "The time zone where the system is located. Time zone names never contain the space character but may contain an " +
-                "underscore. Please refer to the \"TZ\" value in https://en.wikipedia.org/wiki/List_of_tz_database_time_zones for a " +
-                "list of valid values",
+        description = """The time zone where the system is located. Time zone names never contain the space character but may contain an 
+            |underscore. Please refer to the "TZ" value in https://en.wikipedia.org/wiki/List_of_tz_database_time_zones for a list of 
+            |valid values""",
     )
     @get:JsonProperty("timezone", required = true) val timezone: String,
     @Schema(example = "FREE_FLOATING", required = true, description = "Describes the type of system")
@@ -75,9 +73,8 @@ data class SystemInformation(
     @get:JsonProperty("operator") val `operator`: String? = null,
     @Schema(
         example = "https://www.rentmyfreebike.com",
-        description =
-            "The URL of the transport operator. The value must be a fully qualified URL that includes https:// or https://, " +
-                "and any special characters in the URL must be correctly escaped.",
+        description = """The URL of the transport operator. The value must be a fully qualified URL that includes https:// or https://, 
+            |and any special characters in the URL must be correctly escaped.""",
     )
     val url: String? = null,
     @Schema(
@@ -104,10 +101,9 @@ data class SystemInformation(
     val startDate: LocalDate? = null,
     @Schema(
         example = "555-12345",
-        description =
-            "A single voice telephone number for the specified system. This field is a string value that presents the " +
-                "telephone number as typical for the system's service area. It can and should contain punctuation marks to group the " +
-                "digits of the number.",
+        description = """A single voice telephone number for the specified system. This field is a string value that presents the 
+            |telephone number as typical for the system's service area. It can and should contain punctuation marks to group the digits of 
+            |the number.""",
     )
     val phoneNumber: String? = null,
     @get:Email
@@ -124,9 +120,8 @@ data class SystemInformation(
     val feedContactEmail: String? = null,
     @Schema(
         example = "https://www.rentmyfreebike.com/license",
-        description =
-            "A fully qualified URL of a page that defines the license terms for the GBFS data for this system, as well as any " +
-                "other license terms the system would like to define (including the use of corporate trademarks, etc)",
+        description = """A fully qualified URL of a page that defines the license terms for the GBFS data for this system, as well as any 
+            |other license terms the system would like to define (including the use of corporate trademarks, etc)""",
     )
     val licenseUrl: String? = null,
     @field:Valid
@@ -134,9 +129,8 @@ data class SystemInformation(
     val chamberOfCommerceInfo: ChamberOfCommerceInfo? = null,
     @Schema(
         example = "null",
-        description =
-            "Added to include possibility to communicatie general rental conditions like minimum age, max. reservation " +
-                "time etc. [amended]",
+        description = """Added to include possibility to communicate general rental conditions like minimum age, max. reservation time 
+            |etc. [amended]""",
     )
     val conditions: String? = null,
     @Schema(
@@ -150,7 +144,6 @@ data class SystemInformation(
 ) {
     /**
      * Describes the type of system
-     * Values: fREEFLOATING,sTATIONBASED,vIRTUALSTATIONBASED
      */
     enum class TypeOfSystem {
         FREE_FLOATING,
@@ -160,7 +153,6 @@ data class SystemInformation(
 
     /**
      * the type of product offered. SHARING should also be used for public transport.
-     * Values: rENTAL,sHARING,pARKING,cHARGING
      */
     enum class ProductType {
         RENTAL,

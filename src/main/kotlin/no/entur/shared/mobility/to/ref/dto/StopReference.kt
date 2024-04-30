@@ -26,7 +26,6 @@ data class StopReference(
 ) {
     /**
      * type of external reference (GTFS, CHB).
-     * Values: gTFSSTOPID,gTFSSTOPCODE,gTFSAREAID,cHBSTOPPLACECODE,cHBQUAYCODE,nSCODE
      */
     enum class Type {
         GTFS_STOP_ID,

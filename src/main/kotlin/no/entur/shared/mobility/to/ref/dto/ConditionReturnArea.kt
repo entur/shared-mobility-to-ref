@@ -9,7 +9,7 @@ import jakarta.validation.Valid
  * @param conditionType The specific subclass of condition, should match the schema name exactly
  * @param id An identifier for this condition that can be used to refer to this condition
  * @param stationId station to which the asset should be returned
- * @param returnArea geojson representation of a polygon. First and last point must be equal. See also
+ * @param returnArea geoJson representation of a polygon. First and last point must be equal. See also
  * https://geojson.org/geojson-spec.html#polygon and example https://geojson.org/geojson-spec.html#id4. The order should be
  * lon, lat [[[lon1, lat1], [lon2,lat2], [lon3,lat3], [lon1,lat1]]], the first point should match the last point.
  * @param coordinates
@@ -31,12 +31,11 @@ data class ConditionReturnArea(
     val stationId: String? = null,
     @Schema(
         example = "[[[1.0,1.0],[0.0,1.0],[0.0,0.0],[1.0,0.0],[1.0,1.0]]]",
-        description =
-            "geojson representation of a polygon. First and last point must be equal. See also " +
-                "https://geojson.org/geojson-spec.html#polygon and example https://geojson.org/geojson-spec.html#id4. The order should " +
-                "be lon, lat [[[lon1, lat1], [lon2,lat2], [lon3,lat3], [lon1,lat1]]], the first point should match the last point.",
+        description = """geoJson representation of a polygon. First and last point must be equal. See also 
+            |https://geojson.org/geojson-spec.html#polygon and example https://geojson.org/geojson-spec.html#id4. The order should be 
+            |lon, lat [[[lon1, lat1], [lon2,lat2], [lon3,lat3], [lon1,lat1]]], the first point should match the last point.""",
     )
-    val returnArea: List<List<List<Float>>>? = null,
+    val returnArea: GeoJsonPolygon? = null,
     @field:Valid
     @Schema(example = "null")
     val coordinates: Coordinates? = null,
