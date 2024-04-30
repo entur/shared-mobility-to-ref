@@ -193,23 +193,23 @@ class PaymentController(private val objectMapper: ObjectMapper) {
         @Parameter(
             description = "type of booking line (e.g. fare, addition costs, fines, ...)",
             schema =
-            Schema(
-                allowableValues = [
-                    "ALL",
-                    "DAMAGE",
-                    "LOSS",
-                    "STOLEN",
-                    "EXTRA_USAGE",
-                    "REFUND",
-                    "FINE",
-                    "OTHER_ASSET_USED",
-                    "CREDIT",
-                    "VOUCHER",
-                    "DEPOSIT",
-                    "OTHER",
-                    "FARE",
-                ],
-            ),
+                Schema(
+                    allowableValues = [
+                        "ALL",
+                        "DAMAGE",
+                        "LOSS",
+                        "STOLEN",
+                        "EXTRA_USAGE",
+                        "REFUND",
+                        "FINE",
+                        "OTHER_ASSET_USED",
+                        "CREDIT",
+                        "VOUCHER",
+                        "DEPOSIT",
+                        "OTHER",
+                        "FARE",
+                    ],
+                ),
         )
         @Valid
         @RequestParam(value = "category", required = false)
