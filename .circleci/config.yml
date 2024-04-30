@@ -1,0 +1,180 @@
+# Use the latest 2.1 version of CircleCI pipeline process engine.
+# See: https://circleci.com/docs/configuration-reference
+version: 2.1
+
+aliases:
+  - &google-sdk-container-config
+    docker:
+      - image: google/cloud-sdk:latest
+        auth:
+          username: $DOCKERHUB_LOGIN
+          password: $DOCKERHUB_PASSWORD
+  - &tag-git-version
+    name: Tag git commit with build version and push to github
+    command: |
+      git config --global user.email "circleci@entur.no"
+      git config --global user.name "circleci"
+      git tag $VERSION
+      git push origin $VERSION
+
+  - &tag-git-version-only-main
+    name: Create a git tag if merged to main
+    command: |
+      if [ "$CIRCLE_BRANCH" = "main" ]; then
+              git config --global user.email "circleci@entur.no"
+              git config --global user.name "circleci"
+              git tag $VERSION
+              git push origin $VERSION
+      else
+              echo "Not on main branch, skipping tag creation"
+      fi
+
+  - &jfrog-settings
+    name: Write artifactory settings to file
+    command: |
+      echo "$ARTIFACTORY_SETTINGS" | base64 --decode > .circleci/settings.xml
+  - &create-image-version
+    name: Create new image version and store to env var and as file in workspace
+    command: |
+      echo "export VERSION=$CIRCLE_BRANCH-v$CIRCLE_BUILD_NUM-$(echo -n $CIRCLE_SHA1 | tail -c 8)"  >> $BASH_ENV
+      echo "$CIRCLE_BRANCH-v$CIRCLE_BUILD_NUM-$(echo -n $CIRCLE_SHA1 | tail -c 8)" > version
+  - &read-image-version
+    name: Read new image version from workspace
+    command: |
+      echo "export VERSION=$(cat ./version)" >> $BASH_ENV
+  - &docker-build
+    name: Docker build only
+    command: |
+      IMAGE="eu.gcr.io/entur-system-1287/${CIRCLE_PROJECT_REPONAME}"
+
+      docker build -t $IMAGE .
+  - &docker-build-and-push
+    name: Docker build, tag and push
+    command: |
+      IMAGE="eu.gcr.io/entur-system-1287/${CIRCLE_PROJECT_REPONAME}"
+
+      docker build -t $IMAGE .
+      docker tag $IMAGE "${IMAGE}":"${VERSION}"
+      docker login -u _json_key --password-stdin https://eu.gcr.io \<<< "${DOCKER_PASSWORD}"
+      docker push "${IMAGE}":"${VERSION}"
+
+  - &replace_version
+     name: Replace slashes in VERSION
+     command: |
+       echo "Original VERSION: $VERSION"
+       VERSION=${VERSION//\//_}
+       echo "Modified VERSION: $VERSION"
+       echo "export VERSION=$VERSION" >> $BASH_ENV
+
+
+# Define a job to be invoked later in a workflow.
+# See: https://circleci.com/docs/jobs-steps/#jobs-overview & https://circleci.com/docs/configuration-reference/#jobs
+jobs:
+  build:
+    # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
+    # See: https://circleci.com/docs/executor-intro/ & https://circleci.com/docs/configuration-reference/#executor-job
+    docker:
+      # Specify the version you desire here
+      # See: https://circleci.com/developer/images/image/cimg/openjdk
+      - image: cimg/openjdk:21.0.2
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/circleci-images/
+      # - image: circleci/postgres:9.4
+
+    environment:
+      # Customize the JVM maximum heap limit
+      JVM_OPTS: -Xmx3200m
+      TERM: dumb
+
+    <<: *google-sdk-container-config
+
+    # Add steps to the job
+    # See: https://circleci.com/docs/jobs-steps/#steps-overview & https://circleci.com/docs/configuration-reference/#steps
+    steps:
+      # Checkout the code as the first step.
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "build.gradle.kts" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run:
+          name: Gradle Dependencies
+          command: gradle dependencies
+
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: v1-dependencies-{{ checksum "build.gradle.kts" }}
+
+      - run:
+          name: Set execute permission for Gradle wrapper
+          command: chmod +x ./gradlew
+
+      - run:
+          name: Check Kotlin code formatting with ktlint
+          command: ./gradlew ktlintCheck
+
+      - run:
+          name: Build the JAR file
+          command: ./gradlew build
+
+      - run:
+          name: Running tests
+          command: gradle test
+
+      - run: *create-image-version
+
+      # Setup Docker Environment - default version
+      - setup_remote_docker:
+          docker_layer_caching: true
+
+      - run: *replace_version
+
+      - run: *docker-build
+
+      - run: *tag-git-version-only-main
+
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - build
+            - Dockerfile
+            - .circleci
+            - ./version
+
+
+  deploy-docker:
+    <<: *google-sdk-container-config
+    steps:
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - attach_workspace:
+          at: ~/project
+      - run: *read-image-version
+      - run: *replace_version
+      - run: *docker-build-and-push
+
+# See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
+workflows:
+  bygg: # This is the name of the workflow, feel free to change it to better match your workflow.
+    # Inside the workflow, you define the jobs you want to run.
+    jobs:
+      - build:
+          context: global
+      - deploy-docker:
+          context: global
+          requires:
+            - build
+          filters:
+            branches:
+              only: main
+
+
+
+
