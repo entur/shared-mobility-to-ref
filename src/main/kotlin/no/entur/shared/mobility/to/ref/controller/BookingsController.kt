@@ -94,20 +94,20 @@ class BookingsController(private val objectMapper: ObjectMapper) {
         @Parameter(
             description = "",
             schema =
-            Schema(
-                allowableValues = [
-                    "NEW",
-                    "PENDING",
-                    "REJECTED",
-                    "RELEASED",
-                    "EXPIRED",
-                    "CONDITIONAL_CONFIRMED",
-                    "CONFIRMED",
-                    "CANCELLED",
-                    "STARTED",
-                    "FINISHED",
-                ],
-            ),
+                Schema(
+                    allowableValues = [
+                        "NEW",
+                        "PENDING",
+                        "REJECTED",
+                        "RELEASED",
+                        "EXPIRED",
+                        "CONDITIONAL_CONFIRMED",
+                        "CONFIRMED",
+                        "CANCELLED",
+                        "STARTED",
+                        "FINISHED",
+                    ],
+                ),
         )
         @Valid
         @RequestParam(value = "state", required = false)
