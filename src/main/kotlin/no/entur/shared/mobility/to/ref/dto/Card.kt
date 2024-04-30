@@ -11,7 +11,7 @@ import java.time.LocalDate
  * @param type The broad category of card
  * @param cardNumber number of the card, like ID number, credit card or bank account number
  * @param validUntil
- * @param subType For use in case of OTHER. Can be used in bilateral agreements.
+ * @param subType For use in case of 'OTHER'. Can be used in bilateral agreements.
  * @param assetClass
  * @param acceptors references to accepting parties, only if applicable
  * @param cardDescription description of the card
@@ -47,7 +47,6 @@ data class Card(
 ) {
     /**
      * The broad category of card
-     * Values: iD,dISCOUNT,tRAVEL,bANK,cREDIT,pASSPORT,oTHER
      */
     enum class Type {
         ID,

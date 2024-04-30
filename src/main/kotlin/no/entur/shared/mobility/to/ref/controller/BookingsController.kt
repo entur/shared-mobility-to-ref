@@ -94,20 +94,20 @@ class BookingsController(private val objectMapper: ObjectMapper) {
         @Parameter(
             description = "",
             schema =
-                Schema(
-                    allowableValues = [
-                        "NEW",
-                        "PENDING",
-                        "REJECTED",
-                        "RELEASED",
-                        "EXPIRED",
-                        "CONDITIONAL_CONFIRMED",
-                        "CONFIRMED",
-                        "CANCELLED",
-                        "STARTED",
-                        "FINISHED",
-                    ],
-                ),
+            Schema(
+                allowableValues = [
+                    "NEW",
+                    "PENDING",
+                    "REJECTED",
+                    "RELEASED",
+                    "EXPIRED",
+                    "CONDITIONAL_CONFIRMED",
+                    "CONFIRMED",
+                    "CANCELLED",
+                    "STARTED",
+                    "FINISHED",
+                ],
+            ),
         )
         @Valid
         @RequestParam(value = "state", required = false)
@@ -138,9 +138,7 @@ class BookingsController(private val objectMapper: ObjectMapper) {
         @RequestParam(value = "contains-asset-type", required = false)
         containsAssetType: String?,
     ): List<Booking> {
-
         return listOf(objectMapper.readValue(javaClass.getResourceAsStream("/json/Booking.json")!!))
-
     }
 
     @Operation(
@@ -378,7 +376,6 @@ class BookingsController(private val objectMapper: ObjectMapper) {
         addressedTo: String?,
     ): List<Notification> {
         return objectMapper.readValue(javaClass.getResourceAsStream("/json/Notifications.json")!!)
-
     }
 
     @Operation(
@@ -453,7 +450,6 @@ class BookingsController(private val objectMapper: ObjectMapper) {
         @RequestBody(required = false)
         notification: Notification?,
     ) {
-
     }
 
     @Operation(
@@ -616,14 +612,12 @@ class BookingsController(private val objectMapper: ObjectMapper) {
         @RequestHeader(value = "addressed-to", required = false)
         addressedTo: String?,
     ) {
-
     }
 
     @Operation(
         operationId = "bookingsIdSubscriptionPost",
-        description =
-            "Optional - subscribe to a specific booking (=leg & (type of) asset). This is an optional endpoint. This endpoint " +
-                "facilitates notifications in all the phases. (see (7.1) in the flow chart - execution)",
+        description = """Optional - subscribe to a specific booking (=leg & (type of) asset). This is an optional endpoint. This endpoint 
+            |facilitates notifications in all the phases. (see (7.1) in the flow chart - execution)""",
         responses = [
             ApiResponse(responseCode = "204", description = "Request was successful, no content to return."),
             ApiResponse(

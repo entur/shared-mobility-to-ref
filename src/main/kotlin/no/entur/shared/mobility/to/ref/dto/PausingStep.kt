@@ -37,20 +37,18 @@ data class PausingStep(
     val showTime: ShowTime? = null,
     @Schema(
         example = "null",
-        description =
-            "allowed actions<br> `SEND_PAUSE` - send leg event PAUSE to inform the TO<br> " +
-                "`PARK_ASSIST` - user action, the end user can be informed how and where to park<br> " +
-                "`LOCK_ASSET` - user action, can be triggered by the PAUSE event<br> " +
-                "`SEND_OPEN_TRUNK` - request TO to open the trunk remotely<br> " +
-                "`UNLOCK_TRUNK` - user action<br> " +
-                "`STOW_HELMET` - user action<br> " +
-                "`LOCK_TRUNK` - user action",
+        description = """allowed actions<br> `SEND_PAUSE` - send leg event PAUSE to inform the TO<br> 
+            |`PARK_ASSIST` - user action, the end user can be informed how and where to park<br> 
+            |`LOCK_ASSET` - user action, can be triggered by the PAUSE event<br> 
+            |`SEND_OPEN_TRUNK` - request TO to open the trunk remotely<br> 
+            |`UNLOCK_TRUNK` - user action<br> 
+            |`STOW_HELMET` - user action<br> 
+            |`LOCK_TRUNK` - user action""",
     )
     val action: Action? = null,
 ) {
     /**
      * the type of the information provided
-     * Values: uRL,iMAGE,pLAINTEXT,hTML
      */
     enum class Type {
         URL,
@@ -61,7 +59,6 @@ data class PausingStep(
 
     /**
      * the purpose of the information
-     * Values: iNSTRUCTIONS,sALES
      */
     enum class Goal {
         INSTRUCTIONS,
@@ -70,7 +67,6 @@ data class PausingStep(
 
     /**
      * the moment when the information must be displayed
-     * Values: pLANNING,cOMMITTEDBOOKING,pREPARE,sETINUSE,pAUSE,oPENTRUNK,sTARTFINISHING,fINISH
      */
     enum class ShowTime {
         PLANNING,
@@ -90,7 +86,6 @@ data class PausingStep(
      * `SEND_OPEN_TRUNK` - request TO to open the trunk remotely<br>
      * `UNLOCK_TRUNK` - user action<br> `STOW_HELMET` - user action<br>
      * `LOCK_TRUNK` - user action
-     * Values: sENDPAUSE,pARKASSIST,lOCKASSET,sENDOPENTRUNK,uNLOCKTRUNK,sTOWHELMET,lOCKTRUNK
      */
     enum class Action {
         SEND_PAUSE,

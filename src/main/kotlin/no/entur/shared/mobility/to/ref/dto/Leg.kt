@@ -16,14 +16,14 @@ import java.time.OffsetDateTime
  * @param departureTime The departure time of this leg. Or, in case of a parking, the start of the usage.
  * @param arrivalTime The intended arrival time at the to place. Or, in case of a parking, the end of the usage.
  * @param actualArrivalTime the 'arrivalTime' can be used as 'plannedArrivalTime' whenever the leg has ended. Use this field to ease
- * searching for discrepances between planned and actual arrival times
+ * searching for discrepancies between planned and actual arrival times
  * @param actualDepartureTime the 'departureTime' can be used as 'plannedDepartureTime' whenever the leg has started. Use this field to
- * ease searching for discrepances between planned and actual departure times
- * @param travelerReferenceNumbers reference to the travelers field of the request. If missing, it is refering to the first (if any). it is
- * an array to facilitate multiple users on one leg (e.g. using a car). If multiple access informations are needed, please create a leg per
+ * ease searching for discrepancies between planned and actual departure times
+ * @param travelerReferenceNumbers reference to the travelers field of the request. If missing, it is referring to the first (if any). it is
+ * an array to facilitate multiple users on one leg (e.g. using a car). If multiple access information is needed, please create a leg per
  * used asset.
  * @param legSequenceNumber The order of the leg in the booking. There can be multiple legs with the same sequence (different user or
- * parallel usage (eg. parking lot and a bike)).
+ * parallel usage (e.g. parking lot and a bike)).
  * @param asset
  * @param pricing
  * @param suboperator
@@ -64,31 +64,27 @@ data class Leg(
     val arrivalTime: OffsetDateTime? = null,
     @Schema(
         example = "null",
-        description =
-            "the 'arrivalTime' can be used as 'plannedArrivalTime' whenever the leg has ended. Use this field to ease " +
-                "searching for discrepances between planned and actual arrival times",
+        description = """the 'arrivalTime' can be used as 'plannedArrivalTime' whenever the leg has ended. Use this field to ease 
+            |searching for discrepancies between planned and actual arrival times""",
     )
     val actualArrivalTime: OffsetDateTime? = null,
     @Schema(
         example = "null",
-        description =
-            "the 'departureTime' can be used as 'plannedDepartureTime' whenever the leg has started. Use this field to ease " +
-                "searching for discrepances between planned and actual departure times",
+        description = """the 'departureTime' can be used as 'plannedDepartureTime' whenever the leg has started. Use this field to ease 
+            |searching for discrepancies between planned and actual departure times""",
     )
     val actualDepartureTime: OffsetDateTime? = null,
     @Schema(
         example = "null",
-        description =
-            "reference to the travelers field of the request. If missing, it is refering to the first (if any). it is an " +
-                "array to facilitate multiple users on one leg (e.g. using a car). If multiple access informations are needed, please " +
-                "create a leg per used asset.",
+        description = """reference to the travelers field of the request. If missing, it is referring to the first (if any). it is an 
+            |array to facilitate multiple users on one leg (e.g. using a car). If multiple access information is needed, please create 
+            |a leg per used asset.""",
     )
     val travelerReferenceNumbers: List<String>? = null,
     @Schema(
         example = "null",
-        description =
-            "The order of the leg in the booking. There can be multiple legs with the same sequence (different user or " +
-                "parallel usage (eg. parking lot and a bike)).",
+        description = """The order of the leg in the booking. There can be multiple legs with the same sequence (different user or 
+            |parallel usage (eg. parking lot and a bike)).""",
     )
     val legSequenceNumber: Int? = null,
     @field:Valid
@@ -99,13 +95,12 @@ data class Leg(
     val pricing: Fare? = null,
     @field:Valid
     @Schema(example = "null")
-    val suboperator: Suboperator? = null,
+    val suboperator: SubOperator? = null,
     @field:Valid
     @Schema(
         example = "null",
-        description =
-            "The conditions that apply to this leg, there may be more conditions in a parent booking and planning object" +
-                " (if this is returned as part of those)",
+        description = """The conditions that apply to this leg, there may be more conditions in a parent booking and planning object 
+            |(if this is returned as part of those)""",
     )
     val conditions: List<AssetTypeConditionsInner>? = null,
     @field:Valid
@@ -123,7 +118,7 @@ data class Leg(
     @Schema(example = "7250", description = "The estimated distance travelled in the leg (in meters)")
     val distance: Int? = null,
     @Schema(example = "[[6.169639,52.253279],[6.05623,52.63473]]", description = "An array  of WGS84 coordinate pairs")
-    val progressGeometry: List<List<Float>>? = null,
+    val progressGeometry: GeoJsonLine? = null,
     @field:Valid
     @Schema(example = "null")
     val ticket: Token? = null,

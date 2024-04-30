@@ -24,19 +24,11 @@ data class Phone(
     @Schema(example = "null")
     val type: Type? = null,
 ) {
-    /**
-     *
-     * Values: lANDLINE,mOBILE
-     */
     enum class Kind {
         LANDLINE,
         MOBILE,
     }
 
-    /**
-     *
-     * Values: pRIVATE,bUSINESS,oTHER
-     */
     enum class Type {
         PRIVATE,
         BUSINESS,

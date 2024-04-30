@@ -7,7 +7,7 @@ import jakarta.validation.Valid
 /**
  * A generic description of a card, asset class and acceptors is only allowed for DISCOUNT/TRAVEL/OTHER cards
  * @param type The broad category of card
- * @param subType For use in case of OTHER. Can be used in bilateral agreements.
+ * @param subType For use in case of 'OTHER'. Can be used in bilateral agreements.
  * @param assetClass
  * @param acceptors references to accepting parties, only if applicable
  */
@@ -24,7 +24,6 @@ data class CardType(
 ) {
     /**
      * The broad category of card
-     * Values: iD,dISCOUNT,tRAVEL,bANK,cREDIT,pASSPORT,oTHER
      */
     enum class Type {
         ID,

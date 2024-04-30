@@ -6,7 +6,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 /**
  * use this condition to specify the evidence you require as TO in the off-boarding process. It can be used in addition with the static
  * process identifier 'OFF_BOARDING_REQUIRED'. The evidence should be delivered in the /legs/{id}/events object (legEvent), in the `url`
- * array This construct is deprecated since v1.5. Please migrate it to conditionRequireOffboardingSteps
+ * array This construct is deprecated since v1.5. Please migrate it to conditionRequireOffBoardingSteps
  * @param conditionType The specific subclass of condition, should match the schema name exactly
  * @param evidenceTypes
  * @param id An identifier for this condition that can be used to refer to this condition

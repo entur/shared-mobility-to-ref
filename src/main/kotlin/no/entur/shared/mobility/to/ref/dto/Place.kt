@@ -5,9 +5,9 @@ import io.swagger.v3.oas.annotations.media.Schema
 import jakarta.validation.Valid
 
 /**
- * a origin or destination of a leg, 3D. lon/lat in WGS84.
+ * an origin or destination of a leg, 3D. lon/lat in WGS84.
  * @param coordinates
- * @param name Human readable name of the place, could match Content-Language
+ * @param name Human-readable name of the place, could match Content-Language
  * @param stopReference
  * @param stationId reference to /operator/stations
  * @param physicalAddress

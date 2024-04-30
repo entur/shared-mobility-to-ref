@@ -2,7 +2,6 @@ package no.entur.shared.mobility.to.ref.dto
 
 /**
  * status of a leg
- * Values: nOTSTARTED,pREPARING,iNUSE,pAUSED,fINISHING,fINISHED,iSSUEREPORTED,cANCELLED
  */
 enum class LegState {
     NOT_STARTED,

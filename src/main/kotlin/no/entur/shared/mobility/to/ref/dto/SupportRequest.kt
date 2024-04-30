@@ -58,7 +58,6 @@ data class SupportRequest(
 
     /**
      * the priority of the support request.
-     * Values: eRRORCANNOTCONTINUE,eRRORCANCONTINUE,dISTURBINGISSUE,qUESTION,oTHER
      */
     enum class Priority {
         ERROR_CANNOT_CONTINUE,

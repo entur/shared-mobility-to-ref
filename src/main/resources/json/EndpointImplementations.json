@@ -4,49 +4,46 @@
     "baseUrl": "string",
     "endpoints": [
       {
-        "warning": "Don't copy this example. There are multiple examples in this section. Each object is an example on itself.",
-        "externalStandard1": {
-          "method": "GET",
-          "externalType": "GBFS",
-          "path": "https://some-external.url/GBFS/vehicle_types.json",
-          "useAssetTypes": [
-            "vehicle_type_id"
-          ],
-          "status": "IMPLEMENTED"
-        },
-        "externalStandard2": {
-          "method": "GET",
-          "externalType": "GBFS",
-          "path": "https://some-external.url/GBFS/vehicle_status.json",
-          "useAssets": [
-            "vehicle_id"
-          ],
-          "status": "IMPLEMENTED"
-        },
-        "externalStandard3": {
-          "method": "GET",
-          "externalType": "NeTEx",
-          "path": "https://data.ndovloket.nl/netex/wsf/NeTEx_WSF_20190903.xml.gz",
-          "useAssetTypes": [
-            "ScheduledStopPoint.id",
-            "Line.id",
-            "QuayRef.ref"
-          ],
-          "status": "IMPLEMENTED"
-        },
-        "withoutPaging": {
-          "method": "POST",
-          "path": "/booking/{id}/events",
-          "eventType": "COMMIT",
-          "status": "IMPLEMENTED"
-        },
-        "withPaging": {
-          "method": "POST",
-          "path": "/operator/stations",
-          "status": "IMPLEMENTED",
-          "supportsPaging": true,
-          "maxPageSize": 100
-        }
+        "method": "GET",
+        "externalType": "GBFS",
+        "path": "https://some-external.url/GBFS/vehicle_types.json",
+        "useAssetTypes": [
+          "vehicle_type_id"
+        ],
+        "status": "IMPLEMENTED"
+      },
+      {
+        "method": "GET",
+        "externalType": "GBFS",
+        "path": "https://some-external.url/GBFS/vehicle_status.json",
+        "useAssets": [
+          "vehicle_id"
+        ],
+        "status": "IMPLEMENTED"
+      },
+      {
+        "method": "GET",
+        "externalType": "NeTEx",
+        "path": "https://data.ndovloket.nl/netex/wsf/NeTEx_WSF_20190903.xml.gz",
+        "useAssetTypes": [
+          "ScheduledStopPoint.id",
+          "Line.id",
+          "QuayRef.ref"
+        ],
+        "status": "IMPLEMENTED"
+      },
+      {
+        "method": "POST",
+        "path": "/booking/{id}/events",
+        "eventType": "COMMIT",
+        "status": "IMPLEMENTED"
+      },
+      {
+        "method": "POST",
+        "path": "/operator/stations",
+        "status": "IMPLEMENTED",
+        "supportsPaging": true,
+        "maxPageSize": 100
       }
     ],
     "scenarios": [

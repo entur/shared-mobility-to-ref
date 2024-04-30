@@ -31,10 +31,9 @@ data class ConditionRequireBookingData(
     val id: String? = null,
     @Schema(
         example = "null",
-        description =
-            "when in the 'requiredFields' array 'BLOCKCHAIN_CLAIMS' is specified, in this array claims can be specified. " +
-                "On the WIKI page, the known ones are enlisted, but this list isn't finalized yet. " +
-                "https://github.com/TOMP-WG/TOMP-API/wiki/Blockchain---Verifiable-credentials",
+        description = """when in the 'requiredFields' array 'BLOCKCHAIN_CLAIMS' is specified, in this array claims can be specified. 
+            |On the WIKI page, the known ones are enlisted, but this list isn't finalized yet. 
+            |https://github.com/TOMP-WG/TOMP-API/wiki/Blockchain---Verifiable-credentials""",
     )
     val claims: List<String>? = null,
 ) : AssetTypeConditionsInner {

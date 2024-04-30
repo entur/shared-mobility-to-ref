@@ -121,18 +121,20 @@ class OperatorControllerTest {
 
     @Test
     fun operatorStationsGet() {
-        operatorController.operatorStationsGet(
-            acceptLanguage = "",
-            api = "",
-            apiVersion = "",
-            maasId = "",
-            addressedTo = "",
-            offset = 0,
-            limit = 0,
-            regionId = null,
-            lon = 5F,
-            lat = 4F,
-            radius = 3F,
-        )
+        val operatorStationsGet =
+            operatorController.operatorStationsGet(
+                acceptLanguage = "",
+                api = "",
+                apiVersion = "",
+                maasId = "",
+                addressedTo = "",
+                offset = 0,
+                limit = 0,
+                regionId = null,
+                lon = 5F,
+                lat = 4F,
+                radius = 3F,
+            )
+        println(operatorStationsGet)
     }
 }

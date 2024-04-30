@@ -18,18 +18,16 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class Error(
     @Schema(
         example = "null",
-        description =
-            "The TOMP specific error code. See https://github.com/TOMP-WG/TOMP-API/wiki/Error-handling-in-TOMP for " +
-                "more details of this error.",
+        description = """The TOMP specific error code. See https://github.com/TOMP-WG/TOMP-API/wiki/Error-handling-in-TOMP for more 
+            |details of this error.""",
     )
     val errorcode: Int? = null,
     @Schema(example = "null", description = "The category of this type of error.")
     val type: String? = null,
     @Schema(
         example = "null",
-        description =
-            "A short, human-readable summary of the problem type.  It SHOULD NOT change from occurrence to occurrence of " +
-                "the problem, except to match Content-Language",
+        description = """A short, human-readable summary of the problem type.  It SHOULD NOT change from occurrence to occurrence of the 
+            |problem, except to match Content-Language""",
     )
     val title: String? = null,
     @Schema(
@@ -44,9 +42,8 @@ data class Error(
     val detail: String? = null,
     @Schema(
         example = "null",
-        description =
-            "A URI reference that identifies the specific occurrence of the problem.  " +
-                "It may or may not yield further information if dereferenced.",
+        description = """A URI reference that identifies the specific occurrence of the problem.  It may or may not yield further 
+            |information if dereferenced.""",
     )
     val instance: String? = null,
 )

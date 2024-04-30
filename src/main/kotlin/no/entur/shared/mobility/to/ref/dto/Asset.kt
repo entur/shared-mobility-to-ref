@@ -17,7 +17,7 @@ import java.time.OffsetDateTime
  * @param isDisabled true indicates the asset is currently disabled (broken)
  * @param availableUntil The date and time when any rental of the vehicle must be completed. The vehicle must be returned and made
  * available for the next user by this time. If this field is empty, it indicates that the vehicle is available indefinitely.
- * This field SHOULD be published by carsharing or other mobility systems where vehicles can be booked in advance for future travel.
+ * This field SHOULD be published by car sharing or other mobility systems where vehicles can be booked in advance for future travel.
  * @param rentalUrl deep-linking option from GBFS+. Only added to be consistent with GBFS 2.0
  * @param rentalUrlAndroid deep-linking option from GBFS 2.0. Only added to be consistent with GBFS 2.0
  * @param rentalUrlIOS deep-linking option from GBFS 2.0. Only added to be consistent with GBFS 2.0
@@ -48,11 +48,10 @@ data class Asset(
     val isDisabled: Boolean? = null,
     @Schema(
         example = "null",
-        description =
-            "The date and time when any rental of the vehicle must be completed. The vehicle must be returned and made " +
-                "available for the next user by this time. If this field is empty, it indicates that the vehicle is available " +
-                "indefinitely. This field SHOULD be published by carsharing or other mobility systems where vehicles can be booked in " +
-                "advance for future travel.",
+        description = """The date and time when any rental of the vehicle must be completed. The vehicle must be returned and made 
+            |available for the next user by this time. If this field is empty, it indicates that the vehicle is available indefinitely. 
+            |This field SHOULD be published by car sharing or other mobility systems where vehicles can be booked in advance for future 
+            |travel.""",
     )
     val availableUntil: OffsetDateTime? = null,
     @Schema(
@@ -86,9 +85,8 @@ data class Asset(
     val maxRange: Int? = null,
     @Schema(
         example = "null",
-        description =
-            "the usage of this field requires a secure environment. When assets are published in available-assets, this field " +
-                "can be used to track assets. Be aware of this.",
+        description = """the usage of this field requires a secure environment. When assets are published in available-assets, this field 
+            |can be used to track assets. Be aware of this.""",
     )
     val licensePlate: String? = null,
     @Schema(

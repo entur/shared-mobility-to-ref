@@ -7,7 +7,7 @@ import io.swagger.v3.oas.annotations.media.Schema
  * @param provider the provider of the previous leg (usually a Transport Operator reference)
  * @param assetReference the identification of the previous asset, like a flight number. This field (in case of a specific asset) or
  * assetTypeReference must be filled.
- * @param assetTypeReference the identification of the previous asset type, like a discount combi. This field
+ * @param assetTypeReference the identification of the previous asset type, like a discount combination. This field
  * (in case of a specific asset type) or asset reference must be filled.
  */
 data class ConnectedLegInfo(
@@ -15,16 +15,14 @@ data class ConnectedLegInfo(
     val provider: String? = null,
     @Schema(
         example = "null",
-        description =
-            "the identification of the previous asset, like a flight number. This field (in case of a specific asset) " +
-                "or assetTypeReference must be filled.",
+        description = """the identification of the previous asset, like a flight number. 
+            |This field (in case of a specific asset) or assetTypeReference must be filled.""",
     )
     val assetReference: String? = null,
     @Schema(
         example = "null",
-        description =
-            "the identification of the previous asset type, like a discount combi. " +
-                "This field (in case of a specific asset type) or asset reference must be filled.",
+        description = """the identification of the previous asset type, like a discount combination. 
+            |This field (in case of a specific asset type) or asset reference must be filled.""",
     )
     val assetTypeReference: String? = null,
 )

@@ -34,9 +34,8 @@ data class AssetType(
     @field:Valid
     @Schema(
         example = "null",
-        description =
-            "use this field only in the map-oriented scenario or in the committed bookings. Don't use it in public data " +
-                "(to prevent GDPR issues).",
+        description = """use this field only in the map-oriented scenario or in the committed bookings. Don't use it in public data 
+            |(to prevent GDPR issues).""",
     )
     val assets: List<Asset>? = null,
     @field:Valid
@@ -44,9 +43,8 @@ data class AssetType(
     val assetClass: AssetClass? = null,
     @Schema(
         example = "null",
-        description =
-            "a more precise classification of the asset, like 'cargo bike', 'public bus', 'coach bus', 'office bus', " +
-                "'water taxi',  'segway'. This is mandatory when using 'OTHER' as class.",
+        description = """a more precise classification of the asset, like 'cargo bike', 'public bus', 'coach bus', 'office bus', 
+            |'water taxi',  'segway'. This is mandatory when using 'OTHER' as class.""",
     )
     val assetSubClass: String? = null,
     @field:Valid
@@ -55,9 +53,8 @@ data class AssetType(
     @field:Valid
     @Schema(
         example = "null",
-        description =
-            "pricing plans that can be applicable for this assetType. Business logic to determine the final pricing plan " +
-                "is not exposed. Just call the plannings endpoint (v1.2) or the inquiries endpoint (v.1.3)",
+        description = """pricing plans that can be applicable for this assetType. Business logic to determine the final pricing plan is 
+            |not exposed. Just call the plannings endpoint (v1.2) or the inquiries endpoint (v.1.3)""",
     )
     val applicablePricings: List<SystemPricingPlan>? = null,
     @field:Valid
@@ -66,9 +63,8 @@ data class AssetType(
     @field:Valid
     @Schema(
         example = "null",
-        description =
-            "extra information about the asset type, making it possible to f.x. specifying that booking this car requires " +
-                "a driver license.",
+        description = """extra information about the asset type, making it possible to f.x. specifying that booking this car requires a 
+            |driver license.""",
     )
     val conditions: List<AssetTypeConditionsInner>? = null,
 )

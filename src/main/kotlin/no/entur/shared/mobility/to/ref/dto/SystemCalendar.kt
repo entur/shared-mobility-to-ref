@@ -11,9 +11,9 @@ import jakarta.validation.constraints.Min
  * @param startDay Starting day for the system operations (1-31)
  * @param endMonth Ending month for the system operations (1-12)
  * @param endDay Ending day for the system operations (1-31)
- * @param stationId If this parameter is present, it means that start and end prameters correspond to the opening and closing days of the
+ * @param stationId If this parameter is present, it means that start and end parameters correspond to the opening and closing days of the
  * station. (GET /operator/stations)
- * @param regionId If this parameter is present, it means that start and end prameters correspond to the opening and closing days for the
+ * @param regionId If this parameter is present, it means that start and end parameters correspond to the opening and closing days for the
  * region. (GET /operator/regions)
  * @param startYear Starting year for the system operations
  * @param endYear Ending year for the system operations
@@ -37,16 +37,14 @@ data class SystemCalendar(
     @get:JsonProperty("endDay", required = true) val endDay: Int,
     @Schema(
         example = "null",
-        description =
-            "If this parameter is present, it means that start and end prameters correspond to the opening and closing days " +
-                "of the station. (GET /operator/stations)",
+        description = """If this parameter is present, it means that start and end parameters correspond to the opening and closing days of 
+            |the station. (GET /operator/stations)""",
     )
     val stationId: String? = null,
     @Schema(
         example = "null",
-        description =
-            "If this parameter is present, it means that start and end prameters correspond to the opening and closing days " +
-                "for the region. (GET /operator/regions)",
+        description = """If this parameter is present, it means that start and end parameters correspond to the opening and closing days 
+            |for the region. (GET /operator/regions)""",
     )
     val regionId: String? = null,
     @Schema(example = "2019", description = "Starting year for the system operations")

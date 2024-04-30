@@ -27,7 +27,6 @@ dependencies {
     implementation("io.swagger.core.v3:swagger-models:2.2.20")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-//    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
     implementation("org.flywaydb:flyway-core")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     runtimeOnly("com.h2database:h2")

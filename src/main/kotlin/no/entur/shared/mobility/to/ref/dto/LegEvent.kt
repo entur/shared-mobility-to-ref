@@ -26,10 +26,6 @@ data class LegEvent(
     @Schema(example = "null")
     val asset: Asset? = null,
 ) {
-    /**
-     *
-     * Values: pREPARE,aSSIGNASSET,sETINUSE,pAUSE,oPENTRUNK,sTARTFINISHING,fINISH,tIMEEXTEND,tIMEPOSTPONE,cANCEL
-     */
     enum class Event {
         PREPARE,
         ASSIGN_ASSET,
