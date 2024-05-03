@@ -1,6 +1,7 @@
 package no.entur.shared.mobility.to.ref.controller
 
 import no.entur.shared.mobility.to.ref.Application
+import no.entur.shared.mobility.to.ref.service.TransportOperator
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -17,7 +18,7 @@ class PlanningControllerTest {
             "",
             "",
             "",
-            "",
+            TransportOperator.ALL_IMPLEMENTING_OPERATOR,
             null,
         )
     }
@@ -29,7 +30,7 @@ class PlanningControllerTest {
             api = "",
             apiVersion = "",
             maasId = "",
-            addressedTo = "",
+            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
             planningRequest = null,
         )
     }

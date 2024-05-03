@@ -1,7 +1,5 @@
 package no.entur.shared.mobility.to.ref.controller
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.enums.ParameterIn
@@ -23,6 +21,7 @@ import no.entur.shared.mobility.to.ref.dto.SystemHours
 import no.entur.shared.mobility.to.ref.dto.SystemInformation
 import no.entur.shared.mobility.to.ref.dto.SystemPricingPlan
 import no.entur.shared.mobility.to.ref.dto.SystemRegion
+import no.entur.shared.mobility.to.ref.service.OperatorService
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestHeader
@@ -33,7 +32,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @Validated
 @RequestMapping("\${api.base-path}")
-class OperatorController(private val objectMapper: ObjectMapper) {
+class OperatorController(private val operatorService: OperatorService) {
     @Operation(
         summary = "informs customers about changes to the system outside of normal operations",
         operationId = "operatorAlertsGet",
@@ -116,7 +115,17 @@ class OperatorController(private val objectMapper: ObjectMapper) {
         @RequestParam(value = "stationId", required = false)
         stationId: String?,
     ): List<SystemAlert> {
-        return objectMapper.readValue(javaClass.getResourceAsStream("/json/SystemAlerts.json")!!)
+        return operatorService.operatorAlertsGet(
+            acceptLanguage,
+            api,
+            apiVersion,
+            maasId,
+            addressedTo,
+            offset,
+            limit,
+            regionId,
+            stationId,
+        )
     }
 
     @Operation(
@@ -204,7 +213,17 @@ class OperatorController(private val objectMapper: ObjectMapper) {
         @RequestParam(value = "stationId", required = false)
         stationId: String?,
     ): List<AssetType> {
-        return objectMapper.readValue(javaClass.getResourceAsStream("/json/AssetTypes.json")!!)
+        return operatorService.operatorAvailableAssetsGet(
+            acceptLanguage,
+            api,
+            apiVersion,
+            maasId,
+            addressedTo,
+            offset,
+            limit,
+            regionId,
+            stationId,
+        )
     }
 
     @Operation(
@@ -267,7 +286,13 @@ class OperatorController(private val objectMapper: ObjectMapper) {
         @RequestHeader(value = "addressed-to", required = false)
         addressedTo: String?,
     ): SystemInformation {
-        return objectMapper.readValue(javaClass.getResourceAsStream("/json/SystemInformation.json")!!)
+        return operatorService.operatorInformationGet(
+            acceptLanguage,
+            api,
+            apiVersion,
+            maasId,
+            addressedTo,
+        )
     }
 
     @Operation(
@@ -308,7 +333,11 @@ class OperatorController(private val objectMapper: ObjectMapper) {
         @RequestHeader(value = "addressed-to", required = false)
         addressedTo: String?,
     ): List<EndpointImplementation> {
-        return objectMapper.readValue(javaClass.getResourceAsStream("/json/EndpointImplementations.json")!!)
+        return operatorService.operatorMetaGet(
+            acceptLanguage,
+            maasId,
+            addressedTo,
+        )
     }
 
     @Operation(
@@ -381,7 +410,15 @@ class OperatorController(private val objectMapper: ObjectMapper) {
         @RequestParam(value = "stationId", required = false)
         stationId: String?,
     ): List<SystemCalendar> {
-        return objectMapper.readValue(javaClass.getResourceAsStream("/json/SystemCalendars.json")!!)
+        return operatorService.operatorOperatingCalendarGet(
+            acceptLanguage,
+            api,
+            apiVersion,
+            maasId,
+            addressedTo,
+            regionId,
+            stationId,
+        )
     }
 
     @Operation(
@@ -451,7 +488,15 @@ class OperatorController(private val objectMapper: ObjectMapper) {
         @RequestParam(value = "stationId", required = false)
         stationId: String?,
     ): List<SystemHours> {
-        return objectMapper.readValue(javaClass.getResourceAsStream("/json/SystemHours.json")!!)
+        return operatorService.operatorOperatingHoursGet(
+            acceptLanguage,
+            api,
+            apiVersion,
+            maasId,
+            addressedTo,
+            regionId,
+            stationId,
+        )
     }
 
     @Operation(
@@ -488,6 +533,7 @@ class OperatorController(private val objectMapper: ObjectMapper) {
         @RequestHeader(value = "Accept-Language", required = true)
         acceptLanguage: String,
     ) {
+        operatorService.operatorPingGet(acceptLanguage)
     }
 
     @Operation(
@@ -566,7 +612,15 @@ class OperatorController(private val objectMapper: ObjectMapper) {
         @RequestParam(value = "stationId", required = false)
         stationId: String?,
     ): List<SystemPricingPlan> {
-        return objectMapper.readValue(javaClass.getResourceAsStream("/json/SystemPricingPlans.json")!!)
+        return operatorService.operatorPricingPlansGet(
+            acceptLanguage,
+            api,
+            apiVersion,
+            maasId,
+            addressedTo,
+            regionId,
+            stationId,
+        )
     }
 
     @Operation(
@@ -639,7 +693,15 @@ class OperatorController(private val objectMapper: ObjectMapper) {
         @RequestParam(value = "limit", required = false)
         limit: Int?,
     ): List<SystemRegion> {
-        return objectMapper.readValue(javaClass.getResourceAsStream("/json/SystemRegions.json")!!)
+        return operatorService.operatorRegionsGet(
+            acceptLanguage,
+            api,
+            apiVersion,
+            maasId,
+            addressedTo,
+            offset,
+            limit,
+        )
     }
 
     @Operation(
@@ -732,6 +794,18 @@ class OperatorController(private val objectMapper: ObjectMapper) {
         @RequestParam(value = "radius", required = false)
         radius: Float?,
     ): List<StationInformation> {
-        return objectMapper.readValue(javaClass.getResourceAsStream("/json/StationInformations.json")!!)
+        return operatorService.operatorStationsGet(
+            acceptLanguage,
+            api,
+            apiVersion,
+            maasId,
+            addressedTo,
+            offset,
+            limit,
+            regionId,
+            lon,
+            lat,
+            radius,
+        )
     }
 }

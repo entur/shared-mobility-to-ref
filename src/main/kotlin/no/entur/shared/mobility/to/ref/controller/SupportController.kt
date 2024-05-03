@@ -1,7 +1,5 @@
 package no.entur.shared.mobility.to.ref.controller
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.enums.ParameterIn
@@ -14,6 +12,7 @@ import jakarta.validation.Valid
 import no.entur.shared.mobility.to.ref.dto.Error
 import no.entur.shared.mobility.to.ref.dto.SupportRequest
 import no.entur.shared.mobility.to.ref.dto.SupportStatus
+import no.entur.shared.mobility.to.ref.service.SupportService
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -26,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @Validated
 @RequestMapping("\${api.base-path}")
-class SupportController(private val objectMapper: ObjectMapper) {
+class SupportController(private val supportService: SupportService) {
     @Operation(
         operationId = "supportIdStatusGet",
         description = """Gets the status report of the support request. Last status (highest order number) is the current status""",
@@ -98,7 +97,14 @@ class SupportController(private val objectMapper: ObjectMapper) {
         @RequestHeader(value = "addressed-to", required = false)
         addressedTo: String?,
     ): List<SupportStatus> {
-        return listOf(objectMapper.readValue(javaClass.getResourceAsStream("/json/SupportStatus.json")!!))
+        return supportService.supportIdStatusGet(
+            acceptLanguage,
+            api,
+            apiVersion,
+            maasId,
+            id,
+            addressedTo,
+        )
     }
 
     @Operation(
@@ -172,6 +178,13 @@ class SupportController(private val objectMapper: ObjectMapper) {
         @RequestBody(required = false)
         supportRequest: SupportRequest?,
     ): SupportStatus {
-        return objectMapper.readValue(javaClass.getResourceAsStream("/json/SupportStatus.json")!!)
+        return supportService.supportPost(
+            acceptLanguage,
+            api,
+            apiVersion,
+            maasId,
+            addressedTo,
+            supportRequest,
+        )
     }
 }

@@ -4,10 +4,13 @@ import no.entur.shared.mobility.to.ref.Application
 import no.entur.shared.mobility.to.ref.dto.AssetType
 import no.entur.shared.mobility.to.ref.dto.Coordinates
 import no.entur.shared.mobility.to.ref.dto.Leg
+import no.entur.shared.mobility.to.ref.dto.LegEvent
 import no.entur.shared.mobility.to.ref.dto.Place
+import no.entur.shared.mobility.to.ref.service.TransportOperator
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import java.time.OffsetDateTime
 
 @SpringBootTest(classes = [Application::class], webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class LegsControllerTest {
@@ -24,7 +27,7 @@ class LegsControllerTest {
             id = "",
             category = "",
             number = "",
-            addressedTo = "",
+            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
         )
     }
 
@@ -38,7 +41,7 @@ class LegsControllerTest {
             id = "",
             category = "",
             number = "",
-            addressedTo = "",
+            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
         )
     }
 
@@ -50,7 +53,7 @@ class LegsControllerTest {
             apiVersion = "",
             maasId = "",
             id = "",
-            addressedTo = "",
+            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
             limit = 1,
             offset = 1,
         )
@@ -75,8 +78,8 @@ class LegsControllerTest {
             apiVersion = "",
             maasId = "",
             id = "",
-            addressedTo = "",
-            legEvent = null,
+            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
+            legEvent = LegEvent(event = LegEvent.Event.SET_IN_USE, time = OffsetDateTime.now()),
         )
     }
 
@@ -88,7 +91,7 @@ class LegsControllerTest {
             apiVersion = "",
             maasId = "",
             id = "",
-            addressedTo = "",
+            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
         )
     }
 
@@ -100,7 +103,7 @@ class LegsControllerTest {
             apiVersion = "",
             maasId = "",
             id = "",
-            addressedTo = "",
+            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
             locationOnly = true,
         )
     }
@@ -113,7 +116,7 @@ class LegsControllerTest {
             apiVersion = "",
             maasId = "",
             id = "",
-            addressedTo = "",
+            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
             legProgress = null,
         )
     }
@@ -126,7 +129,7 @@ class LegsControllerTest {
             apiVersion = "",
             maasId = "",
             id = "",
-            addressedTo = "",
+            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
             leg = Leg(from = Place(Coordinates(0F, 0F, 0F)), assetType = AssetType(id = "")),
         )
     }

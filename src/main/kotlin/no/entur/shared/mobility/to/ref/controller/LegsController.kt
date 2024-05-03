@@ -1,7 +1,5 @@
 package no.entur.shared.mobility.to.ref.controller
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.enums.ParameterIn
@@ -18,6 +16,7 @@ import no.entur.shared.mobility.to.ref.dto.Error
 import no.entur.shared.mobility.to.ref.dto.Leg
 import no.entur.shared.mobility.to.ref.dto.LegEvent
 import no.entur.shared.mobility.to.ref.dto.LegProgress
+import no.entur.shared.mobility.to.ref.service.LegsService
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
@@ -33,7 +32,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @Validated
 @RequestMapping("\${api.base-path}")
-class LegsController(private val objectMapper: ObjectMapper) {
+class LegsController(private val legsService: LegsService) {
     @Operation(
         summary = "",
         operationId = "legsIdAncillariesCategoryNumberDelete",
@@ -113,7 +112,16 @@ class LegsController(private val objectMapper: ObjectMapper) {
         @RequestHeader(value = "addressed-to", required = false)
         addressedTo: String?,
     ): Leg {
-        return objectMapper.readValue(javaClass.getResourceAsStream("/json/Leg.json")!!)
+        return legsService.legsIdAncillariesCategoryNumberDelete(
+            acceptLanguage,
+            api,
+            apiVersion,
+            maasId,
+            id,
+            category,
+            number,
+            addressedTo,
+        )
     }
 
     @Operation(
@@ -195,7 +203,16 @@ class LegsController(private val objectMapper: ObjectMapper) {
         @RequestHeader(value = "addressed-to", required = false)
         addressedTo: String?,
     ): Leg {
-        return objectMapper.readValue(javaClass.getResourceAsStream("/json/Leg.json")!!)
+        return legsService.legsIdAncillariesCategoryNumberPost(
+            acceptLanguage,
+            api,
+            apiVersion,
+            maasId,
+            id,
+            category,
+            number,
+            addressedTo,
+        )
     }
 
     @Operation(
@@ -282,7 +299,16 @@ class LegsController(private val objectMapper: ObjectMapper) {
         @RequestParam(value = "limit", required = false)
         limit: Int?,
     ): List<Asset> {
-        return objectMapper.readValue(javaClass.getResourceAsStream("/json/Assets.json")!!)
+        return legsService.legsIdAvailableAssetsGet(
+            acceptLanguage,
+            api,
+            apiVersion,
+            maasId,
+            id,
+            addressedTo,
+            offset,
+            limit,
+        )
     }
 
     @Operation(
@@ -343,7 +369,13 @@ class LegsController(private val objectMapper: ObjectMapper) {
         @RequestBody(required = false)
         confirmationRequest: ConfirmationRequest?,
     ): Boolean {
-        return true
+        return legsService.legsIdConfirmationPost(
+            acceptLanguage,
+            api,
+            apiVersion,
+            id,
+            confirmationRequest,
+        )
     }
 
     @Operation(
@@ -433,10 +465,18 @@ class LegsController(private val objectMapper: ObjectMapper) {
         @RequestHeader(value = "addressed-to", required = false)
         addressedTo: String?,
         @Valid
-        @RequestBody(required = false)
-        legEvent: LegEvent?,
+        @RequestBody(required = true)
+        legEvent: LegEvent,
     ): Leg {
-        return objectMapper.readValue(javaClass.getResourceAsStream("/json/Leg.json")!!)
+        return legsService.legsIdEventsPost(
+            acceptLanguage,
+            api,
+            apiVersion,
+            maasId,
+            id,
+            addressedTo,
+            legEvent,
+        )
     }
 
     @Operation(
@@ -507,7 +547,14 @@ class LegsController(private val objectMapper: ObjectMapper) {
         @RequestHeader(value = "addressed-to", required = false)
         addressedTo: String?,
     ): Leg {
-        return objectMapper.readValue(javaClass.getResourceAsStream("/json/Leg.json")!!)
+        return legsService.legsIdGet(
+            acceptLanguage,
+            api,
+            apiVersion,
+            maasId,
+            id,
+            addressedTo,
+        )
     }
 
     @Operation(
@@ -573,7 +620,15 @@ class LegsController(private val objectMapper: ObjectMapper) {
         @RequestParam(value = "location-only", required = false, defaultValue = "false")
         locationOnly: Boolean,
     ): LegProgress {
-        return objectMapper.readValue(javaClass.getResourceAsStream("/json/LegProgress.json")!!)
+        return legsService.legsIdProgressGet(
+            acceptLanguage,
+            api,
+            apiVersion,
+            maasId,
+            id,
+            addressedTo,
+            locationOnly,
+        )
     }
 
     @Operation(
@@ -646,6 +701,15 @@ class LegsController(private val objectMapper: ObjectMapper) {
         @RequestBody(required = false)
         legProgress: LegProgress?,
     ) {
+        legsService.legsIdProgressPost(
+            acceptLanguage,
+            api,
+            apiVersion,
+            maasId,
+            id,
+            addressedTo,
+            legProgress,
+        )
     }
 
     @Operation(
@@ -719,5 +783,14 @@ class LegsController(private val objectMapper: ObjectMapper) {
         @Parameter(description = "The ID of the maas operator that has to receive this message", `in` = ParameterIn.HEADER)
         @RequestHeader(value = "addressed-to", required = false) addressedTo: String?,
     ) {
+        legsService.legsIdPut(
+            acceptLanguage,
+            api,
+            apiVersion,
+            maasId,
+            id,
+            leg,
+            addressedTo,
+        )
     }
 }

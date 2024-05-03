@@ -1,6 +1,7 @@
 package no.entur.shared.mobility.to.ref.controller
 
 import no.entur.shared.mobility.to.ref.Application
+import no.entur.shared.mobility.to.ref.service.TransportOperator
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -17,7 +18,7 @@ class OperatorControllerTest {
             api = "",
             apiVersion = "",
             maasId = "",
-            addressedTo = "",
+            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
             regionId = "",
             stationId = "",
             limit = 0,
@@ -32,7 +33,7 @@ class OperatorControllerTest {
             api = "",
             apiVersion = "",
             maasId = "",
-            addressedTo = "",
+            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
             regionId = "",
             stationId = "",
             limit = 0,
@@ -47,7 +48,7 @@ class OperatorControllerTest {
             api = "",
             apiVersion = "",
             maasId = "",
-            addressedTo = "",
+            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
         )
     }
 
@@ -56,7 +57,7 @@ class OperatorControllerTest {
         operatorController.operatorMetaGet(
             acceptLanguage = "",
             maasId = "",
-            addressedTo = "",
+            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
         )
     }
 
@@ -67,7 +68,7 @@ class OperatorControllerTest {
             api = "",
             apiVersion = "",
             maasId = "",
-            addressedTo = "",
+            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
             regionId = "",
             stationId = "",
         )
@@ -80,7 +81,7 @@ class OperatorControllerTest {
             api = "",
             apiVersion = "",
             maasId = "",
-            addressedTo = "",
+            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
             regionId = "",
             stationId = "",
         )
@@ -100,7 +101,7 @@ class OperatorControllerTest {
             api = "",
             apiVersion = "",
             maasId = "",
-            addressedTo = "",
+            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
             regionId = "",
             stationId = "",
         )
@@ -113,7 +114,7 @@ class OperatorControllerTest {
             api = "",
             apiVersion = "",
             maasId = "",
-            addressedTo = "",
+            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
             offset = 0,
             limit = 0,
         )
@@ -127,7 +128,7 @@ class OperatorControllerTest {
                 api = "",
                 apiVersion = "",
                 maasId = "",
-                addressedTo = "",
+                addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
                 offset = 0,
                 limit = 0,
                 regionId = null,

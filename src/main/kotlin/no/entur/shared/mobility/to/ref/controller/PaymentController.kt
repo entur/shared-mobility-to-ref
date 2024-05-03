@@ -1,7 +1,5 @@
 package no.entur.shared.mobility.to.ref.controller
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.enums.ParameterIn
@@ -17,6 +15,7 @@ import no.entur.shared.mobility.to.ref.dto.ExtraCosts
 import no.entur.shared.mobility.to.ref.dto.JournalCategory
 import no.entur.shared.mobility.to.ref.dto.JournalEntry
 import no.entur.shared.mobility.to.ref.dto.JournalState
+import no.entur.shared.mobility.to.ref.service.PaymentService
 import org.springframework.format.annotation.DateTimeFormat
 import org.springframework.format.annotation.DateTimeFormat.ISO
 import org.springframework.validation.annotation.Validated
@@ -33,7 +32,7 @@ import java.time.OffsetDateTime
 @RestController
 @Validated
 @RequestMapping("\${api.base-path}")
-class PaymentController(private val objectMapper: ObjectMapper) {
+class PaymentController(private val paymentService: PaymentService) {
     @Operation(
         operationId = "paymentIdClaimExtraCostsPost",
         description = """extra costs that the TO has to charge to the MP or vice versa.""",
@@ -105,7 +104,15 @@ class PaymentController(private val objectMapper: ObjectMapper) {
         @RequestBody(required = false)
         extraCosts: ExtraCosts?,
     ): JournalEntry {
-        return objectMapper.readValue(javaClass.getResourceAsStream("/json/JournalEntry.json")!!)
+        return paymentService.paymentIdClaimExtraCostsPost(
+            acceptLanguage,
+            api,
+            apiVersion,
+            maasId,
+            id,
+            addressedTo,
+            extraCosts,
+        )
     }
 
     @Operation(
@@ -225,6 +232,19 @@ class PaymentController(private val objectMapper: ObjectMapper) {
         @RequestParam(value = "limit", required = false)
         limit: Int?,
     ): List<JournalEntry> {
-        return listOf(objectMapper.readValue(javaClass.getResourceAsStream("/json/JournalEntry.json")!!))
+        return paymentService.paymentJournalEntryGet(
+            acceptLanguage,
+            api,
+            apiVersion,
+            maasId,
+            addressedTo,
+            from,
+            to,
+            state,
+            id,
+            category,
+            offset,
+            limit,
+        )
     }
 }
