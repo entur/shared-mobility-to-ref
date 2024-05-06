@@ -1,0 +1,11 @@
+common:
+  env: dev
+  ingress:
+    host:
+      shared-mobility-to-ref.dev.entur.io
+  configmap:
+    enabled: true
+    data:
+      AUTH0_INT_CLIENT_DOMAIN: internal.dev.entur.org
+      AUTH0_INT_CLIENT_AUD: https://api.dev.entur.io
+      jwt_environment: dev
