@@ -1,0 +1,11 @@
+common:
+  env: tst
+  ingress:
+    host:
+      shared-mobility-to-ref.staging.entur.io
+  configmap:
+    enabled: true
+    data:
+      AUTH0_INT_CLIENT_DOMAIN: internal.staging.entur.org
+      AUTH0_INT_CLIENT_AUD: https://api.staging.entur.io
+      jwt_environment: tst
