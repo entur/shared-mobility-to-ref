@@ -72,4 +72,3 @@ Using Gradle: With SDKMAN!, you can ensure that you're using the latest version 
 Need help? If you have any questions or encounter any issues during the setup process, don't hesitate to ask. Our team is here to help and ensure that everything runs smoothly.
 
 Thank you for setting up your environment according to these guidelines. Happy coding!
-
