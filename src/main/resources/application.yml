@@ -1,2 +1,12 @@
 api:
   base-path: /api
+management:
+  endpoint.health.show-details: always
+  endpoints.web:
+    exposure.include: health, metrics, prometheus
+    base-path: "/actuator"
+  health:
+    livenessState:
+      enabled: true
+    readinessState:
+      enabled: true
