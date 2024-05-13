@@ -11,6 +11,4 @@ data:
   APP_VERSION: {{ .Chart.AppVersion }}
   AUTH_DOMAIN: {{ .Values.auth.domain }}
   AUTH_AUDIENCE: {{ .Values.auth.audience }}
-  PAYMENT_URL: {{ .Values.client.payment.url | quote }}
-  ORDER_URL: {{ .Values.client.order.url | quote }}
-  RESERVE_OFFER_URL: {{ .Values.client.reserveOffer.url | quote }}
+
