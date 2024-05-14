@@ -1,8 +1,11 @@
 package no.entur.shared.mobility.to.ref.controller
 
 import no.entur.shared.mobility.to.ref.Application
+import no.entur.shared.mobility.to.ref.data.place
 import no.entur.shared.mobility.to.ref.dto.Booking
 import no.entur.shared.mobility.to.ref.dto.BookingRequest
+import no.entur.shared.mobility.to.ref.dto.OneStopBookingRequest
+import no.entur.shared.mobility.to.ref.service.TransportOperator
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -20,7 +23,7 @@ class BookingsControllerTest {
             api = "",
             apiVersion = "",
             maasId = "",
-            addressedTo = "",
+            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
             state = null,
             minTime = OffsetDateTime.now(),
             maxTime = OffsetDateTime.now(),
@@ -38,7 +41,7 @@ class BookingsControllerTest {
             apiVersion = "",
             maasId = "",
             id = "",
-            addressedTo = "",
+            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
             bookingOperation = null,
         )
     }
@@ -51,7 +54,7 @@ class BookingsControllerTest {
             apiVersion = "",
             maasId = "",
             id = "",
-            addressedTo = "",
+            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
         )
     }
 
@@ -63,7 +66,7 @@ class BookingsControllerTest {
             apiVersion = "",
             maasId = "",
             id = "",
-            addressedTo = "",
+            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
         )
     }
 
@@ -75,7 +78,7 @@ class BookingsControllerTest {
             apiVersion = "",
             maasId = "",
             id = "",
-            addressedTo = "",
+            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
             notification = null,
         )
     }
@@ -89,7 +92,7 @@ class BookingsControllerTest {
             maasId = "",
             id = "",
             booking = Booking(),
-            addressedTo = "",
+            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
         )
     }
 
@@ -101,7 +104,7 @@ class BookingsControllerTest {
             apiVersion = "",
             maasId = "",
             id = "",
-            addressedTo = "",
+            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
         )
     }
 
@@ -112,7 +115,7 @@ class BookingsControllerTest {
             api = "",
             apiVersion = "",
             maasId = "",
-            addressedTo = "",
+            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
             id = "",
         )
     }
@@ -124,8 +127,8 @@ class BookingsControllerTest {
             api = "",
             apiVersion = "",
             maasId = "",
-            addressedTo = "",
-            oneStopBookingRequest = null,
+            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
+            oneStopBookingRequest = OneStopBookingRequest(from = place),
         )
     }
 
@@ -136,7 +139,7 @@ class BookingsControllerTest {
             api = "",
             apiVersion = "",
             maasId = "",
-            addressedTo = "",
+            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
             bookingRequest = BookingRequest(),
         )
     }

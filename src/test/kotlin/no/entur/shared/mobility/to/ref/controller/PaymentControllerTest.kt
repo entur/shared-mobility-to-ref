@@ -1,6 +1,7 @@
 package no.entur.shared.mobility.to.ref.controller
 
 import no.entur.shared.mobility.to.ref.Application
+import no.entur.shared.mobility.to.ref.service.TransportOperator
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -19,7 +20,7 @@ class PaymentControllerTest {
             apiVersion = "",
             maasId = "",
             id = "",
-            addressedTo = "",
+            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
             extraCosts = null,
         )
     }
@@ -38,7 +39,7 @@ class PaymentControllerTest {
             to = OffsetDateTime.now(),
             state = null,
             category = null,
-            addressedTo = "",
+            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
         )
     }
 }

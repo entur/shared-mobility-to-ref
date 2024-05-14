@@ -34,28 +34,4 @@ interface AssetTypeConditionsInner {
         description = "The specific subclass of condition, should match the schema name exactly",
     )
     val conditionType: String
-
-    enum class RequiredFields {
-        FROM_ADDRESS,
-        TO_ADDRESS,
-        BIRTHDATE,
-        EMAIL,
-        PERSONAL_ADDRESS,
-        PHONE_NUMBERS,
-        LICENSES,
-        BANK_CARDS,
-        DISCOUNT_CARDS,
-        TRAVEL_CARDS,
-        ID_CARDS,
-        CREDIT_CARDS,
-        NAME,
-        AGE,
-        BLOCKCHAIN_CLAIMS,
-    }
-
-    enum class EvidenceTypes {
-        PARKED,
-        HELMET_IN_BASKET,
-        CHARGING,
-    }
 }

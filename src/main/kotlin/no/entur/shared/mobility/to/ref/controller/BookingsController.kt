@@ -1,7 +1,5 @@
 package no.entur.shared.mobility.to.ref.controller
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.enums.ParameterIn
@@ -18,6 +16,7 @@ import no.entur.shared.mobility.to.ref.dto.BookingState
 import no.entur.shared.mobility.to.ref.dto.Error
 import no.entur.shared.mobility.to.ref.dto.Notification
 import no.entur.shared.mobility.to.ref.dto.OneStopBookingRequest
+import no.entur.shared.mobility.to.ref.service.BookingsService
 import org.springframework.format.annotation.DateTimeFormat
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.DeleteMapping
@@ -35,7 +34,7 @@ import java.time.OffsetDateTime
 @RestController
 @Validated
 @RequestMapping("\${api.base-path}")
-class BookingsController(private val objectMapper: ObjectMapper) {
+class BookingsController(private val bookingsService: BookingsService) {
     @Operation(
         operationId = "bookingsGet",
         description = """Optional - Returns bookings that has been created earlier, selected on state.""",
@@ -138,7 +137,19 @@ class BookingsController(private val objectMapper: ObjectMapper) {
         @RequestParam(value = "contains-asset-type", required = false)
         containsAssetType: String?,
     ): List<Booking> {
-        return listOf(objectMapper.readValue(javaClass.getResourceAsStream("/json/Booking.json")!!))
+        return bookingsService.bookingsGet(
+            acceptLanguage,
+            api,
+            apiVersion,
+            maasId,
+            addressedTo,
+            state,
+            minTime,
+            maxTime,
+            minPrice,
+            maxPrice,
+            containsAssetType,
+        )
     }
 
     @Operation(
@@ -231,7 +242,15 @@ class BookingsController(private val objectMapper: ObjectMapper) {
         @Valid
         @RequestBody(required = false) bookingOperation: BookingOperation?,
     ): Booking {
-        return objectMapper.readValue(javaClass.getResourceAsStream("/json/Booking.json")!!)
+        return bookingsService.bookingsIdEventsPost(
+            acceptLanguage,
+            api,
+            apiVersion,
+            maasId,
+            id,
+            addressedTo,
+            bookingOperation,
+        )
     }
 
     @Operation(
@@ -294,7 +313,14 @@ class BookingsController(private val objectMapper: ObjectMapper) {
         @RequestHeader(value = "addressed-to", required = false)
         addressedTo: String?,
     ): Booking {
-        return objectMapper.readValue(javaClass.getResourceAsStream("/json/Booking.json")!!)
+        return bookingsService.bookingsIdGet(
+            acceptLanguage,
+            api,
+            apiVersion,
+            maasId,
+            id,
+            addressedTo,
+        )
     }
 
     @Operation(
@@ -375,7 +401,14 @@ class BookingsController(private val objectMapper: ObjectMapper) {
         )
         addressedTo: String?,
     ): List<Notification> {
-        return objectMapper.readValue(javaClass.getResourceAsStream("/json/Notifications.json")!!)
+        return bookingsService.bookingsIdNotificationsGet(
+            acceptLanguage,
+            api,
+            apiVersion,
+            maasId,
+            id,
+            addressedTo,
+        )
     }
 
     @Operation(
@@ -450,6 +483,15 @@ class BookingsController(private val objectMapper: ObjectMapper) {
         @RequestBody(required = false)
         notification: Notification?,
     ) {
+        bookingsService.bookingsIdNotificationsPost(
+            acceptLanguage,
+            api,
+            apiVersion,
+            maasId,
+            id,
+            addressedTo,
+            notification,
+        )
     }
 
     @Operation(
@@ -536,7 +578,15 @@ class BookingsController(private val objectMapper: ObjectMapper) {
         @RequestHeader(value = "addressed-to", required = false)
         addressedTo: String?,
     ): Booking {
-        return objectMapper.readValue(javaClass.getResourceAsStream("/json/Booking.json")!!)
+        return bookingsService.bookingsIdPut(
+            acceptLanguage,
+            api,
+            apiVersion,
+            maasId,
+            id,
+            booking,
+            addressedTo,
+        )
     }
 
     @Operation(
@@ -612,6 +662,14 @@ class BookingsController(private val objectMapper: ObjectMapper) {
         @RequestHeader(value = "addressed-to", required = false)
         addressedTo: String?,
     ) {
+        bookingsService.bookingsIdSubscriptionDelete(
+            acceptLanguage,
+            api,
+            apiVersion,
+            maasId,
+            id,
+            addressedTo,
+        )
     }
 
     @Operation(
@@ -683,6 +741,14 @@ class BookingsController(private val objectMapper: ObjectMapper) {
         @RequestHeader(value = "addressed-to", required = false)
         addressedTo: String?,
     ) {
+        bookingsService.bookingsIdSubscriptionPost(
+            acceptLanguage,
+            api,
+            apiVersion,
+            maasId,
+            id,
+            addressedTo,
+        )
     }
 
     @Operation(
@@ -753,9 +819,16 @@ class BookingsController(private val objectMapper: ObjectMapper) {
         @Parameter(description = "")
         @Valid
         @RequestBody(required = false)
-        oneStopBookingRequest: OneStopBookingRequest?,
+        oneStopBookingRequest: OneStopBookingRequest,
     ): Booking {
-        return objectMapper.readValue(javaClass.getResourceAsStream("/json/Booking.json")!!)
+        return bookingsService.bookingsOneStopPost(
+            acceptLanguage,
+            api,
+            apiVersion,
+            maasId,
+            addressedTo,
+            oneStopBookingRequest,
+        )
     }
 
     @Operation(
@@ -845,6 +918,13 @@ class BookingsController(private val objectMapper: ObjectMapper) {
             required = false,
         ) addressedTo: String?,
     ): Booking {
-        return objectMapper.readValue(javaClass.getResourceAsStream("/json/Booking.json")!!)
+        return bookingsService.bookingsPost(
+            acceptLanguage,
+            api,
+            apiVersion,
+            maasId,
+            addressedTo,
+            bookingRequest,
+        )
     }
 }

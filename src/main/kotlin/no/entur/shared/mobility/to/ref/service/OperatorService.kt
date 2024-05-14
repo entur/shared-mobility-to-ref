@@ -1,0 +1,187 @@
+package no.entur.shared.mobility.to.ref.service
+
+import no.entur.shared.mobility.to.ref.data.allEndpointImplementations
+import no.entur.shared.mobility.to.ref.data.assetType
+import no.entur.shared.mobility.to.ref.data.bikeOperatorEndpointImplementations
+import no.entur.shared.mobility.to.ref.data.scooterOperatorEndpointImplementations
+import no.entur.shared.mobility.to.ref.data.stationInformations
+import no.entur.shared.mobility.to.ref.data.systemAlert
+import no.entur.shared.mobility.to.ref.data.systemCalendar
+import no.entur.shared.mobility.to.ref.data.systemHours
+import no.entur.shared.mobility.to.ref.data.systemInformation
+import no.entur.shared.mobility.to.ref.data.systemPricingPlan
+import no.entur.shared.mobility.to.ref.data.systemRegion
+import no.entur.shared.mobility.to.ref.dto.AssetType
+import no.entur.shared.mobility.to.ref.dto.EndpointImplementation
+import no.entur.shared.mobility.to.ref.dto.StationInformation
+import no.entur.shared.mobility.to.ref.dto.SystemAlert
+import no.entur.shared.mobility.to.ref.dto.SystemCalendar
+import no.entur.shared.mobility.to.ref.dto.SystemHours
+import no.entur.shared.mobility.to.ref.dto.SystemInformation
+import no.entur.shared.mobility.to.ref.dto.SystemPricingPlan
+import no.entur.shared.mobility.to.ref.dto.SystemRegion
+import no.entur.shared.mobility.to.ref.service.TransportOperator.ALL_IMPLEMENTING_OPERATOR
+import no.entur.shared.mobility.to.ref.service.TransportOperator.BIKE_OPERATOR
+import no.entur.shared.mobility.to.ref.service.TransportOperator.SCOOTER_OPERATOR
+import org.springframework.stereotype.Service
+
+@Service
+class OperatorService {
+    fun operatorAlertsGet(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        addressedTo: String?,
+        offset: Int,
+        limit: Int?,
+        regionId: String?,
+        stationId: String?,
+    ): List<SystemAlert> {
+        return when (addressedTo) {
+            SCOOTER_OPERATOR -> throw NotImplementedError()
+            BIKE_OPERATOR -> throw NotImplementedError()
+            ALL_IMPLEMENTING_OPERATOR -> listOf(systemAlert)
+            else -> throw NotImplementedError()
+        }
+    }
+
+    fun operatorAvailableAssetsGet(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        addressedTo: String?,
+        offset: Int,
+        limit: Int?,
+        regionId: String?,
+        stationId: String?,
+    ): List<AssetType> {
+        return when (addressedTo) {
+            SCOOTER_OPERATOR -> throw NotImplementedError()
+            BIKE_OPERATOR -> throw NotImplementedError()
+            ALL_IMPLEMENTING_OPERATOR -> listOf(assetType)
+            else -> throw NotImplementedError()
+        }
+    }
+
+    fun operatorInformationGet(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        addressedTo: String?,
+    ): SystemInformation {
+        return when (addressedTo) {
+            SCOOTER_OPERATOR -> throw NotImplementedError()
+            BIKE_OPERATOR -> throw NotImplementedError()
+            ALL_IMPLEMENTING_OPERATOR -> systemInformation
+            else -> throw NotImplementedError()
+        }
+    }
+
+    fun operatorMetaGet(
+        acceptLanguage: String,
+        maasId: String,
+        addressedTo: String?,
+    ): List<EndpointImplementation> {
+        return when (addressedTo) {
+            SCOOTER_OPERATOR -> scooterOperatorEndpointImplementations
+            BIKE_OPERATOR -> bikeOperatorEndpointImplementations
+            ALL_IMPLEMENTING_OPERATOR -> allEndpointImplementations
+            else -> emptyList()
+        }
+    }
+
+    fun operatorOperatingCalendarGet(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        addressedTo: String?,
+        regionId: String?,
+        stationId: String?,
+    ): List<SystemCalendar> {
+        return when (addressedTo) {
+            SCOOTER_OPERATOR -> throw NotImplementedError()
+            BIKE_OPERATOR -> throw NotImplementedError()
+            ALL_IMPLEMENTING_OPERATOR -> listOf(systemCalendar)
+            else -> throw NotImplementedError()
+        }
+    }
+
+    fun operatorOperatingHoursGet(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        addressedTo: String?,
+        regionId: String?,
+        stationId: String?,
+    ): List<SystemHours> {
+        return when (addressedTo) {
+            SCOOTER_OPERATOR -> throw NotImplementedError()
+            BIKE_OPERATOR -> throw NotImplementedError()
+            ALL_IMPLEMENTING_OPERATOR -> listOf(systemHours)
+            else -> throw NotImplementedError()
+        }
+    }
+
+    fun operatorPingGet(acceptLanguage: String) {
+    }
+
+    fun operatorPricingPlansGet(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        addressedTo: String?,
+        regionId: String?,
+        stationId: String?,
+    ): List<SystemPricingPlan> {
+        return when (addressedTo) {
+            SCOOTER_OPERATOR -> throw NotImplementedError()
+            BIKE_OPERATOR -> throw NotImplementedError()
+            ALL_IMPLEMENTING_OPERATOR -> listOf(systemPricingPlan)
+            else -> throw NotImplementedError()
+        }
+    }
+
+    fun operatorRegionsGet(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        addressedTo: String?,
+        offset: Int,
+        limit: Int?,
+    ): List<SystemRegion> {
+        return when (addressedTo) {
+            SCOOTER_OPERATOR -> throw NotImplementedError()
+            BIKE_OPERATOR -> throw NotImplementedError()
+            ALL_IMPLEMENTING_OPERATOR -> listOf(systemRegion)
+            else -> throw NotImplementedError()
+        }
+    }
+
+    fun operatorStationsGet(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        addressedTo: String?,
+        offset: Int,
+        limit: Int?,
+        regionId: String?,
+        lon: Float?,
+        lat: Float?,
+        radius: Float?,
+    ): List<StationInformation> {
+        return when (addressedTo) {
+            SCOOTER_OPERATOR -> throw NotImplementedError()
+            BIKE_OPERATOR -> throw NotImplementedError()
+            ALL_IMPLEMENTING_OPERATOR -> stationInformations
+            else -> throw NotImplementedError()
+        }
+    }
+}

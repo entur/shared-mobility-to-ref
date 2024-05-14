@@ -1,7 +1,5 @@
 package no.entur.shared.mobility.to.ref.controller
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.enums.ParameterIn
@@ -13,6 +11,7 @@ import jakarta.validation.Valid
 import no.entur.shared.mobility.to.ref.dto.Error
 import no.entur.shared.mobility.to.ref.dto.Planning
 import no.entur.shared.mobility.to.ref.dto.PlanningRequest
+import no.entur.shared.mobility.to.ref.service.PlanningService
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -23,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @Validated
 @RequestMapping("\${api.base-path}")
-class PlanningController(private val objectMapper: ObjectMapper) {
+class PlanningController(private val planningService: PlanningService) {
     @Operation(
         summary = "",
         operationId = "planningInquiriesPost",
@@ -96,7 +95,14 @@ class PlanningController(private val objectMapper: ObjectMapper) {
         @RequestBody(required = false)
         planningRequest: PlanningRequest?,
     ): Planning {
-        return objectMapper.readValue(javaClass.getResourceAsStream("/json/Planning.json")!!)
+        return planningService.planningInquiriesPost(
+            acceptLanguage,
+            api,
+            apiVersion,
+            maasId,
+            addressedTo,
+            planningRequest,
+        )
     }
 
     @Operation(
@@ -171,6 +177,13 @@ class PlanningController(private val objectMapper: ObjectMapper) {
         @RequestBody(required = false)
         planningRequest: PlanningRequest?,
     ): Planning {
-        return objectMapper.readValue(javaClass.getResourceAsStream("/json/Planning.json")!!)
+        return planningService.planningOffersPost(
+            acceptLanguage,
+            api,
+            apiVersion,
+            maasId,
+            addressedTo,
+            planningRequest,
+        )
     }
 }
