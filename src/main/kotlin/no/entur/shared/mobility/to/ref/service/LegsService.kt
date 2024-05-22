@@ -13,6 +13,7 @@ import no.entur.shared.mobility.to.ref.service.TransportOperator.ALL_IMPLEMENTIN
 import no.entur.shared.mobility.to.ref.service.TransportOperator.BIKE_OPERATOR
 import no.entur.shared.mobility.to.ref.service.TransportOperator.SCOOTER_OPERATOR
 import org.springframework.stereotype.Service
+import java.time.OffsetDateTime
 
 @Service
 class LegsService {
@@ -105,6 +106,11 @@ class LegsService {
                         LegEvent.Event.TIME_POSTPONE -> LegState.NOT_STARTED
                         LegEvent.Event.CANCEL -> LegState.CANCELLED
                     },
+                actualArrivalTime = when (legEvent.event) {
+                    LegEvent.Event.START_FINISHING -> OffsetDateTime.now().plusMinutes(12)
+                    LegEvent.Event.FINISH -> OffsetDateTime.now().plusMinutes(12)
+                    else -> null
+                },
                 asset = legEvent.asset,
             )
 
