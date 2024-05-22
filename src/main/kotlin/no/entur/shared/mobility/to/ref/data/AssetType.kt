@@ -33,7 +33,7 @@ val assetType
             stationId = "string",
             nrAvailable = 0,
             assets = listOf(asset),
-            assetClass = AssetClass.AIR,
+            assetClass = AssetClass.MOPED,
             assetSubClass = "string",
             sharedProperties = assetProperties,
             applicablePricings = listOf(systemPricingPlan),
