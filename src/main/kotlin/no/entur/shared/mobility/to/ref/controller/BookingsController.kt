@@ -7,7 +7,6 @@ import io.swagger.v3.oas.annotations.media.ArraySchema
 import io.swagger.v3.oas.annotations.media.Content
 import io.swagger.v3.oas.annotations.media.Schema
 import io.swagger.v3.oas.annotations.responses.ApiResponse
-import io.swagger.v3.oas.annotations.security.SecurityRequirement
 import jakarta.validation.Valid
 import no.entur.shared.mobility.to.ref.dto.Booking
 import no.entur.shared.mobility.to.ref.dto.BookingOperation
@@ -56,12 +55,6 @@ class BookingsController(private val bookingsService: BookingsService) {
                     |That is, the client must authenticate itself to get the requested response.""",
                 content = [Content(schema = Schema(implementation = Error::class))],
             ),
-        ],
-        security = [
-            SecurityRequirement(name = "BasicAuth"),
-            SecurityRequirement(name = "ApiKeyAuth"), SecurityRequirement(name = "OpenId"),
-            SecurityRequirement(name = "BearerAuth"),
-            SecurityRequirement(name = "OAuth", scopes = []),
         ],
     )
     @GetMapping("/bookings", produces = ["application/json"])
@@ -153,6 +146,7 @@ class BookingsController(private val bookingsService: BookingsService) {
     }
 
     @Operation(
+        hidden = true,
         summary = "",
         operationId = "bookingsIdEventsPost",
         description = """This endpoint **must** be used to alter the state of a booking:<br> `CANCEL` - Cancels a confirmed booking.<br> 
@@ -193,16 +187,6 @@ class BookingsController(private val bookingsService: BookingsService) {
                 description = "The requested resources does not exist or the requester is not authorized to see it or know it exists.",
             ),
             ApiResponse(responseCode = "410", description = "The requested resource is no longer available. This is permanent."),
-        ],
-        security = [
-            SecurityRequirement(
-                name = "BasicAuth",
-            ),
-            SecurityRequirement(name = "ApiKeyAuth"), SecurityRequirement(name = "OpenId"),
-            SecurityRequirement(
-                name = "BearerAuth",
-            ),
-            SecurityRequirement(name = "OAuth", scopes = []),
         ],
     )
     @PostMapping(value = ["/bookings/{id}/events"], produces = ["application/json"], consumes = ["application/json"])
@@ -275,12 +259,6 @@ class BookingsController(private val bookingsService: BookingsService) {
             ),
             ApiResponse(responseCode = "410", description = "The requested resource is no longer available. This is permanent."),
         ],
-        security = [
-            SecurityRequirement(name = "BasicAuth"),
-            SecurityRequirement(name = "ApiKeyAuth"), SecurityRequirement(name = "OpenId"),
-            SecurityRequirement(name = "BearerAuth"),
-            SecurityRequirement(name = "OAuth", scopes = []),
-        ],
     )
     @GetMapping(value = ["/bookings/{id}"], produces = ["application/json"])
     fun bookingsIdGet(
@@ -324,6 +302,7 @@ class BookingsController(private val bookingsService: BookingsService) {
     }
 
     @Operation(
+        hidden = true,
         operationId = "bookingsIdNotificationsGet",
         description = """retrieves all notifications concerning events related to this booking.""",
         responses = [
@@ -355,12 +334,6 @@ class BookingsController(private val bookingsService: BookingsService) {
                 description = "The requested resources does not exist or the requester is not authorized to see it or know it exists.",
             ),
             ApiResponse(responseCode = "410", description = "The requested resource is no longer available. This is permanent."),
-        ],
-        security = [
-            SecurityRequirement(name = "BasicAuth"),
-            SecurityRequirement(name = "ApiKeyAuth"), SecurityRequirement(name = "OpenId"),
-            SecurityRequirement(name = "BearerAuth"),
-            SecurityRequirement(name = "OAuth", scopes = []),
         ],
     )
     @GetMapping(value = ["/bookings/{id}/notifications"], produces = ["application/json"])
@@ -412,6 +385,7 @@ class BookingsController(private val bookingsService: BookingsService) {
     }
 
     @Operation(
+        hidden = true,
         operationId = "bookingsIdNotificationsPost",
         description = """notification between MaaS provider and Transport operator in case of user no-show or if specific asset is not 
             |available or some other event occurs not covered by other API calls.""",
@@ -440,12 +414,6 @@ class BookingsController(private val bookingsService: BookingsService) {
                 description = "The requested resources does not exist or the requester is not authorized to see it or know it exists.",
             ),
             ApiResponse(responseCode = "410", description = "The requested resource is no longer available. This is permanent."),
-        ],
-        security = [
-            SecurityRequirement(name = "BasicAuth"),
-            SecurityRequirement(name = "ApiKeyAuth"), SecurityRequirement(name = "OpenId"),
-            SecurityRequirement(name = "BearerAuth"),
-            SecurityRequirement(name = "OAuth", scopes = []),
         ],
     )
     @PostMapping(value = ["/bookings/{id}/notifications"], produces = ["application/json"], consumes = ["application/json"])
@@ -495,6 +463,7 @@ class BookingsController(private val bookingsService: BookingsService) {
     }
 
     @Operation(
+        hidden = true,
         operationId = "bookingsIdPut",
         description = """Optional - This endpoint should be used to adjust the parameters of the booking. Changes not acceptable to the TO 
             |should return 400. If a booking is started and can no longer be adjusted the TO should return 403. The state of the booking 
@@ -534,13 +503,6 @@ class BookingsController(private val bookingsService: BookingsService) {
                     |and might be stale. The user might try again after looking up the current state of the resource.""",
             ),
             ApiResponse(responseCode = "410", description = "The requested resource is no longer available. This is permanent."),
-        ],
-        security = [
-            SecurityRequirement(name = "BasicAuth"),
-            SecurityRequirement(name = "ApiKeyAuth"),
-            SecurityRequirement(name = "OpenId"),
-            SecurityRequirement(name = "BearerAuth"),
-            SecurityRequirement(name = "OAuth", scopes = []),
         ],
     )
     @PutMapping(value = ["/bookings/{id}"], produces = ["application/json"], consumes = ["application/json"])
@@ -590,6 +552,7 @@ class BookingsController(private val bookingsService: BookingsService) {
     }
 
     @Operation(
+        hidden = true,
         operationId = "bookingsIdSubscriptionDelete",
         description = """Optional - subscribe to a specific booking (=leg & (type of) asset). This is an optional endpoint""",
         responses = [
@@ -622,13 +585,6 @@ class BookingsController(private val bookingsService: BookingsService) {
                 description = "Unexpected error",
                 content = [Content(schema = Schema(implementation = Error::class))],
             ),
-        ],
-        security = [
-            SecurityRequirement(name = "BasicAuth"),
-            SecurityRequirement(name = "ApiKeyAuth"),
-            SecurityRequirement(name = "OpenId"),
-            SecurityRequirement(name = "BearerAuth"),
-            SecurityRequirement(name = "OAuth", scopes = []),
         ],
     )
     @DeleteMapping(value = ["/bookings/{id}/subscription"], produces = ["application/json"])
@@ -673,6 +629,7 @@ class BookingsController(private val bookingsService: BookingsService) {
     }
 
     @Operation(
+        hidden = true,
         operationId = "bookingsIdSubscriptionPost",
         description = """Optional - subscribe to a specific booking (=leg & (type of) asset). This is an optional endpoint. This endpoint 
             |facilitates notifications in all the phases. (see (7.1) in the flow chart - execution)""",
@@ -701,13 +658,6 @@ class BookingsController(private val bookingsService: BookingsService) {
                 description = "The requested resources does not exist or the requester is not authorized to see it or know it exists.",
             ),
             ApiResponse(responseCode = "410", description = "The requested resource is no longer available. This is permanent."),
-        ],
-        security = [
-            SecurityRequirement(name = "BasicAuth"),
-            SecurityRequirement(name = "ApiKeyAuth"),
-            SecurityRequirement(name = "OpenId"),
-            SecurityRequirement(name = "BearerAuth"),
-            SecurityRequirement(name = "OAuth", scopes = []),
         ],
     )
     @PostMapping(value = ["/bookings/{id}/subscription"], produces = ["application/json"])
@@ -783,13 +733,6 @@ class BookingsController(private val bookingsService: BookingsService) {
             ),
             ApiResponse(responseCode = "406", description = "this booking cannot be done."),
         ],
-        security = [
-            SecurityRequirement(name = "BasicAuth"),
-            SecurityRequirement(name = "ApiKeyAuth"),
-            SecurityRequirement(name = "OpenId"),
-            SecurityRequirement(name = "BearerAuth"),
-            SecurityRequirement(name = "OAuth", scopes = []),
-        ],
     )
     @PostMapping(value = ["/bookings/one-stop"], produces = ["application/json"], consumes = ["application/json"])
     fun bookingsOneStopPost(
@@ -832,6 +775,7 @@ class BookingsController(private val bookingsService: BookingsService) {
     }
 
     @Operation(
+        hidden = true,
         summary = "",
         operationId = "bookingsPost",
         description = """Creates a new `Booking` for the TO in **Pending** state. The ID of the posted booking should be the ID provided 
@@ -874,16 +818,6 @@ class BookingsController(private val bookingsService: BookingsService) {
                     |and might be stale. The user might try again after looking up the current state of the resource.""",
             ),
             ApiResponse(responseCode = "410", description = "The requested resource is no longer available. This is permanent."),
-        ],
-        security = [
-            SecurityRequirement(
-                name = "BasicAuth",
-            ),
-            SecurityRequirement(name = "ApiKeyAuth"), SecurityRequirement(name = "OpenId"),
-            SecurityRequirement(
-                name = "BearerAuth",
-            ),
-            SecurityRequirement(name = "OAuth", scopes = []),
         ],
     )
     @PostMapping(value = ["/bookings"], produces = ["application/json"], consumes = ["application/json"])
