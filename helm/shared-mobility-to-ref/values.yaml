@@ -15,7 +15,8 @@ common:
   container:
     image: <+artifacts.primary.image>
     cpu: 0.3
-    memory: 256
+    cpuLimit: 1.0
+    memory: 768
     probes:
       liveness:
         path: "/actuator/health/livenessState"
