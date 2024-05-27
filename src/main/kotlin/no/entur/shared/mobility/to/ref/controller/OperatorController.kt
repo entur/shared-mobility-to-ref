@@ -7,7 +7,6 @@ import io.swagger.v3.oas.annotations.media.ArraySchema
 import io.swagger.v3.oas.annotations.media.Content
 import io.swagger.v3.oas.annotations.media.Schema
 import io.swagger.v3.oas.annotations.responses.ApiResponse
-import io.swagger.v3.oas.annotations.security.SecurityRequirement
 import jakarta.validation.Valid
 import jakarta.validation.constraints.DecimalMin
 import jakarta.validation.constraints.Min
@@ -34,6 +33,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("\${api.base-path}")
 class OperatorController(private val operatorService: OperatorService) {
     @Operation(
+        hidden = true,
         summary = "informs customers about changes to the system outside of normal operations",
         operationId = "operatorAlertsGet",
         description = """This feed is intended to inform customers about changes to the system that do not fall within the normal system 
@@ -60,13 +60,6 @@ class OperatorController(private val operatorService: OperatorService) {
                     |That is, the client must authenticate itself to get the requested response.""",
                 content = [Content(schema = Schema(implementation = Error::class))],
             ),
-        ],
-        security = [
-            SecurityRequirement(name = "BasicAuth"),
-            SecurityRequirement(name = "ApiKeyAuth"),
-            SecurityRequirement(name = "OpenId"),
-            SecurityRequirement(name = "BearerAuth"),
-            SecurityRequirement(name = "OAuth", scopes = []),
         ],
     )
     @GetMapping(value = ["/operator/alerts"], produces = ["application/json"])
@@ -129,6 +122,7 @@ class OperatorController(private val operatorService: OperatorService) {
     }
 
     @Operation(
+        hidden = true,
         operationId = "operatorAvailableAssetsGet",
         description = """Returns a list of available assets.""",
         responses = [
@@ -159,13 +153,6 @@ class OperatorController(private val operatorService: OperatorService) {
                 responseCode = "404",
                 description = "The requested resources does not exist or the requester is not authorized to see it or know it exists.",
             ),
-        ],
-        security = [
-            SecurityRequirement(name = "BasicAuth"),
-            SecurityRequirement(name = "ApiKeyAuth"),
-            SecurityRequirement(name = "OpenId"),
-            SecurityRequirement(name = "BearerAuth"),
-            SecurityRequirement(name = "OAuth", scopes = []),
         ],
     )
     @GetMapping(value = ["/operator/available-assets"], produces = ["application/json"])
@@ -250,13 +237,6 @@ class OperatorController(private val operatorService: OperatorService) {
                 content = [Content(schema = Schema(implementation = Error::class))],
             ),
         ],
-        security = [
-            SecurityRequirement(name = "BasicAuth"),
-            SecurityRequirement(name = "ApiKeyAuth"),
-            SecurityRequirement(name = "OpenId"),
-            SecurityRequirement(name = "BearerAuth"),
-            SecurityRequirement(name = "OAuth", scopes = []),
-        ],
     )
     @GetMapping(value = ["/operator/information"], produces = ["application/json"])
     fun operatorInformationGet(
@@ -296,6 +276,7 @@ class OperatorController(private val operatorService: OperatorService) {
     }
 
     @Operation(
+        hidden = true,
         summary = "describes the running implementations",
         operationId = "operatorMetaGet",
         description = """all versions that are implemented on this url, are described in the result of this endpoint. In contains all 
@@ -306,13 +287,6 @@ class OperatorController(private val operatorService: OperatorService) {
                 description = "successful operation",
                 content = [Content(array = ArraySchema(schema = Schema(implementation = EndpointImplementation::class)))],
             ),
-        ],
-        security = [
-            SecurityRequirement(name = "BasicAuth"),
-            SecurityRequirement(name = "ApiKeyAuth"),
-            SecurityRequirement(name = "OpenId"),
-            SecurityRequirement(name = "BearerAuth"),
-            SecurityRequirement(name = "OAuth", scopes = []),
         ],
     )
     @GetMapping(value = ["/operator/meta"], produces = ["application/json"])
@@ -341,6 +315,7 @@ class OperatorController(private val operatorService: OperatorService) {
     }
 
     @Operation(
+        hidden = true,
         summary = """describes the operating calendar for a system. An array of year objects defined as follows (if start/end year are 
             |omitted, then assume the start and end months do not change from year to year). [from GFBS]""",
         operationId = "operatorOperatingCalendarGet",
@@ -362,16 +337,6 @@ class OperatorController(private val operatorService: OperatorService) {
                     |That is, the client must authenticate itself to get the requested response.""",
                 content = [Content(schema = Schema(implementation = Error::class))],
             ),
-        ],
-        security = [
-            SecurityRequirement(
-                name = "BasicAuth",
-            ),
-            SecurityRequirement(name = "ApiKeyAuth"), SecurityRequirement(name = "OpenId"),
-            SecurityRequirement(
-                name = "BearerAuth",
-            ),
-            SecurityRequirement(name = "OAuth", scopes = []),
         ],
     )
     @GetMapping(value = ["/operator/operating-calendar"], produces = ["application/json"])
@@ -422,6 +387,7 @@ class OperatorController(private val operatorService: OperatorService) {
     }
 
     @Operation(
+        hidden = true,
         summary = "describes the system hours of operation",
         operationId = "operatorOperatingHoursGet",
         description = """Describes the hours of operation of all available systems of the transport operator [from GBFS]""",
@@ -443,13 +409,6 @@ class OperatorController(private val operatorService: OperatorService) {
                     |That is, the client must authenticate itself to get the requested response.""",
                 content = [Content(schema = Schema(implementation = Error::class))],
             ),
-        ],
-        security = [
-            SecurityRequirement(name = "BasicAuth"),
-            SecurityRequirement(name = "ApiKeyAuth"),
-            SecurityRequirement(name = "OpenId"),
-            SecurityRequirement(name = "BearerAuth"),
-            SecurityRequirement(name = "OAuth", scopes = []),
         ],
     )
     @GetMapping(value = ["/operator/operating-hours"], produces = ["application/json"])
@@ -500,6 +459,7 @@ class OperatorController(private val operatorService: OperatorService) {
     }
 
     @Operation(
+        hidden = true,
         summary = "Describes the status of the Transport Operator - whether the APIs are running or not",
         operationId = "operatorPingGet",
         description = """This is a healthcheck endpoint to see if the TO is up and running perfectly.""",
@@ -512,13 +472,6 @@ class OperatorController(private val operatorService: OperatorService) {
                 content = [Content(schema = Schema(implementation = Error::class))],
             ),
             ApiResponse(responseCode = "500", description = "not every endpoint functions properly"),
-        ],
-        security = [
-            SecurityRequirement(name = "BasicAuth"),
-            SecurityRequirement(name = "ApiKeyAuth"),
-            SecurityRequirement(name = "OpenId"),
-            SecurityRequirement(name = "BearerAuth"),
-            SecurityRequirement(name = "OAuth", scopes = []),
         ],
     )
     @GetMapping(value = ["/operator/ping"], produces = ["application/json"])
@@ -537,6 +490,7 @@ class OperatorController(private val operatorService: OperatorService) {
     }
 
     @Operation(
+        hidden = true,
         summary = "gives pricing information",
         operationId = "operatorPricingPlansGet",
         description = """Describes pricing of systems or assets [from GBFS]""",
@@ -564,16 +518,6 @@ class OperatorController(private val operatorService: OperatorService) {
                     |to give proper response. Unlike 401, the client's identity is known to the server.""",
                 content = [Content(schema = Schema(implementation = Error::class))],
             ),
-        ],
-        security = [
-            SecurityRequirement(
-                name = "BasicAuth",
-            ),
-            SecurityRequirement(name = "ApiKeyAuth"), SecurityRequirement(name = "OpenId"),
-            SecurityRequirement(
-                name = "BearerAuth",
-            ),
-            SecurityRequirement(name = "OAuth", scopes = []),
         ],
     )
     @GetMapping(value = ["/operator/pricing-plans"], produces = ["application/json"])
@@ -624,6 +568,7 @@ class OperatorController(private val operatorService: OperatorService) {
     }
 
     @Operation(
+        hidden = true,
         summary = """describes regions for a system that is broken up by geographic or political region. It is defined as a separate feed 
             |to allow for additional region metadata (such as shape definitions). [from GBFS]""",
         operationId = "operatorRegionsGet",
@@ -646,13 +591,6 @@ class OperatorController(private val operatorService: OperatorService) {
                     |That is, the client must authenticate itself to get the requested response.""",
                 content = [Content(schema = Schema(implementation = Error::class))],
             ),
-        ],
-        security = [
-            SecurityRequirement(name = "BasicAuth"),
-            SecurityRequirement(name = "ApiKeyAuth"),
-            SecurityRequirement(name = "OpenId"),
-            SecurityRequirement(name = "BearerAuth"),
-            SecurityRequirement(name = "OAuth", scopes = []),
         ],
     )
     @GetMapping(value = ["/operator/regions"], produces = ["application/json"])
@@ -705,6 +643,7 @@ class OperatorController(private val operatorService: OperatorService) {
     }
 
     @Operation(
+        hidden = true,
         summary = "describes all available stations",
         operationId = "operatorStationsGet",
         description = """All stations contained in this list are considered public (ie, can be shown on a map for public use). If there 
@@ -729,13 +668,6 @@ class OperatorController(private val operatorService: OperatorService) {
                     |That is, the client must authenticate itself to get the requested response.""",
                 content = [Content(schema = Schema(implementation = Error::class))],
             ),
-        ],
-        security = [
-            SecurityRequirement(name = "BasicAuth"),
-            SecurityRequirement(name = "ApiKeyAuth"),
-            SecurityRequirement(name = "OpenId"),
-            SecurityRequirement(name = "BearerAuth"),
-            SecurityRequirement(name = "OAuth", scopes = []),
         ],
     )
     @GetMapping(value = ["/operator/stations"], produces = ["application/json"])

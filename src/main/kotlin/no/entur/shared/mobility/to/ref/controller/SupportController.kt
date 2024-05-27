@@ -7,7 +7,6 @@ import io.swagger.v3.oas.annotations.media.ArraySchema
 import io.swagger.v3.oas.annotations.media.Content
 import io.swagger.v3.oas.annotations.media.Schema
 import io.swagger.v3.oas.annotations.responses.ApiResponse
-import io.swagger.v3.oas.annotations.security.SecurityRequirement
 import jakarta.validation.Valid
 import no.entur.shared.mobility.to.ref.dto.Error
 import no.entur.shared.mobility.to.ref.dto.SupportRequest
@@ -57,13 +56,6 @@ class SupportController(private val supportService: SupportService) {
                 responseCode = "404",
                 description = "The requested resources does not exist or the requester is not authorized to see it or know it exists.",
             ),
-        ],
-        security = [
-            SecurityRequirement(name = "BasicAuth"),
-            SecurityRequirement(name = "ApiKeyAuth"),
-            SecurityRequirement(name = "OpenId"),
-            SecurityRequirement(name = "BearerAuth"),
-            SecurityRequirement(name = "OAuth", scopes = []),
         ],
     )
     @GetMapping(value = ["/support/{id}/status"], produces = ["application/json"])
@@ -138,13 +130,6 @@ class SupportController(private val supportService: SupportService) {
                 responseCode = "404",
                 description = "The requested resources does not exist or the requester is not authorized to see it or know it exists.",
             ),
-        ],
-        security = [
-            SecurityRequirement(name = "BasicAuth"),
-            SecurityRequirement(name = "ApiKeyAuth"),
-            SecurityRequirement(name = "OpenId"),
-            SecurityRequirement(name = "BearerAuth"),
-            SecurityRequirement(name = "OAuth", scopes = []),
         ],
     )
     @PostMapping(value = ["/support/"], produces = ["application/json"], consumes = ["application/json"])

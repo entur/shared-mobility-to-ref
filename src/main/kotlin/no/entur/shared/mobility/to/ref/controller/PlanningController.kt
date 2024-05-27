@@ -6,7 +6,6 @@ import io.swagger.v3.oas.annotations.enums.ParameterIn
 import io.swagger.v3.oas.annotations.media.Content
 import io.swagger.v3.oas.annotations.media.Schema
 import io.swagger.v3.oas.annotations.responses.ApiResponse
-import io.swagger.v3.oas.annotations.security.SecurityRequirement
 import jakarta.validation.Valid
 import no.entur.shared.mobility.to.ref.dto.Error
 import no.entur.shared.mobility.to.ref.dto.Planning
@@ -24,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("\${api.base-path}")
 class PlanningController(private val planningService: PlanningService) {
     @Operation(
+        hidden = true,
         summary = "",
         operationId = "planningInquiriesPost",
         description = """Returns informative options for the given travel plan. <p>Start time can be defined, but is optional. If startTime 
@@ -55,13 +55,6 @@ class PlanningController(private val planningService: PlanningService) {
                     |to give proper response. Unlike 401, the client's identity is known to the server.""",
                 content = [Content(schema = Schema(implementation = Error::class))],
             ),
-        ],
-        security = [
-            SecurityRequirement(name = "BasicAuth"),
-            SecurityRequirement(name = "ApiKeyAuth"),
-            SecurityRequirement(name = "OpenId"),
-            SecurityRequirement(name = "BearerAuth"),
-            SecurityRequirement(name = "OAuth", scopes = []),
         ],
     )
     @PostMapping(value = ["/planning/inquiries"], produces = ["application/json"], consumes = ["application/json"])
@@ -106,6 +99,7 @@ class PlanningController(private val planningService: PlanningService) {
     }
 
     @Operation(
+        hidden = true,
         operationId = "planningOffersPost",
         description = """Returns bookable offers for the given travel plan. <p>Start time can be defined, but is optional. If startTime is 
             |not provided, but required by the third party API, a default value of "Date.now()" is used. [from MaaS-API /listing]. During 
@@ -136,13 +130,6 @@ class PlanningController(private val planningService: PlanningService) {
                     |to give proper response. Unlike 401, the client's identity is known to the server.""",
                 content = [Content(schema = Schema(implementation = Error::class))],
             ),
-        ],
-        security = [
-            SecurityRequirement(name = "BasicAuth"),
-            SecurityRequirement(name = "ApiKeyAuth"),
-            SecurityRequirement(name = "OpenId"),
-            SecurityRequirement(name = "BearerAuth"),
-            SecurityRequirement(name = "OAuth", scopes = []),
         ],
     )
     @PostMapping(value = ["/planning/offers"], produces = ["application/json"], consumes = ["application/json"])

@@ -7,7 +7,6 @@ import io.swagger.v3.oas.annotations.media.ArraySchema
 import io.swagger.v3.oas.annotations.media.Content
 import io.swagger.v3.oas.annotations.media.Schema
 import io.swagger.v3.oas.annotations.responses.ApiResponse
-import io.swagger.v3.oas.annotations.security.SecurityRequirement
 import jakarta.validation.Valid
 import jakarta.validation.constraints.Min
 import no.entur.shared.mobility.to.ref.dto.Asset
@@ -34,6 +33,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("\${api.base-path}")
 class LegsController(private val legsService: LegsService) {
     @Operation(
+        hidden = true,
         summary = "",
         operationId = "legsIdAncillariesCategoryNumberDelete",
         description = """an ancillary (or amount) is removed to the leg.""",
@@ -66,13 +66,6 @@ class LegsController(private val legsService: LegsService) {
                 responseCode = "404",
                 description = "The requested resources does not exist or the requester is not authorized to see it or know it exists.",
             ),
-        ],
-        security = [
-            SecurityRequirement(name = "BasicAuth"),
-            SecurityRequirement(name = "ApiKeyAuth"),
-            SecurityRequirement(name = "OpenId"),
-            SecurityRequirement(name = "BearerAuth"),
-            SecurityRequirement(name = "OAuth", scopes = []),
         ],
     )
     @DeleteMapping(value = ["/legs/{id}/ancillaries/{category}/{number}"], produces = ["application/json"])
@@ -125,6 +118,7 @@ class LegsController(private val legsService: LegsService) {
     }
 
     @Operation(
+        hidden = true,
         summary = "",
         operationId = "legsIdAncillariesCategoryNumberPost",
         description = """a new ancillary is added to the leg.""",
@@ -157,13 +151,6 @@ class LegsController(private val legsService: LegsService) {
                 responseCode = "404",
                 description = "The requested resources does not exist or the requester is not authorized to see it or know it exists.",
             ),
-        ],
-        security = [
-            SecurityRequirement(name = "BasicAuth"),
-            SecurityRequirement(name = "ApiKeyAuth"),
-            SecurityRequirement(name = "OpenId"),
-            SecurityRequirement(name = "BearerAuth"),
-            SecurityRequirement(name = "OAuth", scopes = []),
         ],
     )
     @PostMapping(value = ["/legs/{id}/ancillaries/{category}/{number}"], produces = ["application/json"])
@@ -216,6 +203,7 @@ class LegsController(private val legsService: LegsService) {
     }
 
     @Operation(
+        hidden = true,
         summary = "",
         operationId = "legsIdAvailableAssetsGet",
         description = """Returns a list of available assets for the given leg. These assets can be used to POST to /legs/{id}/asset if no 
@@ -249,13 +237,6 @@ class LegsController(private val legsService: LegsService) {
                 responseCode = "404",
                 description = "The requested resources does not exist or the requester is not authorized to see it or know it exists.",
             ),
-        ],
-        security = [
-            SecurityRequirement(name = "BasicAuth"),
-            SecurityRequirement(name = "ApiKeyAuth"),
-            SecurityRequirement(name = "OpenId"),
-            SecurityRequirement(name = "BearerAuth"),
-            SecurityRequirement(name = "OAuth", scopes = []),
         ],
     )
     @GetMapping(value = ["/legs/{id}/available-assets"], produces = ["application/json"])
@@ -312,6 +293,7 @@ class LegsController(private val legsService: LegsService) {
     }
 
     @Operation(
+        hidden = true,
         summary = "",
         operationId = "legsIdConfirmationPost",
         description = """The TO can request confirmation for certain actions from the MP.""",
@@ -331,13 +313,6 @@ class LegsController(private val legsService: LegsService) {
                 responseCode = "404",
                 description = "The requested resources does not exist or the requester is not authorized to see it or know it exists.",
             ),
-        ],
-        security = [
-            SecurityRequirement(name = "BasicAuth"),
-            SecurityRequirement(name = "ApiKeyAuth"),
-            SecurityRequirement(name = "OpenId"),
-            SecurityRequirement(name = "BearerAuth"),
-            SecurityRequirement(name = "OAuth", scopes = []),
         ],
     )
     @PostMapping(value = ["/legs/{id}/confirmation"], produces = ["application/json"], consumes = ["application/json"])
@@ -426,13 +401,6 @@ class LegsController(private val legsService: LegsService) {
                     |https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Retry-After""",
             ),
         ],
-        security = [
-            SecurityRequirement(name = "BasicAuth"),
-            SecurityRequirement(name = "ApiKeyAuth"),
-            SecurityRequirement(name = "OpenId"),
-            SecurityRequirement(name = "BearerAuth"),
-            SecurityRequirement(name = "OAuth", scopes = []),
-        ],
     )
     @PostMapping(value = ["/legs/{id}/events"], produces = ["application/json"], consumes = ["application/json"])
     fun legsIdEventsPost(
@@ -480,6 +448,7 @@ class LegsController(private val legsService: LegsService) {
     }
 
     @Operation(
+        hidden = true,
         summary = "",
         operationId = "legsIdGet",
         description = """Retrieves the latest summary of the leg, being the execution of a portion of a journey travelled using one asset 
@@ -507,13 +476,6 @@ class LegsController(private val legsService: LegsService) {
                 responseCode = "404",
                 description = "The requested resources does not exist or the requester is not authorized to see it or know it exists.",
             ),
-        ],
-        security = [
-            SecurityRequirement(name = "BasicAuth"),
-            SecurityRequirement(name = "ApiKeyAuth"),
-            SecurityRequirement(name = "OpenId"),
-            SecurityRequirement(name = "BearerAuth"),
-            SecurityRequirement(name = "OAuth", scopes = []),
         ],
     )
     @GetMapping(value = ["/legs/{id}"], produces = ["application/json"])
@@ -558,6 +520,7 @@ class LegsController(private val legsService: LegsService) {
     }
 
     @Operation(
+        hidden = true,
         operationId = "legsIdProgressGet",
         description = """Monitors the current location of the asset and duration & distance of the leg (see (4.7) in process flow)""",
         responses = [
@@ -576,13 +539,6 @@ class LegsController(private val legsService: LegsService) {
                 responseCode = "404",
                 description = "The requested resources does not exist or the requester is not authorized to see it or know it exists.",
             ),
-        ],
-        security = [
-            SecurityRequirement(name = "BasicAuth"),
-            SecurityRequirement(name = "ApiKeyAuth"),
-            SecurityRequirement(name = "OpenId"),
-            SecurityRequirement(name = "BearerAuth"),
-            SecurityRequirement(name = "OAuth", scopes = []),
         ],
     )
     @GetMapping(value = ["/legs/{id}/progress"], produces = ["application/json"])
@@ -632,6 +588,7 @@ class LegsController(private val legsService: LegsService) {
     }
 
     @Operation(
+        hidden = true,
         operationId = "legsIdProgressPost",
         description = """Monitors the current location of the asset and duration & distance of the leg""",
         responses = [
@@ -658,13 +615,6 @@ class LegsController(private val legsService: LegsService) {
                 responseCode = "404",
                 description = "The requested resources does not exist or the requester is not authorized to see it or know it exists.",
             ),
-        ],
-        security = [
-            SecurityRequirement(name = "BasicAuth"),
-            SecurityRequirement(name = "ApiKeyAuth"),
-            SecurityRequirement(name = "OpenId"),
-            SecurityRequirement(name = "BearerAuth"),
-            SecurityRequirement(name = "OAuth", scopes = []),
         ],
     )
     @PostMapping(value = ["/legs/{id}/progress"], produces = ["application/json"], consumes = ["application/json"])
@@ -713,6 +663,7 @@ class LegsController(private val legsService: LegsService) {
     }
 
     @Operation(
+        hidden = true,
         operationId = "legsIdPut",
         description = """Updates the leg with new information. Only used for updates about execution to the MP. To request changes as the 
             |MP, the booking should be updated and the TO can accept the change and update the leg in turn.""",
@@ -740,13 +691,6 @@ class LegsController(private val legsService: LegsService) {
                 responseCode = "404",
                 description = "The requested resources does not exist or the requester is not authorized to see it or know it exists.",
             ),
-        ],
-        security = [
-            SecurityRequirement(name = "BasicAuth"),
-            SecurityRequirement(name = "ApiKeyAuth"),
-            SecurityRequirement(name = "OpenId"),
-            SecurityRequirement(name = "BearerAuth"),
-            SecurityRequirement(name = "OAuth", scopes = []),
         ],
     )
     @PutMapping(value = ["/legs/{id}"], produces = ["application/json"], consumes = ["application/json"])

@@ -7,7 +7,6 @@ import io.swagger.v3.oas.annotations.media.ArraySchema
 import io.swagger.v3.oas.annotations.media.Content
 import io.swagger.v3.oas.annotations.media.Schema
 import io.swagger.v3.oas.annotations.responses.ApiResponse
-import io.swagger.v3.oas.annotations.security.SecurityRequirement
 import jakarta.validation.Valid
 import jakarta.validation.constraints.Min
 import no.entur.shared.mobility.to.ref.dto.Error
@@ -34,6 +33,7 @@ import java.time.OffsetDateTime
 @RequestMapping("\${api.base-path}")
 class PaymentController(private val paymentService: PaymentService) {
     @Operation(
+        hidden = true,
         operationId = "paymentIdClaimExtraCostsPost",
         description = """extra costs that the TO has to charge to the MP or vice versa.""",
         responses = [
@@ -60,13 +60,6 @@ class PaymentController(private val paymentService: PaymentService) {
                     |to give proper response. Unlike 401, the client's identity is known to the server.""",
                 content = [Content(schema = Schema(implementation = Error::class))],
             ),
-        ],
-        security = [
-            SecurityRequirement(name = "BasicAuth"),
-            SecurityRequirement(name = "ApiKeyAuth"),
-            SecurityRequirement(name = "OpenId"),
-            SecurityRequirement(name = "BearerAuth"),
-            SecurityRequirement(name = "OAuth", scopes = []),
         ],
     )
     @PostMapping(value = ["/payment/{id}/claim-extra-costs"], produces = ["application/json"], consumes = ["application/json"])
@@ -143,13 +136,6 @@ class PaymentController(private val paymentService: PaymentService) {
                     |to give proper response. Unlike 401, the client's identity is known to the server.""",
                 content = [Content(schema = Schema(implementation = Error::class))],
             ),
-        ],
-        security = [
-            SecurityRequirement(name = "BasicAuth"),
-            SecurityRequirement(name = "ApiKeyAuth"),
-            SecurityRequirement(name = "OpenId"),
-            SecurityRequirement(name = "BearerAuth"),
-            SecurityRequirement(name = "OAuth", scopes = []),
         ],
     )
     @GetMapping(value = ["/payment/journal-entry"], produces = ["application/json"])

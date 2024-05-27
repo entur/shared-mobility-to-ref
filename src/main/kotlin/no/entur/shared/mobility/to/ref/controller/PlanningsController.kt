@@ -6,7 +6,6 @@ import io.swagger.v3.oas.annotations.enums.ParameterIn
 import io.swagger.v3.oas.annotations.media.Content
 import io.swagger.v3.oas.annotations.media.Schema
 import io.swagger.v3.oas.annotations.responses.ApiResponse
-import io.swagger.v3.oas.annotations.security.SecurityRequirement
 import jakarta.validation.Valid
 import no.entur.shared.mobility.to.ref.dto.Error
 import no.entur.shared.mobility.to.ref.dto.Planning
@@ -25,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("\${api.base-path}")
 class PlanningsController(private val planningsService: PlanningsService) {
     @Operation(
+        hidden = true,
         summary = "",
         operationId = "planningsPost",
         description = """Returns plannings for the given travel plan. <p>Start time can be defined, but is optional. If startTime is not 
@@ -58,13 +58,6 @@ class PlanningsController(private val planningsService: PlanningsService) {
                     |to give proper response. Unlike 401, the client's identity is known to the server.""",
                 content = [Content(schema = Schema(implementation = Error::class))],
             ),
-        ],
-        security = [
-            SecurityRequirement(name = "BasicAuth"),
-            SecurityRequirement(name = "ApiKeyAuth"),
-            SecurityRequirement(name = "OpenId"),
-            SecurityRequirement(name = "BearerAuth"),
-            SecurityRequirement(name = "OAuth", scopes = []),
         ],
     )
     @PostMapping(value = ["/plannings"], produces = ["application/json"], consumes = ["application/json"])
