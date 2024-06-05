@@ -214,6 +214,7 @@ class OperatorController(private val operatorService: OperatorService) {
     }
 
     @Operation(
+        hidden = true,
         summary = "describes the system",
         operationId = "operatorInformationGet",
         description = """Describes the system including System operator, System location, year implemented, URLs, contact info, time zone.
@@ -276,7 +277,6 @@ class OperatorController(private val operatorService: OperatorService) {
     }
 
     @Operation(
-        hidden = true,
         summary = "describes the running implementations",
         operationId = "operatorMetaGet",
         description = """all versions that are implemented on this url, are described in the result of this endpoint. In contains all 

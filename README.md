@@ -1,12 +1,25 @@
 # shared-mobility-to-ref
 
 Reference implementation of a backend that implements a [TOMP API](https://github.com/TOMP-WG/TOMP-API) from the TO (Transport Operator) side.
-You can find the full Swagger Petstore documentation from the TOMP-team [here](https://app.swaggerhub.com/apis-docs/TOMP-API-WG/transport-operator_maas_provider_api/1.5.0#/).
+You can find the full Swagger Petstore documentation from the TOMP-team 
+[here](https://app.swaggerhub.com/apis-docs/TOMP-API-WG/transport-operator_maas_provider_api/1.5.0#/).
 
 ## Guide for transport operators on how to implement TOMP standard
 
 This guide covers all the endpoints needed for supporting the TOMP standard and how to implement them. 
 This is a shorten list of all the endpoints supported by the [TOMP standard](https://github.com/TOMP-WG/TOMP-API).
+
+You can find the Swagger Petstore documentation for this app [here](https://petstore.swagger.io/?url=https://api.dev.entur.io/api-docs/shared-mobility-to-ref)
+
+| Endpoints                                                                             | Purpose                                             |
+|---------------------------------------------------------------------------------------|-----------------------------------------------------|
+| [GET /operator/meta](#tomp-api-implementation-guide-get-operatormeta)                 | Describes the running implementations               |
+| [POST /bookings/one-stop](#tomp-api-implementation-guide-post-bookingsone-stop)       | Creates a one-stop booking                          |
+| [POST /legs/{id}/events](#tomp-api-implementation-guide-post-legsidevents)            | Alters the state of a leg                           |
+| [GET /bookings/{id}](#tomp-api-implementation-guide-get-bookingsid)                   | Returns a booking given id                          |
+| [GET /payment/journal-entry](#tomp-api-implementation-guide-get-paymentjournal-entry) | Returns all the journal entries that should be paid |
+| [POST /support](#tomp-api-implementation-guide-post-support)                          | Creates a request for support from end user         |
+| [GET /support/{id}/status](#tomp-api-implementation-guide-get-supportidstatus)        | Gets the status report of the support request       |
 
 ### TOMP API Implementation Guide: GET "/operator/meta"
 
@@ -66,7 +79,7 @@ but because Entur currently only supports booking of micromobility, only these v
       Model: [ConditionDeposit](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/ConditionDeposit.kt)
     - **ConditionRequireOffboardingSteps::class**: Used if the transport operator wants a parking picture of the bike/scooter.
       Model: [ConditionRequireOffboardingSteps](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/ConditionRequireOffboardingSteps.kt)
-  - **state**: The state of the leg. Model: [LegState](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/LegState.kt)
+  - **state**: The state of the leg. When creating a one-stop booking this state should be set to ASSIGN_ASSET. Model: [LegState](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/LegState.kt)
   - **pricing** The pricing of the booking. Model: [Fare](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Fare.kt)
     - **estimated**: Is this fare an estimation?
     - **parts**: All the priced parts. Model: List of [FarePart](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/FarePart.kt)
@@ -75,7 +88,21 @@ departureTime, arrivalTime, actualDepartureTime and actualArrivalTime on the Boo
 since Entur only use the variables from the [Leg](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Leg.kt).
 
 ### TOMP API Implementation Guide: POST "/legs/{id}/events"
-TODO
+
+This guide outlines how transport operator's can implement the `POST "/legs/{id}/events"` endpoint, which is used to alter the state of a leg. 
+The controller code can be found [here](src/main/kotlin/no/entur/shared/mobility/to/ref/controller/LegsController.kt).
+
+Response model can be found [here](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Leg.kt).
+
+Required fields are described in the [POST /bookings/one-stop](#tomp-api-implementation-guide-post-bookingsone-stop) guide above.
+
+| Event           | Action                                                                                                                                                                                                      |
+|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| SET_IN_USE      | Set the event on the leg to IN_USE, set the state on the booking to STARTED, set the actualDepartureTime (if this is the first SET_IN_USE event) and let the user start using your mobility.                |
+| PAUSE           | Set the event on the leg to PAUSED and pause the use of the mobility.                                                                                                                                       |
+| START_FINISHING | Set the event on the leg to FINISHING and set the actualArrivalTime. This event is usually used when the transport operator wants the user to do a action like taking av picture of the parked mobility.    |
+| FINISH          | Check the picture of the parked mobility if needed, set the event on the leg to FINISHED, set the state on the booking to FINISHED, create a journal entry and make the mobility available for other users. |
+| CANCEL          | Set the event on the leg to CANCELLED, set the state of the booking to CANCELLED and make the mobility available for other users.                                                                           |
 
 ### TOMP API Implementation Guide: GET "/bookings/{id}"
 TODO
