@@ -105,7 +105,7 @@ Required fields are described in the [POST /bookings/one-stop](#tomp-api-impleme
 | CANCEL          | Set the event on the leg to CANCELLED, set the state of the booking to CANCELLED and make the mobility available for other users.                                                                           |
 
 ### TOMP API Implementation Guide: GET "/bookings/{id}"
-This guide outlines how transport operators can implement the `GET "/bookings/{id}"` endpoint, which is used to retrieve booking details by booking ID. The controller code can be found [here](src/main/kotlin/no/entur/shared/mobility/controller/BookingsController.kt).
+This guide outlines how transport operators can implement the `GET "/bookings/{id}"` endpoint, which is used to retrieve booking details by booking ID. The controller code can be found [here](src/main/kotlin/no/entur/shared/mobility/to/ref/controller/BookingsController.kt).
 
 #### Request Headers:
 - **Accept-Language**:
@@ -123,7 +123,6 @@ This guide outlines how transport operators can implement the `GET "/bookings/{i
 - **addressed-to**:
   - **Description**: The ID of the MaaS operator that has to receive this message.
   - **Required**: No
-  - **Default Value**: `null`
 
 #### Path Variables:
 - **id**:
@@ -143,36 +142,69 @@ addressed-to: receiver-maas-id
 #### Response Model:
 The response will be a `Booking` object. The model can be found [here](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Booking.kt). The model has many optional variables because it is designed to support booking of many different modalities, but because Entur currently only supports booking of micromobility, only these variables are required:
 
-- **id**: Unique identifier.
-- **from**: Where the customer is traveling from. Model: [Place](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Place.kt)
-  - **name**: Name of the place.
-  - **coordinates**: Coordinates of the place. Model: [Coordinates](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Coordinates.kt)
-- **customer**: Information about the traveling customer. Model: [Customer](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Customer.kt)
-  - **id**: The identifier Entur uses to identify the customer.
-- **state**: The state of the booking. Model: [BookingState](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/BookingState.kt)
-- **legs**: A list of all legs in the booking. Model: List of [Leg](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Leg.kt)
-  - **id**: Unique identifier.
-  - **from**: Where the customer is traveling from. Model: [Place](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Place.kt)
-  - **arrivalTime**: The intended arrival time at the to place.
-  - **actualArrivalTime**: The actual arrival time at the destination.
-  - **departureTime**: The departure time of this leg.
-  - **actualDepartureTime**: The actual departure time of this leg.
-  - **assetType**: Type of asset. Model: [AssetType](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/AssetType.kt)
-    - **id**: Unique identifier.
-  - **asset**: The booked asset for the trip. Model: [Asset](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Asset.kt)
-    - **id**: Unique identifier.
-  - **pricing**: The pricing of the booking. Model: [Fare](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Fare.kt)
-  - **conditions**: The conditions that apply to this leg. Model: List of [AssetTypeConditionsInner](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/AssetTypeConditionsInner.kt)
-    - **ConditionDeposit**: Information about the preferred deposit amount. Model: [ConditionDeposit](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/ConditionDeposit.kt)
-    - **ConditionRequireOffboardingSteps**: Used if the transport operator wants a parking picture of the bike/scooter. Model: [ConditionRequireOffboardingSteps](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/ConditionRequireOffboardingSteps.kt)
-  - **state**: The state of the leg. Model: [LegState](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/LegState.kt)
-
-```
-
-
+Required fields are the same as described in the POST /bookings/one-stop guide above.
 
 ### TOMP API Implementation Guide: GET "/payment/journal-entry"
-TODO
+This guide outlines how transport operators can implement the `GET "/payment/journal-entry"` endpoint, which is used to retrieve all journal entries that should be paid per leg. The controller code can be found [here](src/main/kotlin/no/entur/shared/mobility/to/ref/controller/PaymentController.kt).
+
+#### Request Headers:
+- **Accept-Language**: 
+  - **Description**: A list of the languages/localizations the user would like to see the results in. For user privacy and ease of use on the TO side, this list should be kept as short as possible, ideally just one language tag from the list in `operator/information`.
+  - **Required**: Yes
+- **Api**: 
+  - **Description**: API description, can be TOMP or maybe other (specific/derived) API definitions.
+  - **Required**: Yes
+- **Api-Version**: 
+  - **Description**: Version of the API.
+  - **Required**: Yes
+- **maas-id**: 
+  - **Description**: The ID of the sending MaaS operator.
+  - **Required**: Yes
+- **addressed-to**: 
+  - **Description**: The ID of the MaaS operator that has to receive this message.
+  - **Required**: No
+
+#### Request Parameters:
+- **id**:
+  - **Description**: ID of the journal entry.
+  - **Required**: No
+
+
+#### Example Request:
+```http
+GET /payment/journal-entry HTTP/1.1
+Accept-Language: en
+Api: TOMP
+Api-Version: 1.0
+maas-id: example-maas-id
+addressed-to: receiver-maas-id
+id: journal-12345
+```
+
+#### Response Model:
+The response will be a list of `JournalEntry` objects. The model can be found [here](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/JournalEntry.kt). The key fields in the `JournalEntry` object are:
+
+- **amount**:
+  - **Description**: This should be in the base unit as defined by the ISO 4217 currency code with the appropriate number of decimal places and omitting the currency symbol (e.g., if the price is in US Dollars the price would be 9.95). This is inclusive VAT.
+  - **Example**: `9.95`
+
+- **amountExVat**:
+  - **Example**: `8.95`
+
+- **vatRate**:
+  - **Description**: Value added tax rate (percentage of amount).
+  - **Example**: `21.0`
+
+#### Example Response:
+```json
+[
+  {
+    "amount": 9.95,
+    "amountExVat": 8.95,
+    "vatRate": 21.0,
+  }
+]
+```
 
 ### TOMP API Implementation Guide: POST "/support"
 TODO
