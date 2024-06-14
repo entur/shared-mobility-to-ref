@@ -320,6 +320,39 @@ data class SupportStatus(
 }
 ```
 
-
 ### TOMP API Implementation Guide: GET "/support/{id}/status"
-TODO
+
+This guide outlines how transport operators can implement the `GET "/support/{id}/status"` endpoint, which is used to retrieve the current status of a support request. The controller code can be found [here](src/main/kotlin/no/entur/shared/mobility/to/ref/controller/SupportController.kt).
+
+Response model can be found [here](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/SupportStatus.kt). The model includes several optional variables, but for this endpoint, only the following variables are used: `status` and `timeToResolution`. These are the same fields used in the response for the POST "/support" endpoint.
+
+### Endpoint: GET "/support/{id}/status"
+Retrieve the current status of a support request.
+
+#### Headers
+- **Accept-Language** (required): A list of the languages/localizations the user would like to see the results in. For user privacy and ease of use on the transport operator's side, this list should be kept as short as possible, ideally just one language tag from the list in `operator/information`.
+- **Api** (required): API description, can be TOMP or other specific/derived API definitions.
+- **Api-Version** (required): Version of the API.
+- **maas-id** (required): The ID of the sending Mobility as a Service (MaaS) operator.
+- **addressed-to** (optional): The ID of the MaaS operator that has to receive this message.
+
+#### Path Parameters
+- **id** (required): Booking identifier.
+
+#### Example Request
+```http
+GET /support/12345/status HTTP/1.1
+Host: api.example.com
+Accept-Language: en
+Api: TOMP
+Api-Version: 1.0
+maas-id: maas-operator-1
+addressed-to: support-operator-1
+```
+
+#### Example Response
+For the response details, refer to the example response in the documentation for the POST "/support" endpoint.
+
+### Response Model: SupportStatus
+
+For the response model details, refer to the documentation for the POST "/support" endpoint. This endpoint uses the same `SupportStatus` model, including the fields `status` and `timeToResolution`.
