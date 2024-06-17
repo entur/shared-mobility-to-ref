@@ -448,7 +448,6 @@ class LegsController(private val legsService: LegsService) {
     }
 
     @Operation(
-        hidden = true,
         summary = "",
         operationId = "legsIdGet",
         description = """Retrieves the latest summary of the leg, being the execution of a portion of a journey travelled using one asset 
