@@ -96,13 +96,16 @@ Response model can be found [here](src/main/kotlin/no/entur/shared/mobility/to/r
 
 Required fields are described in the [POST /bookings/one-stop](#tomp-api-implementation-guide-post-bookingsone-stop) guide above.
 
-| Event           | Action                                                                                                                                                                                                      |
-|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| SET_IN_USE      | Set the event on the leg to IN_USE, set the state on the booking to STARTED, set the actualDepartureTime (if this is the first SET_IN_USE event) and let the user start using your mobility.                |
-| PAUSE           | Set the event on the leg to PAUSED and pause the use of the mobility.                                                                                                                                       |
-| START_FINISHING | Set the event on the leg to FINISHING and set the actualArrivalTime. This event is usually used when the transport operator wants the user to do a action like taking av picture of the parked mobility.    |
-| FINISH          | Check the picture of the parked mobility if needed, set the event on the leg to FINISHED, set the state on the booking to FINISHED, create a journal entry and make the mobility available for other users. |
-| CANCEL          | Set the event on the leg to CANCELLED, set the state of the booking to CANCELLED and make the mobility available for other users.                                                                           |
+
+
+
+| Event           | Action                                                                                                                                                                                                                                                                           |
+|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| SET_IN_USE      | Set the event on the leg to IN_USE, set the state on the booking to STARTED, set the actualDepartureTime (if this is the first SET_IN_USE event) and let the user start using your mobility.                                                                                     |
+| PAUSE           | Set the event on the leg to PAUSED and pause the use of the mobility.                                                                                                                                                                                                            |
+| START_FINISHING | Set the event on the leg to FINISHING, create a journal entry and make the mobility available for other users and set the actualArrivalTime. This event is usually used when the transport operator wants the user to do a action like taking av picture of the parked mobility. |
+| FINISH          | Check the picture of the parked mobility if needed, set the event on the leg to FINISHED, set the state on the booking to FINISHED.                                                                                                                                              |
+| CANCEL          | Set the event on the leg to CANCELLED, set the state of the booking to CANCELLED and make the mobility available for other users.                                                                                                                                                |
 
 ### TOMP API Implementation Guide: GET "/bookings/{id}"
 This guide outlines how transport operators can implement the `GET "/bookings/{id}"` endpoint, which is used to retrieve booking details by booking ID. The controller code can be found [here](src/main/kotlin/no/entur/shared/mobility/to/ref/controller/BookingsController.kt).
@@ -168,6 +171,7 @@ This guide outlines how transport operators can implement the `GET "/payment/jou
 - **id**:
   - **Description**: ID of the journal entry.
   - **Required**: No
+
 
 
 #### Example Request:
