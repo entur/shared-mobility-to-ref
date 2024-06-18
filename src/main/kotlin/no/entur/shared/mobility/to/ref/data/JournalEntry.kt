@@ -12,10 +12,10 @@ import java.util.UUID
 val journalEntry
     get() =
         JournalEntry(
-            amount = 20.00F,
+            amount = 25.00F,
             amountExVat = 20.00F,
             currencyCode = "NOK",
-            vatRate = 0F,
+            vatRate = 25.00F,
             vatCountryCode = "NO",
             category = JournalCategory.FARE,
             journalId = UUID.randomUUID().toString(),
@@ -51,10 +51,10 @@ val journalEntry
 val farePartFixed
     get() =
         FarePart(
-            amount = 10.00F,
+            amount = 12.50F,
             amountExVat = 10.0F,
             currencyCode = "NOK",
-            vatRate = 0F,
+            vatRate = 25.00F,
             vatCountryCode = "NO",
             type = FarePart.Type.FIXED,
             kind = FarePart.Kind.DEFAULT,
@@ -68,10 +68,10 @@ val farePartFixed
 val farePartFlex
     get() =
         FarePart(
-            amount = 2.50F,
+            amount = 3.125F,
             amountExVat = 2.5F,
             currencyCode = "NOK",
-            vatRate = 0F,
+            vatRate = 25.00F,
             vatCountryCode = "NO",
             type = FarePart.Type.FLEX,
             kind = FarePart.Kind.DEFAULT,
