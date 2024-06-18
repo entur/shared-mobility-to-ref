@@ -42,10 +42,10 @@ val conditions
             ConditionDeposit(
                 conditionType = "ConditionDeposit",
                 id = "deposit50eu",
-                amount = 9.95F,
-                amountExVat = 8.95F,
+                amount = 12.50F,
+                amountExVat = 10.00F,
                 currencyCode = "NOK",
-                vatRate = 21F,
+                vatRate = 25F,
                 vatCountryCode = "NO",
             ),
             ConditionRequireOffboardingSteps(
