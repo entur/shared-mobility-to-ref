@@ -199,9 +199,9 @@ The response will be a list of `JournalEntry` objects. The model can be found [h
 ```json
 [
   {
-    "amount": 9.95,
-    "amountExVat": 8.95,
-    "vatRate": 21.0,
+    "amount": 12.50,
+    "amountExVat": 10.00,
+    "vatRate": 25.00
   }
 ]
 ```
