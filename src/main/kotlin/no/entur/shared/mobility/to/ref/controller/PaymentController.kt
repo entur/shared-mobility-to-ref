@@ -109,6 +109,7 @@ class PaymentController(private val paymentService: PaymentService) {
     }
 
     @Operation(
+        hidden = true,
         summary = "",
         operationId = "paymentJournalEntryGet",
         description = """Returns all the journal entries that should be paid per leg""",
