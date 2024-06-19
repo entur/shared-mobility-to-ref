@@ -133,8 +133,8 @@ class LegsService {
     ): Leg {
         val leg: Leg =
             when (addressedTo) {
-                SCOOTER_OPERATOR -> throw NotImplementedError()
-                BIKE_OPERATOR -> throw NotImplementedError()
+                SCOOTER_OPERATOR -> leg
+                BIKE_OPERATOR -> leg
                 ALL_IMPLEMENTING_OPERATOR -> leg
                 else -> throw NotImplementedError()
             }
