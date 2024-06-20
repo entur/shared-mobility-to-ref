@@ -18,7 +18,7 @@ val booking
             customer = Customer(id = "A0-123456"),
             state = BookingState.CONFIRMED,
             legs = listOf(leg),
-            pricing = fare,
+            pricing = finalFare,
             departureTime = OffsetDateTime.now(),
             arrivalTime = OffsetDateTime.now().plusMinutes(12),
             actualDepartureTime = OffsetDateTime.now(),
@@ -60,4 +60,13 @@ val fare
             description = "string",
             propertyClass = "string",
             parts = listOf(farePartFlex),
+        )
+
+val finalFare
+    get() =
+        Fare(
+            estimated = true,
+            description = "string",
+            propertyClass = "string",
+            parts = listOf(farePartFixedFinalPart),
         )

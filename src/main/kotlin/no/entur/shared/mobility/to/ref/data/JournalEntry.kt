@@ -65,6 +65,17 @@ val farePartFixed
             meta = mapOf("additionalProp1" to "prop"),
         )
 
+val farePartFixedFinalPart
+    get() =
+        FarePart(
+            amount = 50.00F,
+            amountExVat = 40.00F,
+            currencyCode = "NOK",
+            vatRate = 25.00F,
+            vatCountryCode = "NO",
+            type = FarePart.Type.FIXED,
+        )
+
 val farePartFlex
     get() =
         FarePart(
