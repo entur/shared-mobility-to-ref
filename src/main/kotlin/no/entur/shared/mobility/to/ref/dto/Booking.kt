@@ -15,9 +15,13 @@ import java.time.OffsetDateTime
  * @param extraInfo dictionary for extra fields (bilateral agreements)
  * @param state
  * @param legs The legs of this booking, generally just one for simple legs, in order of how they will be travelled. If this part is
- * not present, it means that there is only one leg. This leg can be constructed * leg[0].id = booking.id * leg[0].departureTime =
- * booking.departureTime * leg[0].arrivalTime = booking.arrivalTime * leg[0].assetType = booking.mainAssetType * leg[0].pricing =
- * booking.pricing This approach is not allowed in the trip execution part
+ * not present, it means that there is only one leg. This leg can be constructed
+ * * leg[0].id = booking.id
+ * * leg[0].departureTime = booking.departureTime
+ * * leg[0].arrivalTime = booking.arrivalTime
+ * * leg[0].assetType = booking.mainAssetType
+ * * leg[0].pricing = booking.pricing
+ * This approach is not allowed in the trip execution part
  * @param pricing
  * @param departureTime The initial departure time (over all legs)
  * @param arrivalTime The intended arrival time at the destination of the booking (over all legs)

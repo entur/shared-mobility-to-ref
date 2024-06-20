@@ -72,6 +72,12 @@ but because Entur currently only supports booking of micromobility, only these v
     - **id** Unique identifier. 
   - **asset**: The booked asset for the trip. Model: [Asset](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Asset.kt)
     - **id** Unique identifier. Should be the same id as given from the useAssets request variable.
+    - **stateOfCharge** The current charge of the vehicle. Integer 0-100. This should be kept up to date during trip execution
+    - **overriddenProperties**
+      - **location** The current location
+        - **coordinates** 
+          - **lng** longitudinal coordinate of the vehicle. This should be kept up to date during trip execution
+          - **lat** latitudinal coordinate of the vehicle. This should be kept up to date during trip execution
   - **pricing**: Same as the "booking.pricing". Model: [Fare](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Fare.kt)
   - **conditions**: The conditions that apply to this leg. 
     Model: List of [AssetTypeConditionsInner](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/AssetTypeConditionsInner.kt)
@@ -82,8 +88,8 @@ but because Entur currently only supports booking of micromobility, only these v
   - **state**: The state of the leg. When creating a one-stop booking this state should be set to ASSIGN_ASSET. Model: [LegState](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/LegState.kt)
   - **pricing** The pricing of the booking. Model: [Fare](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Fare.kt)
     - **estimated**: Is this fare an estimation?
-    - **parts**: All the priced parts. Model: List of [FarePart](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/FarePart.kt)
-
+    - **parts**: All the priced parts. Model: List of [FarePart](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/FarePart.kt). 
+  Pricing should be kept up to date during trip execution.
 departureTime, arrivalTime, actualDepartureTime and actualArrivalTime on the Booking is optional 
 since Entur only use the variables from the [Leg](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Leg.kt).
 
@@ -141,7 +147,7 @@ addressed-to: receiver-maas-id
 ```
 
 #### Response Model:
-The response will be a `Booking` object. The model can be found [here](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Booking.kt). The model has many optional variables because it is designed to support booking of many different modalities, but because Entur currently only supports booking of micromobility, only these variables are required:
+The response will be a `Booking` object. The model can be found [here](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Booking.kt). The model has many optional variables because it is designed to support booking of many different modalities, but because Entur currently only supports booking of micro mobility, only these variables are required:
 
 Required fields are the same as described in the POST /bookings/one-stop guide above.
 
