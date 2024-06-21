@@ -17,7 +17,6 @@ You can find the Swagger Petstore documentation for this app [here](https://pets
 | [POST /bookings/one-stop](#tomp-api-implementation-guide-post-bookingsone-stop)       | Creates a one-stop booking                          |
 | [POST /legs/{id}/events](#tomp-api-implementation-guide-post-legsidevents)            | Alters the state of a leg                           |
 | [GET /bookings/{id}](#tomp-api-implementation-guide-get-bookingsid)                   | Returns a booking given id                          |
-| [GET /payment/journal-entry](#tomp-api-implementation-guide-get-paymentjournal-entry) | Returns all the journal entries that should be paid |
 | [POST /support](#tomp-api-implementation-guide-post-support)                          | Creates a request for support from end user         |
 | [GET /support/{id}/status](#tomp-api-implementation-guide-get-supportidstatus)        | Gets the status report of the support request       |
 
@@ -57,6 +56,11 @@ but because Entur currently only supports booking of micromobility, only these v
 - **customer**: Information about the traveling customer. Model: [Customer](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Customer.kt)
   - **id**: The identifier Entur uses to identify the customer.
 - **state**: The state of the booking. Model: [BookingState](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/BookingState.kt)
+- **pricing** The pricing of the booking. Model: [Fare](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Fare.kt)
+  - **estimated**: Is this fare an estimation?
+  - **parts**: Should contain one part per leg with the total per leg. All the priced parts. Model: List of [FarePart]
+    (src/main/kotlin/no/entur/shared/mobility/to/ref/dto/FarePart.kt).
+    Pricing should be kept up to date during trip execution.
 - **legs**: A list of all legs in the booking. Since this is a one-stop booking this list should only include one leg. 
     Model: List of [Leg](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Leg.kt)
   - **id**: Unique identifier. Should be the same as "booking.id" for one-stop booking.
@@ -73,12 +77,8 @@ but because Entur currently only supports booking of micromobility, only these v
   - **asset**: The booked asset for the trip. Model: [Asset](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Asset.kt)
     - **id** Unique identifier. Should be the same id as given from the useAssets request variable.
     - **stateOfCharge** The current charge of the vehicle. Integer 0-100. This should be kept up to date during trip execution
-    - **overriddenProperties**
-      - **location** The current location
-        - **coordinates** 
-          - **lng** longitudinal coordinate of the vehicle. This should be kept up to date during trip execution
-          - **lat** latitudinal coordinate of the vehicle. This should be kept up to date during trip execution
-  - **pricing**: Same as the "booking.pricing". Model: [Fare](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Fare.kt)
+  - **pricing**: Price plan for the leg witt a fixed part for start cost and one ore more flexible parts where applicable Model: [Fare]
+    (src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Fare.kt)
   - **conditions**: The conditions that apply to this leg. 
     Model: List of [AssetTypeConditionsInner](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/AssetTypeConditionsInner.kt)
     - **ConditionDeposit::class**: Gives us information about the preferred deposit amount. 
@@ -86,10 +86,6 @@ but because Entur currently only supports booking of micromobility, only these v
     - **ConditionRequireOffboardingSteps::class**: Used if the transport operator wants a parking picture of the bike/scooter.
       Model: [ConditionRequireOffboardingSteps](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/ConditionRequireOffboardingSteps.kt)
   - **state**: The state of the leg. When creating a one-stop booking this state should be set to ASSIGN_ASSET. Model: [LegState](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/LegState.kt)
-  - **pricing** The pricing of the booking. Model: [Fare](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Fare.kt)
-    - **estimated**: Is this fare an estimation?
-    - **parts**: All the priced parts. Model: List of [FarePart](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/FarePart.kt). 
-  Pricing should be kept up to date during trip execution.
 departureTime, arrivalTime, actualDepartureTime and actualArrivalTime on the Booking is optional 
 since Entur only use the variables from the [Leg](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Leg.kt).
 
