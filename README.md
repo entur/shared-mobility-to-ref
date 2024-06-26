@@ -297,3 +297,91 @@ For the response details, refer to the example response in the documentation for
 ### Response Model: SupportStatus
 
 For the response model details, refer to the documentation for the POST "/support" endpoint. This endpoint uses the same `SupportStatus` model, including the fields `status` and `timeToResolution`.
+
+
+### TOMP API Implementation Guide: GET "/legs/{id}"
+
+This guide outlines how transport operators can implement the `GET "/legs/{id}"` endpoint, which retrieves the latest summary of a leg. A leg is a segment of a journey traveled using one asset (vehicle). Every leg belongs to one booking, and every booking has at least one leg. The booking describes the agreement between the user/MP and the TO, while the leg describes the journey as it occurred. Refer to section (4.3) in the flow chart - trip execution for more details.
+
+#### Endpoint Summary
+
+- **Operation ID**: legsIdGet
+- **Summary**: Retrieves the latest summary of the leg.
+- **Description**: Retrieves the latest summary of the leg, being the execution of a portion of a journey traveled using one asset (vehicle). Every leg belongs to one booking, and every booking has at least one leg. Where the booking describes the agreement between the user/MP and TO, the leg describes the journey as it occurred. See (4.3) in the flow chart - trip execution.
+
+#### Request
+
+- **HTTP Method**: GET
+- **Path**: `/legs/{id}`
+- **Produces**: `application/json`
+
+#### Request Headers
+
+- **Accept-Language**: (Required) A list of the languages/localizations the user would like to see the results in. For user privacy and ease of use on the TO side, this list should be kept as short as possible, ideally just one language tag from the list in `operator/information`.
+- **Api**: (Required) API description, can be TOMP or maybe other (specific/derived) API definitions.
+- **Api-Version**: (Required) Version of the API.
+- **maas-id**: (Required) The ID of the sending maas operator.
+- **addressed-to**: (Optional) The ID of the maas operator that has to receive this message.
+
+#### Path Variables
+
+- **id**: (Required) Leg identifier.
+
+#### Responses
+
+- **200**: Operation successful.
+  - **Content**: `application/json`
+  - **Schema**: [Leg](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Leg.kt)
+- **401**: Unauthorized - The client must authenticate itself to get the requested response.
+  - **Content**: `application/json`
+  - **Schema**: [Error](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Error.kt)
+- **403**: Forbidden - The client does not have access rights to the content, i.e., they are unauthorized, so the server is rejecting to give a proper response. Unlike 401, the client's identity is known to the server.
+  - **Content**: `application/json`
+  - **Schema**: [Error](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Error.kt)
+- **404**: Not Found - The requested resources do not exist, or the requester is not authorized to see it or know it exists.
+
+#### Example Request
+```http
+GET /legs/{id} HTTP/1.1
+Host: api.shared-mobility.com
+Accept-Language: en
+Api: TOMP
+Api-Version: 1.0
+maas-id: maasOperator123
+addressed-to: toOperator456
+```
+
+#### Example Response
+```json
+{
+  "id": "leg123",
+  "bookingId": "booking123",
+  "from": {
+    "name": "Start Location",
+    "coordinates": {
+      "latitude": 59.911491,
+      "longitude": 10.757933
+    }
+  },
+  "to": {
+    "name": "End Location",
+    "coordinates": {
+      "latitude": 59.912491,
+      "longitude": 10.758933
+    }
+  },
+  "startTime": "2024-06-25T10:00:00Z",
+  "endTime": "2024-06-25T10:15:00Z",
+  "assetType": {
+    "id": "assetType123",
+    "name": "Electric Scooter"
+  },
+  "state": "COMPLETED"
+}
+```
+
+### Response Model: Leg
+
+The response model can be found in the [Leg](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Leg.kt) class.
+
+This endpoint provides detailed information about the specified leg, including the start and end locations, times, and asset details. This is crucial for tracking the journey segment and understanding the trip execution.
