@@ -19,6 +19,8 @@ You can find the Swagger Petstore documentation for this app [here](https://pets
 | [GET /bookings/{id}](#tomp-api-implementation-guide-get-bookingsid)                   | Returns a booking given id                          |
 | [POST /support](#tomp-api-implementation-guide-post-support)                          | Creates a request for support from end user         |
 | [GET /support/{id}/status](#tomp-api-implementation-guide-get-supportidstatus)        | Gets the status report of the support request       |
+| [GET /legs/{id}](#tomp-api-implementation-guide-get-legsid)                           | Retrieves the latest summary of a leg               |
+| [GET /bookings](#tomp-api-implementation-guide-get-bookings)                          | Retrieves a list of bookings based on various filters |
 
 ### TOMP API Implementation Guide: GET "/operator/meta"
 
@@ -473,11 +475,19 @@ addressed-to: toOperator456
       "id": "assetType123",
       "name": "Electric Scooter"
     },
-    "price": {
-      "amount": 9.95,
-      "currency": "USD"
+    "pricing": {
+      "estimated": false,
+      "parts": [
+        {
+          "amount": 120,
+          "currencyCode": "NOK",
+          "type": "FIXED"
+        }
+      ],
+      "description": "Standard fare for a one-hour ride"
     }
   }
+
 ]
 ```
 
