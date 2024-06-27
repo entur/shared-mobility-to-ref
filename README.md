@@ -385,3 +385,104 @@ addressed-to: toOperator456
 The response model can be found in the [Leg](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Leg.kt) class.
 
 This endpoint provides detailed information about the specified leg, including the start and end locations, times, and asset details. This is crucial for tracking the journey segment and understanding the trip execution.
+
+
+### TOMP API Implementation Guide: GET "/bookings"
+
+This guide outlines how transport operators can implement the `GET "/bookings"` endpoint, which retrieves a list of bookings based on various filters such as state, time window, price range, and asset type. This endpoint helps users and operators to manage and track bookings efficiently.
+
+#### Endpoint Summary
+
+- **Operation ID**: bookingsGet
+- **Summary**: Retrieves a list of bookings.
+- **Description**: Retrieves a list of bookings based on various filters such as state, time window, price range, and asset type. This endpoint helps users and operators to manage and track bookings efficiently.
+
+#### Request
+
+- **HTTP Method**: GET
+- **Path**: `/bookings`
+- **Produces**: `application/json`
+
+#### Request Headers
+
+- **Accept-Language**: (Required) A list of the languages/localizations the user would like to see the results in. For user privacy and ease of use on the TO side, this list should be kept as short as possible, ideally just one language tag from the list in `operator/information`.
+- **Api**: (Required) API description, can be TOMP or maybe other (specific/derived) API definitions.
+- **Api-Version**: (Required) Version of the API.
+- **maas-id**: (Required) The ID of the sending maas operator.
+- **addressed-to**: (Optional) The ID of the maas operator that has to receive this message.
+
+#### Query Parameters
+
+- **state**: (Optional) Filter bookings by their state.
+  - **Allowable Values**: NEW, PENDING, REJECTED, RELEASED, EXPIRED, CONDITIONAL_CONFIRMED, CONFIRMED, CANCELLED, STARTED, FINISHED
+- **min-time**: (Optional) Start time of the time window of all bookings (partially) overlapping with this time window.
+  - **Format**: ISO 8601 date-time
+- **max-time**: (Optional) End time of the time window of all bookings (partially) overlapping with this time window.
+  - **Format**: ISO 8601 date-time
+- **min-price**: (Optional) Minimum search price, for the whole trip.
+- **max-price**: (Optional) Maximum search price, for the whole trip.
+- **contains-asset-type**: (Optional) Filter the bookings on the ID of the asset type. Should return all complete bookings containing a leg executed with this asset type.
+
+#### Responses
+
+- **200**: Operation successful.
+  - **Content**: `application/json`
+  - **Schema**: List of [Booking](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Booking.kt)
+- **401**: Unauthorized - The client must authenticate itself to get the requested response.
+  - **Content**: `application/json`
+  - **Schema**: [Error](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Error.kt)
+- **403**: Forbidden - The client does not have access rights to the content, i.e., they are unauthorized, so the server is rejecting to give a proper response.
+  - **Content**: `application/json`
+  - **Schema**: [Error](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Error.kt)
+- **404**: Not Found - The requested resources do not exist, or the requester is not authorized to see it or know it exists.
+
+#### Example Request
+```http
+GET /bookings?state=CONFIRMED&min-time=2024-06-25T10:00:00Z&max-time=2024-06-25T12:00:00Z HTTP/1.1
+Host: api.shared-mobility.com
+Accept-Language: en
+Api: TOMP
+Api-Version: 1.0
+maas-id: maasOperator123
+addressed-to: toOperator456
+```
+
+#### Example Response
+```json
+[
+  {
+    "id": "booking123",
+    "state": "CONFIRMED",
+    "from": {
+      "name": "Start Location",
+      "coordinates": {
+        "latitude": 59.911491,
+        "longitude": 10.757933
+      }
+    },
+    "to": {
+      "name": "End Location",
+      "coordinates": {
+        "latitude": 59.912491,
+        "longitude": 10.758933
+      }
+    },
+    "startTime": "2024-06-25T10:00:00Z",
+    "endTime": "2024-06-25T11:00:00Z",
+    "assetType": {
+      "id": "assetType123",
+      "name": "Electric Scooter"
+    },
+    "price": {
+      "amount": 9.95,
+      "currency": "USD"
+    }
+  }
+]
+```
+
+### Response Model: Booking
+
+The response model can be found in the [Booking](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Booking.kt) class.
+
+This endpoint provides detailed information about bookings that match the specified filters, including the booking ID, state, start and end locations, times, asset type, and price. This is crucial for managing and tracking bookings efficiently.
