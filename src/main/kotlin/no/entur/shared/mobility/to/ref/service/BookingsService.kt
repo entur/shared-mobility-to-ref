@@ -15,8 +15,8 @@ import no.entur.shared.mobility.to.ref.dto.OneStopBookingRequest
 import no.entur.shared.mobility.to.ref.service.TransportOperator.ALL_IMPLEMENTING_OPERATOR
 import no.entur.shared.mobility.to.ref.service.TransportOperator.BIKE_OPERATOR
 import no.entur.shared.mobility.to.ref.service.TransportOperator.SCOOTER_OPERATOR
-import no.entur.shared.mobility.to.ref.service.TransportOperator.SCOOTER_OPERATOR_NO_DEPOSIT
 import no.entur.shared.mobility.to.ref.service.TransportOperator.SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE
+import no.entur.shared.mobility.to.ref.service.TransportOperator.SCOOTER_OPERATOR_NO_DEPOSIT
 import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
 import java.util.UUID
@@ -37,7 +37,9 @@ class BookingsService {
         containsAssetType: String?,
     ): List<Booking> {
         return when (addressedTo) {
-            SCOOTER_OPERATOR, SCOOTER_OPERATOR_NO_DEPOSIT, SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> throw NotImplementedError()
+            SCOOTER_OPERATOR -> throw NotImplementedError()
+            SCOOTER_OPERATOR_NO_DEPOSIT -> throw NotImplementedError()
+            SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> throw NotImplementedError()
             BIKE_OPERATOR -> throw NotImplementedError()
             ALL_IMPLEMENTING_OPERATOR -> listOf(booking)
             else -> throw NotImplementedError()
@@ -55,7 +57,9 @@ class BookingsService {
     ): Booking {
         val booking: Booking =
             when (addressedTo) {
-                SCOOTER_OPERATOR, SCOOTER_OPERATOR_NO_DEPOSIT, SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> throw NotImplementedError()
+                SCOOTER_OPERATOR -> throw NotImplementedError()
+                SCOOTER_OPERATOR_NO_DEPOSIT -> throw NotImplementedError()
+                SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> throw NotImplementedError()
                 BIKE_OPERATOR -> throw NotImplementedError()
                 ALL_IMPLEMENTING_OPERATOR -> booking
                 else -> throw NotImplementedError()
@@ -164,23 +168,25 @@ class BookingsService {
         addressedTo: String?,
         oneStopBookingRequest: OneStopBookingRequest,
     ): Booking {
-        val booking = when (addressedTo) {
-            SCOOTER_OPERATOR_NO_DEPOSIT -> bookingWithoutDeposit
-            SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> bookingHigherDepositAmountThanTotalAmount
-            SCOOTER_OPERATOR -> booking
-            BIKE_OPERATOR -> booking
-            ALL_IMPLEMENTING_OPERATOR -> booking
-            else -> throw NotImplementedError()
-        }
+        val booking =
+            when (addressedTo) {
+                SCOOTER_OPERATOR_NO_DEPOSIT -> bookingWithoutDeposit
+                SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> bookingHigherDepositAmountThanTotalAmount
+                SCOOTER_OPERATOR -> booking
+                BIKE_OPERATOR -> booking
+                ALL_IMPLEMENTING_OPERATOR -> booking
+                else -> throw NotImplementedError()
+            }
         return booking.copy(
             customer = oneStopBookingRequest.customer,
             from = oneStopBookingRequest.from,
-            legs = listOf(
-                leg.copy(
-                    from = oneStopBookingRequest.from,
-                    asset = asset.copy(id = oneStopBookingRequest.useAssets?.first() ?: UUID.randomUUID().toString()),
+            legs =
+                listOf(
+                    leg.copy(
+                        from = oneStopBookingRequest.from,
+                        asset = asset.copy(id = oneStopBookingRequest.useAssets?.first() ?: UUID.randomUUID().toString()),
+                    ),
                 ),
-            ),
         )
     }
 

@@ -71,15 +71,15 @@ val conditionsNoDeposit
                 conditionType = "ConditionRequireOffboardingSteps",
                 id = "deposit50eu",
                 steps =
-                listOf(
-                    OffBoardingStep(
-                        type = OffBoardingStep.Type.PLAIN_TEXT,
-                        goal = OffBoardingStep.Goal.INSTRUCTIONS,
-                        text = "Take a picture of the parked mobility to finish the trip",
-                        showTime = OffBoardingStep.ShowTime.START_FINISHING,
-                        action = OffBoardingStep.Action.SEND_EVIDENCE_PARKED,
+                    listOf(
+                        OffBoardingStep(
+                            type = OffBoardingStep.Type.PLAIN_TEXT,
+                            goal = OffBoardingStep.Goal.INSTRUCTIONS,
+                            text = "Take a picture of the parked mobility to finish the trip",
+                            showTime = OffBoardingStep.ShowTime.START_FINISHING,
+                            action = OffBoardingStep.Action.SEND_EVIDENCE_PARKED,
+                        ),
                     ),
-                ),
             ),
         )
 
@@ -99,14 +99,14 @@ val conditionsWithHighDepositAmount
                 conditionType = "ConditionRequireOffboardingSteps",
                 id = "deposit50eu",
                 steps =
-                listOf(
-                    OffBoardingStep(
-                        type = OffBoardingStep.Type.PLAIN_TEXT,
-                        goal = OffBoardingStep.Goal.INSTRUCTIONS,
-                        text = "Take a picture of the parked mobility to finish the trip",
-                        showTime = OffBoardingStep.ShowTime.START_FINISHING,
-                        action = OffBoardingStep.Action.SEND_EVIDENCE_PARKED,
+                    listOf(
+                        OffBoardingStep(
+                            type = OffBoardingStep.Type.PLAIN_TEXT,
+                            goal = OffBoardingStep.Goal.INSTRUCTIONS,
+                            text = "Take a picture of the parked mobility to finish the trip",
+                            showTime = OffBoardingStep.ShowTime.START_FINISHING,
+                            action = OffBoardingStep.Action.SEND_EVIDENCE_PARKED,
+                        ),
                     ),
-                ),
             ),
         )
