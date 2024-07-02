@@ -63,3 +63,50 @@ val conditions
                     ),
             ),
         )
+
+val conditionsNoDeposit
+    get() =
+        listOf(
+            ConditionRequireOffboardingSteps(
+                conditionType = "ConditionRequireOffboardingSteps",
+                id = "deposit50eu",
+                steps =
+                listOf(
+                    OffBoardingStep(
+                        type = OffBoardingStep.Type.PLAIN_TEXT,
+                        goal = OffBoardingStep.Goal.INSTRUCTIONS,
+                        text = "Take a picture of the parked mobility to finish the trip",
+                        showTime = OffBoardingStep.ShowTime.START_FINISHING,
+                        action = OffBoardingStep.Action.SEND_EVIDENCE_PARKED,
+                    ),
+                ),
+            ),
+        )
+
+val conditionsWithHighDepositAmount
+    get() =
+        listOf(
+            ConditionDeposit(
+                conditionType = "ConditionDeposit",
+                id = "deposit50eu",
+                amount = 125.00F,
+                amountExVat = 100.00F,
+                currencyCode = "NOK",
+                vatRate = 25F,
+                vatCountryCode = "NO",
+            ),
+            ConditionRequireOffboardingSteps(
+                conditionType = "ConditionRequireOffboardingSteps",
+                id = "deposit50eu",
+                steps =
+                listOf(
+                    OffBoardingStep(
+                        type = OffBoardingStep.Type.PLAIN_TEXT,
+                        goal = OffBoardingStep.Goal.INSTRUCTIONS,
+                        text = "Take a picture of the parked mobility to finish the trip",
+                        showTime = OffBoardingStep.ShowTime.START_FINISHING,
+                        action = OffBoardingStep.Action.SEND_EVIDENCE_PARKED,
+                    ),
+                ),
+            ),
+        )

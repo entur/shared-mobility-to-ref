@@ -2,6 +2,8 @@ package no.entur.shared.mobility.to.ref.service
 
 import no.entur.shared.mobility.to.ref.data.asset
 import no.entur.shared.mobility.to.ref.data.booking
+import no.entur.shared.mobility.to.ref.data.bookingHigherDepositAmountThanTotalAmount
+import no.entur.shared.mobility.to.ref.data.bookingWithoutDeposit
 import no.entur.shared.mobility.to.ref.data.leg
 import no.entur.shared.mobility.to.ref.data.notification
 import no.entur.shared.mobility.to.ref.dto.Booking
@@ -13,6 +15,8 @@ import no.entur.shared.mobility.to.ref.dto.OneStopBookingRequest
 import no.entur.shared.mobility.to.ref.service.TransportOperator.ALL_IMPLEMENTING_OPERATOR
 import no.entur.shared.mobility.to.ref.service.TransportOperator.BIKE_OPERATOR
 import no.entur.shared.mobility.to.ref.service.TransportOperator.SCOOTER_OPERATOR
+import no.entur.shared.mobility.to.ref.service.TransportOperator.SCOOTER_OPERATOR_NO_DEPOSIT
+import no.entur.shared.mobility.to.ref.service.TransportOperator.SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE
 import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
 import java.util.UUID
@@ -33,7 +37,7 @@ class BookingsService {
         containsAssetType: String?,
     ): List<Booking> {
         return when (addressedTo) {
-            SCOOTER_OPERATOR -> throw NotImplementedError()
+            SCOOTER_OPERATOR, SCOOTER_OPERATOR_NO_DEPOSIT, SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> throw NotImplementedError()
             BIKE_OPERATOR -> throw NotImplementedError()
             ALL_IMPLEMENTING_OPERATOR -> listOf(booking)
             else -> throw NotImplementedError()
@@ -51,7 +55,7 @@ class BookingsService {
     ): Booking {
         val booking: Booking =
             when (addressedTo) {
-                SCOOTER_OPERATOR -> throw NotImplementedError()
+                SCOOTER_OPERATOR, SCOOTER_OPERATOR_NO_DEPOSIT, SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> throw NotImplementedError()
                 BIKE_OPERATOR -> throw NotImplementedError()
                 ALL_IMPLEMENTING_OPERATOR -> booking
                 else -> throw NotImplementedError()
@@ -69,6 +73,8 @@ class BookingsService {
     ): Booking {
         val booking: Booking =
             when (addressedTo) {
+                SCOOTER_OPERATOR_NO_DEPOSIT -> bookingWithoutDeposit
+                SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> bookingHigherDepositAmountThanTotalAmount
                 SCOOTER_OPERATOR -> booking
                 BIKE_OPERATOR -> booking
                 ALL_IMPLEMENTING_OPERATOR -> booking
@@ -158,25 +164,24 @@ class BookingsService {
         addressedTo: String?,
         oneStopBookingRequest: OneStopBookingRequest,
     ): Booking {
-        val booking =
-            booking.copy(
-                customer = oneStopBookingRequest.customer,
-                from = oneStopBookingRequest.from,
-                legs =
-                    listOf(
-                        leg.copy(
-                            from = oneStopBookingRequest.from,
-                            asset = asset.copy(id = oneStopBookingRequest.useAssets?.first() ?: UUID.randomUUID().toString()),
-                        ),
-                    ),
-            )
-
-        return when (addressedTo) {
+        val booking = when (addressedTo) {
+            SCOOTER_OPERATOR_NO_DEPOSIT -> bookingWithoutDeposit
+            SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> bookingHigherDepositAmountThanTotalAmount
             SCOOTER_OPERATOR -> booking
             BIKE_OPERATOR -> booking
             ALL_IMPLEMENTING_OPERATOR -> booking
             else -> throw NotImplementedError()
         }
+        return booking.copy(
+            customer = oneStopBookingRequest.customer,
+            from = oneStopBookingRequest.from,
+            legs = listOf(
+                leg.copy(
+                    from = oneStopBookingRequest.from,
+                    asset = asset.copy(id = oneStopBookingRequest.useAssets?.first() ?: UUID.randomUUID().toString()),
+                ),
+            ),
+        )
     }
 
     fun bookingsPost(

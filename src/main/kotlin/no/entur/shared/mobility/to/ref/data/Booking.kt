@@ -25,6 +25,36 @@ val booking
             actualArrivalTime = OffsetDateTime.now().plusMinutes(12),
         )
 
+val bookingWithoutDeposit
+    get() =
+        Booking(
+            id = UUID.randomUUID().toString(),
+            from = place,
+            customer = Customer(id = "A0-123456"),
+            state = BookingState.CONFIRMED,
+            legs = listOf(legWithoutDeposit),
+            pricing = finalFare,
+            departureTime = OffsetDateTime.now(),
+            arrivalTime = OffsetDateTime.now().plusMinutes(12),
+            actualDepartureTime = OffsetDateTime.now(),
+            actualArrivalTime = OffsetDateTime.now().plusMinutes(12),
+        )
+
+val bookingHigherDepositAmountThanTotalAmount
+    get() =
+        Booking(
+            id = UUID.randomUUID().toString(),
+            from = place,
+            customer = Customer(id = "A0-123456"),
+            state = BookingState.CONFIRMED,
+            legs = listOf(legWithHighDepositAmount),
+            pricing = finalFare,
+            departureTime = OffsetDateTime.now(),
+            arrivalTime = OffsetDateTime.now().plusMinutes(12),
+            actualDepartureTime = OffsetDateTime.now(),
+            actualArrivalTime = OffsetDateTime.now().plusMinutes(12),
+        )
+
 val place
     get() =
         Place(
