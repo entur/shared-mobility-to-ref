@@ -11,15 +11,13 @@ This is a shorten list of all the endpoints supported by the [TOMP standard](htt
 
 You can find the Swagger Petstore documentation for this app [here](https://petstore.swagger.io/?url=https://api.dev.entur.io/api-docs/shared-mobility-to-ref)
 
-| Endpoints                                                                             | Purpose                                             |
-|---------------------------------------------------------------------------------------|-----------------------------------------------------|
-| [GET /operator/meta](#tomp-api-implementation-guide-get-operatormeta)                 | Describes the running implementations               |
-| [POST /bookings/one-stop](#tomp-api-implementation-guide-post-bookingsone-stop)       | Creates a one-stop booking                          |
-| [POST /legs/{id}/events](#tomp-api-implementation-guide-post-legsidevents)            | Alters the state of a leg                           |
-| [GET /bookings/{id}](#tomp-api-implementation-guide-get-bookingsid)                   | Returns a booking given id                          |
-| [POST /support](#tomp-api-implementation-guide-post-support)                          | Creates a request for support from end user         |
-| [GET /support/{id}/status](#tomp-api-implementation-guide-get-supportidstatus)        | Gets the status report of the support request       |
-| [GET /legs/{id}](#tomp-api-implementation-guide-get-legsid)                           | Retrieves the latest summary of a leg               |
+| Endpoints                                                                             | Purpose                                               |
+|---------------------------------------------------------------------------------------|-------------------------------------------------------|
+| [GET /operator/meta](#tomp-api-implementation-guide-get-operatormeta)                 | Describes the running implementations                 |
+| [POST /bookings/one-stop](#tomp-api-implementation-guide-post-bookingsone-stop)       | Creates a one-stop booking                            |
+| [POST /legs/{id}/events](#tomp-api-implementation-guide-post-legsidevents)            | Alters the state of a leg                             |
+| [GET /bookings/{id}](#tomp-api-implementation-guide-get-bookingsid)                   | Returns a booking given id                            |
+| [GET /legs/{id}](#tomp-api-implementation-guide-get-legsid)                           | Retrieves the latest summary of a leg                 |
 | [GET /bookings](#tomp-api-implementation-guide-get-bookings)                          | Retrieves a list of bookings based on various filters |
 
 ### TOMP API Implementation Guide: GET "/operator/meta"
@@ -148,157 +146,6 @@ addressed-to: receiver-maas-id
 The response will be a `Booking` object. The model can be found [here](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Booking.kt). The model has many optional variables because it is designed to support booking of many different modalities, but because Entur currently only supports booking of micro mobility, only these variables are required:
 
 Required fields are the same as described in the POST /bookings/one-stop guide above.
-
-### TOMP API Implementation Guide: POST "/support"
-
-This guide outlines how transport operators can implement the `POST "/support/"` endpoint, which is used to submit a support request. The controller code can be found [here](src/main/kotlin/no/entur/shared/mobility/to/ref/controller/SupportController.kt).
-
-#### Request Headers:
-- **Accept-Language**: (Required) A list of the languages/localizations the user would like to see the results in. For user privacy and ease of use on the TO side, this list should be kept as short as possible, ideally just one language tag from the list in operator/information.
-- **Api**: (Required) API description, can be TOMP or maybe other (specific/derived) API definitions.
-- **Api-Version**: (Required) Version of the API.
-- **maas-id**: (Required) The ID of the sending maas operator.
-- **addressed-to**: (Optional) The ID of the maas operator that has to receive this message.
-
-#### Request Body:
-- **SupportRequest**: (Optional) The support request object containing details about the issue.
-
-#### Response:
-- **SupportStatus**: The response object containing the status of the support request.
-
-### Request Model: SupportRequest
-```kotlin
-data class SupportRequest(
-    val id: String? = null, // the booking id
-    val supportType: SupportType? = null,
-    val location: Place? = null,
-    val time: OffsetDateTime? = null,
-    val priority: Priority? = null, // the priority of the support request.
-    val contactInformationEndUser: String? = null, // contact information of the end user in case of direct response requests, like phone number
-    val comment: String? = null,
-    val requestedResponseTime: Double? = null, // time to respond in minutes.
-    val urls: List<String>? = null // urls to clarify the support request e.g. pictures showing damage
-)
-```
-
-- **id**: The booking id.
-- **supportType**: The type of support request.
-  - **BROKEN_DOWN**
-  - **NOT_AT_LOCATION**
-  - **MISSING_AFTER_PAUSE**
-  - **NOT_CLEAN**
-  - **NOT_AVAILABLE**
-  - **UNABLE_TO_OPEN**
-  - **UNABLE_TO_CLOSE**
-  - **API_TECHNICAL**
-  - **API_FUNCTIONAL**
-  - **ACCIDENT**
-  - **OTHER**
-- **location**: The location of the issue.
-  - **name**: The name of the place.
-  - **coordinates**: The coordinates of the place.
-    - **longitude**: Longitude of the place.
-    - **latitude**: Latitude of the place.
-- **time**: The time of the issue (set to current time).
-- **priority**: The priority of the support request (set to OTHER).
-  - **ERROR_CANNOT_CONTINUE**
-  - **ERROR_CAN_CONTINUE**
-  - **DISTURBING_ISSUE**
-  - **QUESTION**
-  - **OTHER**
-- **contactInformationEndUser**: Contact information of the end user, like phone number.
-- **comment**: Additional comments.
-- **requestedResponseTime**: Time to respond in minutes (set to 10.0).
-- **urls**: URLs to clarify the support request, e.g., pictures showing damage (base64-encoded image from the user).
-
-#### Example Usage:
-```http
-POST /support/
-Content-Type: application/json
-Accept-Language: en
-Api: TOMP
-Api-Version: 1.0
-maas-id: example-maas-id
-
-{
-  "id": "booking123",
-  "supportType": "BROKEN_DOWN",
-  "location": {
-    "name": "Example Location",
-    "coordinates": {
-      "latitude": 59.9139,
-      "longitude": 10.7522
-    }
-  },
-  "time": "2024-05-29T08:30:00Z",
-  "priority": "ERROR_CANNOT_CONTINUE",
-  "contactInformationEndUser": "+4712345678",
-  "comment": "The bike is broken down and cannot be used.",
-  "requestedResponseTime": 30,
-  "urls": "data:image/png;base64,UklGRtA5AQBXRUJQVlA4IPBmAADQ7AGdASoABAAEPjEYiEQiIYj9CBABglnbv"
-}
-```
-
-### Response Model: SupportStatus
-
-```kotlin
-data class SupportStatus(
-    val status: String? = null, // current status of the support request
-    val timeToResolution: Int? = null // time in minutes to expected resolution of support request
-)
-```
-
-- **status**: The current status of the support request.
-  - **PROCESSING**
-  - **UPDATE_REQUESTED**
-  - **RESOLVED**
-  - **CANCELLED**
-- **timeToResolution**: Time in minutes to expected resolution of the support request.
-
-### Example Response:
-```json
-{
-  "status": "PROCESSING",
-  "timeToResolution": 9
-}
-```
-
-### TOMP API Implementation Guide: GET "/support/{id}/status"
-
-This guide outlines how transport operators can implement the `GET "/support/{id}/status"` endpoint, which is used to retrieve the current status of a support request. The controller code can be found [here](src/main/kotlin/no/entur/shared/mobility/to/ref/controller/SupportController.kt).
-
-Response model can be found [here](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/SupportStatus.kt). The model includes several optional variables, but for this endpoint, only the following variables are used: `status` and `timeToResolution`. These are the same fields used in the response for the POST "/support" endpoint.
-
-### Endpoint: GET "/support/{id}/status"
-Retrieve the current status of a support request.
-
-#### Headers
-- **Accept-Language** (required): A list of the languages/localizations the user would like to see the results in. For user privacy and ease of use on the transport operator's side, this list should be kept as short as possible, ideally just one language tag from the list in `operator/information`.
-- **Api** (required): API description, can be TOMP or other specific/derived API definitions.
-- **Api-Version** (required): Version of the API.
-- **maas-id** (required): The ID of the sending Mobility as a Service (MaaS) operator.
-- **addressed-to** (optional): The ID of the MaaS operator that has to receive this message.
-
-#### Path Parameters
-- **id** (required): Booking identifier.
-
-#### Example Request
-```http
-GET /support/12345/status HTTP/1.1
-Host: api.example.com
-Accept-Language: en
-Api: TOMP
-Api-Version: 1.0
-maas-id: maas-operator-1
-addressed-to: support-operator-1
-```
-
-#### Example Response
-For the response details, refer to the example response in the documentation for the POST "/support" endpoint.
-
-### Response Model: SupportStatus
-
-For the response model details, refer to the documentation for the POST "/support" endpoint. This endpoint uses the same `SupportStatus` model, including the fields `status` and `timeToResolution`.
 
 
 ### TOMP API Implementation Guide: GET "/legs/{id}"
