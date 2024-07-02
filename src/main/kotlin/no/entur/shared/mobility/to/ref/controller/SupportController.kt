@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("\${api.base-path}")
 class SupportController(private val supportService: SupportService) {
     @Operation(
+        hidden = true,
         operationId = "supportIdStatusGet",
         description = """Gets the status report of the support request. Last status (highest order number) is the current status""",
         responses = [
@@ -100,6 +101,7 @@ class SupportController(private val supportService: SupportService) {
     }
 
     @Operation(
+        hidden = true,
         operationId = "supportPost",
         description = """creates a request for support from end user via MP""",
         responses = [
