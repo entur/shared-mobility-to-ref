@@ -23,6 +23,8 @@ import no.entur.shared.mobility.to.ref.dto.SystemRegion
 import no.entur.shared.mobility.to.ref.service.TransportOperator.ALL_IMPLEMENTING_OPERATOR
 import no.entur.shared.mobility.to.ref.service.TransportOperator.BIKE_OPERATOR
 import no.entur.shared.mobility.to.ref.service.TransportOperator.SCOOTER_OPERATOR
+import no.entur.shared.mobility.to.ref.service.TransportOperator.SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE
+import no.entur.shared.mobility.to.ref.service.TransportOperator.SCOOTER_OPERATOR_NO_DEPOSIT
 import org.springframework.stereotype.Service
 
 @Service
@@ -86,6 +88,8 @@ class OperatorService {
         addressedTo: String?,
     ): List<EndpointImplementation> {
         return when (addressedTo) {
+            SCOOTER_OPERATOR_NO_DEPOSIT -> scooterOperatorEndpointImplementations
+            SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> scooterOperatorEndpointImplementations
             SCOOTER_OPERATOR -> scooterOperatorEndpointImplementations
             BIKE_OPERATOR -> bikeOperatorEndpointImplementations
             ALL_IMPLEMENTING_OPERATOR -> allEndpointImplementations
