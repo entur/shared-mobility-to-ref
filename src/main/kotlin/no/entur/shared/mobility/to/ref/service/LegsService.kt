@@ -3,6 +3,8 @@ package no.entur.shared.mobility.to.ref.service
 import no.entur.shared.mobility.to.ref.data.asset
 import no.entur.shared.mobility.to.ref.data.leg
 import no.entur.shared.mobility.to.ref.data.legProgress
+import no.entur.shared.mobility.to.ref.data.legWithHighDepositAmount
+import no.entur.shared.mobility.to.ref.data.legWithoutDeposit
 import no.entur.shared.mobility.to.ref.dto.Asset
 import no.entur.shared.mobility.to.ref.dto.ConfirmationRequest
 import no.entur.shared.mobility.to.ref.dto.Leg
@@ -12,6 +14,8 @@ import no.entur.shared.mobility.to.ref.dto.LegState
 import no.entur.shared.mobility.to.ref.service.TransportOperator.ALL_IMPLEMENTING_OPERATOR
 import no.entur.shared.mobility.to.ref.service.TransportOperator.BIKE_OPERATOR
 import no.entur.shared.mobility.to.ref.service.TransportOperator.SCOOTER_OPERATOR
+import no.entur.shared.mobility.to.ref.service.TransportOperator.SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE
+import no.entur.shared.mobility.to.ref.service.TransportOperator.SCOOTER_OPERATOR_NO_DEPOSIT
 import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
 
@@ -133,6 +137,8 @@ class LegsService {
     ): Leg {
         val leg: Leg =
             when (addressedTo) {
+                SCOOTER_OPERATOR_NO_DEPOSIT -> legWithoutDeposit
+                SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> legWithHighDepositAmount
                 SCOOTER_OPERATOR -> leg
                 BIKE_OPERATOR -> leg
                 ALL_IMPLEMENTING_OPERATOR -> leg
