@@ -86,7 +86,7 @@ val address
 val fare
     get() =
         Fare(
-            estimated = true,
+            estimated = false,
             description = "string",
             propertyClass = "string",
             parts = listOf(farePartFlex),
@@ -95,7 +95,7 @@ val fare
 val finalFare
     get() =
         Fare(
-            estimated = true,
+            estimated = false,
             description = "string",
             propertyClass = "string",
             parts = listOf(farePartFixedFinalPart),
