@@ -179,12 +179,13 @@ class BookingsService {
         return booking.copy(
             customer = oneStopBookingRequest.customer,
             from = oneStopBookingRequest.from,
-            legs = booking.legs?.map { leg ->
-                leg.copy(
-                    from = oneStopBookingRequest.from,
-                    asset = asset.copy(id = oneStopBookingRequest.useAssets?.first() ?: UUID.randomUUID().toString()),
-                )
-            }
+            legs =
+                booking.legs?.map { leg ->
+                    leg.copy(
+                        from = oneStopBookingRequest.from,
+                        asset = asset.copy(id = oneStopBookingRequest.useAssets?.first() ?: UUID.randomUUID().toString()),
+                    )
+                },
         )
     }
 
