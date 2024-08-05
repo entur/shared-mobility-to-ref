@@ -4,7 +4,6 @@ import no.entur.shared.mobility.to.ref.data.asset
 import no.entur.shared.mobility.to.ref.data.booking
 import no.entur.shared.mobility.to.ref.data.bookingHigherDepositAmountThanTotalAmount
 import no.entur.shared.mobility.to.ref.data.bookingWithoutDeposit
-import no.entur.shared.mobility.to.ref.data.leg
 import no.entur.shared.mobility.to.ref.data.notification
 import no.entur.shared.mobility.to.ref.dto.Booking
 import no.entur.shared.mobility.to.ref.dto.BookingOperation
@@ -181,12 +180,12 @@ class BookingsService {
             customer = oneStopBookingRequest.customer,
             from = oneStopBookingRequest.from,
             legs =
-                listOf(
+                booking.legs?.map { leg ->
                     leg.copy(
                         from = oneStopBookingRequest.from,
                         asset = asset.copy(id = oneStopBookingRequest.useAssets?.first() ?: UUID.randomUUID().toString()),
-                    ),
-                ),
+                    )
+                },
         )
     }
 
