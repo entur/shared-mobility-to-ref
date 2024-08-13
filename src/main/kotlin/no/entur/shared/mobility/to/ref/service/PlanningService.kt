@@ -43,8 +43,8 @@ class PlanningService {
         addressedTo: String?,
         planningRequest: PlanningRequest?,
     ): Planning {
-        // If vehicleCode is present this should be used to find the corresponding assetId / vehicleId / bike_id
-        val vehicleCode = planningRequest?.from?.extraInfo?.get("vehicleCode") as String
+        // If extraInfo.vehicleCode is present this should be used to find the corresponding assetId / vehicleId / bike_id
+        val extraInfo = planningRequest?.from?.extraInfo
 
         val booking =
             when (addressedTo) {
@@ -67,14 +67,14 @@ class PlanningService {
                                     stateOfCharge = 50,
                                     overriddenProperties =
                                         AssetProperties(
-                                            meta = mapOf(Pair("vehicleCode", vehicleCode)),
+                                            meta = extraInfo,
                                         ),
                                 ) ?: Asset(
                                     id = "1234",
                                     stateOfCharge = 50,
                                     overriddenProperties =
                                         AssetProperties(
-                                            meta = mapOf(Pair("vehicleCode", vehicleCode)),
+                                            meta = extraInfo,
                                         ),
                                 ),
                         )
