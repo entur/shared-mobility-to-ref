@@ -7,7 +7,6 @@ import no.entur.shared.mobility.to.ref.data.bookingWithoutDeposit
 import no.entur.shared.mobility.to.ref.data.planning
 import no.entur.shared.mobility.to.ref.dto.Asset
 import no.entur.shared.mobility.to.ref.dto.AssetProperties
-import no.entur.shared.mobility.to.ref.dto.Leg
 import no.entur.shared.mobility.to.ref.dto.Planning
 import no.entur.shared.mobility.to.ref.dto.PlanningRequest
 import no.entur.shared.mobility.to.ref.service.TransportOperator.ALL_IMPLEMENTING_OPERATOR
@@ -57,29 +56,34 @@ class PlanningService {
                 else -> throw NotImplementedError()
             }
 
-        val bookingWithNewData = booking.copy(
-            legs = booking.legs?.map { leg ->
-                leg.copy(
-                    asset = leg.asset?.copy(
-                        id = "1234",
-                        stateOfCharge = 50,
-                        overriddenProperties = AssetProperties(
-                            meta = mapOf(Pair("vehicleCode", vehicleCode))
+        val bookingWithNewData =
+            booking.copy(
+                legs =
+                    booking.legs?.map { leg ->
+                        leg.copy(
+                            asset =
+                                leg.asset?.copy(
+                                    id = "1234",
+                                    stateOfCharge = 50,
+                                    overriddenProperties =
+                                        AssetProperties(
+                                            meta = mapOf(Pair("vehicleCode", vehicleCode)),
+                                        ),
+                                ) ?: Asset(
+                                    id = "1234",
+                                    stateOfCharge = 50,
+                                    overriddenProperties =
+                                        AssetProperties(
+                                            meta = mapOf(Pair("vehicleCode", vehicleCode)),
+                                        ),
+                                ),
                         )
-                    ) ?: Asset(
-                        id = "1234",
-                        stateOfCharge = 50,
-                        overriddenProperties = AssetProperties(
-                            meta = mapOf(Pair("vehicleCode", vehicleCode))
-                        )
-                    )
-                )
-            }
-        )
+                    },
+            )
 
         return Planning(
             validUntil = OffsetDateTime.now().plusMinutes(5),
-            options = listOf(bookingWithNewData)
+            options = listOf(bookingWithNewData),
         )
     }
 }
