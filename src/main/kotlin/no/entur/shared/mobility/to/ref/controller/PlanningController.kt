@@ -99,7 +99,6 @@ class PlanningController(private val planningService: PlanningService) {
     }
 
     @Operation(
-        hidden = true,
         operationId = "planningOffersPost",
         description = """Returns bookable offers for the given travel plan. <p>Start time can be defined, but is optional. If startTime is 
             |not provided, but required by the third party API, a default value of "Date.now()" is used. [from MaaS-API /listing]. During 

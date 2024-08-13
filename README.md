@@ -38,6 +38,37 @@ Required variables in the response:
   - **paths**: Should be one of the types listed [here](src/main/kotlin/no/entur/shared/mobility/to/ref/data/EndpointType.kt).
 - The rest of the "required" variables can be set as an empty list since it's not supported in Entur's implementation yet.
 
+### TOMP API Implementation Guide: POST "/planning/offers" 
+This guide outlines how transport operator's can implement the `POST "/planning/offers"` endpoint,
+which right now is only used to go from the vehicleCode (last part of the QR-code) to an offer that includes the assetId/vehicleId/bike_id.
+
+When the shared-mobility api receives a QR-code, we need to find and send the generic UUID used in the GBFS data to the clients, 
+so that they can show the user information about a modality before starting the trip.
+
+Example for how to get from the vehicleCode "157103" to the assetId/vehicleId/bike_id "YRY:Vehicle:ea110245-131d-3109-ba91-b5bd57701934":
+
+#### Example request
+- **from**: 
+  - **coordinates**: 
+    - **lng**: 00.00
+    - **lat**: 00.00
+  - **extraInfo**
+    - **vehicleCode**: "157103"
+
+#### Example response
+- **validUntil**: “2024-08-07T05:53:04.758”
+- **options**: [
+  - **legs**: [
+    - **asset**:
+      - **id**: "YRY:Vehicle:ea110245-131d-3109-ba91-b5bd57701934"
+      - **stateOfCharge**: 47
+      - **overriddenProperties**:
+        - **meta**:
+          - **vehicleCode**: "157103"
+  - ]
+- ]
+
+
 ### TOMP API Implementation Guide: POST "/bookings/one-stop"
 This guide outlines how transport operator's can implement the `POST "/bookings/one-stop"` endpoint,
 which is used to create a one-stop booking. This is for travels without a specified final destination.
@@ -77,6 +108,7 @@ but because Entur currently only supports booking of micromobility, only these v
   - **asset**: The booked asset for the trip. Model: [Asset](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Asset.kt)
     - **id** Unique identifier. Should be the same id as given from the useAssets request variable.
     - **stateOfCharge** The current charge of the vehicle. Integer 0-100. This should be kept up to date during trip execution
+    - **overriddenProperties.meta.vehicleCode** If you have your own vehicleCode for the modality, this field should always be set
   - **pricing**: Price plan for the leg witt a fixed part for start cost and one ore more flexible parts where applicable Model: [Fare]
     (src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Fare.kt)
   - **conditions**: The conditions that apply to this leg. 
