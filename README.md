@@ -11,14 +11,34 @@ This is a shorten list of all the endpoints supported by the [TOMP standard](htt
 
 You can find the Swagger Petstore documentation for this app [here](https://petstore.swagger.io/?url=https://api.dev.entur.io/api-docs/shared-mobility-to-ref)
 
-| Endpoints                                                                             | Purpose                                               |
-|---------------------------------------------------------------------------------------|-------------------------------------------------------|
-| [GET /operator/meta](#tomp-api-implementation-guide-get-operatormeta)                 | Describes the running implementations                 |
-| [POST /bookings/one-stop](#tomp-api-implementation-guide-post-bookingsone-stop)       | Creates a one-stop booking                            |
-| [POST /legs/{id}/events](#tomp-api-implementation-guide-post-legsidevents)            | Alters the state of a leg                             |
-| [GET /bookings/{id}](#tomp-api-implementation-guide-get-bookingsid)                   | Returns a booking given id                            |
-| [GET /legs/{id}](#tomp-api-implementation-guide-get-legsid)                           | Retrieves the latest summary of a leg                 |
-| [GET /bookings](#tomp-api-implementation-guide-get-bookings)                          | Retrieves a list of bookings based on various filters |
+| Endpoints                                                                       | Purpose                                               |
+|---------------------------------------------------------------------------------|-------------------------------------------------------|
+| [GET /operator/meta](#tomp-api-implementation-guide-get-operatormeta)           | Describes the running implementations                 |
+| [POST /planning/offers](#tomp-api-implementation-guide-post-planningoffers)     | Convert QR-code to assetId/vehicleId/bike_id          |
+| [POST /bookings/one-stop](#tomp-api-implementation-guide-post-bookingsone-stop) | Creates a one-stop booking                            |
+| [POST /legs/{id}/events](#tomp-api-implementation-guide-post-legsidevents)      | Alters the state of a leg                             |
+| [GET /bookings/{id}](#tomp-api-implementation-guide-get-bookingsid)             | Returns a booking given id                            |
+| [GET /legs/{id}](#tomp-api-implementation-guide-get-legsid)                     | Retrieves the latest summary of a leg                 |
+| [GET /bookings](#tomp-api-implementation-guide-get-bookings)                    | Retrieves a list of bookings based on various filters |
+
+### Request Headers
+The request headers are equal for all endpoints:
+
+- **Accept-Language**:
+  - **Description**: A list of the languages/localizations the user would like to see the results in. For user privacy and ease of use on the TO side, this list should be kept as short as possible, ideally just one language tag from the list in `operator/information`.
+  - **Required**: Yes
+- **Api**:
+  - **Description**: API description, can be TOMP or maybe other (specific/derived) API definitions.
+  - **Required**: Yes
+- **Api-Version**:
+  - **Description**: Version of the API.
+  - **Required**: Yes
+- **maas-id**:
+  - **Description**: The ID of the sending MaaS operator.
+  - **Required**: Yes
+- **addressed-to**:
+  - **Description**: The ID of the MaaS operator that has to receive this message.
+  - **Required**: No
 
 ### TOMP API Implementation Guide: GET "/operator/meta"
 
@@ -48,26 +68,43 @@ so that they can show the user information about a modality before starting the 
 Example for how to get from the vehicleCode "157103" to the assetId/vehicleId/bike_id "YRY:Vehicle:ea110245-131d-3109-ba91-b5bd57701934":
 
 #### Example request
-- **from**: 
-  - **coordinates**: 
-    - **lng**: 00.00
-    - **lat**: 00.00
-  - **extraInfo**
-    - **vehicleCode**: "157103"
+```json
+{
+  "from": {
+    "coordinates": {
+      "lng": 0.00,
+      "lat": 0.00
+    },
+    "extraInfo": {
+      "vehicleCode": "157103"
+    }
+  }
+}
+```
 
 #### Example response
-- **validUntil**: “2024-08-07T05:53:04.758”
-- **options**: [
-  - **legs**: [
-    - **asset**:
-      - **id**: "YRY:Vehicle:ea110245-131d-3109-ba91-b5bd57701934"
-      - **stateOfCharge**: 47
-      - **overriddenProperties**:
-        - **meta**:
-          - **vehicleCode**: "157103"
-  - ]
-- ]
-
+```json
+{
+  "validUntil": "2024-08-07T05:53:04.758",
+  "options": [
+    {
+      "legs": [
+        {
+          "asset": {
+            "id": "YRY:Vehicle:ea110245-131d-3109-ba91-b5bd57701934",
+            "stateOfCharge": 47,
+            "overriddenProperties": {
+              "meta": {
+                "vehicleCode": "157103"
+              }  
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+```
 
 ### TOMP API Implementation Guide: POST "/bookings/one-stop"
 This guide outlines how transport operator's can implement the `POST "/bookings/one-stop"` endpoint,
@@ -121,6 +158,86 @@ but because Entur currently only supports booking of micromobility, only these v
 departureTime, arrivalTime, actualDepartureTime and actualArrivalTime on the Booking is optional 
 since Entur only use the variables from the [Leg](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Leg.kt).
 
+#### Example request
+```json
+{
+  "customer": {
+    "id": "3519743"
+  },
+  "extraInfo": null,
+  "useAssets": [
+    "YVO:Vehicle:ca72ffde-d4b9-4f6a-996d-265d78c06817"
+  ],
+  "from": {
+    "coordinates": {
+      "lng": 0.00,
+      "lat": 0.00
+    }
+  }
+}
+```
+
+#### Example response
+```json
+{
+  "from": {
+    "name": "Oslo S",
+    "coordinates": {
+      "lat": 0.00,
+      "lng": 0.00
+    }
+  },
+  "pricing": {
+    "parts": [
+      {
+        "vatCountryCode": "NO",
+        "amount": 50,
+        "currencyCode": "NOK",
+        "vatRate": 25,
+        "amountExVat": 40,
+        "type": "FIXED"
+      }
+    ],
+    "estimated": false
+  },
+  "customer": {
+    "id": "123456"
+  },
+  "assetType": {
+    "id": "BLA:AssetType:MEH"
+  },
+  "arrivalTime": "2024-08-19T18:44:50.40197651+02:00",
+  "departureTime": "2024-08-19T18:32:50.401973859+02:00",
+  "actualArrivalTime": "2024-08-19T18:44:50.402119825+02:00",
+  "actualDepartureTime": "2024-08-19T18:32:50.402118727+02:00",
+  "state": "CONFIRMED",
+  "id": "0b52bd86-9a97-4459-bbaa-a109ea0ca637",
+  "legs": [
+    {
+      "asset": {
+        "stateOfCharge": 100,
+        "id": "YVO:Vehicle:ca72ffde-d4b9-4f6a-996d-265d78c06817",
+        "overriddenProperties": {
+          "meta": {
+            "vehicleCode": "1234ABCD"
+          }
+        }
+      },
+      "departureTime": "2024-08-19T18:32:50.401465241+02:00",
+      "actualDepartureTime": "2024-08-19T18:32:50.401602653+02:00",
+      "id": "string",
+      "from": {
+        "coordinates": {
+          "lng": 0,
+          "lat": 0
+        }
+      },
+      "state": "NOT_STARTED"
+    }
+  ]
+}
+```
+
 ### TOMP API Implementation Guide: POST "/legs/{id}/events"
 
 This guide outlines how transport operator's can implement the `POST "/legs/{id}/events"` endpoint, which is used to alter the state of a leg. 
@@ -139,30 +256,51 @@ Required fields are described in the [POST /bookings/one-stop](#tomp-api-impleme
 | FINISH          | Check the picture of the parked mobility if needed, set the event on the leg to FINISHED, set the state on the booking to FINISHED.                                                                                                                                                                                         |
 | CANCEL          | Set the event on the leg to CANCELLED, set the state of the booking to CANCELLED and make the mobility available for other users.                                                                                                                                                                                           |
 
+#### Example request
+```json
+{
+  "asset": {
+    "id": "a3d63620-e1d7-4c46-a4a4-b8b0fafe5b00"
+  },
+  "event": "SET_IN_USE",
+  "time": "2024-08-19T15:59:20.490991864+02:00"
+}
+```
+
+#### Example response
+```json
+{
+  "asset": {
+    "stateOfCharge": 100,
+    "id": "YVO:Vehicle:ca72ffde-d4b9-4f6a-996d-265d78c06817",
+    "overriddenProperties": {
+      "meta": {
+        "vehicleCode": "1234ABCD"
+      }
+    }
+  },
+  "departureTime": "2024-08-19T18:32:50.401465241+02:00",
+  "actualDepartureTime": "2024-08-19T18:32:50.401602653+02:00",
+  "id": "string",
+  "from": {
+    "coordinates": {
+      "lng": 0,
+      "lat": 0
+    }
+  },
+  "state": "NOT_STARTED"
+}
+```
+
 ### TOMP API Implementation Guide: GET "/bookings/{id}"
 This guide outlines how transport operators can implement the `GET "/bookings/{id}"` endpoint, which is used to retrieve booking details by booking ID. The controller code can be found [here](src/main/kotlin/no/entur/shared/mobility/to/ref/controller/BookingsController.kt).
 
-#### Request Headers:
-- **Accept-Language**:
-  - **Description**: A list of the languages/localizations the user would like to see the results in. For user privacy and ease of use on the TO side, this list should be kept as short as possible, ideally just one language tag from the list in `operator/information`.
-  - **Required**: Yes
-- **Api**:
-  - **Description**: API description, can be TOMP or maybe other (specific/derived) API definitions.
-  - **Required**: Yes
-- **Api-Version**:
-  - **Description**: Version of the API.
-  - **Required**: Yes
-- **maas-id**:
-  - **Description**: The ID of the sending MaaS operator.
-  - **Required**: Yes
-- **addressed-to**:
-  - **Description**: The ID of the MaaS operator that has to receive this message.
-  - **Required**: No
-
 #### Path Variables:
+```
 - **id**:
   - **Description**: Booking identifier.
   - **Required**: Yes
+```
 
 #### Example Request:
 ```http
@@ -195,14 +333,6 @@ This guide outlines how transport operators can implement the `GET "/legs/{id}"`
 - **HTTP Method**: GET
 - **Path**: `/legs/{id}`
 - **Produces**: `application/json`
-
-#### Request Headers
-
-- **Accept-Language**: (Required) A list of the languages/localizations the user would like to see the results in. For user privacy and ease of use on the TO side, this list should be kept as short as possible, ideally just one language tag from the list in `operator/information`.
-- **Api**: (Required) API description, can be TOMP or maybe other (specific/derived) API definitions.
-- **Api-Version**: (Required) Version of the API.
-- **maas-id**: (Required) The ID of the sending maas operator.
-- **addressed-to**: (Optional) The ID of the maas operator that has to receive this message.
 
 #### Path Variables
 
@@ -284,16 +414,8 @@ This guide outlines how transport operators can implement the `GET "/bookings"` 
 - **Path**: `/bookings`
 - **Produces**: `application/json`
 
-#### Request Headers
-
-- **Accept-Language**: (Required) A list of the languages/localizations the user would like to see the results in. For user privacy and ease of use on the TO side, this list should be kept as short as possible, ideally just one language tag from the list in `operator/information`.
-- **Api**: (Required) API description, can be TOMP or maybe other (specific/derived) API definitions.
-- **Api-Version**: (Required) Version of the API.
-- **maas-id**: (Required) The ID of the sending maas operator.
-- **addressed-to**: (Optional) The ID of the maas operator that has to receive this message.
-
 #### Query Parameters
-
+```
 - **state**: (Optional) Filter bookings by their state.
   - **Allowable Values**: NEW, PENDING, REJECTED, RELEASED, EXPIRED, CONDITIONAL_CONFIRMED, CONFIRMED, CANCELLED, STARTED, FINISHED
 - **min-time**: (Optional) Start time of the time window of all bookings (partially) overlapping with this time window.
@@ -303,9 +425,9 @@ This guide outlines how transport operators can implement the `GET "/bookings"` 
 - **min-price**: (Optional) Minimum search price, for the whole trip.
 - **max-price**: (Optional) Maximum search price, for the whole trip.
 - **contains-asset-type**: (Optional) Filter the bookings on the ID of the asset type. Should return all complete bookings containing a leg executed with this asset type.
+```
 
 #### Responses
-
 - **200**: Operation successful.
   - **Content**: `application/json`
   - **Schema**: List of [Booking](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Booking.kt)
