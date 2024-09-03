@@ -1,0 +1,6 @@
+name: Simple Docker Push
+on:
+  push:
+jobs:
+  docker-build:
+    uses: entur/gha-docker/.github/workflows/build.yml@v1
