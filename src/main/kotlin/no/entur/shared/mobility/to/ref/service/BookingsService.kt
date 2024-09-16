@@ -4,7 +4,6 @@ import no.entur.shared.mobility.to.ref.data.asset
 import no.entur.shared.mobility.to.ref.data.booking
 import no.entur.shared.mobility.to.ref.data.bookingHigherDepositAmountThanTotalAmount
 import no.entur.shared.mobility.to.ref.data.bookingWithoutDeposit
-import no.entur.shared.mobility.to.ref.data.notification
 import no.entur.shared.mobility.to.ref.dto.Booking
 import no.entur.shared.mobility.to.ref.dto.BookingOperation
 import no.entur.shared.mobility.to.ref.dto.BookingRequest
@@ -94,12 +93,7 @@ class BookingsService {
         id: String,
         addressedTo: String?,
     ): List<Notification> {
-        return when (addressedTo) {
-            SCOOTER_OPERATOR -> throw NotImplementedError()
-            BIKE_OPERATOR -> throw NotImplementedError()
-            ALL_IMPLEMENTING_OPERATOR -> listOf(notification)
-            else -> throw NotImplementedError()
-        }
+        throw NotImplementedError()
     }
 
     fun bookingsIdNotificationsPost(

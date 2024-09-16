@@ -4,13 +4,7 @@ import no.entur.shared.mobility.to.ref.data.allEndpointImplementations
 import no.entur.shared.mobility.to.ref.data.assetType
 import no.entur.shared.mobility.to.ref.data.bikeOperatorEndpointImplementations
 import no.entur.shared.mobility.to.ref.data.scooterOperatorEndpointImplementations
-import no.entur.shared.mobility.to.ref.data.stationInformations
-import no.entur.shared.mobility.to.ref.data.systemAlert
-import no.entur.shared.mobility.to.ref.data.systemCalendar
-import no.entur.shared.mobility.to.ref.data.systemHours
 import no.entur.shared.mobility.to.ref.data.systemInformation
-import no.entur.shared.mobility.to.ref.data.systemPricingPlan
-import no.entur.shared.mobility.to.ref.data.systemRegion
 import no.entur.shared.mobility.to.ref.dto.AssetType
 import no.entur.shared.mobility.to.ref.dto.EndpointImplementation
 import no.entur.shared.mobility.to.ref.dto.StationInformation
@@ -40,12 +34,7 @@ class OperatorService {
         regionId: String?,
         stationId: String?,
     ): List<SystemAlert> {
-        return when (addressedTo) {
-            SCOOTER_OPERATOR -> throw NotImplementedError()
-            BIKE_OPERATOR -> throw NotImplementedError()
-            ALL_IMPLEMENTING_OPERATOR -> listOf(systemAlert)
-            else -> throw NotImplementedError()
-        }
+        throw NotImplementedError()
     }
 
     fun operatorAvailableAssetsGet(
@@ -106,12 +95,7 @@ class OperatorService {
         regionId: String?,
         stationId: String?,
     ): List<SystemCalendar> {
-        return when (addressedTo) {
-            SCOOTER_OPERATOR -> throw NotImplementedError()
-            BIKE_OPERATOR -> throw NotImplementedError()
-            ALL_IMPLEMENTING_OPERATOR -> listOf(systemCalendar)
-            else -> throw NotImplementedError()
-        }
+        throw NotImplementedError()
     }
 
     fun operatorOperatingHoursGet(
@@ -123,12 +107,7 @@ class OperatorService {
         regionId: String?,
         stationId: String?,
     ): List<SystemHours> {
-        return when (addressedTo) {
-            SCOOTER_OPERATOR -> throw NotImplementedError()
-            BIKE_OPERATOR -> throw NotImplementedError()
-            ALL_IMPLEMENTING_OPERATOR -> listOf(systemHours)
-            else -> throw NotImplementedError()
-        }
+        throw NotImplementedError()
     }
 
     fun operatorPingGet(acceptLanguage: String) {
@@ -143,12 +122,7 @@ class OperatorService {
         regionId: String?,
         stationId: String?,
     ): List<SystemPricingPlan> {
-        return when (addressedTo) {
-            SCOOTER_OPERATOR -> throw NotImplementedError()
-            BIKE_OPERATOR -> throw NotImplementedError()
-            ALL_IMPLEMENTING_OPERATOR -> listOf(systemPricingPlan)
-            else -> throw NotImplementedError()
-        }
+        throw NotImplementedError()
     }
 
     fun operatorRegionsGet(
@@ -160,12 +134,7 @@ class OperatorService {
         offset: Int,
         limit: Int?,
     ): List<SystemRegion> {
-        return when (addressedTo) {
-            SCOOTER_OPERATOR -> throw NotImplementedError()
-            BIKE_OPERATOR -> throw NotImplementedError()
-            ALL_IMPLEMENTING_OPERATOR -> listOf(systemRegion)
-            else -> throw NotImplementedError()
-        }
+        throw NotImplementedError()
     }
 
     fun operatorStationsGet(
@@ -181,11 +150,6 @@ class OperatorService {
         lat: Float?,
         radius: Float?,
     ): List<StationInformation> {
-        return when (addressedTo) {
-            SCOOTER_OPERATOR -> throw NotImplementedError()
-            BIKE_OPERATOR -> throw NotImplementedError()
-            ALL_IMPLEMENTING_OPERATOR -> stationInformations
-            else -> throw NotImplementedError()
-        }
+        throw NotImplementedError()
     }
 }

@@ -3,6 +3,7 @@ package no.entur.shared.mobility.to.ref.controller
 import no.entur.shared.mobility.to.ref.Application
 import no.entur.shared.mobility.to.ref.service.TransportOperator
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
@@ -13,25 +14,29 @@ class SupportControllerTest {
 
     @Test
     fun supportIdStatusGet() {
-        supportController.supportIdStatusGet(
-            acceptLanguage = "",
-            api = "",
-            apiVersion = "",
-            maasId = "",
-            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
-            id = "",
-        )
+        assertThrows<NotImplementedError> {
+            supportController.supportIdStatusGet(
+                acceptLanguage = "",
+                api = "",
+                apiVersion = "",
+                maasId = "",
+                addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
+                id = "",
+            )
+        }
     }
 
     @Test
     fun supportPost() {
-        supportController.supportPost(
-            acceptLanguage = "",
-            api = "",
-            apiVersion = "",
-            maasId = "",
-            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
-            supportRequest = null,
-        )
+        assertThrows<NotImplementedError> {
+            supportController.supportPost(
+                acceptLanguage = "",
+                api = "",
+                apiVersion = "",
+                maasId = "",
+                addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
+                supportRequest = null,
+            )
+        }
     }
 }

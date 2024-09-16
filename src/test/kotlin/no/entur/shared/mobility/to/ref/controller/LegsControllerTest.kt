@@ -8,6 +8,7 @@ import no.entur.shared.mobility.to.ref.dto.LegEvent
 import no.entur.shared.mobility.to.ref.dto.Place
 import no.entur.shared.mobility.to.ref.service.TransportOperator
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import java.time.OffsetDateTime
@@ -19,44 +20,50 @@ class LegsControllerTest {
 
     @Test
     fun legsIdAncillariesCategoryNumberDelete() {
-        legsController.legsIdAncillariesCategoryNumberDelete(
-            acceptLanguage = "",
-            api = "",
-            apiVersion = "",
-            maasId = "",
-            id = "",
-            category = "",
-            number = "",
-            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
-        )
+        assertThrows<NotImplementedError> {
+            legsController.legsIdAncillariesCategoryNumberDelete(
+                acceptLanguage = "",
+                api = "",
+                apiVersion = "",
+                maasId = "",
+                id = "",
+                category = "",
+                number = "",
+                addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
+            )
+        }
     }
 
     @Test
     fun legsIdAncillariesCategoryNumberPost() {
-        legsController.legsIdAncillariesCategoryNumberPost(
-            acceptLanguage = "",
-            api = "",
-            apiVersion = "",
-            maasId = "",
-            id = "",
-            category = "",
-            number = "",
-            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
-        )
+        assertThrows<NotImplementedError> {
+            legsController.legsIdAncillariesCategoryNumberPost(
+                acceptLanguage = "",
+                api = "",
+                apiVersion = "",
+                maasId = "",
+                id = "",
+                category = "",
+                number = "",
+                addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
+            )
+        }
     }
 
     @Test
     fun legsIdAvailableAssetsGet() {
-        legsController.legsIdAvailableAssetsGet(
-            acceptLanguage = "",
-            api = "",
-            apiVersion = "",
-            maasId = "",
-            id = "",
-            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
-            limit = 1,
-            offset = 1,
-        )
+        assertThrows<NotImplementedError> {
+            legsController.legsIdAvailableAssetsGet(
+                acceptLanguage = "",
+                api = "",
+                apiVersion = "",
+                maasId = "",
+                id = "",
+                addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
+                limit = 1,
+                offset = 1,
+            )
+        }
     }
 
     @Test
@@ -97,15 +104,17 @@ class LegsControllerTest {
 
     @Test
     fun legsIdProgressGet() {
-        legsController.legsIdProgressGet(
-            acceptLanguage = "",
-            api = "",
-            apiVersion = "",
-            maasId = "",
-            id = "",
-            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
-            locationOnly = true,
-        )
+        assertThrows<NotImplementedError> {
+            legsController.legsIdProgressGet(
+                acceptLanguage = "",
+                api = "",
+                apiVersion = "",
+                maasId = "",
+                id = "",
+                addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
+                locationOnly = true,
+            )
+        }
     }
 
     @Test

@@ -1,11 +1,11 @@
 package no.entur.shared.mobility.to.ref.data
 
-import no.entur.shared.mobility.to.ref.dto.Address
 import no.entur.shared.mobility.to.ref.dto.Booking
 import no.entur.shared.mobility.to.ref.dto.BookingState
 import no.entur.shared.mobility.to.ref.dto.Coordinates
 import no.entur.shared.mobility.to.ref.dto.Customer
 import no.entur.shared.mobility.to.ref.dto.Fare
+import no.entur.shared.mobility.to.ref.dto.FarePart
 import no.entur.shared.mobility.to.ref.dto.Place
 import java.time.OffsetDateTime
 import java.util.UUID
@@ -58,45 +58,47 @@ val bookingHigherDepositAmountThanTotalAmount
 val place
     get() =
         Place(
-            name = "string",
             coordinates =
                 Coordinates(
                     lng = 6.169639F,
                     lat = 52.25327F,
-                    alt = 0F,
                 ),
-        )
-
-val address
-    get() =
-        Address(
-            streetAddress = "example street 18, 2nd floor, 18-B33",
-            street = "string",
-            houseNumber = 0,
-            houseNumberAddition = "string",
-            addressAdditionalInfo = "string",
-            areaReference = "Smallcity, Pinetree county",
-            city = "string",
-            province = "string",
-            state = "string",
-            postalCode = "string",
-            country = "NO",
         )
 
 val fare
     get() =
         Fare(
             estimated = false,
-            description = "string",
-            propertyClass = "string",
-            parts = listOf(farePartFlex),
+            parts =
+                listOf(
+                    FarePart(
+                        amount = 3.125F,
+                        amountExVat = 2.5F,
+                        currencyCode = "NOK",
+                        vatRate = 25.00F,
+                        vatCountryCode = "NO",
+                        type = FarePart.Type.FLEX,
+                        unitType = FarePart.UnitType.MINUTE,
+                        units = 1F,
+                        scaleFrom = 0F,
+                        scaleType = FarePart.ScaleType.MINUTE,
+                    ),
+                ),
         )
 
 val finalFare
     get() =
         Fare(
             estimated = false,
-            description = "string",
-            propertyClass = "string",
-            parts = listOf(farePartFixedFinalPart),
+            parts =
+                listOf(
+                    FarePart(
+                        amount = 50.00F,
+                        amountExVat = 40.00F,
+                        currencyCode = "NOK",
+                        vatRate = 25.00F,
+                        vatCountryCode = "NO",
+                        type = FarePart.Type.FIXED,
+                    ),
+                ),
         )

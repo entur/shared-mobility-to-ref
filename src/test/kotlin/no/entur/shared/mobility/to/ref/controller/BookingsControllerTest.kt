@@ -7,6 +7,7 @@ import no.entur.shared.mobility.to.ref.dto.BookingRequest
 import no.entur.shared.mobility.to.ref.dto.OneStopBookingRequest
 import no.entur.shared.mobility.to.ref.service.TransportOperator
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import java.time.OffsetDateTime
@@ -60,14 +61,16 @@ class BookingsControllerTest {
 
     @Test
     fun bookingsIdNotificationsGet() {
-        bookingsController.bookingsIdNotificationsGet(
-            acceptLanguage = "",
-            api = "",
-            apiVersion = "",
-            maasId = "",
-            id = "",
-            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
-        )
+        assertThrows<NotImplementedError> {
+            bookingsController.bookingsIdNotificationsGet(
+                acceptLanguage = "",
+                api = "",
+                apiVersion = "",
+                maasId = "",
+                id = "",
+                addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
+            )
+        }
     }
 
     @Test
