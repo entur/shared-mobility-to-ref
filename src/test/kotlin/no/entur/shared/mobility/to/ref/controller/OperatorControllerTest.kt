@@ -3,6 +3,7 @@ package no.entur.shared.mobility.to.ref.controller
 import no.entur.shared.mobility.to.ref.Application
 import no.entur.shared.mobility.to.ref.service.TransportOperator
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
@@ -13,26 +14,28 @@ class OperatorControllerTest {
 
     @Test
     fun operatorAlertsGet() {
-        operatorController.operatorAlertsGet(
-            acceptLanguage = "",
-            api = "",
-            apiVersion = "",
-            maasId = "",
-            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
-            regionId = "",
-            stationId = "",
-            limit = 0,
-            offset = 2,
-        )
+        assertThrows<NotImplementedError> {
+            operatorController.operatorAlertsGet(
+                acceptLanguage = "NOB",
+                api = "TOMP",
+                apiVersion = "1.5.0",
+                maasId = "entur:maas:shared-mobility",
+                addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
+                regionId = "",
+                stationId = "",
+                limit = 0,
+                offset = 2,
+            )
+        }
     }
 
     @Test
     fun operatorAvailableAssetsGet() {
         operatorController.operatorAvailableAssetsGet(
-            acceptLanguage = "",
-            api = "",
-            apiVersion = "",
-            maasId = "",
+            acceptLanguage = "NOB",
+            api = "TOMP",
+            apiVersion = "1.5.0",
+            maasId = "entur:maas:shared-mobility",
             addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
             regionId = "",
             stationId = "",
@@ -44,10 +47,10 @@ class OperatorControllerTest {
     @Test
     fun operatorInformationGet() {
         operatorController.operatorInformationGet(
-            acceptLanguage = "",
-            api = "",
-            apiVersion = "",
-            maasId = "",
+            acceptLanguage = "NOB",
+            api = "TOMP",
+            apiVersion = "1.5.0",
+            maasId = "entur:maas:shared-mobility",
             addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
         )
     }
@@ -55,36 +58,40 @@ class OperatorControllerTest {
     @Test
     fun operatorMetaGet() {
         operatorController.operatorMetaGet(
-            acceptLanguage = "",
-            maasId = "",
+            acceptLanguage = "NOB",
+            maasId = "entur:maas:shared-mobility",
             addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
         )
     }
 
     @Test
     fun operatorOperatingCalendarGet() {
-        operatorController.operatorOperatingCalendarGet(
-            acceptLanguage = "",
-            api = "",
-            apiVersion = "",
-            maasId = "",
-            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
-            regionId = "",
-            stationId = "",
-        )
+        assertThrows<NotImplementedError> {
+            operatorController.operatorOperatingCalendarGet(
+                acceptLanguage = "NOB",
+                api = "TOMP",
+                apiVersion = "1.5.0",
+                maasId = "entur:maas:shared-mobility",
+                addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
+                regionId = "",
+                stationId = "",
+            )
+        }
     }
 
     @Test
     fun operatorOperatingHoursGet() {
-        operatorController.operatorOperatingHoursGet(
-            acceptLanguage = "",
-            api = "",
-            apiVersion = "",
-            maasId = "",
-            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
-            regionId = "",
-            stationId = "",
-        )
+        assertThrows<NotImplementedError> {
+            operatorController.operatorOperatingHoursGet(
+                acceptLanguage = "NOB",
+                api = "TOMP",
+                apiVersion = "1.5.0",
+                maasId = "entur:maas:shared-mobility",
+                addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
+                regionId = "",
+                stationId = "",
+            )
+        }
     }
 
     @Test
@@ -96,38 +103,42 @@ class OperatorControllerTest {
 
     @Test
     fun operatorPricingPlansGet() {
-        operatorController.operatorPricingPlansGet(
-            acceptLanguage = "",
-            api = "",
-            apiVersion = "",
-            maasId = "",
-            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
-            regionId = "",
-            stationId = "",
-        )
+        assertThrows<NotImplementedError> {
+            operatorController.operatorPricingPlansGet(
+                acceptLanguage = "NOB",
+                api = "TOMP",
+                apiVersion = "1.5.0",
+                maasId = "entur:maas:shared-mobility",
+                addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
+                regionId = "",
+                stationId = "",
+            )
+        }
     }
 
     @Test
     fun operatorRegionsGet() {
-        operatorController.operatorRegionsGet(
-            acceptLanguage = "",
-            api = "",
-            apiVersion = "",
-            maasId = "",
-            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
-            offset = 0,
-            limit = 0,
-        )
+        assertThrows<NotImplementedError> {
+            operatorController.operatorRegionsGet(
+                acceptLanguage = "NOB",
+                api = "TOMP",
+                apiVersion = "1.5.0",
+                maasId = "entur:maas:shared-mobility",
+                addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
+                offset = 0,
+                limit = 0,
+            )
+        }
     }
 
     @Test
     fun operatorStationsGet() {
-        val operatorStationsGet =
+        assertThrows<NotImplementedError> {
             operatorController.operatorStationsGet(
-                acceptLanguage = "",
-                api = "",
-                apiVersion = "",
-                maasId = "",
+                acceptLanguage = "NOB",
+                api = "TOMP",
+                apiVersion = "1.5.0",
+                maasId = "entur:maas:shared-mobility",
                 addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
                 offset = 0,
                 limit = 0,
@@ -136,6 +147,6 @@ class OperatorControllerTest {
                 lat = 4F,
                 radius = 3F,
             )
-        println(operatorStationsGet)
+        }
     }
 }

@@ -1,8 +1,6 @@
 package no.entur.shared.mobility.to.ref.service
 
-import no.entur.shared.mobility.to.ref.data.asset
 import no.entur.shared.mobility.to.ref.data.leg
-import no.entur.shared.mobility.to.ref.data.legProgress
 import no.entur.shared.mobility.to.ref.data.legWithHighDepositAmount
 import no.entur.shared.mobility.to.ref.data.legWithoutDeposit
 import no.entur.shared.mobility.to.ref.dto.Asset
@@ -31,12 +29,7 @@ class LegsService {
         number: String,
         addressedTo: String?,
     ): Leg {
-        return when (addressedTo) {
-            SCOOTER_OPERATOR -> throw NotImplementedError()
-            BIKE_OPERATOR -> throw NotImplementedError()
-            ALL_IMPLEMENTING_OPERATOR -> leg
-            else -> throw NotImplementedError()
-        }
+        throw NotImplementedError()
     }
 
     fun legsIdAncillariesCategoryNumberPost(
@@ -49,12 +42,7 @@ class LegsService {
         number: String,
         addressedTo: String?,
     ): Leg {
-        return when (addressedTo) {
-            SCOOTER_OPERATOR -> throw NotImplementedError()
-            BIKE_OPERATOR -> throw NotImplementedError()
-            ALL_IMPLEMENTING_OPERATOR -> leg
-            else -> throw NotImplementedError()
-        }
+        throw NotImplementedError()
     }
 
     fun legsIdAvailableAssetsGet(
@@ -67,12 +55,7 @@ class LegsService {
         offset: Int,
         limit: Int?,
     ): List<Asset> {
-        return when (addressedTo) {
-            SCOOTER_OPERATOR -> throw NotImplementedError()
-            BIKE_OPERATOR -> throw NotImplementedError()
-            ALL_IMPLEMENTING_OPERATOR -> listOf(asset)
-            else -> throw NotImplementedError()
-        }
+        throw NotImplementedError()
     }
 
     fun legsIdConfirmationPost(
@@ -157,12 +140,7 @@ class LegsService {
         addressedTo: String?,
         locationOnly: Boolean,
     ): LegProgress {
-        return when (addressedTo) {
-            SCOOTER_OPERATOR -> throw NotImplementedError()
-            BIKE_OPERATOR -> throw NotImplementedError()
-            ALL_IMPLEMENTING_OPERATOR -> legProgress
-            else -> throw NotImplementedError()
-        }
+        throw NotImplementedError()
     }
 
     fun legsIdProgressPost(

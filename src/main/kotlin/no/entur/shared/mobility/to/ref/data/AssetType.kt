@@ -5,35 +5,14 @@ import no.entur.shared.mobility.to.ref.dto.AssetType
 import no.entur.shared.mobility.to.ref.dto.ConditionDeposit
 import no.entur.shared.mobility.to.ref.dto.ConditionRequireOffboardingSteps
 import no.entur.shared.mobility.to.ref.dto.OffBoardingStep
-import no.entur.shared.mobility.to.ref.dto.SystemPricingPlan
 
 val assetType
     get() =
         AssetType(
-            id = "string",
-            stationId = "string",
-            nrAvailable = 0,
+            id = "AssetType:587",
             assets = listOf(asset),
             assetClass = AssetClass.MOPED,
-            assetSubClass = "string",
-            sharedProperties = assetProperties,
-            applicablePricings = listOf(systemPricingPlan),
-            defaultPricingPlan = systemPricingPlan,
             conditions = conditions,
-        )
-
-val systemPricingPlan
-    get() =
-        SystemPricingPlan(
-            planId = "freeplan1",
-            url = "https://www.rentmyfreebike.com/freeplan",
-            name = "Free Plan",
-            stationId = "string",
-            regionId = "string",
-            fare = fare,
-            isTaxable = true,
-            surgePricing = true,
-            description = "Unlimited plan for free bikes, as long as you don't break them!",
         )
 
 val conditions
@@ -41,7 +20,7 @@ val conditions
         listOf(
             ConditionDeposit(
                 conditionType = "ConditionDeposit",
-                id = "deposit50eu",
+                id = "ConditionDeposit:958",
                 amount = 12.50F,
                 amountExVat = 10.00F,
                 currencyCode = "NOK",
@@ -50,7 +29,7 @@ val conditions
             ),
             ConditionRequireOffboardingSteps(
                 conditionType = "ConditionRequireOffboardingSteps",
-                id = "deposit50eu",
+                id = "ConditionDeposit:386",
                 steps =
                     listOf(
                         OffBoardingStep(
@@ -69,7 +48,7 @@ val conditionsNoDeposit
         listOf(
             ConditionRequireOffboardingSteps(
                 conditionType = "ConditionRequireOffboardingSteps",
-                id = "deposit50eu",
+                id = "ConditionDeposit:745",
                 steps =
                     listOf(
                         OffBoardingStep(
@@ -88,7 +67,7 @@ val conditionsWithHighDepositAmount
         listOf(
             ConditionDeposit(
                 conditionType = "ConditionDeposit",
-                id = "deposit50eu",
+                id = "ConditionDeposit:183",
                 amount = 125.00F,
                 amountExVat = 100.00F,
                 currencyCode = "NOK",
@@ -97,7 +76,7 @@ val conditionsWithHighDepositAmount
             ),
             ConditionRequireOffboardingSteps(
                 conditionType = "ConditionRequireOffboardingSteps",
-                id = "deposit50eu",
+                id = "ConditionDeposit:046",
                 steps =
                     listOf(
                         OffBoardingStep(

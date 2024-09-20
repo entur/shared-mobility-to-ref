@@ -3,15 +3,14 @@ package no.entur.shared.mobility.to.ref.data
 import no.entur.shared.mobility.to.ref.dto.Leg
 import no.entur.shared.mobility.to.ref.dto.LegState
 import java.time.OffsetDateTime
+import java.util.UUID
 
 val leg
     get() =
         Leg(
-            id = "string",
+            id = UUID.randomUUID().toString(),
             from = place,
             departureTime = OffsetDateTime.now(),
-            arrivalTime = null,
-            actualArrivalTime = null,
             actualDepartureTime = OffsetDateTime.now(),
             assetType = assetType,
             asset = asset,
@@ -23,11 +22,9 @@ val leg
 val legWithoutDeposit
     get() =
         Leg(
-            id = "string",
+            id = UUID.randomUUID().toString(),
             from = place,
             departureTime = OffsetDateTime.now(),
-            arrivalTime = null,
-            actualArrivalTime = null,
             actualDepartureTime = OffsetDateTime.now(),
             assetType = assetType,
             asset = asset,
@@ -39,11 +36,9 @@ val legWithoutDeposit
 val legWithHighDepositAmount
     get() =
         Leg(
-            id = "string",
+            id = UUID.randomUUID().toString(),
             from = place,
             departureTime = OffsetDateTime.now(),
-            arrivalTime = null,
-            actualArrivalTime = null,
             actualDepartureTime = OffsetDateTime.now(),
             assetType = assetType,
             asset = asset,

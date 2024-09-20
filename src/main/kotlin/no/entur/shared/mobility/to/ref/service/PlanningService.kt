@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.service
 
-import no.entur.shared.mobility.to.ref.data.asset
 import no.entur.shared.mobility.to.ref.data.booking
 import no.entur.shared.mobility.to.ref.data.bookingHigherDepositAmountThanTotalAmount
 import no.entur.shared.mobility.to.ref.data.bookingWithoutDeposit
