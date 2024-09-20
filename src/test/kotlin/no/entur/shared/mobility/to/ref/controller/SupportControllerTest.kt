@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import java.util.UUID
 
 @SpringBootTest(classes = [Application::class], webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class SupportControllerTest {
@@ -16,12 +17,12 @@ class SupportControllerTest {
     fun supportIdStatusGet() {
         assertThrows<NotImplementedError> {
             supportController.supportIdStatusGet(
-                acceptLanguage = "",
-                api = "",
-                apiVersion = "",
-                maasId = "",
+                acceptLanguage = "NOB",
+                api = "TOMP",
+                apiVersion = "1.5.0",
+                maasId = "entur:maas:shared-mobility",
                 addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
-                id = "",
+                id = UUID.randomUUID().toString(),
             )
         }
     }
@@ -30,10 +31,10 @@ class SupportControllerTest {
     fun supportPost() {
         assertThrows<NotImplementedError> {
             supportController.supportPost(
-                acceptLanguage = "",
-                api = "",
-                apiVersion = "",
-                maasId = "",
+                acceptLanguage = "NOB",
+                api = "TOMP",
+                apiVersion = "1.5.0",
+                maasId = "entur:maas:shared-mobility",
                 addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
                 supportRequest = null,
             )

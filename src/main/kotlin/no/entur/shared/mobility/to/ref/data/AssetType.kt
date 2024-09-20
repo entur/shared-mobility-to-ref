@@ -10,7 +10,7 @@ import java.util.UUID
 val assetType
     get() =
         AssetType(
-            id = UUID.randomUUID().toString(),
+            id = "AssetType:587",
             assets = listOf(asset),
             assetClass = AssetClass.MOPED,
             conditions = conditions,
@@ -21,7 +21,7 @@ val conditions
         listOf(
             ConditionDeposit(
                 conditionType = "ConditionDeposit",
-                id = UUID.randomUUID().toString(),
+                id = "ConditionDeposit:958",
                 amount = 12.50F,
                 amountExVat = 10.00F,
                 currencyCode = "NOK",
@@ -30,7 +30,7 @@ val conditions
             ),
             ConditionRequireOffboardingSteps(
                 conditionType = "ConditionRequireOffboardingSteps",
-                id = "deposit50eu",
+                id = "ConditionDeposit:386",
                 steps =
                     listOf(
                         OffBoardingStep(
@@ -49,7 +49,7 @@ val conditionsNoDeposit
         listOf(
             ConditionRequireOffboardingSteps(
                 conditionType = "ConditionRequireOffboardingSteps",
-                id = "deposit50eu",
+                id = "ConditionDeposit:745",
                 steps =
                     listOf(
                         OffBoardingStep(
@@ -68,7 +68,7 @@ val conditionsWithHighDepositAmount
         listOf(
             ConditionDeposit(
                 conditionType = "ConditionDeposit",
-                id = "deposit50eu",
+                id = "ConditionDeposit:183",
                 amount = 125.00F,
                 amountExVat = 100.00F,
                 currencyCode = "NOK",
@@ -77,7 +77,7 @@ val conditionsWithHighDepositAmount
             ),
             ConditionRequireOffboardingSteps(
                 conditionType = "ConditionRequireOffboardingSteps",
-                id = "deposit50eu",
+                id = "ConditionDeposit:046",
                 steps =
                     listOf(
                         OffBoardingStep(

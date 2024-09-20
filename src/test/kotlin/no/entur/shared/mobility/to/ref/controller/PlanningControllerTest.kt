@@ -14,10 +14,10 @@ class PlanningControllerTest {
     @Test
     fun planningInquiriesPost() {
         planningController.planningInquiriesPost(
-            "",
-            "",
-            "",
-            "",
+            acceptLanguage = "NOB",
+            api = "TOMP",
+            apiVersion = "1.5.0",
+            maasId = "entur:maas:shared-mobility",
             TransportOperator.ALL_IMPLEMENTING_OPERATOR,
             null,
         )
@@ -26,10 +26,10 @@ class PlanningControllerTest {
     @Test
     fun planningOffersPost() {
         planningController.planningOffersPost(
-            acceptLanguage = "",
-            api = "",
-            apiVersion = "",
-            maasId = "",
+            acceptLanguage = "NOB",
+            api = "TOMP",
+            apiVersion = "1.5.0",
+            maasId = "entur:maas:shared-mobility",
             addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
             planningRequest = null,
         )

@@ -7,6 +7,7 @@ import org.junit.jupiter.api.assertThrows
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import java.time.OffsetDateTime
+import java.util.UUID
 
 @SpringBootTest(classes = [Application::class], webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class PaymentControllerTest {
@@ -17,11 +18,11 @@ class PaymentControllerTest {
     fun paymentIdClaimExtraCostsPost() {
         assertThrows<NotImplementedError> {
             paymentController.paymentIdClaimExtraCostsPost(
-                acceptLanguage = "",
-                api = "",
-                apiVersion = "",
-                maasId = "",
-                id = "",
+                acceptLanguage = "NOB",
+                api = "TOMP",
+                apiVersion = "1.5.0",
+                maasId = "entur:maas:shared-mobility",
+                id = UUID.randomUUID().toString(),
                 addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
                 extraCosts = null,
             )
@@ -32,11 +33,11 @@ class PaymentControllerTest {
     fun paymentJournalEntryGet() {
         assertThrows<NotImplementedError> {
             paymentController.paymentJournalEntryGet(
-                acceptLanguage = "",
-                api = "",
-                apiVersion = "",
-                maasId = "",
-                id = "",
+                acceptLanguage = "NOB",
+                api = "TOMP",
+                apiVersion = "1.5.0",
+                maasId = "entur:maas:shared-mobility",
+                id = UUID.randomUUID().toString(),
                 limit = 0,
                 offset = 0,
                 from = OffsetDateTime.now(),

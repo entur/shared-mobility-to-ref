@@ -16,10 +16,10 @@ class OperatorControllerTest {
     fun operatorAlertsGet() {
         assertThrows<NotImplementedError> {
             operatorController.operatorAlertsGet(
-                acceptLanguage = "",
-                api = "",
-                apiVersion = "",
-                maasId = "",
+                acceptLanguage = "NOB",
+                api = "TOMP",
+                apiVersion = "1.5.0",
+                maasId = "entur:maas:shared-mobility",
                 addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
                 regionId = "",
                 stationId = "",
@@ -32,10 +32,10 @@ class OperatorControllerTest {
     @Test
     fun operatorAvailableAssetsGet() {
         operatorController.operatorAvailableAssetsGet(
-            acceptLanguage = "",
-            api = "",
-            apiVersion = "",
-            maasId = "",
+            acceptLanguage = "NOB",
+            api = "TOMP",
+            apiVersion = "1.5.0",
+            maasId = "entur:maas:shared-mobility",
             addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
             regionId = "",
             stationId = "",
@@ -47,10 +47,10 @@ class OperatorControllerTest {
     @Test
     fun operatorInformationGet() {
         operatorController.operatorInformationGet(
-            acceptLanguage = "",
-            api = "",
-            apiVersion = "",
-            maasId = "",
+            acceptLanguage = "NOB",
+            api = "TOMP",
+            apiVersion = "1.5.0",
+            maasId = "entur:maas:shared-mobility",
             addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
         )
     }
@@ -58,8 +58,8 @@ class OperatorControllerTest {
     @Test
     fun operatorMetaGet() {
         operatorController.operatorMetaGet(
-            acceptLanguage = "",
-            maasId = "",
+            acceptLanguage = "NOB",
+            maasId = "entur:maas:shared-mobility",
             addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
         )
     }
@@ -68,10 +68,10 @@ class OperatorControllerTest {
     fun operatorOperatingCalendarGet() {
         assertThrows<NotImplementedError> {
             operatorController.operatorOperatingCalendarGet(
-                acceptLanguage = "",
-                api = "",
-                apiVersion = "",
-                maasId = "",
+                acceptLanguage = "NOB",
+                api = "TOMP",
+                apiVersion = "1.5.0",
+                maasId = "entur:maas:shared-mobility",
                 addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
                 regionId = "",
                 stationId = "",
@@ -83,10 +83,10 @@ class OperatorControllerTest {
     fun operatorOperatingHoursGet() {
         assertThrows<NotImplementedError> {
             operatorController.operatorOperatingHoursGet(
-                acceptLanguage = "",
-                api = "",
-                apiVersion = "",
-                maasId = "",
+                acceptLanguage = "NOB",
+                api = "TOMP",
+                apiVersion = "1.5.0",
+                maasId = "entur:maas:shared-mobility",
                 addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
                 regionId = "",
                 stationId = "",
@@ -105,10 +105,10 @@ class OperatorControllerTest {
     fun operatorPricingPlansGet() {
         assertThrows<NotImplementedError> {
             operatorController.operatorPricingPlansGet(
-                acceptLanguage = "",
-                api = "",
-                apiVersion = "",
-                maasId = "",
+                acceptLanguage = "NOB",
+                api = "TOMP",
+                apiVersion = "1.5.0",
+                maasId = "entur:maas:shared-mobility",
                 addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
                 regionId = "",
                 stationId = "",
@@ -120,10 +120,10 @@ class OperatorControllerTest {
     fun operatorRegionsGet() {
         assertThrows<NotImplementedError> {
             operatorController.operatorRegionsGet(
-                acceptLanguage = "",
-                api = "",
-                apiVersion = "",
-                maasId = "",
+                acceptLanguage = "NOB",
+                api = "TOMP",
+                apiVersion = "1.5.0",
+                maasId = "entur:maas:shared-mobility",
                 addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
                 offset = 0,
                 limit = 0,
@@ -135,10 +135,10 @@ class OperatorControllerTest {
     fun operatorStationsGet() {
         assertThrows<NotImplementedError> {
             operatorController.operatorStationsGet(
-                acceptLanguage = "",
-                api = "",
-                apiVersion = "",
-                maasId = "",
+                acceptLanguage = "NOB",
+                api = "TOMP",
+                apiVersion = "1.5.0",
+                maasId = "entur:maas:shared-mobility",
                 addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
                 offset = 0,
                 limit = 0,
