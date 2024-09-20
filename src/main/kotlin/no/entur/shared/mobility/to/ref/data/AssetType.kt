@@ -5,7 +5,6 @@ import no.entur.shared.mobility.to.ref.dto.AssetType
 import no.entur.shared.mobility.to.ref.dto.ConditionDeposit
 import no.entur.shared.mobility.to.ref.dto.ConditionRequireOffboardingSteps
 import no.entur.shared.mobility.to.ref.dto.OffBoardingStep
-import java.util.UUID
 
 val assetType
     get() =
