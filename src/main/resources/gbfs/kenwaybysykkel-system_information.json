@@ -1,0 +1,24 @@
+{
+  "last_updated": 1730276360,
+  "ttl": 43200,
+  "version": "2.3",
+  "data": {
+    "system_id": "kenwaybysykkel",
+    "language": "nb",
+    "name": "kenway Bysykkel",
+    "operator": "kenway",
+    "phone_number": "+4751199900",
+    "email": "bysykkel@kenway.no",
+    "timezone": "Europe/Oslo",
+    "rental_apps": {
+      "android": {
+        "store_uri": "https://play.google.com/store/apps/details?id=no.kenway.kenwaybillett",
+        "discovery_uri": "kenway-billett://citybike"
+      },
+      "ios": {
+        "store_uri": "https://apps.apple.com/no/app/kenway-billett/id1286715202?l=nb",
+        "discovery_uri": "kenwayBillett://citybike"
+      }
+    }
+  }
+}

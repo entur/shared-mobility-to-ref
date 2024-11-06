@@ -1,0 +1,24 @@
+{
+  "last_updated": 1730292990,
+  "ttl": 15,
+  "version": "2.3",
+  "data": {
+    "system_id": "basimbysykkel",
+    "language": "nb",
+    "name": "Basim Bysykkel",
+    "operator": "UIP Basim Bysykkel AS",
+    "phone_number": "+4794858825",
+    "email": "post@basimbysykkel.no",
+    "timezone": "Europe/Oslo",
+    "rental_apps": {
+      "android": {
+        "store_uri": "https://play.google.com/store/apps/details?id=no.ubiinfrastructure.bysykkel.basim",
+        "discovery_uri": "basimbysykkel://"
+      },
+      "ios": {
+        "store_uri": "https://itunes.apple.com/no/app/basim-bysykkel-for-iphone/id1369123147?ls=1&mt=8",
+        "discovery_uri": "basimbysykkel://"
+      }
+    }
+  }
+}

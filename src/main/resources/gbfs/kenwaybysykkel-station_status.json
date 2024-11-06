@@ -1,0 +1,3249 @@
+{
+  "last_updated": 1730292860,
+  "ttl": 300,
+  "version": "2.3",
+  "data": {
+    "stations": [
+      {
+        "station_id": "YKE:Station:1",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 1,
+        "is_installed": false,
+        "is_renting": false,
+        "is_returning": false,
+        "last_reported": 1723719601
+      },
+      {
+        "station_id": "YKE:Station:6",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 1,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730282955
+      },
+      {
+        "station_id": "YKE:Station:7",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 7,
+        "is_installed": false,
+        "is_renting": false,
+        "is_returning": false,
+        "last_reported": 1727870020
+      },
+      {
+        "station_id": "YKE:Station:8",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 2,
+        "is_installed": false,
+        "is_renting": false,
+        "is_returning": false,
+        "last_reported": 1687425653
+      },
+      {
+        "station_id": "YKE:Station:10",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 2,
+        "is_installed": false,
+        "is_renting": false,
+        "is_returning": false,
+        "last_reported": 1687520862
+      },
+      {
+        "station_id": "YKE:Station:11",
+        "num_bikes_available": 3,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 3
+          }
+        ],
+        "num_docks_available": 5,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730286428
+      },
+      {
+        "station_id": "YKE:Station:13",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 12,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730277226
+      },
+      {
+        "station_id": "YKE:Station:14",
+        "num_bikes_available": 7,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 7
+          }
+        ],
+        "num_docks_available": 1,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730291702
+      },
+      {
+        "station_id": "YKE:Station:15",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 8,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292616
+      },
+      {
+        "station_id": "YKE:Station:16",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 0,
+        "is_installed": false,
+        "is_renting": false,
+        "is_returning": false,
+        "last_reported": 1723800794
+      },
+      {
+        "station_id": "YKE:Station:17",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": false,
+        "is_renting": false,
+        "is_returning": false,
+        "last_reported": 1724153366
+      },
+      {
+        "station_id": "YKE:Station:18",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 6,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730125905
+      },
+      {
+        "station_id": "YKE:Station:19",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 5,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292492
+      },
+      {
+        "station_id": "YKE:Station:20",
+        "num_bikes_available": 2,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 2
+          }
+        ],
+        "num_docks_available": 2,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730290822
+      },
+      {
+        "station_id": "YKE:Station:22",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 8,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730271015
+      },
+      {
+        "station_id": "YKE:Station:23",
+        "num_bikes_available": 2,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 2
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292015
+      },
+      {
+        "station_id": "YKE:Station:24",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 2,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730037992
+      },
+      {
+        "station_id": "YKE:Station:25",
+        "num_bikes_available": 4,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 4
+          }
+        ],
+        "num_docks_available": 0,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292814
+      },
+      {
+        "station_id": "YKE:Station:26",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730291549
+      },
+      {
+        "station_id": "YKE:Station:27",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730285077
+      },
+      {
+        "station_id": "YKE:Station:28",
+        "num_bikes_available": 6,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 6
+          }
+        ],
+        "num_docks_available": 2,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292294
+      },
+      {
+        "station_id": "YKE:Station:29",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 3,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292516
+      },
+      {
+        "station_id": "YKE:Station:30",
+        "num_bikes_available": 2,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 2
+          }
+        ],
+        "num_docks_available": 6,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292646
+      },
+      {
+        "station_id": "YKE:Station:31",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 0,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292229
+      },
+      {
+        "station_id": "YKE:Station:32",
+        "num_bikes_available": 5,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 5
+          }
+        ],
+        "num_docks_available": 7,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292692
+      },
+      {
+        "station_id": "YKE:Station:33",
+        "num_bikes_available": 2,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 2
+          }
+        ],
+        "num_docks_available": 1,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730291837
+      },
+      {
+        "station_id": "YKE:Station:35",
+        "num_bikes_available": 3,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 3
+          }
+        ],
+        "num_docks_available": 1,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730273122
+      },
+      {
+        "station_id": "YKE:Station:36",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 2,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730227333
+      },
+      {
+        "station_id": "YKE:Station:37",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 2,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730289895
+      },
+      {
+        "station_id": "YKE:Station:38",
+        "num_bikes_available": 4,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 4
+          }
+        ],
+        "num_docks_available": 8,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730291103
+      },
+      {
+        "station_id": "YKE:Station:39",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730273058
+      },
+      {
+        "station_id": "YKE:Station:40",
+        "num_bikes_available": 2,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 2
+          }
+        ],
+        "num_docks_available": 2,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730291860
+      },
+      {
+        "station_id": "YKE:Station:41",
+        "num_bikes_available": 7,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 7
+          }
+        ],
+        "num_docks_available": 0,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730290146
+      },
+      {
+        "station_id": "YKE:Station:43",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 7,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292504
+      },
+      {
+        "station_id": "YKE:Station:45",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 2,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730291774
+      },
+      {
+        "station_id": "YKE:Station:46",
+        "num_bikes_available": 3,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 3
+          }
+        ],
+        "num_docks_available": 5,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730291939
+      },
+      {
+        "station_id": "YKE:Station:47",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730274616
+      },
+      {
+        "station_id": "YKE:Station:48",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 10,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730287073
+      },
+      {
+        "station_id": "YKE:Station:49",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 2,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730270206
+      },
+      {
+        "station_id": "YKE:Station:50",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 8,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292758
+      },
+      {
+        "station_id": "YKE:Station:51",
+        "num_bikes_available": 2,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 2
+          }
+        ],
+        "num_docks_available": 2,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730282402
+      },
+      {
+        "station_id": "YKE:Station:52",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 5,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292085
+      },
+      {
+        "station_id": "YKE:Station:53",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 6,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1723007847
+      },
+      {
+        "station_id": "YKE:Station:54",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 7,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292658
+      },
+      {
+        "station_id": "YKE:Station:55",
+        "num_bikes_available": 2,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 2
+          }
+        ],
+        "num_docks_available": 6,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292850
+      },
+      {
+        "station_id": "YKE:Station:56",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292205
+      },
+      {
+        "station_id": "YKE:Station:57",
+        "num_bikes_available": 3,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 3
+          }
+        ],
+        "num_docks_available": 2,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730288010
+      },
+      {
+        "station_id": "YKE:Station:58",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 9,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730291937
+      },
+      {
+        "station_id": "YKE:Station:59",
+        "num_bikes_available": 3,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 3
+          }
+        ],
+        "num_docks_available": 1,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730291658
+      },
+      {
+        "station_id": "YKE:Station:60",
+        "num_bikes_available": 15,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 15
+          }
+        ],
+        "num_docks_available": 0,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730290572
+      },
+      {
+        "station_id": "YKE:Station:61",
+        "num_bikes_available": 8,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 8
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292683
+      },
+      {
+        "station_id": "YKE:Station:62",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 5,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730291279
+      },
+      {
+        "station_id": "YKE:Station:63",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 3,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292584
+      },
+      {
+        "station_id": "YKE:Station:64",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 6,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730273351
+      },
+      {
+        "station_id": "YKE:Station:65",
+        "num_bikes_available": 7,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 7
+          }
+        ],
+        "num_docks_available": 0,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292724
+      },
+      {
+        "station_id": "YKE:Station:66",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730278929
+      },
+      {
+        "station_id": "YKE:Station:67",
+        "num_bikes_available": 2,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 2
+          }
+        ],
+        "num_docks_available": 2,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730285188
+      },
+      {
+        "station_id": "YKE:Station:68",
+        "num_bikes_available": 7,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 7
+          }
+        ],
+        "num_docks_available": 0,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292701
+      },
+      {
+        "station_id": "YKE:Station:69",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 6,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730288968
+      },
+      {
+        "station_id": "YKE:Station:70",
+        "num_bikes_available": 2,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 2
+          }
+        ],
+        "num_docks_available": 6,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292779
+      },
+      {
+        "station_id": "YKE:Station:71",
+        "num_bikes_available": 2,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 2
+          }
+        ],
+        "num_docks_available": 2,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730291704
+      },
+      {
+        "station_id": "YKE:Station:72",
+        "num_bikes_available": 8,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 8
+          }
+        ],
+        "num_docks_available": 11,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292519
+      },
+      {
+        "station_id": "YKE:Station:73",
+        "num_bikes_available": 2,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 2
+          }
+        ],
+        "num_docks_available": 2,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730289075
+      },
+      {
+        "station_id": "YKE:Station:74",
+        "num_bikes_available": 3,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 3
+          }
+        ],
+        "num_docks_available": 1,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730289264
+      },
+      {
+        "station_id": "YKE:Station:75",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 8,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730265815
+      },
+      {
+        "station_id": "YKE:Station:76",
+        "num_bikes_available": 4,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 4
+          }
+        ],
+        "num_docks_available": 0,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730291661
+      },
+      {
+        "station_id": "YKE:Station:78",
+        "num_bikes_available": 3,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 3
+          }
+        ],
+        "num_docks_available": 5,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292025
+      },
+      {
+        "station_id": "YKE:Station:79",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 6,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730291324
+      },
+      {
+        "station_id": "YKE:Station:80",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 5,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292822
+      },
+      {
+        "station_id": "YKE:Station:81",
+        "num_bikes_available": 2,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 2
+          }
+        ],
+        "num_docks_available": 6,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730240552
+      },
+      {
+        "station_id": "YKE:Station:82",
+        "num_bikes_available": 2,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 2
+          }
+        ],
+        "num_docks_available": 9,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292785
+      },
+      {
+        "station_id": "YKE:Station:83",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 6,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730284894
+      },
+      {
+        "station_id": "YKE:Station:84",
+        "num_bikes_available": 6,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 6
+          }
+        ],
+        "num_docks_available": 0,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292701
+      },
+      {
+        "station_id": "YKE:Station:85",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 5,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730231548
+      },
+      {
+        "station_id": "YKE:Station:86",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 8,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730291705
+      },
+      {
+        "station_id": "YKE:Station:87",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 8,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292243
+      },
+      {
+        "station_id": "YKE:Station:88",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 7,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292835
+      },
+      {
+        "station_id": "YKE:Station:89",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730289832
+      },
+      {
+        "station_id": "YKE:Station:90",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730283106
+      },
+      {
+        "station_id": "YKE:Station:91",
+        "num_bikes_available": 4,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 4
+          }
+        ],
+        "num_docks_available": 0,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730257053
+      },
+      {
+        "station_id": "YKE:Station:92",
+        "num_bikes_available": 5,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 5
+          }
+        ],
+        "num_docks_available": 1,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730284695
+      },
+      {
+        "station_id": "YKE:Station:93",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 3,
+        "is_installed": false,
+        "is_renting": false,
+        "is_returning": false,
+        "last_reported": 1728298804
+      },
+      {
+        "station_id": "YKE:Station:94",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": false,
+        "is_renting": false,
+        "is_returning": false,
+        "last_reported": 1692122403
+      },
+      {
+        "station_id": "YKE:Station:95",
+        "num_bikes_available": 3,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 3
+          }
+        ],
+        "num_docks_available": 3,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292291
+      },
+      {
+        "station_id": "YKE:Station:96",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 9,
+        "is_installed": false,
+        "is_renting": false,
+        "is_returning": false,
+        "last_reported": 1689188403
+      },
+      {
+        "station_id": "YKE:Station:98",
+        "num_bikes_available": 2,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 2
+          }
+        ],
+        "num_docks_available": 9,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292845
+      },
+      {
+        "station_id": "YKE:Station:99",
+        "num_bikes_available": 4,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 4
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292429
+      },
+      {
+        "station_id": "YKE:Station:100",
+        "num_bikes_available": 6,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 6
+          }
+        ],
+        "num_docks_available": 2,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292289
+      },
+      {
+        "station_id": "YKE:Station:101",
+        "num_bikes_available": 2,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 2
+          }
+        ],
+        "num_docks_available": 2,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730290800
+      },
+      {
+        "station_id": "YKE:Station:102",
+        "num_bikes_available": 14,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 14
+          }
+        ],
+        "num_docks_available": 0,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292243
+      },
+      {
+        "station_id": "YKE:Station:103",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 10,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730287449
+      },
+      {
+        "station_id": "YKE:Station:104",
+        "num_bikes_available": 3,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 3
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730291227
+      },
+      {
+        "station_id": "YKE:Station:105",
+        "num_bikes_available": 2,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 2
+          }
+        ],
+        "num_docks_available": 3,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730283005
+      },
+      {
+        "station_id": "YKE:Station:106",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 3,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730291666
+      },
+      {
+        "station_id": "YKE:Station:107",
+        "num_bikes_available": 6,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 6
+          }
+        ],
+        "num_docks_available": 0,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730291619
+      },
+      {
+        "station_id": "YKE:Station:108",
+        "num_bikes_available": 8,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 8
+          }
+        ],
+        "num_docks_available": 0,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730289114
+      },
+      {
+        "station_id": "YKE:Station:109",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 8,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730286961
+      },
+      {
+        "station_id": "YKE:Station:110",
+        "num_bikes_available": 3,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 3
+          }
+        ],
+        "num_docks_available": 5,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730287417
+      },
+      {
+        "station_id": "YKE:Station:111",
+        "num_bikes_available": 3,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 3
+          }
+        ],
+        "num_docks_available": 1,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730290236
+      },
+      {
+        "station_id": "YKE:Station:112",
+        "num_bikes_available": 2,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 2
+          }
+        ],
+        "num_docks_available": 2,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730290509
+      },
+      {
+        "station_id": "YKE:Station:113",
+        "num_bikes_available": 10,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 10
+          }
+        ],
+        "num_docks_available": 6,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292458
+      },
+      {
+        "station_id": "YKE:Station:114",
+        "num_bikes_available": 7,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 7
+          }
+        ],
+        "num_docks_available": 7,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292511
+      },
+      {
+        "station_id": "YKE:Station:115",
+        "num_bikes_available": 9,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 9
+          }
+        ],
+        "num_docks_available": 0,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730289278
+      },
+      {
+        "station_id": "YKE:Station:116",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 0,
+        "is_installed": false,
+        "is_renting": false,
+        "is_returning": false,
+        "last_reported": 1696092871
+      },
+      {
+        "station_id": "YKE:Station:117",
+        "num_bikes_available": 6,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 6
+          }
+        ],
+        "num_docks_available": 2,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730291223
+      },
+      {
+        "station_id": "YKE:Station:118",
+        "num_bikes_available": 2,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 2
+          }
+        ],
+        "num_docks_available": 1,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730289604
+      },
+      {
+        "station_id": "YKE:Station:119",
+        "num_bikes_available": 2,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 2
+          }
+        ],
+        "num_docks_available": 2,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730281436
+      },
+      {
+        "station_id": "YKE:Station:121",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 2,
+        "is_installed": false,
+        "is_renting": false,
+        "is_returning": false,
+        "last_reported": 1712059204
+      },
+      {
+        "station_id": "YKE:Station:122",
+        "num_bikes_available": 5,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 5
+          }
+        ],
+        "num_docks_available": 0,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730288011
+      },
+      {
+        "station_id": "YKE:Station:123",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 0,
+        "is_installed": false,
+        "is_renting": false,
+        "is_returning": false,
+        "last_reported": 1726822042
+      },
+      {
+        "station_id": "YKE:Station:124",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 0,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292695
+      },
+      {
+        "station_id": "YKE:Station:125",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 7,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292193
+      },
+      {
+        "station_id": "YKE:Station:126",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292745
+      },
+      {
+        "station_id": "YKE:Station:127",
+        "num_bikes_available": 3,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 3
+          }
+        ],
+        "num_docks_available": 1,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292271
+      },
+      {
+        "station_id": "YKE:Station:128",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 7,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730290894
+      },
+      {
+        "station_id": "YKE:Station:129",
+        "num_bikes_available": 7,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 7
+          }
+        ],
+        "num_docks_available": 3,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292178
+      },
+      {
+        "station_id": "YKE:Station:130",
+        "num_bikes_available": 3,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 3
+          }
+        ],
+        "num_docks_available": 0,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730281806
+      },
+      {
+        "station_id": "YKE:Station:131",
+        "num_bikes_available": 4,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 4
+          }
+        ],
+        "num_docks_available": 0,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730290623
+      },
+      {
+        "station_id": "YKE:Station:132",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730287664
+      },
+      {
+        "station_id": "YKE:Station:133",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 8,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730288021
+      },
+      {
+        "station_id": "YKE:Station:134",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 7,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292704
+      },
+      {
+        "station_id": "YKE:Station:135",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 11,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292251
+      },
+      {
+        "station_id": "YKE:Station:136",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 3,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730291885
+      },
+      {
+        "station_id": "YKE:Station:137",
+        "num_bikes_available": 3,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 3
+          }
+        ],
+        "num_docks_available": 20,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292586
+      },
+      {
+        "station_id": "YKE:Station:138",
+        "num_bikes_available": 3,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 3
+          }
+        ],
+        "num_docks_available": 5,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730288162
+      },
+      {
+        "station_id": "YKE:Station:140",
+        "num_bikes_available": 2,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 2
+          }
+        ],
+        "num_docks_available": 2,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292079
+      },
+      {
+        "station_id": "YKE:Station:141",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730289061
+      },
+      {
+        "station_id": "YKE:Station:142",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 7,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730288419
+      },
+      {
+        "station_id": "YKE:Station:143",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 12,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730289757
+      },
+      {
+        "station_id": "YKE:Station:145",
+        "num_bikes_available": 4,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 4
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292699
+      },
+      {
+        "station_id": "YKE:Station:146",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730291713
+      },
+      {
+        "station_id": "YKE:Station:147",
+        "num_bikes_available": 2,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 2
+          }
+        ],
+        "num_docks_available": 6,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292539
+      },
+      {
+        "station_id": "YKE:Station:148",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 3,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730291349
+      },
+      {
+        "station_id": "YKE:Station:149",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730279874
+      },
+      {
+        "station_id": "YKE:Station:150",
+        "num_bikes_available": 6,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 6
+          }
+        ],
+        "num_docks_available": 0,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292534
+      },
+      {
+        "station_id": "YKE:Station:151",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730284639
+      },
+      {
+        "station_id": "YKE:Station:152",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 6,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730273140
+      },
+      {
+        "station_id": "YKE:Station:153",
+        "num_bikes_available": 3,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 3
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730280785
+      },
+      {
+        "station_id": "YKE:Station:154",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730234353
+      },
+      {
+        "station_id": "YKE:Station:155",
+        "num_bikes_available": 2,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 2
+          }
+        ],
+        "num_docks_available": 6,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730291380
+      },
+      {
+        "station_id": "YKE:Station:156",
+        "num_bikes_available": 2,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 2
+          }
+        ],
+        "num_docks_available": 6,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730290558
+      },
+      {
+        "station_id": "YKE:Station:157",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730052862
+      },
+      {
+        "station_id": "YKE:Station:158",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 6,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730115879
+      },
+      {
+        "station_id": "YKE:Station:159",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730228731
+      },
+      {
+        "station_id": "YKE:Station:160",
+        "num_bikes_available": 3,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 3
+          }
+        ],
+        "num_docks_available": 1,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730251571
+      },
+      {
+        "station_id": "YKE:Station:162",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 8,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730225164
+      },
+      {
+        "station_id": "YKE:Station:163",
+        "num_bikes_available": 2,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 2
+          }
+        ],
+        "num_docks_available": 2,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1729722836
+      },
+      {
+        "station_id": "YKE:Station:164",
+        "num_bikes_available": 2,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 2
+          }
+        ],
+        "num_docks_available": 6,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730287363
+      },
+      {
+        "station_id": "YKE:Station:165",
+        "num_bikes_available": 3,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 3
+          }
+        ],
+        "num_docks_available": 1,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292827
+      },
+      {
+        "station_id": "YKE:Station:166",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730264971
+      },
+      {
+        "station_id": "YKE:Station:167",
+        "num_bikes_available": 3,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 3
+          }
+        ],
+        "num_docks_available": 1,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292783
+      },
+      {
+        "station_id": "YKE:Station:168",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 5,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730290881
+      },
+      {
+        "station_id": "YKE:Station:169",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 3,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730289610
+      },
+      {
+        "station_id": "YKE:Station:170",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 8,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730279897
+      },
+      {
+        "station_id": "YKE:Station:171",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 7,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292176
+      },
+      {
+        "station_id": "YKE:Station:172",
+        "num_bikes_available": 4,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 4
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730285309
+      },
+      {
+        "station_id": "YKE:Station:173",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 7,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730281807
+      },
+      {
+        "station_id": "YKE:Station:174",
+        "num_bikes_available": 3,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 3
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292735
+      },
+      {
+        "station_id": "YKE:Station:175",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 3,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730270576
+      },
+      {
+        "station_id": "YKE:Station:176",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1729863691
+      },
+      {
+        "station_id": "YKE:Station:177",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730185614
+      },
+      {
+        "station_id": "YKE:Station:178",
+        "num_bikes_available": 2,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 2
+          }
+        ],
+        "num_docks_available": 6,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730291483
+      },
+      {
+        "station_id": "YKE:Station:179",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 1,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730291569
+      },
+      {
+        "station_id": "YKE:Station:180",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730290503
+      },
+      {
+        "station_id": "YKE:Station:181",
+        "num_bikes_available": 4,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 4
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730291426
+      },
+      {
+        "station_id": "YKE:Station:182",
+        "num_bikes_available": 3,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 3
+          }
+        ],
+        "num_docks_available": 5,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292031
+      },
+      {
+        "station_id": "YKE:Station:183",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 7,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730274396
+      },
+      {
+        "station_id": "YKE:Station:184",
+        "num_bikes_available": 3,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 3
+          }
+        ],
+        "num_docks_available": 1,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292230
+      },
+      {
+        "station_id": "YKE:Station:185",
+        "num_bikes_available": 3,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 3
+          }
+        ],
+        "num_docks_available": 1,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730267169
+      },
+      {
+        "station_id": "YKE:Station:187",
+        "num_bikes_available": 4,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 4
+          }
+        ],
+        "num_docks_available": 8,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292161
+      },
+      {
+        "station_id": "YKE:Station:188",
+        "num_bikes_available": 7,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 7
+          }
+        ],
+        "num_docks_available": 0,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730270047
+      },
+      {
+        "station_id": "YKE:Station:189",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730036575
+      },
+      {
+        "station_id": "YKE:Station:190",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 3,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730289297
+      },
+      {
+        "station_id": "YKE:Station:191",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730238169
+      },
+      {
+        "station_id": "YKE:Station:192",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 6,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730127249
+      },
+      {
+        "station_id": "YKE:Station:195",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 3,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730268951
+      },
+      {
+        "station_id": "YKE:Station:196",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 2,
+        "is_installed": false,
+        "is_renting": false,
+        "is_returning": false,
+        "last_reported": 1730291023
+      },
+      {
+        "station_id": "YKE:Station:197",
+        "num_bikes_available": 4,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 4
+          }
+        ],
+        "num_docks_available": 2,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730256057
+      },
+      {
+        "station_id": "YKE:Station:198",
+        "num_bikes_available": 7,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 7
+          }
+        ],
+        "num_docks_available": 2,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730268538
+      },
+      {
+        "station_id": "YKE:Station:199",
+        "num_bikes_available": 2,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 2
+          }
+        ],
+        "num_docks_available": 2,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730198629
+      },
+      {
+        "station_id": "YKE:Station:200",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730290077
+      },
+      {
+        "station_id": "YKE:Station:201",
+        "num_bikes_available": 4,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 4
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730290125
+      },
+      {
+        "station_id": "YKE:Station:202",
+        "num_bikes_available": 2,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 2
+          }
+        ],
+        "num_docks_available": 1,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730271828
+      },
+      {
+        "station_id": "YKE:Station:203",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 10,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730290554
+      },
+      {
+        "station_id": "YKE:Station:204",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 8,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1728754676
+      },
+      {
+        "station_id": "YKE:Station:205",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": false,
+        "is_renting": false,
+        "is_returning": false,
+        "last_reported": 1685444407
+      },
+      {
+        "station_id": "YKE:Station:206",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 0,
+        "is_installed": false,
+        "is_renting": false,
+        "is_returning": false,
+        "last_reported": 1685427128
+      },
+      {
+        "station_id": "YKE:Station:207",
+        "num_bikes_available": 4,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 4
+          }
+        ],
+        "num_docks_available": 1,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730267061
+      },
+      {
+        "station_id": "YKE:Station:208",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 2,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730290184
+      },
+      {
+        "station_id": "YKE:Station:209",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 3,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730277436
+      },
+      {
+        "station_id": "YKE:Station:210",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730260659
+      },
+      {
+        "station_id": "YKE:Station:211",
+        "num_bikes_available": 3,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 3
+          }
+        ],
+        "num_docks_available": 2,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730256693
+      },
+      {
+        "station_id": "YKE:Station:212",
+        "num_bikes_available": 4,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 4
+          }
+        ],
+        "num_docks_available": 0,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730288884
+      },
+      {
+        "station_id": "YKE:Station:213",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 0,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1695738659
+      },
+      {
+        "station_id": "YKE:Station:214",
+        "num_bikes_available": 3,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 3
+          }
+        ],
+        "num_docks_available": 1,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292228
+      },
+      {
+        "station_id": "YKE:Station:215",
+        "num_bikes_available": 3,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 3
+          }
+        ],
+        "num_docks_available": 8,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292658
+      },
+      {
+        "station_id": "YKE:Station:216",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 6,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292117
+      },
+      {
+        "station_id": "YKE:Station:217",
+        "num_bikes_available": 5,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 5
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730291815
+      },
+      {
+        "station_id": "YKE:Station:218",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 2,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730290778
+      },
+      {
+        "station_id": "YKE:Station:219",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 8,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292855
+      },
+      {
+        "station_id": "YKE:Station:220",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 3,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730188252
+      },
+      {
+        "station_id": "YKE:Station:221",
+        "num_bikes_available": 7,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 7
+          }
+        ],
+        "num_docks_available": 0,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730292485
+      },
+      {
+        "station_id": "YKE:Station:222",
+        "num_bikes_available": 10,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 10
+          }
+        ],
+        "num_docks_available": 0,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730284825
+      },
+      {
+        "station_id": "YKE:Station:223",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730280177
+      },
+      {
+        "station_id": "YKE:Station:224",
+        "num_bikes_available": 7,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 7
+          }
+        ],
+        "num_docks_available": 0,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730289608
+      },
+      {
+        "station_id": "YKE:Station:225",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 7,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730291264
+      },
+      {
+        "station_id": "YKE:Station:226",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730290200
+      },
+      {
+        "station_id": "YKE:Station:227",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 4,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730284147
+      },
+      {
+        "station_id": "YKE:Station:228",
+        "num_bikes_available": 5,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 5
+          }
+        ],
+        "num_docks_available": 1,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730291095
+      },
+      {
+        "station_id": "YKE:Station:229",
+        "num_bikes_available": 4,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 4
+          }
+        ],
+        "num_docks_available": 2,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730207216
+      },
+      {
+        "station_id": "YKE:Station:230",
+        "num_bikes_available": 4,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 4
+          }
+        ],
+        "num_docks_available": 0,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730289764
+      },
+      {
+        "station_id": "YKE:Station:231",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 3,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730271620
+      },
+      {
+        "station_id": "YKE:Station:232",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 2,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730290696
+      },
+      {
+        "station_id": "YKE:Station:234",
+        "num_bikes_available": 0,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 0
+          }
+        ],
+        "num_docks_available": 0,
+        "is_installed": false,
+        "is_renting": false,
+        "is_returning": false,
+        "last_reported": 1726821212
+      },
+      {
+        "station_id": "YKE:Station:235",
+        "num_bikes_available": 1,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 1
+          }
+        ],
+        "num_docks_available": 3,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730272266
+      },
+      {
+        "station_id": "YKE:Station:236",
+        "num_bikes_available": 3,
+        "vehicle_types_available": [
+          {
+            "vehicle_type_id": "YKE:VehicleType:CityBike",
+            "count": 3
+          }
+        ],
+        "num_docks_available": 1,
+        "is_installed": true,
+        "is_renting": true,
+        "is_returning": true,
+        "last_reported": 1730283461
+      }
+    ]
+  }
+}
