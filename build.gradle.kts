@@ -35,6 +35,8 @@ dependencies {
     runtimeOnly("org.postgresql:postgresql")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
+    testImplementation("io.kotest:kotest-property:5.9.1")
+    testImplementation("io.kotest:kotest-assertions-core:5.9.1")
 }
 
 tasks.withType<KotlinCompile> {
@@ -46,4 +48,11 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+tasks.named("runKtlintCheckOverMainSourceSet") {
+    dependsOn("runKtlintFormatOverMainSourceSet")
+}
+tasks.named("runKtlintCheckOverTestSourceSet") {
+    dependsOn("runKtlintFormatOverTestSourceSet")
 }

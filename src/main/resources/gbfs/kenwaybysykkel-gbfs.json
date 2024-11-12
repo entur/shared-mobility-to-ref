@@ -1,0 +1,31 @@
+{
+  "last_updated": 1728997351,
+  "ttl": 0,
+  "version": "2.3",
+  "data": {
+    "nb": {
+      "feeds": [
+        {
+          "name": "system_information",
+          "url": "https://api.entur.io/mobility/v2/gbfs/v2/kenwaybysykkel/system_information"
+        },
+        {
+          "name": "station_information",
+          "url": "https://api.entur.io/mobility/v2/gbfs/v2/kenwaybysykkel/station_information"
+        },
+        {
+          "name": "station_status",
+          "url": "https://api.entur.io/mobility/v2/gbfs/v2/kenwaybysykkel/station_status"
+        },
+        {
+          "name": "system_pricing_plans",
+          "url": "https://api.entur.io/mobility/v2/gbfs/v2/kenwaybysykkel/system_pricing_plans"
+        },
+        {
+          "name": "vehicle_types",
+          "url": "https://api.entur.io/mobility/v2/gbfs/v2/kenwaybysykkel/vehicle_types"
+        }
+      ]
+    }
+  }
+}

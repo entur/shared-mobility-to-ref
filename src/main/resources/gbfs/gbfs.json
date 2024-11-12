@@ -1,0 +1,24 @@
+{
+  "systems": [
+    {
+      "id": "evietrondheim",
+      "url": "https://api.entur.io/mobility/v2/gbfs/v2/evietrondheim/gbfs"
+    },
+    {
+      "id": "basimbysykkel",
+      "url": "https://api.entur.io/mobility/v2/gbfs/v2/basimbysykkel/gbfs"
+    },
+    {
+      "id": "kenwaybysykkel",
+      "url": "https://api.entur.io/mobility/v2/gbfs/v2/kenwaybysykkel/gbfs"
+    },
+    {
+      "id": "altairtrondheim",
+      "url": "https://api.entur.io/mobility/v2/gbfs/v2/altairtrondheim/gbfs"
+    },
+    {
+      "id": "eziotrondheim",
+      "url": "https://api.entur.io/mobility/v2/gbfs/v2/eziotrondheim/gbfs"
+    }
+  ]
+}

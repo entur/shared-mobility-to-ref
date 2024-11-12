@@ -1,0 +1,13 @@
+{
+  "last_updated": 1730272025,
+  "ttl": 21600,
+  "version": "2.3",
+  "data": {
+    "regions": [
+      {
+        "region_id": "YEV:Region:196",
+        "name": "Trondheim"
+      }
+    ]
+  }
+}

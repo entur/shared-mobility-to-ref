@@ -1,0 +1,1737 @@
+{
+  "last_updated": 1730290760,
+  "ttl": 3600,
+  "version": "2.3",
+  "data": {
+    "stations": [
+      {
+        "station_id": "YKE:Station:1",
+        "name": "Masterloop Teststasjon",
+        "lat": 58.932919,
+        "lon": 5.7054,
+        "address": "Professor Olav Hanssens vei 7A, 4021 Stavanger",
+        "capacity": 2
+      },
+      {
+        "station_id": "YKE:Station:6",
+        "name": "Ixys",
+        "lat": 58.71827021142778,
+        "lon": 5.640528934080521,
+        "address": "Langmyra 11, 4344 Bryne",
+        "capacity": 2
+      },
+      {
+        "station_id": "YKE:Station:7",
+        "name": "Bike Garage AS",
+        "lat": 58.8780206,
+        "lon": 5.7224452,
+        "address": "Luramyrveien 11, 4313 Sandnes",
+        "capacity": 7
+      },
+      {
+        "station_id": "YKE:Station:8",
+        "name": "UniNor",
+        "lat": 58.4363618864779,
+        "lon": 5.975856282748281,
+        "address": "Ytre Torvhusveien 2, 4370 Egersund",
+        "capacity": 2
+      },
+      {
+        "station_id": "YKE:Station:10",
+        "name": "Ixys Teststasjon",
+        "lat": 58.718215416241975,
+        "lon": 5.640165880355198,
+        "address": "Langmyra 11, 4344 Bryne",
+        "capacity": 2
+      },
+      {
+        "station_id": "YKE:Station:11",
+        "name": "Ranso",
+        "lat": 58.89663517756725,
+        "lon": 5.679985787719489,
+        "address": "Moseidveien 5,  Stavanger",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:13",
+        "name": "Clarion Hotel Energy",
+        "lat": 58.95382771423209,
+        "lon": 5.688632223755121,
+        "address": "Ishockeyveien 2, 4021 Stavanger",
+        "capacity": 12
+      },
+      {
+        "station_id": "YKE:Station:14",
+        "name": "Tvedtsenteret",
+        "lat": 58.8957,
+        "lon": 5.7024,
+        "address": "Lagerveien 2, 4033 Stavanger",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:15",
+        "name": "Kruse Smith",
+        "lat": 58.8952,
+        "lon": 5.6896,
+        "address": "Kanalsletta 4, 4033 Stavanger",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:16",
+        "name": "Møller Bil (VW)",
+        "lat": 58.8912,
+        "lon": 5.7131,
+        "address": "Vassbotn 17, 4033 Stavanger",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:17",
+        "name": "Møller Bil (Audi)",
+        "lat": 58.8875,
+        "lon": 5.712,
+        "address": "Vassbotn 6, 4313 Sandnes",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:18",
+        "name": "Scandic Forus Hotel",
+        "lat": 58.8917,
+        "lon": 5.7301,
+        "address": "Bjødnabeen 2, 4033 Stavanger",
+        "capacity": 6
+      },
+      {
+        "station_id": "YKE:Station:19",
+        "name": "Clarion Hotel Stavanger",
+        "lat": 58.96755705942553,
+        "lon": 5.729046508669851,
+        "address": "Arne Rettedals Gate 14, 4008 Stavanger",
+        "capacity": 6
+      },
+      {
+        "station_id": "YKE:Station:20",
+        "name": "Lura Bydelshus",
+        "lat": 58.88220878008113,
+        "lon": 5.7383496165275565,
+        "address": "Prinsens Vei 14A, 4315 Sandnes",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:22",
+        "name": "2020park",
+        "lat": 58.89044244236263,
+        "lon": 5.7378896178124705,
+        "address": "Forusparken 2, 4033 Stavanger",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:23",
+        "name": "Gausel Stasjon",
+        "lat": 58.8995,
+        "lon": 5.7407,
+        "address": "Gauselveien, 4032 Stavanger",
+        "capacity": 6
+      },
+      {
+        "station_id": "YKE:Station:24",
+        "name": "Maskinveien",
+        "lat": 58.900629381142465,
+        "lon": 5.705074869063537,
+        "address": "Maskinveien 24, 4033 Stavanger",
+        "capacity": 2
+      },
+      {
+        "station_id": "YKE:Station:25",
+        "name": "Lyse, Mariero",
+        "lat": 58.93322503626857,
+        "lon": 5.747309946455061,
+        "address": "Breiflåtveien 18, 4017 Stavanger",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:26",
+        "name": "Statens hus",
+        "lat": 58.961,
+        "lon": 5.7384,
+        "address": "Lagårdsveien 46, 4010 Stavanger",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:27",
+        "name": "Rogaland Teater",
+        "lat": 58.96564,
+        "lon": 5.73271,
+        "address": "Teaterveien 1, 4005 Stavanger",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:28",
+        "name": "Fiskepiren (Hurtigbåtterminalen)",
+        "lat": 58.97194,
+        "lon": 5.73933,
+        "address": "Verksgata 14, 4013 Stavanger",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:29",
+        "name": "Nytorget",
+        "lat": 58.96979501544047,
+        "lon": 5.739608805365007,
+        "address": "Nytorget 1, 4012 Stavanger",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:30",
+        "name": "Oljemuseet",
+        "lat": 58.97290736936259,
+        "lon": 5.734907411970198,
+        "address": "Kjeringholmen 1a, 4006 Stavanger",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:31",
+        "name": "Holmealmenningen",
+        "lat": 58.97351427268538,
+        "lon": 5.731085800918144,
+        "address": "Nedre Holmegate 12, 4006 Stavanger",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:32",
+        "name": "Fisketorget",
+        "lat": 58.97045,
+        "lon": 5.73005,
+        "address": "Strandkaien 37, 4005 Stavanger",
+        "capacity": 12
+      },
+      {
+        "station_id": "YKE:Station:33",
+        "name": "Konserthuset",
+        "lat": 58.97421,
+        "lon": 5.725375,
+        "address": "Nedre Strandgate 89, 4005 Stavanger",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:35",
+        "name": "Subsea7",
+        "lat": 58.89572,
+        "lon": 5.68622,
+        "address": "Kanalsletta 9, 4052 Sola",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:36",
+        "name": "Kvadrat Hovedinngang",
+        "lat": 58.87585,
+        "lon": 5.72201,
+        "address": "Gamle Stokkavei 1, 4313 Sandnes",
+        "capacity": 2
+      },
+      {
+        "station_id": "YKE:Station:37",
+        "name": "Sandneshallen",
+        "lat": 58.842901206063146,
+        "lon": 5.7145908772945395,
+        "address": "Asheimveien 45, 4318 Sandnes",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:38",
+        "name": "Hovedinngang SUS",
+        "lat": 58.95238,
+        "lon": 5.73173,
+        "address": "Gerd-Ragna Bloch Thorsens gate 8, 4019 Stavanger",
+        "capacity": 12
+      },
+      {
+        "station_id": "YKE:Station:39",
+        "name": "Inngang 5 SUS",
+        "lat": 58.95368,
+        "lon": 5.73209,
+        "address": "Armauer Hansens vei 20, 4011 Stavanger",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:40",
+        "name": "Inngang 6 SUS",
+        "lat": 58.95372,
+        "lon": 5.73359,
+        "address": "Armauer Hansens vei 20, 4011 Stavanger",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:41",
+        "name": "Psykiatrisk klinikk",
+        "lat": 58.95261,
+        "lon": 5.73611,
+        "address": "Jan Johnsens gate 12, 4011 Stavanger",
+        "capacity": 6
+      },
+      {
+        "station_id": "YKE:Station:43",
+        "name": "Kilden Kjøpesenter",
+        "lat": 58.94828386370338,
+        "lon": 5.738229453563691,
+        "address": "Torgveien 21, 4016 Stavanger",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:45",
+        "name": "Amfi Madla",
+        "lat": 58.95259448730499,
+        "lon": 5.681218849495052,
+        "address": "Madlakrossen 7, 4042 Stavanger",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:46",
+        "name": "Smedvigkvartalet v/Coop Extra",
+        "lat": 58.97391141479332,
+        "lon": 5.7224846351891765,
+        "address": "Løkkeveien 111, 4007 Stavanger",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:47",
+        "name": "Elsykkelsenteret",
+        "lat": 58.87779439969606,
+        "lon": 5.725085019803374,
+        "address": "Luramyrveien 11, 4313 Stavanger",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:48",
+        "name": "Paradis Hillevågsveien",
+        "lat": 58.954507042278095,
+        "lon": 5.741689369049708,
+        "address": "Lagårdsveien 115, 4011 Stavanger",
+        "capacity": 10
+      },
+      {
+        "station_id": "YKE:Station:49",
+        "name": "Bilhuset 2.etg",
+        "lat": 58.88687235130797,
+        "lon": 5.705353366211057,
+        "address": "Vestre Svanholmen 9-11, 4313 Sandnes",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:50",
+        "name": "Jåttåvågen Stasjon",
+        "lat": 58.914618442400524,
+        "lon": 5.7285641132475575,
+        "address": "Jåttåvågveien, 4020 Stavanger",
+        "capacity": 11
+      },
+      {
+        "station_id": "YKE:Station:51",
+        "name": "Varatun Gård",
+        "lat": 58.86637475479063,
+        "lon": 5.730546399950979,
+        "address": "Varatunhagen 51, 4317 Sandnes",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:52",
+        "name": "Badehusgata",
+        "lat": 58.97273,
+        "lon": 5.751435,
+        "address": "Badehusgata  37, 4014 Stavanger",
+        "capacity": 6
+      },
+      {
+        "station_id": "YKE:Station:53",
+        "name": "Fylkeskommunen",
+        "lat": 58.964779573219204,
+        "lon": 5.73145125992596,
+        "address": "Arkitekt Eckhoffs gate 1, 4010 Stavanger",
+        "capacity": 6
+      },
+      {
+        "station_id": "YKE:Station:54",
+        "name": "Veritasbygget",
+        "lat": 58.97963996257866,
+        "lon": 5.719654653221368,
+        "address": "Veritasveien 25, 4007 Stavanger",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:55",
+        "name": "Stavanger Offshore Tekniske Fagskole",
+        "lat": 58.98187,
+        "lon": 5.714779,
+        "address": "Tjuvholmveien 40, 4007 Stavanger",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:56",
+        "name": "Sørmarka Arena",
+        "lat": 58.94020928257217,
+        "lon": 5.721865044906735,
+        "address": "Sørmarkaveien 20, 4019 Stavanger",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:57",
+        "name": "Hinna Park v/ kanalen",
+        "lat": 58.9168,
+        "lon": 5.7314,
+        "address": "Jåttåvågveien 18, 4020 Stavanger",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:58",
+        "name": "Innovasjonspark Stavanger",
+        "lat": 58.93356,
+        "lon": 5.7044,
+        "address": "Professor Olav Hanssens vei 7A, 4021 Stavanger",
+        "capacity": 10
+      },
+      {
+        "station_id": "YKE:Station:59",
+        "name": "Randaberg kommunehus",
+        "lat": 58.9991,
+        "lon": 5.6205,
+        "address": "Randabergveien 370, 4070 Randaberg",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:60",
+        "name": "Randaberg Arena",
+        "lat": 59.0036,
+        "lon": 5.6283,
+        "address": "Torvmyrveien 24, 4070 Randaberg",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:61",
+        "name": "Ruten Sandnes",
+        "lat": 58.85221,
+        "lon": 5.73664,
+        "address": "Julie Eges Gate , 4306 Sandnes",
+        "capacity": 12
+      },
+      {
+        "station_id": "YKE:Station:62",
+        "name": "Hana Skippergata",
+        "lat": 58.85502888807858,
+        "lon": 5.76550309353479,
+        "address": "Skippergata 102, 4328 Sandnes",
+        "capacity": 6
+      },
+      {
+        "station_id": "YKE:Station:63",
+        "name": "Bogafjellhallen",
+        "lat": 58.8200401815254,
+        "lon": 5.742503486573696,
+        "address": "Lyngholen 5, 4324 Sandnes",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:64",
+        "name": "Sørbøhallen",
+        "lat": 58.82610182137543,
+        "lon": 5.7295761234126985,
+        "address": "Haugen 27, 4323 Sandnes",
+        "capacity": 6
+      },
+      {
+        "station_id": "YKE:Station:65",
+        "name": "Strondavika",
+        "lat": 58.880514916338825,
+        "lon": 5.773607455161255,
+        "address": "Dyrnesodden, 4329 Sandnes",
+        "capacity": 6
+      },
+      {
+        "station_id": "YKE:Station:66",
+        "name": "Sandvika",
+        "lat": 58.8708,
+        "lon": 5.7657,
+        "address": "Sandvikbakken 2, 4329 Sandnes",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:67",
+        "name": "Equinor Vest",
+        "lat": 58.8903883950106,
+        "lon": 5.708738062530756,
+        "address": "Svanholmen 8, 4313 Sandnes",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:68",
+        "name": "Equinor Øst",
+        "lat": 58.8926,
+        "lon": 5.72,
+        "address": "Forusbeen 50, 4035 Stavanger",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:69",
+        "name": "Tastasenteret",
+        "lat": 58.9843,
+        "lon": 5.6919,
+        "address": "Tastatunet 1-3, 4027 Stavanger",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:70",
+        "name": "SR Bank Bjergsted",
+        "lat": 58.974251090017475,
+        "lon": 5.720529958540282,
+        "address": "Bjergsted Terrasse , 4007 Stavanger",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:71",
+        "name": "Stavanger Aftenblad",
+        "lat": 58.97068315765094,
+        "lon": 5.7371986805083,
+        "address": "Nykirkebakken 2, 4013 Stavanger",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:72",
+        "name": "Stavanger Stasjon Perrongen",
+        "lat": 58.966592676026636,
+        "lon": 5.732638835906984,
+        "address": "Jernbaneveien 9, 4005 Stavanger",
+        "capacity": 20
+      },
+      {
+        "station_id": "YKE:Station:73",
+        "name": "Eidsvollsgata",
+        "lat": 58.8587,
+        "lon": 5.7377,
+        "address": "Eidsvollsgata 99-107, 4307 Sandnes",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:74",
+        "name": "Archer Stangeland",
+        "lat": 58.859951550721235,
+        "lon": 5.708399735423883,
+        "address": "Sandnesveien 358, 4312 Sandnes",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:75",
+        "name": "Varatun DPS",
+        "lat": 58.8678,
+        "lon": 5.7374,
+        "address": "Postveien 181, 4307 Sandnes",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:76",
+        "name": "Strandgata",
+        "lat": 58.86776,
+        "lon": 5.7446,
+        "address": "Strandgata 147, 4307 Sandnes",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:78",
+        "name": "Mariero Stasjon",
+        "lat": 58.9346,
+        "lon": 5.753239,
+        "address": "Breiflåtveien, 4017 Stavanger",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:79",
+        "name": "Åsenhallen Sola",
+        "lat": 58.891954492340915,
+        "lon": 5.667113229697863,
+        "address": "Åsenvegen 86, 4050 Sola",
+        "capacity": 6
+      },
+      {
+        "station_id": "YKE:Station:80",
+        "name": "Kulturhuset Sola",
+        "lat": 58.88910848283322,
+        "lon": 5.650433979961235,
+        "address": "Kongshaugvegen 32, 4050 Sola",
+        "capacity": 6
+      },
+      {
+        "station_id": "YKE:Station:81",
+        "name": "Sola sentrum",
+        "lat": 58.88504,
+        "lon": 5.646443,
+        "address": "Solakrossen 15 - 17, 4050 Sola",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:82",
+        "name": "Tou Scene",
+        "lat": 58.96937510900764,
+        "lon": 5.758364997804166,
+        "address": "Kvitsøygata 25, 4014 Stavanger",
+        "capacity": 12
+      },
+      {
+        "station_id": "YKE:Station:83",
+        "name": "Samfunnshuset Nærbø",
+        "lat": 58.669782368450825,
+        "lon": 5.6404329277575025,
+        "address": "Håvegen 347,  Nærbø",
+        "capacity": 6
+      },
+      {
+        "station_id": "YKE:Station:84",
+        "name": "Tine Meieri",
+        "lat": 58.64495752500059,
+        "lon": 5.631377245299517,
+        "address": "Næringsvegen 21,  Nærbø",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:85",
+        "name": "Vitengarden",
+        "lat": 58.65626821369324,
+        "lon": 5.632141255773603,
+        "address": "Kviavegen 99,  Nærbø",
+        "capacity": 6
+      },
+      {
+        "station_id": "YKE:Station:86",
+        "name": "Nærbø Stasjon",
+        "lat": 58.665591838648055,
+        "lon": 5.640044258907436,
+        "address": "Jadarvgen 2A,  Nærbø",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:87",
+        "name": "Egersund Stasjon",
+        "lat": 58.461250468761676,
+        "lon": 6.0021341778337955,
+        "address": "Krossmoveien, 4370 Egersund",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:88",
+        "name": "Lerviksbakken (Egersund)",
+        "lat": 58.45159091285498,
+        "lon": 6.0030139423906785,
+        "address": "Nytorget 3, 4370 Egersund",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:89",
+        "name": "Resahagen",
+        "lat": 59.03279091727782,
+        "lon": 6.0350872948765755,
+        "address": "Gaupevegen,  Jørpeland",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:90",
+        "name": "Folkets Hus",
+        "lat": 59.022308660063715,
+        "lon": 6.040847674012182,
+        "address": "Rådhusgaten 9,  Jørpeland",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:91",
+        "name": "Vormedal",
+        "lat": 59.35502600606199,
+        "lon": 5.324034187942743,
+        "address": "Vormedalsvegen 340,  Karmøy",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:92",
+        "name": "Norheim",
+        "lat": 59.379593309382614,
+        "lon": 5.306573007255793,
+        "address": "Vormedalsvegen 12,  Karmøy",
+        "capacity": 6
+      },
+      {
+        "station_id": "YKE:Station:93",
+        "name": "Djervhallen",
+        "lat": 59.422971734618244,
+        "lon": 5.27315268293023,
+        "address": "Stordgata 3, 5522 Haugesund",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:94",
+        "name": "Haraldshallen",
+        "lat": 59.42352295974382,
+        "lon": 5.280271265655754,
+        "address": "Hanne Hauglands Veg 8, 5519 Haugesund",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:95",
+        "name": "Flotmyr Terminal",
+        "lat": 59.41691,
+        "lon": 5.27261,
+        "address": "Skjoldavegen 28, 5522 Haugesund",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:96",
+        "name": "Festiviteten",
+        "lat": 59.410080197469114,
+        "lon": 5.274642849929108,
+        "address": "Knut Knutsen O.A.S gate 4, 5528 Haugesund",
+        "capacity": 10
+      },
+      {
+        "station_id": "YKE:Station:98",
+        "name": "Byfjordparken",
+        "lat": 58.981942379685705,
+        "lon": 5.714207463897764,
+        "address": "Byfjordparken 13-17,  Stavanger",
+        "capacity": 12
+      },
+      {
+        "station_id": "YKE:Station:99",
+        "name": "Skeiane Stasjon",
+        "lat": 58.84795029553885,
+        "lon": 5.733442221285344,
+        "address": "Ganddalsgata,  Sandnes",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:100",
+        "name": "Ganddal Stasjon",
+        "lat": 58.82319818445521,
+        "lon": 5.717168496921659,
+        "address": "Ganddal Stasjon,  Sandnes",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:101",
+        "name": "Austrått Bydelshus",
+        "lat": 58.843272285446204,
+        "lon": 5.755773246681201,
+        "address": "Iglemyrveien 3, 4325 Sandnes",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:102",
+        "name": "Giskehallen",
+        "lat": 58.858181830923485,
+        "lon": 5.7260275818407536,
+        "address": "Jønningsheiveien 47, 4316 Sandnes",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:103",
+        "name": "Hillevåg Torg",
+        "lat": 58.9481979477398,
+        "lon": 5.741903032176197,
+        "address": "Torgveien 2, 4016 Stavanger",
+        "capacity": 10
+      },
+      {
+        "station_id": "YKE:Station:104",
+        "name": "Bryne Stasjon",
+        "lat": 58.73513207041529,
+        "lon": 5.649788707560219,
+        "address": "Jernbanegata 8, 4340 Bryne",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:105",
+        "name": "Storstova",
+        "lat": 58.736125425493015,
+        "lon": 5.651882976293565,
+        "address": "Arne Garborgs Veg 26, 4344 Bryne",
+        "capacity": 6
+      },
+      {
+        "station_id": "YKE:Station:106",
+        "name": "Depro",
+        "lat": 58.72236738464369,
+        "lon": 5.63569101691246,
+        "address": "Martin Vagles Veg 2, 4344 Bryne",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:107",
+        "name": "Nordic Steel",
+        "lat": 58.71894,
+        "lon": 5.64116,
+        "address": "Langmyra 6, 4344 Bryne",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:108",
+        "name": "Tananger Sentrum",
+        "lat": 58.93544924267624,
+        "lon": 5.586185619235037,
+        "address": "Skibmannsvegen 4, 4056 Sola",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:109",
+        "name": "Flyplassen",
+        "lat": 58.88332,
+        "lon": 5.62831,
+        "address": "Flyplassvegen 230, 4055 Sola",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:110",
+        "name": "Solastranden",
+        "lat": 58.88570145846788,
+        "lon": 5.604641765225097,
+        "address": "Axel Lunds Veg 23, 4050 Sola",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:111",
+        "name": "Amfi Ålgård",
+        "lat": 58.76934401571765,
+        "lon": 5.847252532807033,
+        "address": "Ole Nielsens Vei 25, 4330 Ålgård",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:112",
+        "name": "Meierikrossen",
+        "lat": 58.767443663485295,
+        "lon": 5.8613425121038745,
+        "address": "Sandnesveien 11, 4330 Ålgård",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:113",
+        "name": "Klepp Sentrum",
+        "lat": 58.773684069534795,
+        "lon": 5.629660882987083,
+        "address": "Solavegen 5, 4352 Klepp",
+        "capacity": 16
+      },
+      {
+        "station_id": "YKE:Station:114",
+        "name": "Klepp stasjon",
+        "lat": 58.77182309960128,
+        "lon": 5.677667319905594,
+        "address": "Industrivegen 1A, 4353 Klepp",
+        "capacity": 16
+      },
+      {
+        "station_id": "YKE:Station:115",
+        "name": "Øygardsvatnet",
+        "lat": 58.764935962943156,
+        "lon": 5.833277553450898,
+        "address": "Anundskaret 100, 4330 Ålgård",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:116",
+        "name": "Servicesenteret Kirkegata",
+        "lat": 59.41133251309785,
+        "lon": 5.275002904236317,
+        "address": "Kirkegata 85,  Haugesund",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:117",
+        "name": "Strandgata Terminal",
+        "lat": 59.41122332101685,
+        "lon": 5.271011777222157,
+        "address": "Haraldsgata 110,  Haugesund",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:118",
+        "name": "Torggata",
+        "lat": 59.4139639357802,
+        "lon": 5.268705077469349,
+        "address": "Haraldsgata 159,  Haugesund",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:119",
+        "name": "Hana Stadion",
+        "lat": 58.855561727709414,
+        "lon": 5.757712215119683,
+        "address": "Frøyerveien 16, 4328 Sandnes",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:121",
+        "name": "Woodpekker AS",
+        "lat": 59.27183,
+        "lon": 5.25762,
+        "address": "Veiteborvegen 76, 4250 Kopervik",
+        "capacity": 2
+      },
+      {
+        "station_id": "YKE:Station:122",
+        "name": "Jørpelandsvågen",
+        "lat": 59.01830208664066,
+        "lon": 6.043005175888537,
+        "address": "Direktør Sæthersgate 1, 4100 Jørpeland",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:123",
+        "name": "Jæren Industripartner",
+        "lat": 58.782456386492555,
+        "lon": 5.705293016508222,
+        "address": "Plogfabrikkvegen 10, 4353 Klepp",
+        "capacity": 0
+      },
+      {
+        "station_id": "YKE:Station:124",
+        "name": "Site 4016, Åsen",
+        "lat": 58.94536930062529,
+        "lon": 5.726471869549925,
+        "address": "Haugåsstubben 10, 4016 Stavanger",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:125",
+        "name": "Rovik BOAS",
+        "lat": 58.86366470677882,
+        "lon": 5.758916325867174,
+        "address": "Åsveien 123, 4328 Sandnes",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:126",
+        "name": "Austrått BOAS",
+        "lat": 58.84430223852215,
+        "lon": 5.742501709610224,
+        "address": "Vindhagen 1, 4306 Sandnes",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:127",
+        "name": "Ganddal Bydelshus",
+        "lat": 58.82152552365713,
+        "lon": 5.709294721418701,
+        "address": "Olsokveien 1, 4322 Sandnes",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:128",
+        "name": "Nye Gamlingen",
+        "lat": 58.952065355110875,
+        "lon": 5.71532556787133,
+        "address": "Mosvangen 18, 4021 Stavanger",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:129",
+        "name": "UiS Øst",
+        "lat": 58.937787307699296,
+        "lon": 5.698780193924903,
+        "address": "Telegrafdirektør Heftyes Vei 35, 4021 Stavanger",
+        "capacity": 10
+      },
+      {
+        "station_id": "YKE:Station:130",
+        "name": "Torvmyra",
+        "lat": 58.77204848671474,
+        "lon": 5.830930368974803,
+        "address": "Myrullveien 8, 4330 Ålgård",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:131",
+        "name": "Skjersvigå",
+        "lat": 59.00534448935272,
+        "lon": 6.066013667732477,
+        "address": "Jørpelandsvegen 153, 4100 Jørpeland",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:132",
+        "name": "Avanti",
+        "lat": 59.01212701845077,
+        "lon": 6.05195302516222,
+        "address": "Jøssangvegen 7, 4100 Jørpeland",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:133",
+        "name": "Sandnes Rådhus",
+        "lat": 58.85348636758877,
+        "lon": 5.741262763607665,
+        "address": "Rådhusgata 1, 4306 Sandnes",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:134",
+        "name": "Randaberg Sentrum",
+        "lat": 58.99973280415611,
+        "lon": 5.617037736810744,
+        "address": "Jon Torbergssons Vei 11, 4070 Randaberg",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:135",
+        "name": "UiS Vest",
+        "lat": 58.93823172107872,
+        "lon": 5.690820906311273,
+        "address": "Kristine Bonnevies Vei 22, 4021 Stavanger",
+        "capacity": 12
+      },
+      {
+        "station_id": "YKE:Station:136",
+        "name": "Stavanger Kunsthall",
+        "lat": 58.962612245900544,
+        "lon": 5.722115063703797,
+        "address": "Madlaveien 33, 4009 Stavanger",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:137",
+        "name": "Varden",
+        "lat": 58.95980440134514,
+        "lon": 5.752176814712582,
+        "address": "Varden Kirke, Egersundsgata, 4015 Stavanger",
+        "capacity": 24
+      },
+      {
+        "station_id": "YKE:Station:138",
+        "name": "Roaldsøy",
+        "lat": 58.99212408541737,
+        "lon": 5.761370658874512,
+        "address": "Roaldsøyveien 29, 4085 Stavanger",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:140",
+        "name": "Sandvedparken",
+        "lat": 58.842359428672694,
+        "lon": 5.730649799173989,
+        "address": "Kvellurveien 23, 4319 Sandnes",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:141",
+        "name": "Nærbø Kirke",
+        "lat": 58.65800813375935,
+        "lon": 5.6565195769399,
+        "address": "Store Ring 53, 4365 Nærbø",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:142",
+        "name": "Kvernevik Svømmehall",
+        "lat": 58.9659923137873,
+        "lon": 5.611024643294513,
+        "address": "Traneveien 14, 4048 Stavanger",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:143",
+        "name": "Sats, Kvitsøygata ",
+        "lat": 58.96901277880377,
+        "lon": 5.756836339896837,
+        "address": "Kvitsøygata 19, 4014 Stavanger",
+        "capacity": 12
+      },
+      {
+        "station_id": "YKE:Station:145",
+        "name": "Ormen Lange",
+        "lat": 58.910084929979945,
+        "lon": 5.663436591887148,
+        "address": "Våganesstien, 4052 Røyneberg",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:146",
+        "name": "Tjensvolltorget",
+        "lat": 58.94965268609391,
+        "lon": 5.696179959923028,
+        "address": "Tjensvolltorget 24, 4021 Stavanger",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:147",
+        "name": "Hinna Kirke",
+        "lat": 58.92383410814773,
+        "lon": 5.728236280414423,
+        "address": "Gamleveien 30A, 4018 Stavanger",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:148",
+        "name": "Hetlandshallen",
+        "lat": 58.93662287944642,
+        "lon": 5.733526493422686,
+        "address": "Skolevollen 15, 4017 Stavanger",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:149",
+        "name": "Gausel Bydelshus",
+        "lat": 58.89844484303964,
+        "lon": 5.72276370230611,
+        "address": "Heddeveien 141, 4033 Stavanger",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:150",
+        "name": "Bondekompaniet",
+        "lat": 58.94355106280457,
+        "lon": 5.750358692025388,
+        "address": "Sandvikveien 21, 4016 Stavanger",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:151",
+        "name": "Scandic Stavanger City",
+        "lat": 58.97095034717674,
+        "lon": 5.7441100711002955,
+        "address": "Reidar Berges Gate 7, 4013 Stavanger",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:152",
+        "name": "Stokkelandsmarka",
+        "lat": 58.558659444109225,
+        "lon": 5.739052623444876,
+        "address": "Stokkelandsbakken 2, 4362 Vigrestad",
+        "capacity": 6
+      },
+      {
+        "station_id": "YKE:Station:153",
+        "name": "Vigrestad sentrum",
+        "lat": 58.57076439526915,
+        "lon": 5.689954804256559,
+        "address": "Sentrumslunden, 4362 Vigrestad",
+        "capacity": 6
+      },
+      {
+        "station_id": "YKE:Station:154",
+        "name": "Gjesdal Idrettspark",
+        "lat": 58.774445365594005,
+        "lon": 5.864536855369807,
+        "address": "Ålgårdsheia 25, 4330 Ålgård",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:155",
+        "name": "Hundvågkrossen",
+        "lat": 58.993278753314826,
+        "lon": 5.729019963182509,
+        "address": "Hundvågveien 44, 4085 Stavanger",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:156",
+        "name": "Børesvingen",
+        "lat": 58.99564671159604,
+        "lon": 5.749042965793805,
+        "address": "Børesvingen 1, 4085 Hundvåg",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:157",
+        "name": "Varhaug IL",
+        "lat": 58.62186707385479,
+        "lon": 5.661746012046933,
+        "address": "Opstadvegen 583, 4360 Varhaug",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:158",
+        "name": "Rådhuset, Varhaug",
+        "lat": 58.61569433071426,
+        "lon": 5.645271632820369,
+        "address": "Rådhusgata, 4360 Varhaug",
+        "capacity": 6
+      },
+      {
+        "station_id": "YKE:Station:159",
+        "name": "Vigrestad IK",
+        "lat": 58.566772492740824,
+        "lon": 5.704295821487903,
+        "address": "Haugstadvegen 14, 4362 Vigrestad",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:160",
+        "name": "Atea",
+        "lat": 58.894848419241356,
+        "lon": 5.642060064710677,
+        "address": "Sentrumsvegen 10, 4055 Sola",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:162",
+        "name": "Kleivanehallen",
+        "lat": 58.83832751382178,
+        "lon": 5.773815647664142,
+        "address": "Kleivane 4, 4308 Sandnes",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:163",
+        "name": "Hå legevakt",
+        "lat": 58.69949982371989,
+        "lon": 5.606159158051014,
+        "address": "Rimestad 16, 4365 Nærbø",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:164",
+        "name": "Campus Bjergsted (Bjergstedparken)",
+        "lat": 58.97579300648778,
+        "lon": 5.7202729154136875,
+        "address": "Bjergsted 1, 4007 Stavanger",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:165",
+        "name": "Lagård BSS",
+        "lat": 58.465231948048256,
+        "lon": 6.018785331398249,
+        "address": "Sjukehusveien 38, 4370 Egersund",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:166",
+        "name": "Egersund Musikk- og Kulturskole",
+        "lat": 58.45024153507927,
+        "lon": 5.998365925624967,
+        "address": "Parkveien 1, 4370 Egersund",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:167",
+        "name": "Egersundshallen",
+        "lat": 58.44471160937877,
+        "lon": 6.001361689631938,
+        "address": "Husabøveien 26, 4370 Egersund",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:168",
+        "name": "Dalane VGS",
+        "lat": 58.46470167133529,
+        "lon": 6.010854290798307,
+        "address": "Sjukehusveien 10, 4370 Egersund",
+        "capacity": 6
+      },
+      {
+        "station_id": "YKE:Station:169",
+        "name": "Langholmen",
+        "lat": 58.45917116614055,
+        "lon": 5.982090281322597,
+        "address": "Langholmveien 6, 4370 Egersund",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:170",
+        "name": "Østerhus Arena",
+        "lat": 58.86081865750805,
+        "lon": 5.723006911575794,
+        "address": "Jønningsheiveien 40, 4317 Sandnes",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:171",
+        "name": "Arkeologisk Museum",
+        "lat": 58.963678804822905,
+        "lon": 5.730187939479946,
+        "address": "Peder Klows gate 30A, 4010 Stavanger",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:172",
+        "name": "Vardeneset",
+        "lat": 58.99535272658656,
+        "lon": 5.681953513836481,
+        "address": "Gamle Dusevikveien 6, 4029 Stavanger",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:173",
+        "name": "Tastahallen",
+        "lat": 58.97871147386212,
+        "lon": 5.70205249462669,
+        "address": "Fredtunveien 10, 4026 Stavanger",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:174",
+        "name": "Stavanger DPS",
+        "lat": 58.96007132941591,
+        "lon": 5.693487022072076,
+        "address": "Adjunkt Hauglands gate 34, 4022 Stavanger",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:175",
+        "name": "Apply",
+        "lat": 58.90509868141987,
+        "lon": 5.694731567054987,
+        "address": "Moseidsletta 122, 4033 Stavanger",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:176",
+        "name": "Beyonder",
+        "lat": 58.88527913458273,
+        "lon": 5.721650468185543,
+        "address": "Stokkamyrveien 30, 4313 Sandnes",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:177",
+        "name": "Pådriv, Flintegata",
+        "lat": 58.94522,
+        "lon": 5.749346,
+        "address": "Flintegata 2, 4016 Stavanger",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:178",
+        "name": "Kitty Kiellands hus",
+        "lat": 58.93729479619057,
+        "lon": 5.6960248947143555,
+        "address": "UiS, 4021 Stavanger",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:179",
+        "name": "Soltun Borettslag",
+        "lat": 58.949584896511055,
+        "lon": 5.702944742515683,
+        "address": "Professor Hansteens Gate, 4021 Stavanger",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:180",
+        "name": "Gamle Forusvei 1",
+        "lat": 58.89375719725351,
+        "lon": 5.7384196389466515,
+        "address": "Gamle Forus Vei 1, 4033 Stavanger",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:181",
+        "name": "Sola Arena",
+        "lat": 58.89520106710984,
+        "lon": 5.664527462795377,
+        "address": "Åsnutvegen 44B, 4050 Sola",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:182",
+        "name": "Rosenli",
+        "lat": 58.96149698543513,
+        "lon": 5.763536331525623,
+        "address": "Digranesveien 9, 4015 Stavanger",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:183",
+        "name": "Kvitodden borettslag",
+        "lat": 58.99975145373264,
+        "lon": 5.717771742492914,
+        "address": "Havertveien 1, 4085 Stavanger",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:184",
+        "name": "Forus Sportssenter",
+        "lat": 58.89422500276055,
+        "lon": 5.679215692287791,
+        "address": "Moseidsletta 41, 4052 Sola",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:185",
+        "name": "Kontinentalvegen 2",
+        "lat": 58.916796828986804,
+        "lon": 5.602853158060749,
+        "address": "Kontinentalvegen 2, 4056 Sola",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:187",
+        "name": "Stavanger kommune",
+        "lat": 58.9697,
+        "lon": 5.72715,
+        "address": "Olav Kyrresgate 23, 4005 Stavanger",
+        "capacity": 12
+      },
+      {
+        "station_id": "YKE:Station:188",
+        "name": "Brusand stasjon",
+        "lat": 58.54029508969697,
+        "lon": 5.749015078282912,
+        "address": "Bru, 4363 Brusand",
+        "capacity": 6
+      },
+      {
+        "station_id": "YKE:Station:189",
+        "name": "Ogna skule",
+        "lat": 58.517266080149795,
+        "lon": 5.806930682305947,
+        "address": "Kyrkjeberget, 4364 Ogna",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:190",
+        "name": "Vestre Svanholmen 24",
+        "lat": 58.88799081628247,
+        "lon": 5.698883626610041,
+        "address": "Vestre Svanholmen 24, 4313 Sandnes",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:191",
+        "name": "Regestranden",
+        "lat": 58.87469,
+        "lon": 5.60219,
+        "address": "Nordsjøvegen 299, 4053 Sola",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:192",
+        "name": "Vestre Svanholmen 1",
+        "lat": 58.88627869894739,
+        "lon": 5.698416434449439,
+        "address": "Vestre Svanholmen 1, 4313 Sandnes",
+        "capacity": 6
+      },
+      {
+        "station_id": "YKE:Station:195",
+        "name": "Vassbotnen 23",
+        "lat": 58.89184279889392,
+        "lon": 5.7110530603677025,
+        "address": "Vassbotnen 23, 4033 Stavanger",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:196",
+        "name": "- Verkstedet",
+        "lat": 58.894224175196484,
+        "lon": 5.706096086651086,
+        "address": "Svanholmen 1, 4033 Forus",
+        "capacity": 12
+      },
+      {
+        "station_id": "YKE:Station:197",
+        "name": "Sirevåg stasjon",
+        "lat": 58.502607514269755,
+        "lon": 5.807121489197017,
+        "address": "Vågen 7, 4364 Sirevåg",
+        "capacity": 6
+      },
+      {
+        "station_id": "YKE:Station:198",
+        "name": "Tjelta",
+        "lat": 58.84121173212088,
+        "lon": 5.599094722419976,
+        "address": "Tjeltavegen 3, 4054 Tjelta",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:199",
+        "name": "Hålandsmarka",
+        "lat": 58.85294780796599,
+        "lon": 5.575807783752679,
+        "address": "Blåknappvegen 2, 4053 Rege",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:200",
+        "name": "Grødem",
+        "lat": 59.008278086873275,
+        "lon": 5.651033017784358,
+        "address": "Torvmyrveien 44, 4070 Randaberg",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:201",
+        "name": "Goa",
+        "lat": 58.98608205855524,
+        "lon": 5.616834852844477,
+        "address": "Goakvednane 8, 4073 Randaberg",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:202",
+        "name": "Vistestølen",
+        "lat": 58.99889908869105,
+        "lon": 5.60850391164422,
+        "address": "Vistestølen 2, 4070 Randaberg",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:203",
+        "name": "Johannes Læringssenter",
+        "lat": 58.967451141294134,
+        "lon": 5.755719090811909,
+        "address": "Haugesundsgata 30, 4014 Stavanger",
+        "capacity": 12
+      },
+      {
+        "station_id": "YKE:Station:204",
+        "name": "Solbakk Terminal",
+        "lat": 59.036597087869154,
+        "lon": 5.93548832461238,
+        "address": "Ryfylkevegen, 4121 Tau",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:205",
+        "name": "Tau Sentrum",
+        "lat": 59.06550635556559,
+        "lon": 5.919719031080604,
+        "address": "Torgvegen 2, 4120 Tau",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:206",
+        "name": "Osabakkane",
+        "lat": 59.0601423645937,
+        "lon": 5.928892185911537,
+        "address": "Rødlandsvegen 21, 4120 Tau",
+        "capacity": 0
+      },
+      {
+        "station_id": "YKE:Station:207",
+        "name": "Veveriet",
+        "lat": 58.765483957682335,
+        "lon": 5.855111028067766,
+        "address": "Rettedalen 4, 4330 Ålgård",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:208",
+        "name": "Innoasis",
+        "lat": 58.973214634564414,
+        "lon": 5.719862272962927,
+        "address": "Sverdrups Gate 27, 4007 Stavanger",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:209",
+        "name": "Hotel Clarion Air",
+        "lat": 58.8877344179663,
+        "lon": 5.6211891677230605,
+        "address": "Utsolaarmen 16, 4055 Sola",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:210",
+        "name": "Rundevoll Barnehage",
+        "lat": 58.43757254344649,
+        "lon": 5.9997776057571155,
+        "address": "Nonsfjellveien 55, 4370 Egersund",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:211",
+        "name": "Leidlandshagen",
+        "lat": 58.46151703712928,
+        "lon": 5.965167428366839,
+        "address": "Lasteinveien, 4374 Egersund",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:212",
+        "name": "SPAR Eigerøy",
+        "lat": 58.45265518416613,
+        "lon": 5.974577832572456,
+        "address": "Uførfjellveien 1A, 4374 Egersund",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:213",
+        "name": "TEST PCB",
+        "lat": 0.0,
+        "lon": 0.0,
+        "address": ",  x",
+        "capacity": 0
+      },
+      {
+        "station_id": "YKE:Station:214",
+        "name": "Nærland",
+        "lat": 58.67964565956029,
+        "lon": 5.558095694137176,
+        "address": "Tårnvegen 6, 4365 Nærbø",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:215",
+        "name": "Saudagata",
+        "lat": 58.96765781127769,
+        "lon": 5.742696484780954,
+        "address": "Saudagata 45, 4014 Stavanger",
+        "capacity": 12
+      },
+      {
+        "station_id": "YKE:Station:216",
+        "name": "Extra Kvernaland",
+        "lat": 58.77939280399863,
+        "lon": 5.721856355667115,
+        "address": "Leirfenvegen 4, 4355 Bryne",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:217",
+        "name": "Øksnavadporten Stasjon",
+        "lat": 58.78675171253977,
+        "lon": 5.702245524153113,
+        "address": ", 4353 Klepp",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:218",
+        "name": "Extra Madlamark",
+        "lat": 58.943435550580006,
+        "lon": 5.6897421134635815,
+        "address": "Jernalderveien 40, 4041 Stavanger",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:219",
+        "name": "Ikea",
+        "lat": 58.88695135149098,
+        "lon": 5.721579373275745,
+        "address": "Grenseveien 2, 4313 Sandnes",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:220",
+        "name": "Kontorveien",
+        "lat": 58.903924803999416,
+        "lon": 5.702361881863908,
+        "address": "Kontorveien 15, 4033 Stavanger",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:221",
+        "name": "Frøyland Skule",
+        "lat": 58.77395104649085,
+        "lon": 5.725335027091204,
+        "address": "Kråvegen 2, 4355 Bryne",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:222",
+        "name": "Ryggveien",
+        "lat": 59.001597211583174,
+        "lon": 5.655332803747601,
+        "address": "Ryggveien 65, 4072 Randaberg",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:223",
+        "name": "Skogateigen",
+        "lat": 58.55837784911776,
+        "lon": 5.7235586643218985,
+        "address": "Skogateigen 28, 4362 Vigrestad",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:224",
+        "name": "Bronseveien",
+        "lat": 59.01162227638471,
+        "lon": 5.638404632918537,
+        "address": "Bronseveien 2, 4072 Randaberg",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:225",
+        "name": "Randaberg VGS",
+        "lat": 58.99753139242139,
+        "lon": 5.654840162023903,
+        "address": "Grødemveien 70, 4072 Randaberg",
+        "capacity": 8
+      },
+      {
+        "station_id": "YKE:Station:226",
+        "name": "Hulda Garborgs Hus",
+        "lat": 58.939904836818414,
+        "lon": 5.700902324169873,
+        "address": "Rektor Natvig-Pedersens vei 29, 4021 Stavanger",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:227",
+        "name": "Varheihagen",
+        "lat": 58.98142942014289,
+        "lon": 5.615200957981869,
+        "address": "Varheihagen 19, 4073 Randaberg",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:228",
+        "name": "Endrestø",
+        "lat": 58.976912316651095,
+        "lon": 5.613326502498238,
+        "address": "Holdeplassen \"Endrestø\", 4073 Randaberg",
+        "capacity": 6
+      },
+      {
+        "station_id": "YKE:Station:229",
+        "name": "Mekjarvik Kai",
+        "lat": 59.02329124856635,
+        "lon": 5.612610352691263,
+        "address": "Mekjarvikveien 197, 4071 Randaberg",
+        "capacity": 6
+      },
+      {
+        "station_id": "YKE:Station:230",
+        "name": "Ormøy",
+        "lat": 58.98956,
+        "lon": 5.76535,
+        "address": "Ormøy bussholdeplass, 4085 Stavanger",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:231",
+        "name": "Haugtussa",
+        "lat": 58.94489048975905,
+        "lon": 5.6981315184384576,
+        "address": "Olav Liljekransstien 20, 4021 Stavanger",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:232",
+        "name": "Quality Airport Hotel Stavanger",
+        "lat": 58.89273371239133,
+        "lon": 5.629729696952119,
+        "address": "Sømmevegen 1, 4055 Sola",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:234",
+        "name": "Diagonalen",
+        "lat": 58.9194330031645,
+        "lon": 5.713178711012005,
+        "address": "Fredrikke Qvams gate, 4020 Stavanger",
+        "capacity": 0
+      },
+      {
+        "station_id": "YKE:Station:235",
+        "name": "Quality Hotel Pond",
+        "lat": 58.88927000758588,
+        "lon": 5.702541070058943,
+        "address": "Koppholen 17, 4313 Sandnes",
+        "capacity": 4
+      },
+      {
+        "station_id": "YKE:Station:236",
+        "name": "Vestre Svanholmen 3",
+        "lat": 58.884850487357284,
+        "lon": 5.697177329327087,
+        "address": "Vestre Svanholmen 3, 4313 Sandnes",
+        "capacity": 4
+      }
+    ]
+  }
+}

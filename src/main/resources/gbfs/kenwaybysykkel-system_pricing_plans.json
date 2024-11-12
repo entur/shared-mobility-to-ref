@@ -1,0 +1,39 @@
+{
+  "last_updated": 1730276360,
+  "ttl": 43200,
+  "version": "2.3",
+  "data": {
+    "plans": [
+      {
+        "plan_id": "YKE:PricingPlan:1",
+        "name": "kenway0",
+        "currency": "NOK",
+        "price": 10.0,
+        "is_taxable": false,
+        "description": "Hvis du ikke har en aktiv kenway-billett betaler du 10 kroner i oppstartsavgift og 1 krone i minuttet fra første minutt.",
+        "per_min_pricing": [
+          {
+            "start": 1,
+            "rate": 1.0,
+            "interval": 1
+          }
+        ]
+      },
+      {
+        "plan_id": "YKE:PricingPlan:2",
+        "name": "kenway15",
+        "currency": "NOK",
+        "price": 0.0,
+        "is_taxable": false,
+        "description": "Hvis du har en aktiv kenway-billett betaler du 1 krone i minuttet etter det første kvarteret.",
+        "per_min_pricing": [
+          {
+            "start": 15,
+            "rate": 1.0,
+            "interval": 1
+          }
+        ]
+      }
+    ]
+  }
+}

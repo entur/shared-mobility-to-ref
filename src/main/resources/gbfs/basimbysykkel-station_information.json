@@ -1,0 +1,3174 @@
+{
+  "last_updated": 1730292990,
+  "ttl": 15,
+  "version": "2.3",
+  "data": {
+    "stations": [
+      {
+        "station_id": "YBA:Station:5254",
+        "name": "Øvre Nyhavna - Virtuell stasjon",
+        "lat": 63.44341963460059,
+        "lon": 10.427420519078595,
+        "address": "Strandveien 75, 7041 Trondheim",
+        "cross_street": "Virtuell stasjon langs Strandveien",
+        "is_virtual_station": true,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.427485430478924,
+                  63.44359467085687
+                ],
+                [
+                  10.42756707498333,
+                  63.443251163614434
+                ],
+                [
+                  10.42723542916653,
+                  63.4432974898163
+                ],
+                [
+                  10.427219042869496,
+                  63.4435873901738
+                ],
+                [
+                  10.427263562561066,
+                  63.44366465229237
+                ],
+                [
+                  10.427337526465692,
+                  63.44363879741374
+                ],
+                [
+                  10.427548884798213,
+                  63.44364635283178
+                ],
+                [
+                  10.427485430478924,
+                  63.44359467085687
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 22,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/5254",
+          "ios": "basimbysykkel://stations/5254"
+        }
+      },
+      {
+        "station_id": "YBA:Station:2303",
+        "name": "Tempe",
+        "lat": 63.40772802863199,
+        "lon": 10.39705323440262,
+        "address": "Tempevegen 22",
+        "cross_street": "Utenfor MAX-bygget i Tempevegen",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.396769468390232,
+                  63.407571031521854
+                ],
+                [
+                  10.39724134895016,
+                  63.407528213979134
+                ],
+                [
+                  10.397403956440371,
+                  63.407900724460205
+                ],
+                [
+                  10.396855554708594,
+                  63.40796494991619
+                ],
+                [
+                  10.396769468390232,
+                  63.407571031521854
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 21,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/2303",
+          "ios": "basimbysykkel://stations/2303"
+        }
+      },
+      {
+        "station_id": "YBA:Station:2302",
+        "name": "Holtermanns veg 1",
+        "lat": 63.41444899504239,
+        "lon": 10.39797925661125,
+        "address": "Holtermanns veg 1",
+        "cross_street": "I Prof. Brochs gate, utenfor Skatteetaten",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.3975015055793,
+                  63.41448324685524
+                ],
+                [
+                  10.39761606920709,
+                  63.41426689963461
+                ],
+                [
+                  10.397968143505324,
+                  63.41432652827376
+                ],
+                [
+                  10.398367052793276,
+                  63.41430653147722
+                ],
+                [
+                  10.398143146325936,
+                  63.41467452981138
+                ],
+                [
+                  10.397913908280401,
+                  63.414607202190794
+                ],
+                [
+                  10.39760470620213,
+                  63.41457965604476
+                ],
+                [
+                  10.3975015055793,
+                  63.41448324685524
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 15,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/2302",
+          "ios": "basimbysykkel://stations/2302"
+        }
+      },
+      {
+        "station_id": "YBA:Station:2258",
+        "name": "St. Olavs Hospital",
+        "lat": 63.42126270770024,
+        "lon": 10.386516005020496,
+        "address": "Olav Kyrres gate 17",
+        "cross_street": "Bak kunnskapssenteret",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.386065519358937,
+                  63.42126939672622
+                ],
+                [
+                  10.386306241101778,
+                  63.42110148889421
+                ],
+                [
+                  10.387056785361438,
+                  63.421328004038855
+                ],
+                [
+                  10.386812452169522,
+                  63.42146739720772
+                ],
+                [
+                  10.386065519358937,
+                  63.42126939672622
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 18,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/2258",
+          "ios": "basimbysykkel://stations/2258"
+        }
+      },
+      {
+        "station_id": "YBA:Station:1885",
+        "name": "Nova Kino",
+        "lat": 63.43337733865644,
+        "lon": 10.401074857528158,
+        "address": "Olav Tryggvasons gate 10",
+        "cross_street": "ved Danielsbakerveita",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.40065120340509,
+                  63.43351999456334
+                ],
+                [
+                  10.400696115545117,
+                  63.43323570459188
+                ],
+                [
+                  10.401622629812465,
+                  63.433247582055486
+                ],
+                [
+                  10.401611333000972,
+                  63.43352340710754
+                ],
+                [
+                  10.40065120340509,
+                  63.43351999456334
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 18,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/1885",
+          "ios": "basimbysykkel://stations/1885"
+        }
+      },
+      {
+        "station_id": "YBA:Station:1884",
+        "name": "Lade Idrettsanlegg øst",
+        "lat": 63.44392020314541,
+        "lon": 10.450038946779586,
+        "address": "Haakon VIIs gate 60",
+        "cross_street": "ved Haakon VII's gate",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.449884513116984,
+                  63.44422514233696
+                ],
+                [
+                  10.449424548938879,
+                  63.44396111765971
+                ],
+                [
+                  10.450660018219878,
+                  63.44356411705644
+                ],
+                [
+                  10.451110449727764,
+                  63.443857552815615
+                ],
+                [
+                  10.449884513116984,
+                  63.44422514233696
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 24,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/1884",
+          "ios": "basimbysykkel://stations/1884"
+        }
+      },
+      {
+        "station_id": "YBA:Station:1883",
+        "name": "Baldershage",
+        "lat": 63.43032895814139,
+        "lon": 10.453960590206151,
+        "address": "Baldershage 5",
+        "cross_street": "ved Kong Øysteins veg",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.453393153943608,
+                  63.4304813360819
+                ],
+                [
+                  10.453315704220842,
+                  63.43021052687675
+                ],
+                [
+                  10.454341632142018,
+                  63.43013907228365
+                ],
+                [
+                  10.454691775402608,
+                  63.43044380116058
+                ],
+                [
+                  10.453393153943608,
+                  63.4304813360819
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 21,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/1883",
+          "ios": "basimbysykkel://stations/1883"
+        }
+      },
+      {
+        "station_id": "YBA:Station:1882",
+        "name": "Lilleby",
+        "lat": 63.44178275700753,
+        "lon": 10.439477124178211,
+        "address": "Dakota 1",
+        "cross_street": "i Dakotaparken",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.439625594057645,
+                  63.44197569009262
+                ],
+                [
+                  10.439354915780854,
+                  63.4419869614276
+                ],
+                [
+                  10.439253061630325,
+                  63.441601251070296
+                ],
+                [
+                  10.439522406815058,
+                  63.441590417708795
+                ],
+                [
+                  10.439625594057645,
+                  63.44197569009262
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 26,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/1882",
+          "ios": "basimbysykkel://stations/1882"
+        }
+      },
+      {
+        "station_id": "YBA:Station:1881",
+        "name": "Sluppen",
+        "lat": 63.39840743943492,
+        "lon": 10.397326759331094,
+        "address": "Sluppenvegen 25",
+        "cross_street": "ved Sluppenvegen 25",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.396902156916696,
+                  63.398639574134705
+                ],
+                [
+                  10.396675043997703,
+                  63.39827257936568
+                ],
+                [
+                  10.39740575512883,
+                  63.39819298951929
+                ],
+                [
+                  10.397613119099447,
+                  63.39855777450251
+                ],
+                [
+                  10.396902156916696,
+                  63.398639574134705
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 21,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/1881",
+          "ios": "basimbysykkel://stations/1881"
+        }
+      },
+      {
+        "station_id": "YBA:Station:1879",
+        "name": "Ilsvika",
+        "lat": 63.43132548001944,
+        "lon": 10.357520394276179,
+        "address": "Ilsvikveien 18",
+        "cross_street": "ved 3T Ilsvika",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.357359686809957,
+                  63.4315257365769
+                ],
+                [
+                  10.357138231200878,
+                  63.431248429847926
+                ],
+                [
+                  10.357545608558723,
+                  63.43112518092829
+                ],
+                [
+                  10.357848045977278,
+                  63.43146464662695
+                ],
+                [
+                  10.357359686809957,
+                  63.4315257365769
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 12,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/1879",
+          "ios": "basimbysykkel://stations/1879"
+        }
+      },
+      {
+        "station_id": "YBA:Station:1878",
+        "name": "Idrettsbygget Gløshaugen",
+        "lat": 63.42078238303412,
+        "lon": 10.404757641464101,
+        "address": "Christian Frederiks gate 20",
+        "cross_street": "ved Christian Frederiks gate",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.404670384929943,
+                  63.42093445141364
+                ],
+                [
+                  10.404445017250367,
+                  63.4208654577337
+                ],
+                [
+                  10.404759345857201,
+                  63.42068855010854
+                ],
+                [
+                  10.404976603815271,
+                  63.4207769859768
+                ],
+                [
+                  10.404670384929943,
+                  63.42093445141364
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 18,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/1878",
+          "ios": "basimbysykkel://stations/1878"
+        }
+      },
+      {
+        "station_id": "YBA:Station:293",
+        "name": "S. P. Andersens vei",
+        "lat": 63.409888448864876,
+        "lon": 10.405212902563903,
+        "address": "S. P. Andersens vei",
+        "cross_street": "ved Valgrindvegen",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.405266546744201,
+                  63.40988724829533
+                ],
+                [
+                  10.405127071875427,
+                  63.40966394148412
+                ],
+                [
+                  10.406253599661682,
+                  63.40946944703829
+                ],
+                [
+                  10.406822227972839,
+                  63.409731173825286
+                ],
+                [
+                  10.406218730944488,
+                  63.409866838605204
+                ],
+                [
+                  10.405266546744201,
+                  63.40988724829533
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 17,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/293",
+          "ios": "basimbysykkel://stations/293"
+        }
+      },
+      {
+        "station_id": "YBA:Station:268",
+        "name": "Ilabekken",
+        "lat": 63.43114144365168,
+        "lon": 10.36480893024887,
+        "address": "Mellomila",
+        "cross_street": "langs Mellomila øst for Ilsvikøra",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.363968875194132,
+                  63.430948889729244
+                ],
+                [
+                  10.36437281613371,
+                  63.43083443940016
+                ],
+                [
+                  10.365312125599758,
+                  63.4308730694175
+                ],
+                [
+                  10.365433361316263,
+                  63.4310376664901
+                ],
+                [
+                  10.365607168263978,
+                  63.43132223023326
+                ],
+                [
+                  10.365258212772915,
+                  63.43132774876873
+                ],
+                [
+                  10.364901210654807,
+                  63.43131887123883
+                ],
+                [
+                  10.364336873485172,
+                  63.43130255586626
+                ],
+                [
+                  10.36400106170231,
+                  63.43132558922737
+                ],
+                [
+                  10.363968875194132,
+                  63.430948889729244
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 24,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/268",
+          "ios": "basimbysykkel://stations/268"
+        }
+      },
+      {
+        "station_id": "YBA:Station:236",
+        "name": "Lade idrettsanlegg vest",
+        "lat": 63.446059058709096,
+        "lon": 10.443941575866347,
+        "address": "Haakon VII gate 3",
+        "cross_street": "Ved Lade idrettsanlegg",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.443036302011762,
+                  63.446305351775386
+                ],
+                [
+                  10.444500698318052,
+                  63.446592315040306
+                ],
+                [
+                  10.44490399647961,
+                  63.44618862745531
+                ],
+                [
+                  10.444917148582647,
+                  63.4458676328911
+                ],
+                [
+                  10.443837039604318,
+                  63.44555860221337
+                ],
+                [
+                  10.442961273020984,
+                  63.44592395130415
+                ],
+                [
+                  10.443036302011762,
+                  63.446305351775386
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 29,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/236",
+          "ios": "basimbysykkel://stations/236"
+        }
+      },
+      {
+        "station_id": "YBA:Station:180",
+        "name": "Berg Studentby",
+        "lat": 63.41364157249073,
+        "lon": 10.414855613044438,
+        "address": "Dybdahls veg 2A",
+        "cross_street": "ved Dybdahls veg",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.414123369983372,
+                  63.41375939275637
+                ],
+                [
+                  10.414144827655491,
+                  63.413453287214764
+                ],
+                [
+                  10.415402783683476,
+                  63.41343167964131
+                ],
+                [
+                  10.415869488052067,
+                  63.413510907331094
+                ],
+                [
+                  10.415687097839054,
+                  63.41381461144736
+                ],
+                [
+                  10.414123369983372,
+                  63.41375939275637
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 13,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/180",
+          "ios": "basimbysykkel://stations/180"
+        }
+      },
+      {
+        "station_id": "YBA:Station:177",
+        "name": "Kristiansten",
+        "lat": 63.42593349677826,
+        "lon": 10.41660167758505,
+        "address": "Festninggata 34",
+        "cross_street": "langs Festningsgata mellom Holbergs gate og Tyholtveien",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.415271301913663,
+                  63.425948075562175
+                ],
+                [
+                  10.415260573077603,
+                  63.42555450658007
+                ],
+                [
+                  10.417663832354947,
+                  63.425544907269085
+                ],
+                [
+                  10.41781403605978,
+                  63.42604886674926
+                ],
+                [
+                  10.417191763568326,
+                  63.42666320536754
+                ],
+                [
+                  10.415239115405484,
+                  63.42658161427818
+                ],
+                [
+                  10.4143593508486,
+                  63.42629844340122
+                ],
+                [
+                  10.414509554553433,
+                  63.42586168283397
+                ],
+                [
+                  10.415271301913663,
+                  63.425948075562175
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 27,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/177",
+          "ios": "basimbysykkel://stations/177"
+        }
+      },
+      {
+        "station_id": "YBA:Station:175",
+        "name": "Torvet I",
+        "lat": 63.43051170410531,
+        "lon": 10.392764550201036,
+        "address": "Kongensgate 15",
+        "cross_street": "ved Prinsensgate",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.392238032440446,
+                  63.43057879757692
+                ],
+                [
+                  10.392356049637101,
+                  63.43037724671165
+                ],
+                [
+                  10.393192898849748,
+                  63.43038204555825
+                ],
+                [
+                  10.39319155774524,
+                  63.43066097713594
+                ],
+                [
+                  10.392322522024415,
+                  63.43067477368116
+                ],
+                [
+                  10.392238032440446,
+                  63.43057879757692
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 15,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/175",
+          "ios": "basimbysykkel://stations/175"
+        }
+      },
+      {
+        "station_id": "YBA:Station:155",
+        "name": "Kong Øysteins veg",
+        "lat": 63.42066281516962,
+        "lon": 10.437347828255156,
+        "address": "",
+        "cross_street": "",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.436803737965533,
+                  63.42119678322093
+                ],
+                [
+                  10.436174780906299,
+                  63.420681627958075
+                ],
+                [
+                  10.436024849613318,
+                  63.42034165510434
+                ],
+                [
+                  10.436857486919621,
+                  63.42015692326613
+                ],
+                [
+                  10.437760846533934,
+                  63.42002509512316
+                ],
+                [
+                  10.43859819866077,
+                  63.420616582443394
+                ],
+                [
+                  10.438816966333547,
+                  63.42097563184323
+                ],
+                [
+                  10.438059766155789,
+                  63.42122973896643
+                ],
+                [
+                  10.43721392735199,
+                  63.42140405688484
+                ],
+                [
+                  10.436803737965533,
+                  63.42119678322093
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 25,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/155",
+          "ios": "basimbysykkel://stations/155"
+        }
+      },
+      {
+        "station_id": "YBA:Station:148",
+        "name": "Fjordgata",
+        "lat": 63.43483884684911,
+        "lon": 10.403396522008734,
+        "address": "Fjordgata 16",
+        "cross_street": "Ved 4Sound",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.402057825981757,
+                  63.434869394834905
+                ],
+                [
+                  10.40205293737435,
+                  63.434751202899704
+                ],
+                [
+                  10.40376869184746,
+                  63.43470807819729
+                ],
+                [
+                  10.403745741493879,
+                  63.434876379184594
+                ],
+                [
+                  10.402057825981757,
+                  63.434869394834905
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 24,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/148",
+          "ios": "basimbysykkel://stations/148"
+        }
+      },
+      {
+        "station_id": "YBA:Station:47",
+        "name": "Ilaparken",
+        "lat": 63.429395056784756,
+        "lon": 10.369820715281435,
+        "address": "Illevollen",
+        "cross_street": "ved Hans Nissens gate",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.36900402949857,
+                  63.42948444644941
+                ],
+                [
+                  10.369293708072178,
+                  63.42914131356786
+                ],
+                [
+                  10.37146093295621,
+                  63.42947244886553
+                ],
+                [
+                  10.37161650173391,
+                  63.42980118084702
+                ],
+                [
+                  10.36900402949857,
+                  63.42948444644941
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 13,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/47",
+          "ios": "basimbysykkel://stations/47"
+        }
+      },
+      {
+        "station_id": "YBA:Station:4",
+        "name": "Dalen hageby",
+        "lat": 63.43757529885024,
+        "lon": 10.44872760772705,
+        "address": "Håkon Magnussons gate 1A",
+        "cross_street": "Ved Bussholdeplassen",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.446292161941528,
+                  63.43783742879838
+                ],
+                [
+                  10.446088314056396,
+                  63.43733367662646
+                ],
+                [
+                  10.450036525726318,
+                  63.43706500517901
+                ],
+                [
+                  10.450208187103271,
+                  63.43772228622585
+                ],
+                [
+                  10.446292161941528,
+                  63.43800534422036
+                ],
+                [
+                  10.446292161941528,
+                  63.43783742879838
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 18,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/4",
+          "ios": "basimbysykkel://stations/4"
+        }
+      },
+      {
+        "station_id": "YBA:Station:10",
+        "name": "Sorgenfri",
+        "lat": 63.40489658467209,
+        "lon": 10.399461013433495,
+        "address": "Sorgenfriveien 7",
+        "cross_street": "ved Sorgenfriveien 13-15",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.399054043432699,
+                  63.40460440942735
+                ],
+                [
+                  10.399681807218997,
+                  63.404778989724846
+                ],
+                [
+                  10.399905913016937,
+                  63.40537298967968
+                ],
+                [
+                  10.39919661138643,
+                  63.405352732432696
+                ],
+                [
+                  10.398721133960748,
+                  63.40473977330403
+                ],
+                [
+                  10.399054043432699,
+                  63.40460440942735
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 12,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/10",
+          "ios": "basimbysykkel://stations/10"
+        }
+      },
+      {
+        "station_id": "YBA:Station:95",
+        "name": "Trikkestallen på Lademoen",
+        "lat": 63.4387315071045,
+        "lon": 10.430732667446136,
+        "address": "Mellomveien 13",
+        "cross_street": "langs Mellomveien",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.429625372382247,
+                  63.43858320725313
+                ],
+                [
+                  10.430688536909543,
+                  63.438304717063545
+                ],
+                [
+                  10.431607012762356,
+                  63.43883919273694
+                ],
+                [
+                  10.431562975028896,
+                  63.43931177314979
+                ],
+                [
+                  10.431053411631979,
+                  63.43942991586347
+                ],
+                [
+                  10.429625372382247,
+                  63.43858320725313
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 24,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/95",
+          "ios": "basimbysykkel://stations/95"
+        }
+      },
+      {
+        "station_id": "YBA:Station:65",
+        "name": "Strandveikaia",
+        "lat": 63.44208952370503,
+        "lon": 10.427939146757126,
+        "address": "Stiklestadveien 1",
+        "cross_street": "langs Stiklestadveien ved Strandveien",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.427372159083689,
+                  63.44213486160413
+                ],
+                [
+                  10.427528214732092,
+                  63.44227266259475
+                ],
+                [
+                  10.428425535447104,
+                  63.44208602030591
+                ],
+                [
+                  10.428367014701735,
+                  63.44187146835557
+                ],
+                [
+                  10.427372159083689,
+                  63.44213486160413
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 15,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/65",
+          "ios": "basimbysykkel://stations/65"
+        }
+      },
+      {
+        "station_id": "YBA:Station:110",
+        "name": "Valentinlyst",
+        "lat": 63.42545389268059,
+        "lon": 10.441064536571503,
+        "address": "Olav Magnussons veg 9",
+        "cross_street": "ved Strindheim kirke",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.440867550629036,
+                  63.42596621760897
+                ],
+                [
+                  10.441736586349975,
+                  63.425959018229335
+                ],
+                [
+                  10.44223279501773,
+                  63.425908022572656
+                ],
+                [
+                  10.442042358177673,
+                  63.42556904913688
+                ],
+                [
+                  10.44160784031726,
+                  63.424455508181985
+                ],
+                [
+                  10.439258225220215,
+                  63.42476269621499
+                ],
+                [
+                  10.440867550629036,
+                  63.42596621760897
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 24,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/110",
+          "ios": "basimbysykkel://stations/110"
+        }
+      },
+      {
+        "station_id": "YBA:Station:97",
+        "name": "Håkon VIIs gate 8-10",
+        "lat": 63.440766667542505,
+        "lon": 10.45927620210125,
+        "address": "Håkon VIIs gate 10",
+        "cross_street": "Ved Burgerking",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.45886367559433,
+                  63.441218096268955
+                ],
+                [
+                  10.45785516500473,
+                  63.440656838105824
+                ],
+                [
+                  10.460322797298431,
+                  63.439860504232016
+                ],
+                [
+                  10.461535155773163,
+                  63.4406136639454
+                ],
+                [
+                  10.45886367559433,
+                  63.441218096268955
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 24,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/97",
+          "ios": "basimbysykkel://stations/97"
+        }
+      },
+      {
+        "station_id": "YBA:Station:89",
+        "name": "Tyholttårnet",
+        "lat": 63.42221231887555,
+        "lon": 10.427911835259579,
+        "address": "Otto Nielsens vei 4",
+        "cross_street": "langs Harald Bothners veg ved Otto Nielsens veg",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.427669012716564,
+                  63.42269583685491
+                ],
+                [
+                  10.425891280174255,
+                  63.421393082900686
+                ],
+                [
+                  10.427178740501404,
+                  63.42112426195093
+                ],
+                [
+                  10.428813998168238,
+                  63.42221215674437
+                ],
+                [
+                  10.429022320639149,
+                  63.42245728515464
+                ],
+                [
+                  10.427669012716564,
+                  63.42269583685491
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 32,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/89",
+          "ios": "basimbysykkel://stations/89"
+        }
+      },
+      {
+        "station_id": "YBA:Station:16",
+        "name": "Rosenborg skole",
+        "lat": 63.428896386680805,
+        "lon": 10.416175670425105,
+        "address": "Stadsings Dahls gate 4B",
+        "cross_street": "Ved Rosenborg skole",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.415393398990062,
+                  63.42918946187383
+                ],
+                [
+                  10.415521479768472,
+                  63.428458471800106
+                ],
+                [
+                  10.415639496965127,
+                  63.42787296727956
+                ],
+                [
+                  10.41733465306254,
+                  63.427954554692406
+                ],
+                [
+                  10.416905499620157,
+                  63.429250323637504
+                ],
+                [
+                  10.415393398990062,
+                  63.42918946187383
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 26,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/16",
+          "ios": "basimbysykkel://stations/16"
+        }
+      },
+      {
+        "station_id": "YBA:Station:56",
+        "name": "Falkenborg",
+        "lat": 63.4362775074396,
+        "lon": 10.45697271823883,
+        "address": "Falkenborgveien / Blomstadvegen",
+        "cross_street": "Ved Sirkus shopping",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.457201389654074,
+                  63.436130210814994
+                ],
+                [
+                  10.457524656085297,
+                  63.43630264067624
+                ],
+                [
+                  10.456800226529595,
+                  63.4364681041006
+                ],
+                [
+                  10.45648864335817,
+                  63.43634618386779
+                ],
+                [
+                  10.457201389654074,
+                  63.436130210814994
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 30,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/56",
+          "ios": "basimbysykkel://stations/56"
+        }
+      },
+      {
+        "station_id": "YBA:Station:94",
+        "name": "Gløshaugen",
+        "lat": 63.41939366673445,
+        "lon": 10.403602123260498,
+        "address": "Høyskoleveien",
+        "cross_street": "øst for Hovedbygningen",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.403104028159987,
+                  63.419542131553946
+                ],
+                [
+                  10.403678020889174,
+                  63.419650146235554
+                ],
+                [
+                  10.404112538749587,
+                  63.41932130027162
+                ],
+                [
+                  10.403415164405715,
+                  63.419177278953605
+                ],
+                [
+                  10.403104028159987,
+                  63.419542131553946
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 30,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/94",
+          "ios": "basimbysykkel://stations/94"
+        }
+      },
+      {
+        "station_id": "YBA:Station:18",
+        "name": "Møllenberg",
+        "lat": 63.4358846800558,
+        "lon": 10.419401004910469,
+        "address": "Innherredsveien",
+        "cross_street": "langs Innherredsveien ved Kirkegata",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.418798044192954,
+                  63.43595356016349
+                ],
+                [
+                  10.41889460371749,
+                  63.43571366350548
+                ],
+                [
+                  10.419849470126792,
+                  63.43581921828252
+                ],
+                [
+                  10.419935300815268,
+                  63.43600633715865
+                ],
+                [
+                  10.418798044192954,
+                  63.43595356016349
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 15,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/18",
+          "ios": "basimbysykkel://stations/18"
+        }
+      },
+      {
+        "station_id": "YBA:Station:1",
+        "name": "Dokkparken",
+        "lat": 63.433509009133566,
+        "lon": 10.411412715911865,
+        "address": "Innherredsveien 16A",
+        "cross_street": "Ved kryss Innherredsveien / Verftsgata. Operativt betjeningspanel.",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.41028618812561,
+                  63.433556992318344
+                ],
+                [
+                  10.411756038665771,
+                  63.4339888373649
+                ],
+                [
+                  10.412389039993286,
+                  63.433561790632396
+                ],
+                [
+                  10.411015748977661,
+                  63.43306756006302
+                ],
+                [
+                  10.41028618812561,
+                  63.433556992318344
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 43,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/1",
+          "ios": "basimbysykkel://stations/1"
+        }
+      },
+      {
+        "station_id": "YBA:Station:43",
+        "name": "Klostergata",
+        "lat": 63.423654662664916,
+        "lon": 10.389957585898202,
+        "address": "3 Schwachs gate",
+        "cross_street": "Nede mot elven bak Schwachs gate 3 bygget.",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.389518732743483,
+                  63.42368694391347
+                ],
+                [
+                  10.38975297920544,
+                  63.42377917049593
+                ],
+                [
+                  10.390484231439473,
+                  63.42368733115478
+                ],
+                [
+                  10.390299582993066,
+                  63.42356020833475
+                ],
+                [
+                  10.390070893572911,
+                  63.42358760060998
+                ],
+                [
+                  10.389837444363309,
+                  63.423620316589705
+                ],
+                [
+                  10.38951542659575,
+                  63.423653020491514
+                ],
+                [
+                  10.389518732743483,
+                  63.42368694391347
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 24,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/43",
+          "ios": "basimbysykkel://stations/43"
+        }
+      },
+      {
+        "station_id": "YBA:Station:74",
+        "name": "Erling Skakkes gate",
+        "lat": 63.42889745011402,
+        "lon": 10.39928913116455,
+        "address": "Erling skakkes gate 1",
+        "cross_street": " Ved Vår Frues gate",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.39882564531581,
+                  63.429022976236574
+                ],
+                [
+                  10.398519873488112,
+                  63.42890179936662
+                ],
+                [
+                  10.39860033975856,
+                  63.428790220211404
+                ],
+                [
+                  10.400292813646956,
+                  63.428718233429095
+                ],
+                [
+                  10.400408148634597,
+                  63.42894739072436
+                ],
+                [
+                  10.39882564531581,
+                  63.429022976236574
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 27,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/74",
+          "ios": "basimbysykkel://stations/74"
+        }
+      },
+      {
+        "station_id": "YBA:Station:29",
+        "name": "Singsaker",
+        "lat": 63.423121157383235,
+        "lon": 10.412453413009644,
+        "address": "Rogerts gate 1",
+        "cross_street": "Ved Singsaker skole og studenthjem",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.412464141845703,
+                  63.42276895065538
+                ],
+                [
+                  10.412574112415314,
+                  63.42253974395251
+                ],
+                [
+                  10.412726998329163,
+                  63.42256734485673
+                ],
+                [
+                  10.413333177566528,
+                  63.4226501474099
+                ],
+                [
+                  10.412077903747559,
+                  63.423964155910056
+                ],
+                [
+                  10.411520004272461,
+                  63.423800958130606
+                ],
+                [
+                  10.412466824054718,
+                  63.42276415053384
+                ],
+                [
+                  10.412464141845703,
+                  63.42276895065538
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 25,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/29",
+          "ios": "basimbysykkel://stations/29"
+        }
+      },
+      {
+        "station_id": "YBA:Station:123",
+        "name": "Hesthagen",
+        "lat": 63.41541842278556,
+        "lon": 10.399565398693085,
+        "address": "Klæbuveien 55",
+        "cross_street": "Ved Klæbuveien ",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.399591998532657,
+                  63.41581733038392
+                ],
+                [
+                  10.399939764092409,
+                  63.41550430642631
+                ],
+                [
+                  10.400068536545518,
+                  63.4152330718798
+                ],
+                [
+                  10.399475517358042,
+                  63.415167208002
+                ],
+                [
+                  10.39914230903284,
+                  63.41569821739378
+                ],
+                [
+                  10.399425701573733,
+                  63.415795724569875
+                ],
+                [
+                  10.399591998532657,
+                  63.41581733038392
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 24,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/123",
+          "ios": "basimbysykkel://stations/123"
+        }
+      },
+      {
+        "station_id": "YBA:Station:46",
+        "name": "Nidarø",
+        "lat": 63.42646180597998,
+        "lon": 10.37818819284439,
+        "address": "Klostergata 90",
+        "cross_street": "ved rundkjøring utenfor Basim Spektrum",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.377794444430037,
+                  63.42660222111735
+                ],
+                [
+                  10.377829313147231,
+                  63.42638744361719
+                ],
+                [
+                  10.37849181877391,
+                  63.42621586043538
+                ],
+                [
+                  10.378781497347518,
+                  63.42653262858412
+                ],
+                [
+                  10.378194093573256,
+                  63.426679012682136
+                ],
+                [
+                  10.377794444430037,
+                  63.42660222111735
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 21,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/46",
+          "ios": "basimbysykkel://stations/46"
+        }
+      },
+      {
+        "station_id": "YBA:Station:20",
+        "name": "Nordre gate ",
+        "lat": 63.433085554043984,
+        "lon": 10.397391468286514,
+        "address": "Nordre gate 23",
+        "cross_street": " Ved Olav Tryggvasons gate",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.397061556577682,
+                  63.433234303853745
+                ],
+                [
+                  10.397445112466812,
+                  63.433314676413424
+                ],
+                [
+                  10.397777706384659,
+                  63.43319831606736
+                ],
+                [
+                  10.39749339222908,
+                  63.43288042199107
+                ],
+                [
+                  10.397026687860489,
+                  63.43297519078286
+                ],
+                [
+                  10.397061556577682,
+                  63.433234303853745
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 37,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/20",
+          "ios": "basimbysykkel://stations/20"
+        }
+      },
+      {
+        "station_id": "YBA:Station:9",
+        "name": "Brattørkaia",
+        "lat": 63.43740318294613,
+        "lon": 10.39729356765747,
+        "address": "Brattørkaia 17B",
+        "cross_street": "Ved hurtigbåtterminalen. Operativt betjeningspanel.",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.39635372122575,
+                  63.437271516623774
+                ],
+                [
+                  10.397812842929852,
+                  63.4378376387244
+                ],
+                [
+                  10.398435115421307,
+                  63.437477816651075
+                ],
+                [
+                  10.396825790012372,
+                  63.437050821926405
+                ],
+                [
+                  10.39635372122575,
+                  63.437271516623774
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 19,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/9",
+          "ios": "basimbysykkel://stations/9"
+        }
+      },
+      {
+        "station_id": "YBA:Station:107",
+        "name": "Pirbadet",
+        "lat": 63.44075835708318,
+        "lon": 10.402169823646545,
+        "address": "Brattørkaia 1",
+        "cross_street": " Ved Havnegata",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.402259945476544,
+                  63.44117165500116
+                ],
+                [
+                  10.403075337017071,
+                  63.44069674419354
+                ],
+                [
+                  10.4018737073784,
+                  63.44028418901948
+                ],
+                [
+                  10.40160548647691,
+                  63.44083586029617
+                ],
+                [
+                  10.402259945476544,
+                  63.44117165500116
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 36,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/107",
+          "ios": "basimbysykkel://stations/107"
+        }
+      },
+      {
+        "station_id": "YBA:Station:128",
+        "name": "Lillegårdsbakken",
+        "lat": 63.42629161886643,
+        "lon": 10.404109150403997,
+        "address": "Lillegårdsbakken 8",
+        "cross_street": "Nederst i Lillegårdsbakken",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.404250775093061,
+                  63.42614025716268
+                ],
+                [
+                  10.403650276185544,
+                  63.42626668400381
+                ],
+                [
+                  10.403557616571533,
+                  63.426465996507375
+                ],
+                [
+                  10.403992916046889,
+                  63.426488484267345
+                ],
+                [
+                  10.404604212896231,
+                  63.42622401081275
+                ],
+                [
+                  10.404250775093061,
+                  63.42614025716268
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 21,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/128",
+          "ios": "basimbysykkel://stations/128"
+        }
+      },
+      {
+        "station_id": "YBA:Station:108",
+        "name": "Bassengbakken",
+        "lat": 63.43592006472795,
+        "lon": 10.414788275957108,
+        "address": "Dyre Halses 1",
+        "cross_street": " ved Rosenborgbassenget",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.414560824501677,
+                  63.435796068248685
+                ],
+                [
+                  10.415065079796477,
+                  63.435781674426735
+                ],
+                [
+                  10.41500070678012,
+                  63.43617030508116
+                ],
+                [
+                  10.41450718032138,
+                  63.43615111356768
+                ],
+                [
+                  10.414560824501677,
+                  63.435796068248685
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 30,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/108",
+          "ios": "basimbysykkel://stations/108"
+        }
+      },
+      {
+        "station_id": "YBA:Station:86",
+        "name": "Lerkendal",
+        "lat": 63.412525462202666,
+        "lon": 10.40068656206131,
+        "address": "Klæbuveien 125",
+        "cross_street": "  I Strindvegen ved Klæbuveien",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.401017010080977,
+                  63.412331257275355
+                ],
+                [
+                  10.401762664187117,
+                  63.41236487033908
+                ],
+                [
+                  10.401585638392135,
+                  63.41261696706174
+                ],
+                [
+                  10.401558816301986,
+                  63.41278743120859
+                ],
+                [
+                  10.400603949892684,
+                  63.41277782762166
+                ],
+                [
+                  10.400094330179854,
+                  63.4127274087373
+                ],
+                [
+                  10.399733573067351,
+                  63.41262597047515
+                ],
+                [
+                  10.399694681036635,
+                  63.41245250421306
+                ],
+                [
+                  10.399885117876693,
+                  63.41223281879039
+                ],
+                [
+                  10.4006790517451,
+                  63.412288040421146
+                ],
+                [
+                  10.401017010080977,
+                  63.412331257275355
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 21,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/86",
+          "ios": "basimbysykkel://stations/86"
+        }
+      },
+      {
+        "station_id": "YBA:Station:30",
+        "name": "St. Olavs gate",
+        "lat": 63.431170931099416,
+        "lon": 10.390283614397049,
+        "address": "Prinsens gate 44",
+        "cross_street": "Ved trikkeholdeplass",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.390056162941619,
+                  63.43130412507184
+                ],
+                [
+                  10.390190273392363,
+                  63.431026999282
+                ],
+                [
+                  10.390612721312209,
+                  63.431055191854874
+                ],
+                [
+                  10.390431672203704,
+                  63.4313425145803
+                ],
+                [
+                  10.390056162941619,
+                  63.43130412507184
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 31,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/30",
+          "ios": "basimbysykkel://stations/30"
+        }
+      },
+      {
+        "station_id": "YBA:Station:109",
+        "name": "Torvet II",
+        "lat": 63.430470910132236,
+        "lon": 10.393931418657303,
+        "address": "Kongens gate 9",
+        "cross_street": "Utenfor McDonald's",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.393368691075011,
+                  63.43046134248998
+                ],
+                [
+                  10.393366008865996,
+                  63.430410954700015
+                ],
+                [
+                  10.394343674051925,
+                  63.43037436351132
+                ],
+                [
+                  10.394361108410521,
+                  63.43055431972699
+                ],
+                [
+                  10.39340624200122,
+                  63.43058671172573
+                ],
+                [
+                  10.393368691075011,
+                  63.43046134248998
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 20,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/109",
+          "ios": "basimbysykkel://stations/109"
+        }
+      },
+      {
+        "station_id": "YBA:Station:14",
+        "name": "Rådhuset",
+        "lat": 63.42825317810852,
+        "lon": 10.396625484107602,
+        "address": "Munkegata 1",
+        "cross_street": "ved Munkegata 1",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.396011170939005,
+                  63.42843514775466
+                ],
+                [
+                  10.396250002573282,
+                  63.42799559791712
+                ],
+                [
+                  10.397075481659982,
+                  63.428073217365466
+                ],
+                [
+                  10.397118639881796,
+                  63.42830307918615
+                ],
+                [
+                  10.396831393207123,
+                  63.428495077190576
+                ],
+                [
+                  10.396011170939005,
+                  63.42843514775466
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 13,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/14",
+          "ios": "basimbysykkel://stations/14"
+        }
+      },
+      {
+        "station_id": "YBA:Station:62",
+        "name": "Kalvskinnet",
+        "lat": 63.42792321730192,
+        "lon": 10.389504432678223,
+        "address": "Erling Skakkes gate 47A",
+        "cross_street": "Kalvskinnsgata/Erling Skakkes gate",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.389499068260193,
+                  63.42765625733249
+                ],
+                [
+                  10.389896035194397,
+                  63.427675454536875
+                ],
+                [
+                  10.389858484268188,
+                  63.42838574205849
+                ],
+                [
+                  10.389032364546438,
+                  63.42844573175236
+                ],
+                [
+                  10.388871432005544,
+                  63.42785062843282
+                ],
+                [
+                  10.389016270637512,
+                  63.42764905837754
+                ],
+                [
+                  10.389499068260193,
+                  63.42765625733249
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 25,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/62",
+          "ios": "basimbysykkel://stations/62"
+        }
+      },
+      {
+        "station_id": "YBA:Station:92",
+        "name": "Dora I",
+        "lat": 63.43853720980968,
+        "lon": 10.419105291366577,
+        "address": "Maskinistgata 1",
+        "cross_street": " Ved Byarkivet",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.418643951416016,
+                  63.438464048141064
+                ],
+                [
+                  10.418681502342224,
+                  63.43867633640167
+                ],
+                [
+                  10.41890412569046,
+                  63.4387986712949
+                ],
+                [
+                  10.419526398181915,
+                  63.43884784497732
+                ],
+                [
+                  10.419864356517792,
+                  63.438378892520916
+                ],
+                [
+                  10.41879951953888,
+                  63.438327319275785
+                ],
+                [
+                  10.418643951416016,
+                  63.438464048141064
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 24,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/92",
+          "ios": "basimbysykkel://stations/92"
+        }
+      },
+      {
+        "station_id": "YBA:Station:76",
+        "name": "Ilevollen",
+        "lat": 63.42907021700727,
+        "lon": 10.37181057035923,
+        "address": "Ilevollen/Osloveien",
+        "cross_street": "ved Osloveien",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.371357813346549,
+                  63.429052730390914
+                ],
+                [
+                  10.37185133980529,
+                  63.42887996339224
+                ],
+                [
+                  10.37233413742797,
+                  63.42923989346401
+                ],
+                [
+                  10.372226849067374,
+                  63.42936466816694
+                ],
+                [
+                  10.371271982658072,
+                  63.429071054075784
+                ],
+                [
+                  10.371357813346549,
+                  63.429052730390914
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 17,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/76",
+          "ios": "basimbysykkel://stations/76"
+        }
+      },
+      {
+        "station_id": "YBA:Station:31",
+        "name": "Tollboden ",
+        "lat": 63.43928560696555,
+        "lon": 10.40479302406311,
+        "address": "Havnegata",
+        "cross_street": "ved rundkjøring Havnegata",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.404786586368573,
+                  63.43963176405649
+                ],
+                [
+                  10.403810262287152,
+                  63.4392575724452
+                ],
+                [
+                  10.404443263614667,
+                  63.43904648784118
+                ],
+                [
+                  10.405687808597577,
+                  63.43951662869678
+                ],
+                [
+                  10.4050977226143,
+                  63.43979487169052
+                ],
+                [
+                  10.404786586368573,
+                  63.43963176405649
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 21,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/31",
+          "ios": "basimbysykkel://stations/31"
+        }
+      },
+      {
+        "station_id": "YBA:Station:133",
+        "name": "Høyskoleringen",
+        "lat": 63.41690080192888,
+        "lon": 10.406886488199234,
+        "address": "Sem Sælands vei 2",
+        "cross_street": "ved bussholdeplass Gløshaugen. Operativt betjeningspanel.",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.406186967957183,
+                  63.41685930234255
+                ],
+                [
+                  10.406369358170195,
+                  63.41665285383369
+                ],
+                [
+                  10.407442241776153,
+                  63.41690731341062
+                ],
+                [
+                  10.40724912272708,
+                  63.41706094828818
+                ],
+                [
+                  10.406186967957183,
+                  63.41685930234255
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 30,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/133",
+          "ios": "basimbysykkel://stations/133"
+        }
+      },
+      {
+        "station_id": "YBA:Station:51",
+        "name": "Skansen",
+        "lat": 63.430403126559675,
+        "lon": 10.37476971745491,
+        "address": "Kongens gate 99",
+        "cross_street": " ved kryss Mellomila / Illevollen",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.374402791130706,
+                  63.43044514642429
+                ],
+                [
+                  10.37481048690097,
+                  63.43029158327259
+                ],
+                [
+                  10.375185996163054,
+                  63.43040195687105
+                ],
+                [
+                  10.374971419441863,
+                  63.430598708752996
+                ],
+                [
+                  10.374445706474944,
+                  63.430637099206585
+                ],
+                [
+                  10.374402791130706,
+                  63.43044514642429
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 22,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/51",
+          "ios": "basimbysykkel://stations/51"
+        }
+      },
+      {
+        "station_id": "YBA:Station:28",
+        "name": "Kongens gate",
+        "lat": 63.43045711348886,
+        "lon": 10.398100912570953,
+        "address": "Kongens gate 14B",
+        "cross_street": "Ved Nordre gate",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.39723080357362,
+                  63.43035306863599
+                ],
+                [
+                  10.397657274806988,
+                  63.430269088619504
+                ],
+                [
+                  10.398180305564892,
+                  63.430266689186844
+                ],
+                [
+                  10.398773073757184,
+                  63.43027028833572
+                ],
+                [
+                  10.399019836986554,
+                  63.43056541700822
+                ],
+                [
+                  10.397657274806988,
+                  63.43064099825249
+                ],
+                [
+                  10.397513776624692,
+                  63.430582212857516
+                ],
+                [
+                  10.397405147159589,
+                  63.430487436150415
+                ],
+                [
+                  10.39723080357362,
+                  63.43035306863599
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 19,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/28",
+          "ios": "basimbysykkel://stations/28"
+        }
+      },
+      {
+        "station_id": "YBA:Station:44",
+        "name": "Prinsen kinosenter",
+        "lat": 63.42663458755783,
+        "lon": 10.392784774303436,
+        "address": "Prinsens gate 2A",
+        "cross_street": "ved kryss Prinsens gate/Arkitekt Christies gate",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.392374932634993,
+                  63.4267716421747
+                ],
+                [
+                  10.392396390307113,
+                  63.426459676171255
+                ],
+                [
+                  10.393243968355819,
+                  63.42649807217031
+                ],
+                [
+                  10.393093764650985,
+                  63.42681003775578
+                ],
+                [
+                  10.392374932634993,
+                  63.4267716421747
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 31,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/44",
+          "ios": "basimbysykkel://stations/44"
+        }
+      },
+      {
+        "station_id": "YBA:Station:41",
+        "name": "Vollabakken",
+        "lat": 63.42193791751501,
+        "lon": 10.399257121622668,
+        "address": "Klostergata 1",
+        "cross_street": " Ved Klostergata",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.399030526808701,
+                  63.4222258351216
+                ],
+                [
+                  10.399809498782162,
+                  63.42201617769963
+                ],
+                [
+                  10.39949432015419,
+                  63.4216511006376
+                ],
+                [
+                  10.398603375489785,
+                  63.42182427522274
+                ],
+                [
+                  10.399030526808701,
+                  63.4222258351216
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 24,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/41",
+          "ios": "basimbysykkel://stations/41"
+        }
+      },
+      {
+        "station_id": "YBA:Station:45",
+        "name": "Studentersamfundet",
+        "lat": 63.42185871322338,
+        "lon": 10.39451614022255,
+        "address": "Elgesetergate 2",
+        "cross_street": "sør for Eddaparken. Operativt betjeningspanel.",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.39427795993106,
+                  63.42174041622167
+                ],
+                [
+                  10.3947714863898,
+                  63.42176921796778
+                ],
+                [
+                  10.39453545199649,
+                  63.422158038707586
+                ],
+                [
+                  10.394181400406524,
+                  63.42213403758008
+                ],
+                [
+                  10.39427795993106,
+                  63.42174041622167
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 31,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/45",
+          "ios": "basimbysykkel://stations/45"
+        }
+      },
+      {
+        "station_id": "YBA:Station:55",
+        "name": "Finalebanen",
+        "lat": 63.41978492000792,
+        "lon": 10.39221078157425,
+        "address": "Erling Skjalgsons gate 1",
+        "cross_street": "Ved Edvart Griegs gate",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.39172583805339,
+                  63.419967133010616
+                ],
+                [
+                  10.39194041477458,
+                  63.419381455000405
+                ],
+                [
+                  10.392755806315108,
+                  63.419491870622515
+                ],
+                [
+                  10.392509043085738,
+                  63.4200631446576
+                ],
+                [
+                  10.39172583805339,
+                  63.419967133010616
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 12,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/55",
+          "ios": "basimbysykkel://stations/55"
+        }
+      },
+      {
+        "station_id": "YBA:Station:118",
+        "name": "Abels gate",
+        "lat": 63.416217557099486,
+        "lon": 10.396179787712924,
+        "address": "Professor Brochs gate 2",
+        "cross_street": "Ved Udbyes gate",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.39564529001197,
+                  63.416133234201794
+                ],
+                [
+                  10.396258771288558,
+                  63.41587049653148
+                ],
+                [
+                  10.396838128435775,
+                  63.41619218024639
+                ],
+                [
+                  10.39680540040871,
+                  63.416472061389165
+                ],
+                [
+                  10.395721158452147,
+                  63.41636288515821
+                ],
+                [
+                  10.39564529001197,
+                  63.416133234201794
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 25,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/118",
+          "ios": "basimbysykkel://stations/118"
+        }
+      },
+      {
+        "station_id": "YBA:Station:19",
+        "name": "Jomfrugateallmenningen",
+        "lat": 63.434423074986874,
+        "lon": 10.395468324422836,
+        "address": "Fjordgata 66",
+        "cross_street": "Fjordgata vest",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.394507020318997,
+                  63.43443612008019
+                ],
+                [
+                  10.394828885400784,
+                  63.43417221966766
+                ],
+                [
+                  10.39644893964578,
+                  63.43442652374414
+                ],
+                [
+                  10.396298735940945,
+                  63.43465683492206
+                ],
+                [
+                  10.394507020318997,
+                  63.43443612008019
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 30,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/19",
+          "ios": "basimbysykkel://stations/19"
+        }
+      },
+      {
+        "station_id": "YBA:Station:105",
+        "name": "Basim S",
+        "lat": 63.436215184202325,
+        "lon": 10.39990465658218,
+        "address": "Sjøgangen 4",
+        "cross_street": "Med operativt betjeningspanel.",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.399256903416415,
+                  63.43596035750962
+                ],
+                [
+                  10.400715234174129,
+                  63.43597408000621
+                ],
+                [
+                  10.40019808338323,
+                  63.43651514426901
+                ],
+                [
+                  10.399301341942106,
+                  63.43643841882047
+                ],
+                [
+                  10.399256903416415,
+                  63.43596035750962
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 37,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/105",
+          "ios": "basimbysykkel://stations/105"
+        }
+      },
+      {
+        "station_id": "YBA:Station:85",
+        "name": "TMV-odden",
+        "lat": 63.43547778770301,
+        "lon": 10.410569131581866,
+        "address": "Beddingen 14",
+        "cross_street": "Solsiden",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.409851219180553,
+                  63.4353304205742
+                ],
+                [
+                  10.41026713056371,
+                  63.435340637852526
+                ],
+                [
+                  10.410633343737103,
+                  63.435213273369385
+                ],
+                [
+                  10.410859113932446,
+                  63.43512868126817
+                ],
+                [
+                  10.411401913290504,
+                  63.435399231397426
+                ],
+                [
+                  10.410786520860967,
+                  63.43565413585102
+                ],
+                [
+                  10.40977234458498,
+                  63.43554434635542
+                ],
+                [
+                  10.409851219180553,
+                  63.4353304205742
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 31,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/85",
+          "ios": "basimbysykkel://stations/85"
+        }
+      },
+      {
+        "station_id": "YBA:Station:21",
+        "name": "Bakke bru",
+        "lat": 63.432148588449024,
+        "lon": 10.407380764659592,
+        "address": "Nedre Bakklandet 60",
+        "cross_street": "Ved holdeplass Bakkegata. Operativt betjeningspanel.",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.406535118818283,
+                  63.432712476526845
+                ],
+                [
+                  10.408569453592833,
+                  63.43228128313027
+                ],
+                [
+                  10.408004969358444,
+                  63.431872734438365
+                ],
+                [
+                  10.406904984000334,
+                  63.43199069708034
+                ],
+                [
+                  10.406063050031662,
+                  63.432275813712465
+                ],
+                [
+                  10.406535118818283,
+                  63.432712476526845
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 16,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/21",
+          "ios": "basimbysykkel://stations/21"
+        }
+      },
+      {
+        "station_id": "YBA:Station:52",
+        "name": "Bakklandet",
+        "lat": 63.427896581278105,
+        "lon": 10.403341750766884,
+        "address": "Øvre Bakklandet 66",
+        "cross_street": "Parkeringsplassen ved Brubakken. Operativt betjeningspanel.",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.403095377343192,
+                  63.4280738068384
+                ],
+                [
+                  10.40367402709478,
+                  63.428044299419504
+                ],
+                [
+                  10.403722984777914,
+                  63.427787117141605
+                ],
+                [
+                  10.403031402236707,
+                  63.427761063907276
+                ],
+                [
+                  10.402927665592955,
+                  63.428032518912076
+                ],
+                [
+                  10.403095377343192,
+                  63.4280738068384
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 26,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/52",
+          "ios": "basimbysykkel://stations/52"
+        }
+      },
+      {
+        "station_id": "YBA:Station:126",
+        "name": "Leutenhaven",
+        "lat": 63.42994558007871,
+        "lon": 10.391905842869932,
+        "address": "Kongens gate 19",
+        "cross_street": "i Repslagerveita mot Prinsens gate. Operativt betjeningspanel.",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.391157414264569,
+                  63.43002250504546
+                ],
+                [
+                  10.391140422859422,
+                  63.42985614230828
+                ],
+                [
+                  10.392346515426823,
+                  63.42983974528143
+                ],
+                [
+                  10.392259787700368,
+                  63.43014288017983
+                ],
+                [
+                  10.391143100617029,
+                  63.430144878890495
+                ],
+                [
+                  10.391157414264569,
+                  63.43002250504546
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 28,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/126",
+          "ios": "basimbysykkel://stations/126"
+        }
+      },
+      {
+        "station_id": "YBA:Station:66",
+        "name": "Verftsbrua",
+        "lat": 63.43527713641004,
+        "lon": 10.405813604593277,
+        "address": "Havnegata 1",
+        "cross_street": "Ved Brattørbrua",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.405437022054684,
+                  63.43516519227902
+                ],
+                [
+                  10.406177311742795,
+                  63.43508122636653
+                ],
+                [
+                  10.406319468820584,
+                  63.43530673426012
+                ],
+                [
+                  10.405589907968533,
+                  63.43539189901349
+                ],
+                [
+                  10.405214398706448,
+                  63.43519877857509
+                ],
+                [
+                  10.405437022054684,
+                  63.43516519227902
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 13,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/66",
+          "ios": "basimbysykkel://stations/66"
+        }
+      },
+      {
+        "station_id": "YBA:Station:6",
+        "name": "Lademoparken",
+        "lat": 63.43695414725468,
+        "lon": 10.431272203897095,
+        "address": "Innherredsveien 61F",
+        "cross_street": "midlertidig plassering i Anders Buens gate, utenfor Bunnpris.",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.430995161424846,
+                  63.436823410400834
+                ],
+                [
+                  10.431786899992545,
+                  63.436864822300585
+                ],
+                [
+                  10.431667948576973,
+                  63.437145007649704
+                ],
+                [
+                  10.430923298813411,
+                  63.437096885264054
+                ],
+                [
+                  10.430995161424846,
+                  63.436823410400834
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 25,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/6",
+          "ios": "basimbysykkel://stations/6"
+        }
+      },
+      {
+        "station_id": "YBA:Station:25",
+        "name": "Thornesparken ",
+        "lat": 63.43289961569575,
+        "lon": 10.412772931158543,
+        "address": "Nonnegata 3",
+        "cross_street": "I Kirkegata ",
+        "is_virtual_station": false,
+        "station_area": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  10.412245072293445,
+                  63.43283030841115
+                ],
+                [
+                  10.412406004834338,
+                  63.432695951883495
+                ],
+                [
+                  10.413071192670031,
+                  63.43294067223038
+                ],
+                [
+                  10.412835158276721,
+                  63.43307502761044
+                ],
+                [
+                  10.412245072293445,
+                  63.43283030841115
+                ]
+              ]
+            ]
+          ]
+        },
+        "capacity": 24,
+        "rental_uris": {
+          "android": "basimbysykkel://stations/25",
+          "ios": "basimbysykkel://stations/25"
+        }
+      }
+    ]
+  }
+}

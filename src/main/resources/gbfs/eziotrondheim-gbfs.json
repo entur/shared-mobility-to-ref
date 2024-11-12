@@ -1,0 +1,39 @@
+{
+  "last_updated": 1728997351,
+  "ttl": 0,
+  "version": "2.3",
+  "data": {
+    "no": {
+      "feeds": [
+        {
+          "name": "system_information",
+          "url": "https://api.entur.io/mobility/v2/gbfs/v2/eziotrondheim/system_information"
+        },
+        {
+          "name": "free_bike_status",
+          "url": "https://api.entur.io/mobility/v2/gbfs/v2/eziotrondheim/free_bike_status"
+        },
+        {
+          "name": "vehicle_types",
+          "url": "https://api.entur.io/mobility/v2/gbfs/v2/eziotrondheim/vehicle_types"
+        },
+        {
+          "name": "system_pricing_plans",
+          "url": "https://api.entur.io/mobility/v2/gbfs/v2/eziotrondheim/system_pricing_plans"
+        },
+        {
+          "name": "geofencing_zones",
+          "url": "https://api.entur.io/mobility/v2/gbfs/v2/eziotrondheim/geofencing_zones"
+        },
+        {
+          "name": "system_hours",
+          "url": "https://api.entur.io/mobility/v2/gbfs/v2/eziotrondheim/system_hours"
+        },
+        {
+          "name": "station_information",
+          "url": "https://api.entur.io/mobility/v2/gbfs/v2/eziotrondheim/station_information"
+        }
+      ]
+    }
+  }
+}

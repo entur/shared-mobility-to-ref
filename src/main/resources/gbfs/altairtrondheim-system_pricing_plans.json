@@ -1,0 +1,39 @@
+{
+  "last_updated": 1730293003,
+  "ttl": 0,
+  "version": "2.3",
+  "data": {
+    "plans": [
+      {
+        "plan_id": "YAL:PricingPlan:9b62b919-e204-4352-afec-662addd0776a",
+        "name": "scooter-standard-pricing-trondheim",
+        "currency": "NOK",
+        "price": 10.9,
+        "is_taxable": false,
+        "description": "Standard pricing for scooters, 10.90 NOK to unlock, 2.50 NOK per minute to rent",
+        "per_min_pricing": [
+          {
+            "start": 0,
+            "rate": 2.5,
+            "interval": 1
+          }
+        ]
+      },
+      {
+        "plan_id": "YAL:PricingPlan:7eae082a-33bb-453f-8a66-561b2549488e",
+        "name": "bike-standard-pricing-trondheim",
+        "currency": "NOK",
+        "price": 9.0,
+        "is_taxable": false,
+        "description": "Standard pricing for bikes, 9.00 NOK to unlock, 2.40 NOK per minute to rent",
+        "per_min_pricing": [
+          {
+            "start": 0,
+            "rate": 2.4,
+            "interval": 1
+          }
+        ]
+      }
+    ]
+  }
+}

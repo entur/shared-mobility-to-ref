@@ -1,0 +1,23 @@
+{
+  "last_updated": 1730293002,
+  "ttl": 0,
+  "version": "2.3",
+  "data": {
+    "vehicle_types": [
+      {
+        "vehicle_type_id": "YAL:VehicleType:escooter_trondheim",
+        "form_factor": "scooter",
+        "propulsion_type": "electric",
+        "max_range_meters": 55000.0,
+        "name": "Electric Scooter"
+      },
+      {
+        "vehicle_type_id": "YAL:VehicleType:ebicycle_trondheim",
+        "form_factor": "bicycle",
+        "propulsion_type": "electric_assist",
+        "max_range_meters": 90000.0,
+        "name": "Electric Bicycle"
+      }
+    ]
+  }
+}

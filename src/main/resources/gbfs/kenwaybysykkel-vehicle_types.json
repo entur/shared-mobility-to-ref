@@ -1,0 +1,15 @@
+{
+  "last_updated": 1730276360,
+  "ttl": 43200,
+  "version": "2.3",
+  "data": {
+    "vehicle_types": [
+      {
+        "vehicle_type_id": "YKE:VehicleType:CityBike",
+        "form_factor": "bicycle",
+        "propulsion_type": "electric_assist",
+        "max_range_meters": 70000.0
+      }
+    ]
+  }
+}
