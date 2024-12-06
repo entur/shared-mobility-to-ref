@@ -2,23 +2,23 @@
   "systems": [
     {
       "id": "evietrondheim",
-      "url": "https://api.entur.io/mobility/v2/gbfs/v2/evietrondheim/gbfs"
+      "url": "BASE_URL/mobility/v2/gbfs/v2/evietrondheim/gbfs"
     },
     {
       "id": "basimbysykkel",
-      "url": "https://api.entur.io/mobility/v2/gbfs/v2/basimbysykkel/gbfs"
+      "url": "BASE_URL/mobility/v2/gbfs/v2/basimbysykkel/gbfs"
     },
     {
       "id": "kenwaybysykkel",
-      "url": "https://api.entur.io/mobility/v2/gbfs/v2/kenwaybysykkel/gbfs"
+      "url": "BASE_URL/mobility/v2/gbfs/v2/kenwaybysykkel/gbfs"
     },
     {
       "id": "altairtrondheim",
-      "url": "https://api.entur.io/mobility/v2/gbfs/v2/altairtrondheim/gbfs"
+      "url": "BASE_URL/mobility/v2/gbfs/v2/altairtrondheim/gbfs"
     },
     {
       "id": "eziotrondheim",
-      "url": "https://api.entur.io/mobility/v2/gbfs/v2/eziotrondheim/gbfs"
+      "url": "BASE_URL/mobility/v2/gbfs/v2/eziotrondheim/gbfs"
     }
   ]
 }

@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.controller
 
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -8,9 +9,13 @@ import java.io.FileNotFoundException
 @RestController
 @RequestMapping("mobility/v2/gbfs")
 class GbfsController {
+
+    @Value("\${baseUrl}")
+    val baseUrl: String = "https://api.dev.entur.io/shared-mobility-to-ref/v1"
+
     @GetMapping(produces = ["application/json"])
     fun gbfs(): String {
-        return getFile("gbfs.json")
+        return getFile("gbfs.json").replace("BASE_URL", baseUrl)
     }
 
     @GetMapping("/v2/kenwaybysykkel/gbfs", produces = ["application/json"])
@@ -50,7 +55,7 @@ class GbfsController {
 
     @GetMapping("/v2/eziotrondheim/gbfs", produces = ["application/json"])
     fun eziotrondheimGbfs(): String {
-        return getFile("eziotrondheim-gbfs.json")
+        return getFile("eziotrondheim-gbfs.json").replace("BASE_URL", baseUrl)
     }
 
     @GetMapping("/v2/eziotrondheim/geofencing_zones", produces = ["application/json"])
@@ -90,7 +95,7 @@ class GbfsController {
 
     @GetMapping("/v2/altairtrondheim/gbfs", produces = ["application/json"])
     fun altairtrondheimGbfs(): String {
-        return getFile("altairtrondheim-gbfs.json")
+        return getFile("altairtrondheim-gbfs.json").replace("BASE_URL", baseUrl)
     }
 
     @GetMapping("/v2/altairtrondheim/geofencing_zones", produces = ["application/json"])
@@ -115,7 +120,7 @@ class GbfsController {
 
     @GetMapping("/v2/basimbysykkel/gbfs", produces = ["application/json"])
     fun basimbysykkelGbfs(): String {
-        return getFile("basimbysykkel-gbfs.json")
+        return getFile("basimbysykkel-gbfs.json").replace("BASE_URL", baseUrl)
     }
 
     @GetMapping("/v2/basimbysykkel/station_information", produces = ["application/json"])
@@ -150,7 +155,7 @@ class GbfsController {
 
     @GetMapping("/v2/evietrondheim/gbfs", produces = ["application/json"])
     fun evietrondheimGbfs(): String {
-        return getFile("evietrondheim-gbfs.json")
+        return getFile("evietrondheim-gbfs.json").replace("BASE_URL", baseUrl)
     }
 
     @GetMapping("/v2/evietrondheim/geofencing_zones", produces = ["application/json"])

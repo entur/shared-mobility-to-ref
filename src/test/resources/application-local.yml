@@ -1,0 +1,1 @@
+baseUrl: ${AUTH0_INT_CLIENT_AUD:https://api.dev.entur.io}/shared-mobility-to-ref/v1

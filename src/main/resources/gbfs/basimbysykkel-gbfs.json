@@ -7,23 +7,23 @@
       "feeds": [
         {
           "name": "system_information",
-          "url": "https://api.entur.io/mobility/v2/gbfs/v2/basimbysykkel/system_information"
+          "url": "BASE_URL/mobility/v2/gbfs/v2/basimbysykkel/system_information"
         },
         {
           "name": "vehicle_types",
-          "url": "https://api.entur.io/mobility/v2/gbfs/v2/basimbysykkel/vehicle_types"
+          "url": "BASE_URL/mobility/v2/gbfs/v2/basimbysykkel/vehicle_types"
         },
         {
           "name": "system_pricing_plans",
-          "url": "https://api.entur.io/mobility/v2/gbfs/v2/basimbysykkel/system_pricing_plans"
+          "url": "BASE_URL/mobility/v2/gbfs/v2/basimbysykkel/system_pricing_plans"
         },
         {
           "name": "station_information",
-          "url": "https://api.entur.io/mobility/v2/gbfs/v2/basimbysykkel/station_information"
+          "url": "BASE_URL/mobility/v2/gbfs/v2/basimbysykkel/station_information"
         },
         {
           "name": "station_status",
-          "url": "https://api.entur.io/mobility/v2/gbfs/v2/basimbysykkel/station_status"
+          "url": "BASE_URL/mobility/v2/gbfs/v2/basimbysykkel/station_status"
         }
       ]
     }
