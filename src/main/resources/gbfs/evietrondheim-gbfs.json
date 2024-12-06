@@ -7,35 +7,35 @@
       "feeds": [
         {
           "name": "system_information",
-          "url": "https://api.entur.io/mobility/v2/gbfs/v2/evietrondheim/system_information"
+          "url": "BASE_URL/mobility/v2/gbfs/v2/evietrondheim/system_information"
         },
         {
           "name": "vehicle_types",
-          "url": "https://api.entur.io/mobility/v2/gbfs/v2/evietrondheim/vehicle_types"
+          "url": "BASE_URL/mobility/v2/gbfs/v2/evietrondheim/vehicle_types"
         },
         {
           "name": "gbfs",
-          "url": "https://api.entur.io/mobility/v2/gbfs/v2/evietrondheim/gbfs"
+          "url": "BASE_URL/mobility/v2/gbfs/v2/evietrondheim/gbfs"
         },
         {
           "name": "system_alerts",
-          "url": "https://api.entur.io/mobility/v2/gbfs/v2/evietrondheim/system_alerts"
+          "url": "BASE_URL/mobility/v2/gbfs/v2/evietrondheim/system_alerts"
         },
         {
           "name": "system_pricing_plans",
-          "url": "https://api.entur.io/mobility/v2/gbfs/v2/evietrondheim/system_pricing_plans"
+          "url": "BASE_URL/mobility/v2/gbfs/v2/evietrondheim/system_pricing_plans"
         },
         {
           "name": "system_regions",
-          "url": "https://api.entur.io/mobility/v2/gbfs/v2/evietrondheim/system_regions"
+          "url": "BASE_URL/mobility/v2/gbfs/v2/evietrondheim/system_regions"
         },
         {
           "name": "free_bike_status",
-          "url": "https://api.entur.io/mobility/v2/gbfs/v2/evietrondheim/free_bike_status"
+          "url": "BASE_URL/mobility/v2/gbfs/v2/evietrondheim/free_bike_status"
         },
         {
           "name": "geofencing_zones",
-          "url": "https://api.entur.io/mobility/v2/gbfs/v2/evietrondheim/geofencing_zones"
+          "url": "BASE_URL/mobility/v2/gbfs/v2/evietrondheim/geofencing_zones"
         }
       ]
     }
