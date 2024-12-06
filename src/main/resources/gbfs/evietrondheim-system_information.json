@@ -1,0 +1,26 @@
+{
+  "last_updated": 1730207046,
+  "ttl": 86400,
+  "version": "2.3",
+  "data": {
+    "system_id": "evietrondheim",
+    "language": "en",
+    "name": "Evie Technology AB",
+    "short_name": "Evie",
+    "operator": "Evie",
+    "url": "https://www.eviescooters.com/",
+    "email": "support@evieapp.io",
+    "feed_contact_email": "support@evieapp.io",
+    "timezone": "CET",
+    "rental_apps": {
+      "android": {
+        "store_uri": "https://play.google.com/store/apps/details?id=io.evieapp.evie&hl=en&gl=US",
+        "discovery_uri": "evieapp://closest_vehicle"
+      },
+      "ios": {
+        "store_uri": "https://apps.apple.com/app/id1395921017?mt=8",
+        "discovery_uri": "evieapp://closest_vehicle"
+      }
+    }
+  }
+}

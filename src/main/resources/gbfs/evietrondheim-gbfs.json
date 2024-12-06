@@ -1,0 +1,43 @@
+{
+  "last_updated": 1676021400,
+  "ttl": 86400,
+  "version": "2.3",
+  "data": {
+    "en": {
+      "feeds": [
+        {
+          "name": "system_information",
+          "url": "https://api.entur.io/mobility/v2/gbfs/v2/evietrondheim/system_information"
+        },
+        {
+          "name": "vehicle_types",
+          "url": "https://api.entur.io/mobility/v2/gbfs/v2/evietrondheim/vehicle_types"
+        },
+        {
+          "name": "gbfs",
+          "url": "https://api.entur.io/mobility/v2/gbfs/v2/evietrondheim/gbfs"
+        },
+        {
+          "name": "system_alerts",
+          "url": "https://api.entur.io/mobility/v2/gbfs/v2/evietrondheim/system_alerts"
+        },
+        {
+          "name": "system_pricing_plans",
+          "url": "https://api.entur.io/mobility/v2/gbfs/v2/evietrondheim/system_pricing_plans"
+        },
+        {
+          "name": "system_regions",
+          "url": "https://api.entur.io/mobility/v2/gbfs/v2/evietrondheim/system_regions"
+        },
+        {
+          "name": "free_bike_status",
+          "url": "https://api.entur.io/mobility/v2/gbfs/v2/evietrondheim/free_bike_status"
+        },
+        {
+          "name": "geofencing_zones",
+          "url": "https://api.entur.io/mobility/v2/gbfs/v2/evietrondheim/geofencing_zones"
+        }
+      ]
+    }
+  }
+}

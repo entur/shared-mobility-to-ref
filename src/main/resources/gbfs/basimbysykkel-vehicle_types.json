@@ -1,0 +1,16 @@
+{
+  "last_updated": 1730292990,
+  "ttl": 15,
+  "version": "2.3",
+  "data": {
+    "vehicle_types": [
+      {
+        "vehicle_type_id": "YBA:VehicleType:bike",
+        "form_factor": "bicycle",
+        "propulsion_type": "human",
+        "name": "Traditional bike",
+        "default_pricing_plan_id": "YBA:PricingPlan:bike"
+      }
+    ]
+  }
+}

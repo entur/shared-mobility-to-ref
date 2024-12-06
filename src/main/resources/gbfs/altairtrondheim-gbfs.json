@@ -1,0 +1,31 @@
+{
+  "last_updated": 1728997351,
+  "ttl": 0,
+  "version": "2.3",
+  "data": {
+    "en": {
+      "feeds": [
+        {
+          "name": "system_information",
+          "url": "https://api.entur.io/mobility/v2/gbfs/v2/altairtrondheim/system_information"
+        },
+        {
+          "name": "free_bike_status",
+          "url": "https://api.entur.io/mobility/v2/gbfs/v2/altairtrondheim/free_bike_status"
+        },
+        {
+          "name": "vehicle_types",
+          "url": "https://api.entur.io/mobility/v2/gbfs/v2/altairtrondheim/vehicle_types"
+        },
+        {
+          "name": "system_pricing_plans",
+          "url": "https://api.entur.io/mobility/v2/gbfs/v2/altairtrondheim/system_pricing_plans"
+        },
+        {
+          "name": "geofencing_zones",
+          "url": "https://api.entur.io/mobility/v2/gbfs/v2/altairtrondheim/geofencing_zones"
+        }
+      ]
+    }
+  }
+}
