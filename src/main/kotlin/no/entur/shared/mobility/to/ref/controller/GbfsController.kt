@@ -20,7 +20,7 @@ class GbfsController {
 
     @GetMapping("/v2/kenwaybysykkel/gbfs", produces = ["application/json"])
     fun kenwaybysykkelGbfs(): String {
-        return getFile("kenwaybysykkel-gbfs.json")
+        return getFile("kenwaybysykkel-gbfs.json").replace("BASE_URL", baseUrl)
     }
 
     @GetMapping("/v2/kenwaybysykkel/station_information", produces = ["application/json"])
