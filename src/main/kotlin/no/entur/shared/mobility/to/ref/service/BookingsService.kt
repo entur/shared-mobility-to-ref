@@ -13,6 +13,8 @@ import no.entur.shared.mobility.to.ref.dto.OneStopBookingRequest
 import no.entur.shared.mobility.to.ref.service.TransportOperator.ALL_IMPLEMENTING_OPERATOR
 import no.entur.shared.mobility.to.ref.service.TransportOperator.BIKE_OPERATOR
 import no.entur.shared.mobility.to.ref.service.TransportOperator.SCOOTER_OPERATOR
+import no.entur.shared.mobility.to.ref.service.TransportOperator.SCOOTER_OPERATOR_2
+import no.entur.shared.mobility.to.ref.service.TransportOperator.SCOOTER_OPERATOR_3
 import no.entur.shared.mobility.to.ref.service.TransportOperator.SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE
 import no.entur.shared.mobility.to.ref.service.TransportOperator.SCOOTER_OPERATOR_NO_DEPOSIT
 import org.springframework.stereotype.Service
@@ -35,7 +37,7 @@ class BookingsService {
         containsAssetType: String?,
     ): List<Booking> {
         return when (addressedTo) {
-            SCOOTER_OPERATOR -> throw NotImplementedError()
+            SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3 -> throw NotImplementedError()
             SCOOTER_OPERATOR_NO_DEPOSIT -> throw NotImplementedError()
             SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> throw NotImplementedError()
             BIKE_OPERATOR -> throw NotImplementedError()
@@ -55,7 +57,7 @@ class BookingsService {
     ): Booking {
         val booking: Booking =
             when (addressedTo) {
-                SCOOTER_OPERATOR -> throw NotImplementedError()
+                SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3 -> throw NotImplementedError()
                 SCOOTER_OPERATOR_NO_DEPOSIT -> throw NotImplementedError()
                 SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> throw NotImplementedError()
                 BIKE_OPERATOR -> throw NotImplementedError()
@@ -77,7 +79,7 @@ class BookingsService {
             when (addressedTo) {
                 SCOOTER_OPERATOR_NO_DEPOSIT -> bookingWithoutDeposit
                 SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> bookingHigherDepositAmountThanTotalAmount
-                SCOOTER_OPERATOR -> booking
+                SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3 -> booking
                 BIKE_OPERATOR -> booking
                 ALL_IMPLEMENTING_OPERATOR -> booking
                 else -> throw NotImplementedError()
@@ -120,7 +122,7 @@ class BookingsService {
         addressedTo: String?,
     ): Booking {
         return when (addressedTo) {
-            SCOOTER_OPERATOR -> throw NotImplementedError()
+            SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3 -> throw NotImplementedError()
             BIKE_OPERATOR -> throw NotImplementedError()
             ALL_IMPLEMENTING_OPERATOR -> booking
             else -> throw NotImplementedError()
@@ -165,7 +167,7 @@ class BookingsService {
             when (addressedTo) {
                 SCOOTER_OPERATOR_NO_DEPOSIT -> bookingWithoutDeposit
                 SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> bookingHigherDepositAmountThanTotalAmount
-                SCOOTER_OPERATOR -> booking
+                SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3 -> booking
                 BIKE_OPERATOR -> booking
                 ALL_IMPLEMENTING_OPERATOR -> booking
                 else -> throw NotImplementedError()
@@ -192,7 +194,7 @@ class BookingsService {
         bookingRequest: BookingRequest,
     ): Booking {
         return when (addressedTo) {
-            SCOOTER_OPERATOR -> throw NotImplementedError()
+            SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3 -> throw NotImplementedError()
             BIKE_OPERATOR -> throw NotImplementedError()
             ALL_IMPLEMENTING_OPERATOR -> booking
             else -> throw NotImplementedError()

@@ -17,6 +17,8 @@ import no.entur.shared.mobility.to.ref.dto.SystemRegion
 import no.entur.shared.mobility.to.ref.service.TransportOperator.ALL_IMPLEMENTING_OPERATOR
 import no.entur.shared.mobility.to.ref.service.TransportOperator.BIKE_OPERATOR
 import no.entur.shared.mobility.to.ref.service.TransportOperator.SCOOTER_OPERATOR
+import no.entur.shared.mobility.to.ref.service.TransportOperator.SCOOTER_OPERATOR_2
+import no.entur.shared.mobility.to.ref.service.TransportOperator.SCOOTER_OPERATOR_3
 import no.entur.shared.mobility.to.ref.service.TransportOperator.SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE
 import no.entur.shared.mobility.to.ref.service.TransportOperator.SCOOTER_OPERATOR_NO_DEPOSIT
 import org.springframework.stereotype.Service
@@ -49,7 +51,7 @@ class OperatorService {
         stationId: String?,
     ): List<AssetType> {
         return when (addressedTo) {
-            SCOOTER_OPERATOR -> throw NotImplementedError()
+            SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3 -> throw NotImplementedError()
             BIKE_OPERATOR -> throw NotImplementedError()
             ALL_IMPLEMENTING_OPERATOR -> listOf(assetType)
             else -> throw NotImplementedError()
@@ -64,7 +66,7 @@ class OperatorService {
         addressedTo: String?,
     ): SystemInformation {
         return when (addressedTo) {
-            SCOOTER_OPERATOR -> throw NotImplementedError()
+            SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3 -> throw NotImplementedError()
             BIKE_OPERATOR -> throw NotImplementedError()
             ALL_IMPLEMENTING_OPERATOR -> systemInformation
             else -> throw NotImplementedError()
@@ -79,7 +81,7 @@ class OperatorService {
         return when (addressedTo) {
             SCOOTER_OPERATOR_NO_DEPOSIT -> scooterOperatorEndpointImplementations
             SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> scooterOperatorEndpointImplementations
-            SCOOTER_OPERATOR -> scooterOperatorEndpointImplementations
+            SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3 -> scooterOperatorEndpointImplementations
             BIKE_OPERATOR -> bikeOperatorEndpointImplementations
             ALL_IMPLEMENTING_OPERATOR -> allEndpointImplementations
             else -> emptyList()
