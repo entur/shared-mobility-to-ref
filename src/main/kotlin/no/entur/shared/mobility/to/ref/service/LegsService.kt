@@ -12,6 +12,8 @@ import no.entur.shared.mobility.to.ref.dto.LegState
 import no.entur.shared.mobility.to.ref.service.TransportOperator.ALL_IMPLEMENTING_OPERATOR
 import no.entur.shared.mobility.to.ref.service.TransportOperator.BIKE_OPERATOR
 import no.entur.shared.mobility.to.ref.service.TransportOperator.SCOOTER_OPERATOR
+import no.entur.shared.mobility.to.ref.service.TransportOperator.SCOOTER_OPERATOR_2
+import no.entur.shared.mobility.to.ref.service.TransportOperator.SCOOTER_OPERATOR_3
 import no.entur.shared.mobility.to.ref.service.TransportOperator.SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE
 import no.entur.shared.mobility.to.ref.service.TransportOperator.SCOOTER_OPERATOR_NO_DEPOSIT
 import org.springframework.stereotype.Service
@@ -81,7 +83,7 @@ class LegsService {
             when (addressedTo) {
                 SCOOTER_OPERATOR_NO_DEPOSIT -> legWithoutDeposit
                 SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> legWithHighDepositAmount
-                SCOOTER_OPERATOR -> leg
+                SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3 -> leg
                 BIKE_OPERATOR -> leg
                 ALL_IMPLEMENTING_OPERATOR -> leg
                 else -> throw NotImplementedError()
@@ -123,7 +125,7 @@ class LegsService {
             when (addressedTo) {
                 SCOOTER_OPERATOR_NO_DEPOSIT -> legWithoutDeposit
                 SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> legWithHighDepositAmount
-                SCOOTER_OPERATOR -> leg
+                SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3 -> leg
                 BIKE_OPERATOR -> leg
                 ALL_IMPLEMENTING_OPERATOR -> leg
                 else -> throw NotImplementedError()
