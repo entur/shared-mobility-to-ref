@@ -1,0 +1,12 @@
+name: "Subworkflow: CodeQL Scan and SonarCloud Scan"
+
+on:
+  workflow_call:
+
+jobs:
+  code-scan:
+    name: "CodeQL Scan"
+    uses: entur/gha-security/.github/workflows/code-scan.yml@v2
+    secrets: inherit
+    with:
+      use_setup_gradle: true

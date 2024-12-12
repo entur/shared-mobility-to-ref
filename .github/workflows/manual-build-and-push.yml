@@ -1,0 +1,22 @@
+name: "Manual Build and Publish"
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to run the workflow on'
+        required: true
+        type: string
+
+jobs:
+  build:
+    uses: ./.github/workflows/build.yml
+    with:
+      inputbranch: ${{ inputs.branch }}
+    secrets: inherit
+
+  publish:
+    name: "Docker Push and Publish Documentation"
+    needs: build
+    uses: ./.github/workflows/publish.yml
+    secrets: inherit
