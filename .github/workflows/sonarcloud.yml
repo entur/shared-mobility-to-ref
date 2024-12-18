@@ -1,0 +1,11 @@
+name: "Scheduled Job: SonarCloud Scan"
+
+on:
+  schedule:
+    - cron: "0 4 * * 1-5" # Run Monday to Friday at 3AM UTC
+
+jobs:
+  build-with-sonar:
+    name: "Call Build with SonarScan"
+    uses: ./.github/workflows/build-with-sonar.yml # Kaller build.yml workflow
+    secrets: inherit # Arver secrets fra parent workflow

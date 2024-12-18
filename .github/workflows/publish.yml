@@ -1,0 +1,37 @@
+name: "Subworkflow: Docker Push, and Publish Documentation"
+
+on:
+  workflow_call:
+
+jobs:
+  docker-build:
+    name: "Docker build"
+    uses: entur/gha-docker/.github/workflows/build.yml@v1
+    with:
+      build_artifact_name: app
+      build_artifact_path: build/libs/
+
+  docker-push:
+    name: "Docker Push"
+    needs: docker-build
+    uses: entur/gha-docker/.github/workflows/push.yml@v1
+    secrets: inherit
+
+  publish-docs:
+    name: "Publishing Developer Documentation"
+    needs: docker-push
+    if: github.actor != 'dependabot[bot]' # Sjekk at Dependabot ikke trigger publisering
+    uses: entur/gha-docs/.github/workflows/publish.yml@v1
+    with:
+      project: shared-mobility
+    secrets: inherit
+
+  notify-failure:
+    name: "Notify Failure"
+    needs: docker-push
+    if: ${{ failure() }}
+    uses: entur/gha-slack/.github/workflows/post.yml@v2
+    with:
+      channel_id: "C07F2645LRL"
+      message: ":rotating_light: Build and deploy failed for ${{ github.repository }}"
+    secrets: inherit
