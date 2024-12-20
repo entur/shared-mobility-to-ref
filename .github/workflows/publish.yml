@@ -17,15 +17,6 @@ jobs:
     uses: entur/gha-docker/.github/workflows/push.yml@v1
     secrets: inherit
 
-  publish-docs:
-    name: "Publishing Developer Documentation"
-    needs: docker-push
-    if: github.actor != 'dependabot[bot]' # Sjekk at Dependabot ikke trigger publisering
-    uses: entur/gha-docs/.github/workflows/publish.yml@v1
-    with:
-      project: shared-mobility-to-ref
-    secrets: inherit
-
   notify-failure:
     name: "Notify Failure"
     needs: docker-push
