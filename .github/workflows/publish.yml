@@ -23,7 +23,7 @@ jobs:
     if: github.actor != 'dependabot[bot]' # Sjekk at Dependabot ikke trigger publisering
     uses: entur/gha-docs/.github/workflows/publish.yml@v1
     with:
-      project: shared-mobility
+      project: shared-mobility-to-ref
     secrets: inherit
 
   notify-failure:
