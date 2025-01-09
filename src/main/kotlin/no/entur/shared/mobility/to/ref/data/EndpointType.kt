@@ -1,6 +1,8 @@
 package no.entur.shared.mobility.to.ref.data
 
-enum class EndpointType(val path: String) {
+enum class EndpointType(
+    val path: String,
+) {
     BOOKINGS_GET("/bookings"),
     BOOKINGS_ID_EVENTS_POST("/bookings/{id}/events"),
     BOOKINGS_ID_GET("/bookings/{id}"),

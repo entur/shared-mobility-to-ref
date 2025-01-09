@@ -5,4 +5,7 @@ package no.entur.shared.mobility.to.ref.dto
  * example https://geojson.org/geojson-spec.html#id4.
  * The order should be lon, lat [[[lon1, lat1], [lon2,lat2], [lon3,lat3], [lon1,lat1]]], the first point should match the last point.
  */
-class GeoJsonPolygon(list: List<GeoJsonLine>) : ArrayList<GeoJsonLine>(list), GeoJsonGeometryCoordinates
+class GeoJsonPolygon(
+    list: List<GeoJsonLine>,
+) : ArrayList<GeoJsonLine>(list),
+    GeoJsonGeometryCoordinates

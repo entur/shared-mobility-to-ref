@@ -17,9 +17,7 @@ class PaymentService {
         id: String,
         addressedTo: String?,
         extraCosts: ExtraCosts?,
-    ): JournalEntry {
-        throw NotImplementedError()
-    }
+    ): JournalEntry = throw NotImplementedError()
 
     fun paymentJournalEntryGet(
         acceptLanguage: String,
@@ -34,7 +32,5 @@ class PaymentService {
         category: JournalCategory?,
         offset: Int,
         limit: Int?,
-    ): List<JournalEntry> {
-        throw NotImplementedError()
-    }
+    ): List<JournalEntry> = throw NotImplementedError()
 }

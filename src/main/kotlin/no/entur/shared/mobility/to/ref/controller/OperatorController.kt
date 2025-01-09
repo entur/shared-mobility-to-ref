@@ -29,7 +29,9 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @Validated
-class OperatorController(private val operatorService: OperatorService) {
+class OperatorController(
+    private val operatorService: OperatorService,
+) {
     @Operation(
         hidden = true,
         summary = "informs customers about changes to the system outside of normal operations",
@@ -105,8 +107,8 @@ class OperatorController(private val operatorService: OperatorService) {
         @Valid
         @RequestParam(value = "stationId", required = false)
         stationId: String?,
-    ): List<SystemAlert> {
-        return operatorService.operatorAlertsGet(
+    ): List<SystemAlert> =
+        operatorService.operatorAlertsGet(
             acceptLanguage,
             api,
             apiVersion,
@@ -117,7 +119,6 @@ class OperatorController(private val operatorService: OperatorService) {
             regionId,
             stationId,
         )
-    }
 
     @Operation(
         hidden = true,
@@ -197,8 +198,8 @@ class OperatorController(private val operatorService: OperatorService) {
         @Valid
         @RequestParam(value = "stationId", required = false)
         stationId: String?,
-    ): List<AssetType> {
-        return operatorService.operatorAvailableAssetsGet(
+    ): List<AssetType> =
+        operatorService.operatorAvailableAssetsGet(
             acceptLanguage,
             api,
             apiVersion,
@@ -209,7 +210,6 @@ class OperatorController(private val operatorService: OperatorService) {
             regionId,
             stationId,
         )
-    }
 
     @Operation(
         hidden = true,
@@ -264,15 +264,14 @@ class OperatorController(private val operatorService: OperatorService) {
         @Parameter(description = "The ID of the maas operator that has to receive this message", `in` = ParameterIn.HEADER)
         @RequestHeader(value = "addressed-to", required = false)
         addressedTo: String?,
-    ): SystemInformation {
-        return operatorService.operatorInformationGet(
+    ): SystemInformation =
+        operatorService.operatorInformationGet(
             acceptLanguage,
             api,
             apiVersion,
             maasId,
             addressedTo,
         )
-    }
 
     @Operation(
         summary = "describes the running implementations",
@@ -304,13 +303,12 @@ class OperatorController(private val operatorService: OperatorService) {
         @Parameter(description = "The ID of the maas operator that has to receive this message", `in` = ParameterIn.HEADER)
         @RequestHeader(value = "addressed-to", required = false)
         addressedTo: String?,
-    ): List<EndpointImplementation> {
-        return operatorService.operatorMetaGet(
+    ): List<EndpointImplementation> =
+        operatorService.operatorMetaGet(
             acceptLanguage,
             maasId,
             addressedTo,
         )
-    }
 
     @Operation(
         hidden = true,
@@ -372,8 +370,8 @@ class OperatorController(private val operatorService: OperatorService) {
         @Valid
         @RequestParam(value = "stationId", required = false)
         stationId: String?,
-    ): List<SystemCalendar> {
-        return operatorService.operatorOperatingCalendarGet(
+    ): List<SystemCalendar> =
+        operatorService.operatorOperatingCalendarGet(
             acceptLanguage,
             api,
             apiVersion,
@@ -382,7 +380,6 @@ class OperatorController(private val operatorService: OperatorService) {
             regionId,
             stationId,
         )
-    }
 
     @Operation(
         hidden = true,
@@ -444,8 +441,8 @@ class OperatorController(private val operatorService: OperatorService) {
         @Valid
         @RequestParam(value = "stationId", required = false)
         stationId: String?,
-    ): List<SystemHours> {
-        return operatorService.operatorOperatingHoursGet(
+    ): List<SystemHours> =
+        operatorService.operatorOperatingHoursGet(
             acceptLanguage,
             api,
             apiVersion,
@@ -454,7 +451,6 @@ class OperatorController(private val operatorService: OperatorService) {
             regionId,
             stationId,
         )
-    }
 
     @Operation(
         hidden = true,
@@ -553,8 +549,8 @@ class OperatorController(private val operatorService: OperatorService) {
         @Valid
         @RequestParam(value = "stationId", required = false)
         stationId: String?,
-    ): List<SystemPricingPlan> {
-        return operatorService.operatorPricingPlansGet(
+    ): List<SystemPricingPlan> =
+        operatorService.operatorPricingPlansGet(
             acceptLanguage,
             api,
             apiVersion,
@@ -563,7 +559,6 @@ class OperatorController(private val operatorService: OperatorService) {
             regionId,
             stationId,
         )
-    }
 
     @Operation(
         hidden = true,
@@ -628,8 +623,8 @@ class OperatorController(private val operatorService: OperatorService) {
         @Valid
         @RequestParam(value = "limit", required = false)
         limit: Int?,
-    ): List<SystemRegion> {
-        return operatorService.operatorRegionsGet(
+    ): List<SystemRegion> =
+        operatorService.operatorRegionsGet(
             acceptLanguage,
             api,
             apiVersion,
@@ -638,7 +633,6 @@ class OperatorController(private val operatorService: OperatorService) {
             offset,
             limit,
         )
-    }
 
     @Operation(
         hidden = true,
@@ -723,8 +717,8 @@ class OperatorController(private val operatorService: OperatorService) {
         @Valid
         @RequestParam(value = "radius", required = false)
         radius: Float?,
-    ): List<StationInformation> {
-        return operatorService.operatorStationsGet(
+    ): List<StationInformation> =
+        operatorService.operatorStationsGet(
             acceptLanguage,
             api,
             apiVersion,
@@ -737,5 +731,4 @@ class OperatorController(private val operatorService: OperatorService) {
             lat,
             radius,
         )
-    }
 }

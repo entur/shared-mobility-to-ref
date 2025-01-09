@@ -35,9 +35,7 @@ class OperatorService {
         limit: Int?,
         regionId: String?,
         stationId: String?,
-    ): List<SystemAlert> {
-        throw NotImplementedError()
-    }
+    ): List<SystemAlert> = throw NotImplementedError()
 
     fun operatorAvailableAssetsGet(
         acceptLanguage: String,
@@ -49,14 +47,13 @@ class OperatorService {
         limit: Int?,
         regionId: String?,
         stationId: String?,
-    ): List<AssetType> {
-        return when (addressedTo) {
+    ): List<AssetType> =
+        when (addressedTo) {
             SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3 -> throw NotImplementedError()
             BIKE_OPERATOR -> throw NotImplementedError()
             ALL_IMPLEMENTING_OPERATOR -> listOf(assetType)
             else -> throw NotImplementedError()
         }
-    }
 
     fun operatorInformationGet(
         acceptLanguage: String,
@@ -64,21 +61,20 @@ class OperatorService {
         apiVersion: String,
         maasId: String,
         addressedTo: String?,
-    ): SystemInformation {
-        return when (addressedTo) {
+    ): SystemInformation =
+        when (addressedTo) {
             SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3 -> throw NotImplementedError()
             BIKE_OPERATOR -> throw NotImplementedError()
             ALL_IMPLEMENTING_OPERATOR -> systemInformation
             else -> throw NotImplementedError()
         }
-    }
 
     fun operatorMetaGet(
         acceptLanguage: String,
         maasId: String,
         addressedTo: String?,
-    ): List<EndpointImplementation> {
-        return when (addressedTo) {
+    ): List<EndpointImplementation> =
+        when (addressedTo) {
             SCOOTER_OPERATOR_NO_DEPOSIT -> scooterOperatorEndpointImplementations
             SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> scooterOperatorEndpointImplementations
             SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3 -> scooterOperatorEndpointImplementations
@@ -86,7 +82,6 @@ class OperatorService {
             ALL_IMPLEMENTING_OPERATOR -> allEndpointImplementations
             else -> emptyList()
         }
-    }
 
     fun operatorOperatingCalendarGet(
         acceptLanguage: String,
@@ -96,9 +91,7 @@ class OperatorService {
         addressedTo: String?,
         regionId: String?,
         stationId: String?,
-    ): List<SystemCalendar> {
-        throw NotImplementedError()
-    }
+    ): List<SystemCalendar> = throw NotImplementedError()
 
     fun operatorOperatingHoursGet(
         acceptLanguage: String,
@@ -108,9 +101,7 @@ class OperatorService {
         addressedTo: String?,
         regionId: String?,
         stationId: String?,
-    ): List<SystemHours> {
-        throw NotImplementedError()
-    }
+    ): List<SystemHours> = throw NotImplementedError()
 
     fun operatorPingGet(acceptLanguage: String) {
     }
@@ -123,9 +114,7 @@ class OperatorService {
         addressedTo: String?,
         regionId: String?,
         stationId: String?,
-    ): List<SystemPricingPlan> {
-        throw NotImplementedError()
-    }
+    ): List<SystemPricingPlan> = throw NotImplementedError()
 
     fun operatorRegionsGet(
         acceptLanguage: String,
@@ -135,9 +124,7 @@ class OperatorService {
         addressedTo: String?,
         offset: Int,
         limit: Int?,
-    ): List<SystemRegion> {
-        throw NotImplementedError()
-    }
+    ): List<SystemRegion> = throw NotImplementedError()
 
     fun operatorStationsGet(
         acceptLanguage: String,
@@ -151,7 +138,5 @@ class OperatorService {
         lon: Float?,
         lat: Float?,
         radius: Float?,
-    ): List<StationInformation> {
-        throw NotImplementedError()
-    }
+    ): List<StationInformation> = throw NotImplementedError()
 }

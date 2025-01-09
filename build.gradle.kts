@@ -20,6 +20,12 @@ repositories {
     mavenCentral()
 }
 
+ktlint {
+    version = "1.5.0"
+    debug = true
+    verbose = true
+}
+
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-web")

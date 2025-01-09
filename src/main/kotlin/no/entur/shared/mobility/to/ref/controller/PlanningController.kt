@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @Validated
-class PlanningController(private val planningService: PlanningService) {
+class PlanningController(
+    private val planningService: PlanningService,
+) {
     @Operation(
         hidden = true,
         summary = "",
@@ -85,8 +87,8 @@ class PlanningController(private val planningService: PlanningService) {
         @Valid
         @RequestBody(required = false)
         planningRequest: PlanningRequest?,
-    ): Planning {
-        return planningService.planningInquiriesPost(
+    ): Planning =
+        planningService.planningInquiriesPost(
             acceptLanguage,
             api,
             apiVersion,
@@ -94,7 +96,6 @@ class PlanningController(private val planningService: PlanningService) {
             addressedTo,
             planningRequest,
         )
-    }
 
     @Operation(
         operationId = "planningOffersPost",
@@ -160,8 +161,8 @@ class PlanningController(private val planningService: PlanningService) {
         @Valid
         @RequestBody(required = false)
         planningRequest: PlanningRequest?,
-    ): Planning {
-        return planningService.planningOffersPost(
+    ): Planning =
+        planningService.planningOffersPost(
             acceptLanguage,
             api,
             apiVersion,
@@ -169,5 +170,4 @@ class PlanningController(private val planningService: PlanningService) {
             addressedTo,
             planningRequest,
         )
-    }
 }

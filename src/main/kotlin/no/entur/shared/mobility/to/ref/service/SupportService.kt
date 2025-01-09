@@ -13,9 +13,7 @@ class SupportService {
         maasId: String,
         id: String,
         addressedTo: String?,
-    ): List<SupportStatus> {
-        throw NotImplementedError()
-    }
+    ): List<SupportStatus> = throw NotImplementedError()
 
     fun supportPost(
         acceptLanguage: String,
@@ -24,7 +22,5 @@ class SupportService {
         maasId: String,
         addressedTo: String?,
         supportRequest: SupportRequest?,
-    ): SupportStatus {
-        throw NotImplementedError()
-    }
+    ): SupportStatus = throw NotImplementedError()
 }

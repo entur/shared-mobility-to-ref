@@ -22,7 +22,9 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @Validated
-class SupportController(private val supportService: SupportService) {
+class SupportController(
+    private val supportService: SupportService,
+) {
     @Operation(
         hidden = true,
         operationId = "supportIdStatusGet",
@@ -87,8 +89,8 @@ class SupportController(private val supportService: SupportService) {
         @Parameter(description = "The ID of the maas operator that has to receive this message", `in` = ParameterIn.HEADER)
         @RequestHeader(value = "addressed-to", required = false)
         addressedTo: String?,
-    ): List<SupportStatus> {
-        return supportService.supportIdStatusGet(
+    ): List<SupportStatus> =
+        supportService.supportIdStatusGet(
             acceptLanguage,
             api,
             apiVersion,
@@ -96,7 +98,6 @@ class SupportController(private val supportService: SupportService) {
             id,
             addressedTo,
         )
-    }
 
     @Operation(
         hidden = true,
@@ -162,8 +163,8 @@ class SupportController(private val supportService: SupportService) {
         @Valid
         @RequestBody(required = false)
         supportRequest: SupportRequest?,
-    ): SupportStatus {
-        return supportService.supportPost(
+    ): SupportStatus =
+        supportService.supportPost(
             acceptLanguage,
             api,
             apiVersion,
@@ -171,5 +172,4 @@ class SupportController(private val supportService: SupportService) {
             addressedTo,
             supportRequest,
         )
-    }
 }

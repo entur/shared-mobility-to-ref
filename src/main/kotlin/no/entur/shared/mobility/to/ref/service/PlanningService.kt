@@ -27,14 +27,13 @@ class PlanningService {
         maasId: String,
         addressedTo: String?,
         planningRequest: PlanningRequest?,
-    ): Planning {
-        return when (addressedTo) {
+    ): Planning =
+        when (addressedTo) {
             SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3 -> throw NotImplementedError()
             BIKE_OPERATOR -> throw NotImplementedError()
             ALL_IMPLEMENTING_OPERATOR -> planning
             else -> throw NotImplementedError()
         }
-    }
 
     fun planningOffersPost(
         acceptLanguage: String,

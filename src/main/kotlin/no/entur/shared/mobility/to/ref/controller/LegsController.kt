@@ -29,7 +29,9 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @Validated
-class LegsController(private val legsService: LegsService) {
+class LegsController(
+    private val legsService: LegsService,
+) {
     @Operation(
         hidden = true,
         summary = "",
@@ -102,8 +104,8 @@ class LegsController(private val legsService: LegsService) {
         @Parameter(description = "The ID of the maas operator that has to receive this message", `in` = ParameterIn.HEADER)
         @RequestHeader(value = "addressed-to", required = false)
         addressedTo: String?,
-    ): Leg {
-        return legsService.legsIdAncillariesCategoryNumberDelete(
+    ): Leg =
+        legsService.legsIdAncillariesCategoryNumberDelete(
             acceptLanguage,
             api,
             apiVersion,
@@ -113,7 +115,6 @@ class LegsController(private val legsService: LegsService) {
             number,
             addressedTo,
         )
-    }
 
     @Operation(
         hidden = true,
@@ -187,8 +188,8 @@ class LegsController(private val legsService: LegsService) {
         @Parameter(description = "The ID of the maas operator that has to receive this message", `in` = ParameterIn.HEADER)
         @RequestHeader(value = "addressed-to", required = false)
         addressedTo: String?,
-    ): Leg {
-        return legsService.legsIdAncillariesCategoryNumberPost(
+    ): Leg =
+        legsService.legsIdAncillariesCategoryNumberPost(
             acceptLanguage,
             api,
             apiVersion,
@@ -198,7 +199,6 @@ class LegsController(private val legsService: LegsService) {
             number,
             addressedTo,
         )
-    }
 
     @Operation(
         hidden = true,
@@ -277,8 +277,8 @@ class LegsController(private val legsService: LegsService) {
         @Valid
         @RequestParam(value = "limit", required = false)
         limit: Int?,
-    ): List<Asset> {
-        return legsService.legsIdAvailableAssetsGet(
+    ): List<Asset> =
+        legsService.legsIdAvailableAssetsGet(
             acceptLanguage,
             api,
             apiVersion,
@@ -288,7 +288,6 @@ class LegsController(private val legsService: LegsService) {
             offset,
             limit,
         )
-    }
 
     @Operation(
         hidden = true,
@@ -341,15 +340,14 @@ class LegsController(private val legsService: LegsService) {
         @Valid
         @RequestBody(required = false)
         confirmationRequest: ConfirmationRequest?,
-    ): Boolean {
-        return legsService.legsIdConfirmationPost(
+    ): Boolean =
+        legsService.legsIdConfirmationPost(
             acceptLanguage,
             api,
             apiVersion,
             id,
             confirmationRequest,
         )
-    }
 
     @Operation(
         summary = "",
@@ -433,8 +431,8 @@ class LegsController(private val legsService: LegsService) {
         @Valid
         @RequestBody(required = true)
         legEvent: LegEvent,
-    ): Leg {
-        return legsService.legsIdEventsPost(
+    ): Leg =
+        legsService.legsIdEventsPost(
             acceptLanguage,
             api,
             apiVersion,
@@ -443,7 +441,6 @@ class LegsController(private val legsService: LegsService) {
             addressedTo,
             legEvent,
         )
-    }
 
     @Operation(
         summary = "",
@@ -505,8 +502,8 @@ class LegsController(private val legsService: LegsService) {
         @Parameter(description = "The ID of the maas operator that has to receive this message", `in` = ParameterIn.HEADER)
         @RequestHeader(value = "addressed-to", required = false)
         addressedTo: String?,
-    ): Leg {
-        return legsService.legsIdGet(
+    ): Leg =
+        legsService.legsIdGet(
             acceptLanguage,
             api,
             apiVersion,
@@ -514,7 +511,6 @@ class LegsController(private val legsService: LegsService) {
             id,
             addressedTo,
         )
-    }
 
     @Operation(
         hidden = true,
@@ -572,8 +568,8 @@ class LegsController(private val legsService: LegsService) {
         @Valid
         @RequestParam(value = "location-only", required = false, defaultValue = "false")
         locationOnly: Boolean,
-    ): LegProgress {
-        return legsService.legsIdProgressGet(
+    ): LegProgress =
+        legsService.legsIdProgressGet(
             acceptLanguage,
             api,
             apiVersion,
@@ -582,7 +578,6 @@ class LegsController(private val legsService: LegsService) {
             addressedTo,
             locationOnly,
         )
-    }
 
     @Operation(
         hidden = true,

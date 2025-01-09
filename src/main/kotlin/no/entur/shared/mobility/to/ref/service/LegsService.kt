@@ -30,9 +30,7 @@ class LegsService {
         category: String,
         number: String,
         addressedTo: String?,
-    ): Leg {
-        throw NotImplementedError()
-    }
+    ): Leg = throw NotImplementedError()
 
     fun legsIdAncillariesCategoryNumberPost(
         acceptLanguage: String,
@@ -43,9 +41,7 @@ class LegsService {
         category: String,
         number: String,
         addressedTo: String?,
-    ): Leg {
-        throw NotImplementedError()
-    }
+    ): Leg = throw NotImplementedError()
 
     fun legsIdAvailableAssetsGet(
         acceptLanguage: String,
@@ -56,9 +52,7 @@ class LegsService {
         addressedTo: String?,
         offset: Int,
         limit: Int?,
-    ): List<Asset> {
-        throw NotImplementedError()
-    }
+    ): List<Asset> = throw NotImplementedError()
 
     fun legsIdConfirmationPost(
         acceptLanguage: String,
@@ -66,9 +60,7 @@ class LegsService {
         apiVersion: String,
         id: String,
         confirmationRequest: ConfirmationRequest?,
-    ): Boolean {
-        return true
-    }
+    ): Boolean = true
 
     fun legsIdEventsPost(
         acceptLanguage: String,
@@ -141,9 +133,7 @@ class LegsService {
         id: String,
         addressedTo: String?,
         locationOnly: Boolean,
-    ): LegProgress {
-        throw NotImplementedError()
-    }
+    ): LegProgress = throw NotImplementedError()
 
     fun legsIdProgressPost(
         acceptLanguage: String,
