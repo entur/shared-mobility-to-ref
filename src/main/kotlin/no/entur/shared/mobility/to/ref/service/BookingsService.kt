@@ -35,8 +35,8 @@ class BookingsService {
         minPrice: Float?,
         maxPrice: Float?,
         containsAssetType: String?,
-    ): List<Booking> {
-        return when (addressedTo) {
+    ): List<Booking> =
+        when (addressedTo) {
             SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3 -> throw NotImplementedError()
             SCOOTER_OPERATOR_NO_DEPOSIT -> throw NotImplementedError()
             SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> throw NotImplementedError()
@@ -44,7 +44,6 @@ class BookingsService {
             ALL_IMPLEMENTING_OPERATOR -> listOf(booking)
             else -> throw NotImplementedError()
         }
-    }
 
     fun bookingsIdEventsPost(
         acceptLanguage: String,
@@ -94,9 +93,7 @@ class BookingsService {
         maasId: String,
         id: String,
         addressedTo: String?,
-    ): List<Notification> {
-        throw NotImplementedError()
-    }
+    ): List<Notification> = throw NotImplementedError()
 
     fun bookingsIdNotificationsPost(
         acceptLanguage: String,
@@ -120,14 +117,13 @@ class BookingsService {
         id: String,
         booking: Booking,
         addressedTo: String?,
-    ): Booking {
-        return when (addressedTo) {
+    ): Booking =
+        when (addressedTo) {
             SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3 -> throw NotImplementedError()
             BIKE_OPERATOR -> throw NotImplementedError()
             ALL_IMPLEMENTING_OPERATOR -> booking
             else -> throw NotImplementedError()
         }
-    }
 
     fun bookingsIdSubscriptionDelete(
         acceptLanguage: String,
@@ -192,12 +188,11 @@ class BookingsService {
         maasId: String,
         addressedTo: String?,
         bookingRequest: BookingRequest,
-    ): Booking {
-        return when (addressedTo) {
+    ): Booking =
+        when (addressedTo) {
             SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3 -> throw NotImplementedError()
             BIKE_OPERATOR -> throw NotImplementedError()
             ALL_IMPLEMENTING_OPERATOR -> booking
             else -> throw NotImplementedError()
         }
-    }
 }

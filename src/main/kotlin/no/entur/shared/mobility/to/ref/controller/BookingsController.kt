@@ -31,7 +31,9 @@ import java.time.OffsetDateTime
 
 @RestController
 @Validated
-class BookingsController(private val bookingsService: BookingsService) {
+class BookingsController(
+    private val bookingsService: BookingsService,
+) {
     @Operation(
         operationId = "bookingsGet",
         description = """Optional - Returns bookings that has been created earlier, selected on state.""",
@@ -127,8 +129,8 @@ class BookingsController(private val bookingsService: BookingsService) {
         @Valid
         @RequestParam(value = "contains-asset-type", required = false)
         containsAssetType: String?,
-    ): List<Booking> {
-        return bookingsService.bookingsGet(
+    ): List<Booking> =
+        bookingsService.bookingsGet(
             acceptLanguage,
             api,
             apiVersion,
@@ -141,7 +143,6 @@ class BookingsController(private val bookingsService: BookingsService) {
             maxPrice,
             containsAssetType,
         )
-    }
 
     @Operation(
         hidden = true,
@@ -223,8 +224,8 @@ class BookingsController(private val bookingsService: BookingsService) {
         @Parameter(description = "")
         @Valid
         @RequestBody(required = false) bookingOperation: BookingOperation?,
-    ): Booking {
-        return bookingsService.bookingsIdEventsPost(
+    ): Booking =
+        bookingsService.bookingsIdEventsPost(
             acceptLanguage,
             api,
             apiVersion,
@@ -233,7 +234,6 @@ class BookingsController(private val bookingsService: BookingsService) {
             addressedTo,
             bookingOperation,
         )
-    }
 
     @Operation(
         operationId = "bookingsIdGet",
@@ -288,8 +288,8 @@ class BookingsController(private val bookingsService: BookingsService) {
         @Parameter(description = "The ID of the maas operator that has to receive this message", `in` = ParameterIn.HEADER)
         @RequestHeader(value = "addressed-to", required = false)
         addressedTo: String?,
-    ): Booking {
-        return bookingsService.bookingsIdGet(
+    ): Booking =
+        bookingsService.bookingsIdGet(
             acceptLanguage,
             api,
             apiVersion,
@@ -297,7 +297,6 @@ class BookingsController(private val bookingsService: BookingsService) {
             id,
             addressedTo,
         )
-    }
 
     @Operation(
         hidden = true,
@@ -371,8 +370,8 @@ class BookingsController(private val bookingsService: BookingsService) {
             required = false,
         )
         addressedTo: String?,
-    ): List<Notification> {
-        return bookingsService.bookingsIdNotificationsGet(
+    ): List<Notification> =
+        bookingsService.bookingsIdNotificationsGet(
             acceptLanguage,
             api,
             apiVersion,
@@ -380,7 +379,6 @@ class BookingsController(private val bookingsService: BookingsService) {
             id,
             addressedTo,
         )
-    }
 
     @Operation(
         hidden = true,
@@ -537,8 +535,8 @@ class BookingsController(private val bookingsService: BookingsService) {
         @Parameter(description = "The ID of the maas operator that has to receive this message", `in` = ParameterIn.HEADER)
         @RequestHeader(value = "addressed-to", required = false)
         addressedTo: String?,
-    ): Booking {
-        return bookingsService.bookingsIdPut(
+    ): Booking =
+        bookingsService.bookingsIdPut(
             acceptLanguage,
             api,
             apiVersion,
@@ -547,7 +545,6 @@ class BookingsController(private val bookingsService: BookingsService) {
             booking,
             addressedTo,
         )
-    }
 
     @Operation(
         hidden = true,
@@ -761,8 +758,8 @@ class BookingsController(private val bookingsService: BookingsService) {
         @Valid
         @RequestBody(required = false)
         oneStopBookingRequest: OneStopBookingRequest,
-    ): Booking {
-        return bookingsService.bookingsOneStopPost(
+    ): Booking =
+        bookingsService.bookingsOneStopPost(
             acceptLanguage,
             api,
             apiVersion,
@@ -770,7 +767,6 @@ class BookingsController(private val bookingsService: BookingsService) {
             addressedTo,
             oneStopBookingRequest,
         )
-    }
 
     @Operation(
         hidden = true,
@@ -849,8 +845,8 @@ class BookingsController(private val bookingsService: BookingsService) {
             value = "addressed-to",
             required = false,
         ) addressedTo: String?,
-    ): Booking {
-        return bookingsService.bookingsPost(
+    ): Booking =
+        bookingsService.bookingsPost(
             acceptLanguage,
             api,
             apiVersion,
@@ -858,5 +854,4 @@ class BookingsController(private val bookingsService: BookingsService) {
             addressedTo,
             bookingRequest,
         )
-    }
 }

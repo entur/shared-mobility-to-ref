@@ -29,7 +29,9 @@ import java.time.OffsetDateTime
 
 @RestController
 @Validated
-class PaymentController(private val paymentService: PaymentService) {
+class PaymentController(
+    private val paymentService: PaymentService,
+) {
     @Operation(
         hidden = true,
         operationId = "paymentIdClaimExtraCostsPost",
@@ -94,8 +96,8 @@ class PaymentController(private val paymentService: PaymentService) {
         @Valid
         @RequestBody(required = false)
         extraCosts: ExtraCosts?,
-    ): JournalEntry {
-        return paymentService.paymentIdClaimExtraCostsPost(
+    ): JournalEntry =
+        paymentService.paymentIdClaimExtraCostsPost(
             acceptLanguage,
             api,
             apiVersion,
@@ -104,7 +106,6 @@ class PaymentController(private val paymentService: PaymentService) {
             addressedTo,
             extraCosts,
         )
-    }
 
     @Operation(
         hidden = true,
@@ -216,8 +217,8 @@ class PaymentController(private val paymentService: PaymentService) {
         @Valid
         @RequestParam(value = "limit", required = false)
         limit: Int?,
-    ): List<JournalEntry> {
-        return paymentService.paymentJournalEntryGet(
+    ): List<JournalEntry> =
+        paymentService.paymentJournalEntryGet(
             acceptLanguage,
             api,
             apiVersion,
@@ -231,5 +232,4 @@ class PaymentController(private val paymentService: PaymentService) {
             offset,
             limit,
         )
-    }
 }
