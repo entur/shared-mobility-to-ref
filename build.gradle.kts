@@ -32,7 +32,7 @@ dependencies {
     implementation("jakarta.validation:jakarta.validation-api:3.1.0")
     implementation("io.swagger.core.v3:swagger-annotations:2.2.27")
     implementation("io.swagger.core.v3:swagger-models:2.2.27")
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.1")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.3")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.flywaydb:flyway-core")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
