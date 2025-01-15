@@ -16,7 +16,7 @@ val leg
             asset = asset,
             pricing = fare,
             conditions = conditions,
-            state = LegState.NOT_STARTED,
+            state = LegState.IN_USE,
         )
 
 val legWithoutDeposit
@@ -30,7 +30,7 @@ val legWithoutDeposit
             asset = asset,
             pricing = fare,
             conditions = conditionsNoDeposit,
-            state = LegState.NOT_STARTED,
+            state = LegState.IN_USE,
         )
 
 val legWithHighDepositAmount
@@ -44,5 +44,5 @@ val legWithHighDepositAmount
             asset = asset,
             pricing = fare,
             conditions = conditionsWithHighDepositAmount,
-            state = LegState.NOT_STARTED,
+            state = LegState.IN_USE,
         )

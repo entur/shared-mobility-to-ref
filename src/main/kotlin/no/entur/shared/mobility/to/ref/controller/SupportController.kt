@@ -100,7 +100,6 @@ class SupportController(
         )
 
     @Operation(
-        hidden = true,
         operationId = "supportPost",
         description = """creates a request for support from end user via MP""",
         responses = [

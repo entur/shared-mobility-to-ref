@@ -29,15 +29,13 @@ class SupportControllerTest {
 
     @Test
     fun supportPost() {
-        assertThrows<NotImplementedError> {
-            supportController.supportPost(
-                acceptLanguage = "NOB",
-                api = "TOMP",
-                apiVersion = "1.5.0",
-                maasId = "entur:maas:shared-mobility",
-                addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
-                supportRequest = null,
-            )
-        }
+        supportController.supportPost(
+            acceptLanguage = "NOB",
+            api = "TOMP",
+            apiVersion = "1.5.0",
+            maasId = "entur:maas:shared-mobility",
+            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
+            supportRequest = null,
+        )
     }
 }
