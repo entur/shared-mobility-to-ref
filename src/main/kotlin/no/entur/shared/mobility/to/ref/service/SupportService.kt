@@ -3,6 +3,7 @@ package no.entur.shared.mobility.to.ref.service
 import no.entur.shared.mobility.to.ref.dto.SupportRequest
 import no.entur.shared.mobility.to.ref.dto.SupportStatus
 import org.springframework.stereotype.Service
+import java.time.OffsetDateTime
 
 @Service
 class SupportService {
@@ -22,5 +23,12 @@ class SupportService {
         maasId: String,
         addressedTo: String?,
         supportRequest: SupportRequest?,
-    ): SupportStatus = throw NotImplementedError()
+    ): SupportStatus = SupportStatus(
+        id = supportRequest?.id,
+        status = SupportStatus.Status.PROCESSING,
+        comment = "comment",
+        time = OffsetDateTime.now(),
+        priority = SupportStatus.Priority.QUESTION,
+        contactInformationEndUser = "test.testesen@entur.org",
+    )
 }
