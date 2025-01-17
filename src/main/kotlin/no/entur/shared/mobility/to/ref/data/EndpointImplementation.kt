@@ -159,6 +159,7 @@ val scooterOperatorEndpointImplementations =
                     Endpoint(method = GET, path = EndpointType.LEGS_ID_GET.path, status = Status.IMPLEMENTED),
                     Endpoint(method = GET, path = EndpointType.OPERATOR_META_GET.path, status = Status.IMPLEMENTED),
                     Endpoint(method = GET, path = EndpointType.PAYMENT_JOURNAL_ENTRY_GET.path, status = Status.IMPLEMENTED),
+                    Endpoint(method = POST, path = EndpointType.SUPPORT_POST.path, status = Status.IMPLEMENTED),
                 ),
             scenarios = listOf(),
             processIdentifiers = ProcessIdentifiers(),

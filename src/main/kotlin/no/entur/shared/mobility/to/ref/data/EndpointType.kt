@@ -38,5 +38,5 @@ enum class EndpointType(
     PLANNING_OFFERS_POST("/planning/offers"),
     PLANNINGS_POST("/plannings"),
     SUPPORT_ID_STATUS_GET("/support/{id}/status"),
-    SUPPORT_POST("/support/"),
+    SUPPORT_POST("/support"),
 }
