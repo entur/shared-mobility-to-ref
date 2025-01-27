@@ -18,7 +18,7 @@ val booking
             customer = Customer(id = "A0-123456"),
             state = BookingState.CONFIRMED,
             legs = listOf(leg),
-            pricing = finalFare,
+            pricing = finalFare(),
             departureTime = OffsetDateTime.now(),
             arrivalTime = OffsetDateTime.now().plusMinutes(12),
             actualDepartureTime = OffsetDateTime.now(),
@@ -33,7 +33,7 @@ val bookingWithoutDeposit
             customer = Customer(id = "A0-123456"),
             state = BookingState.CONFIRMED,
             legs = listOf(legWithoutDeposit),
-            pricing = finalFare,
+            pricing = finalFare(),
             departureTime = OffsetDateTime.now(),
             arrivalTime = OffsetDateTime.now().plusMinutes(12),
             actualDepartureTime = OffsetDateTime.now(),
@@ -48,7 +48,7 @@ val bookingHigherDepositAmountThanTotalAmount
             customer = Customer(id = "A0-123456"),
             state = BookingState.CONFIRMED,
             legs = listOf(legWithHighDepositAmount),
-            pricing = finalFare,
+            pricing = finalFare(),
             departureTime = OffsetDateTime.now(),
             arrivalTime = OffsetDateTime.now().plusMinutes(12),
             actualDepartureTime = OffsetDateTime.now(),
@@ -86,19 +86,19 @@ val fare
                 ),
         )
 
-val finalFare
-    get() =
-        Fare(
-            estimated = false,
-            parts =
-                listOf(
-                    FarePart(
-                        amount = 50.00F,
-                        amountExVat = 40.00F,
-                        currencyCode = "NOK",
-                        vatRate = 25.00F,
-                        vatCountryCode = "NO",
-                        type = FarePart.Type.FIXED,
-                    ),
+fun finalFare(amount: Float = 50.00F): Fare {
+    return Fare(
+        estimated = false,
+        parts =
+            listOf(
+                FarePart(
+                    amount = amount,
+                    amountExVat = amount * 0.8F,
+                    currencyCode = "NOK",
+                    vatRate = 25.00F,
+                    vatCountryCode = "NO",
+                    type = FarePart.Type.FIXED,
                 ),
-        )
+            ),
+    )
+}
