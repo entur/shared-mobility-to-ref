@@ -4,6 +4,7 @@ import no.entur.shared.mobility.to.ref.data.asset
 import no.entur.shared.mobility.to.ref.data.booking
 import no.entur.shared.mobility.to.ref.data.bookingHigherDepositAmountThanTotalAmount
 import no.entur.shared.mobility.to.ref.data.bookingWithoutDeposit
+import no.entur.shared.mobility.to.ref.data.finalFare
 import no.entur.shared.mobility.to.ref.dto.Booking
 import no.entur.shared.mobility.to.ref.dto.BookingOperation
 import no.entur.shared.mobility.to.ref.dto.BookingRequest
@@ -78,7 +79,9 @@ class BookingsService {
             when (addressedTo) {
                 SCOOTER_OPERATOR_NO_DEPOSIT -> bookingWithoutDeposit
                 SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> bookingHigherDepositAmountThanTotalAmount
-                SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3 -> booking
+                SCOOTER_OPERATOR -> booking.copy(pricing = finalFare(50.00F))
+                SCOOTER_OPERATOR_2 -> booking.copy(pricing = finalFare(5.00F))
+                SCOOTER_OPERATOR_3 -> booking.copy(pricing = finalFare(15.00F))
                 BIKE_OPERATOR -> booking
                 ALL_IMPLEMENTING_OPERATOR -> booking
                 else -> throw NotImplementedError()
@@ -163,7 +166,9 @@ class BookingsService {
             when (addressedTo) {
                 SCOOTER_OPERATOR_NO_DEPOSIT -> bookingWithoutDeposit
                 SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> bookingHigherDepositAmountThanTotalAmount
-                SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3 -> booking
+                SCOOTER_OPERATOR -> booking.copy(pricing = finalFare(50.00F))
+                SCOOTER_OPERATOR_2 -> booking.copy(pricing = finalFare(5.00F))
+                SCOOTER_OPERATOR_3 -> booking.copy(pricing = finalFare(15.00F))
                 BIKE_OPERATOR -> booking
                 ALL_IMPLEMENTING_OPERATOR -> booking
                 else -> throw NotImplementedError()
