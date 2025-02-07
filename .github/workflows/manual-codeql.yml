@@ -1,0 +1,17 @@
+name: "Manual Run CodeQL"
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to run the workflow on'
+        required: true
+        type: string
+
+jobs:
+  build:
+    name: "Call Build with CodeQL scan"
+    uses: ./.github/workflows/build-with-codeql.yml
+    with:
+      inputbranch: ${{ inputs.branch }}
+    secrets: inherit
