@@ -1,0 +1,113 @@
+name: "Subworkflow: Lint and Build"
+
+on:
+  workflow_call:
+    inputs:
+      inputbranch:
+        description: 'Branch to check out (optional)'
+        required: false
+        type: string
+
+jobs:
+  gradle-build:
+    name: "Build with gradle and run tests"
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write  # dependency-graph
+    env: # Definerer globale miljøvariabler for jobben
+      ARTIFACTORY_AUTH_USER: ${{ secrets.ARTIFACTORY_AUTH_USER }}
+      ARTIFACTORY_AUTH_TOKEN: ${{ secrets.ARTIFACTORY_AUTH_TOKEN }}
+      JVM_OPTS: -Xmx3200m
+      # Bruk `inputbranch` hvis den er spesifisert gjennom workflow-parameter
+      # Dette gjør at workflowen kan kjøre på en spesifikk branch hvis angitt
+      # Bruker `head_ref` for PR-hendelser. Dette sikrer at vi får riktig PR-branch i stedet for en midlertidig merge-branch.
+      # Faller tilbake på `ref_name` fra eventet for andre tilfeller som push til main.
+      BRANCH_NAME: ${{ inputs.inputbranch || github.head_ref || github.ref_name }}
+      ENTUR_SONAR_PASSWORD: ${{ secrets.ENTUR_SONAR_PASSWORD }}
+      SONAR_SCAN: ${{ inputs.runSonarScan }}
+
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.BRANCH_NAME }} # Bruker BRANCH_NAME-variabelen definert i env
+          fetch-depth: 0  # Henter hele historikken. Økt fetch-depth kan løse problemer med PR-spesifikke refs som trenger fullstendig historikk.
+      - name: "Set up JDK 21"
+        uses: actions/setup-java@v4
+        with:
+          java-version: 21.0.2
+          distribution: temurin
+      - name: "Setup Gradle"
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          dependency-graph: generate-and-submit
+      - name: "Restore Gradle Cache"
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: v1-dependencies-${{ hashFiles('**/build.gradle.kts') }}
+          restore-keys: |
+            v1-dependencies-
+
+      - name: "Download Gradle Dependencies"
+        run: ./gradlew dependencies
+
+      - name: "Check Kotlin code formatting with ktlintCheck"
+        run: ./gradlew ktlintCheck
+
+      - name: "Build with Gradle Wrapper"
+        run: ./gradlew build -x test
+
+      - name: "Run tests with detailed logging"
+        run: ./gradlew test
+
+      - name: "Upload test results"
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: build/reports/tests/test
+
+      - name: "Archive Build Artifacts"
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: app
+          path: build/libs
+          retention-days: 1
+          overwrite: true
+
+      # CodeQL Initialize Step
+      - name: "Initialize CodeQL"
+        uses: github/codeql-action/init@v3
+        with:
+          languages: kotlin
+
+      # Perform autobuild for CodeQL
+      - name: "Run autobuild for CodeQL"
+        run: ./gradlew clean build --stacktrace -x test
+
+      # CodeQL Analysis Step
+      - name: "Perform CodeQL Analysis"
+        id: codeql-analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:java"
+        env:
+          ARTIFACTORY_AUTH_USER: ${{ secrets.ARTIFACTORY_AUTH_USER }}
+          ARTIFACTORY_AUTH_TOKEN: ${{ secrets.ARTIFACTORY_AUTH_TOKEN }}
+          JVM_OPTS: -Xmx2g
+  helm-lint:
+    name: "Helm Lint"
+    uses: entur/gha-helm/.github/workflows/lint.yml@v1
+    strategy:
+      matrix:
+        environment: [dev, tst]
+    with:
+      environment: ${{ matrix.environment }}
+
+  docker-lint:
+    name: "Docker Lint"
+    uses: entur/gha-docker/.github/workflows/lint.yml@v1
