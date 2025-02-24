@@ -6,6 +6,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.7"
     kotlin("jvm") version "2.1.10"
     kotlin("plugin.spring") version "2.1.10"
+    id("org.openapi.generator") version "7.11.0"
     id("org.jlleitschuh.gradle.ktlint") version "12.1.2"
 }
 
@@ -52,8 +53,80 @@ tasks.withType<KotlinCompile> {
     }
 }
 
+val generatedSources = file("$projectDir/src/main/kotlin")
+val swaggerSpecLocation = "$projectDir/src/main/resources/swagger-spec"
+
+tasks.register<org.openapitools.generator.gradle.plugin.tasks.GenerateTask>("buildTomp150") {
+    generatorName.set("kotlin-spring")
+    outputDir.set("$generatedSources")
+    inputSpec.set("$swaggerSpecLocation/TOMP-API.1.5.yaml")
+    version.set("v1")
+    modelPackage.set("no.entur.shared.mobility.to.ref.tomp150.dto")
+    apiPackage.set("no.entur.shared.mobility.to.ref.tomp150.controller")
+    globalProperties.set(
+        mapOf(
+            "apis" to "",
+            "models" to "",
+            "modelDocs" to "false",
+            "modelTests" to "false",
+            "apiTests" to "false",
+        ),
+    )
+
+    configOptions.set(
+        mapOf(
+            "enumPropertyNaming" to "UPPERCASE",
+            "useSpringBoot3" to "true",
+//            "spring-cloud" to "true",
+//            "serializationLibrary" to "jackson",
+//            "serviceInterface" to "true",
+//            "sortModelPropertiesByRequiredFlag" to "true",
+//            "sortParamsByRequiredFlag" to "true",
+            "sourceFolder" to "",
+        ),
+    )
+}
+
+tasks.register<org.openapitools.generator.gradle.plugin.tasks.GenerateTask>("buildTomp160") {
+    generatorName.set("kotlin-spring")
+    outputDir.set("$generatedSources")
+    inputSpec.set("$swaggerSpecLocation/TOMP-API.1.6.yaml")
+    version.set("v1")
+    modelPackage.set("no.entur.shared.mobility.to.ref.tomp160.dto")
+    apiPackage.set("no.entur.shared.mobility.to.ref.tomp160.controller")
+    globalProperties.set(
+        mapOf(
+            "apis" to "",
+            "models" to "",
+            "modelDocs" to "false",
+            "modelTests" to "false",
+            "apiTests" to "false",
+        ),
+    )
+
+    configOptions.set(
+        mapOf(
+            "enumPropertyNaming" to "UPPERCASE",
+            "useSpringBoot3" to "true",
+            "spring-cloud" to "true",
+            "serializationLibrary" to "jackson",
+            "serviceInterface" to "true",
+            "sortModelPropertiesByRequiredFlag" to "true",
+            "sortParamsByRequiredFlag" to "true",
+            "sourceFolder" to "",
+        ),
+    )
+}
+
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+tasks.named("compileKotlin") {
+    dependsOn(":buildTomp150")
+}
+tasks.named("runKtlintFormatOverMainSourceSet") {
+    dependsOn(":buildTomp150")
 }
 
 tasks.named("runKtlintCheckOverMainSourceSet") {
