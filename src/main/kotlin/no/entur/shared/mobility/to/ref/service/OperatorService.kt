@@ -1,9 +1,7 @@
 package no.entur.shared.mobility.to.ref.service
 
-import no.entur.shared.mobility.to.ref.data.allEndpointImplementations
+import no.entur.shared.mobility.to.ref.data.MetaProvider
 import no.entur.shared.mobility.to.ref.data.assetType
-import no.entur.shared.mobility.to.ref.data.bikeOperatorEndpointImplementations
-import no.entur.shared.mobility.to.ref.data.scooterOperatorEndpointImplementations
 import no.entur.shared.mobility.to.ref.data.systemInformation
 import no.entur.shared.mobility.to.ref.dto.AssetType
 import no.entur.shared.mobility.to.ref.dto.EndpointImplementation
@@ -24,7 +22,9 @@ import no.entur.shared.mobility.to.ref.service.TransportOperator.SCOOTER_OPERATO
 import org.springframework.stereotype.Service
 
 @Service
-class OperatorService {
+class OperatorService(
+    private val metaProvider: MetaProvider,
+) {
     fun operatorAlertsGet(
         acceptLanguage: String,
         api: String,
@@ -75,11 +75,11 @@ class OperatorService {
         addressedTo: String?,
     ): List<EndpointImplementation> =
         when (addressedTo) {
-            SCOOTER_OPERATOR_NO_DEPOSIT -> scooterOperatorEndpointImplementations
-            SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> scooterOperatorEndpointImplementations
-            SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3 -> scooterOperatorEndpointImplementations
-            BIKE_OPERATOR -> bikeOperatorEndpointImplementations
-            ALL_IMPLEMENTING_OPERATOR -> allEndpointImplementations
+            SCOOTER_OPERATOR_NO_DEPOSIT -> metaProvider.scooterOperatorEndpointImplementations()
+            SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> metaProvider.scooterOperatorEndpointImplementations()
+            SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3 -> metaProvider.scooterOperatorEndpointImplementations()
+            BIKE_OPERATOR -> metaProvider.bikeOperatorEndpointImplementations()
+            ALL_IMPLEMENTING_OPERATOR -> metaProvider.allEndpointImplementations()
             else -> emptyList()
         }
 

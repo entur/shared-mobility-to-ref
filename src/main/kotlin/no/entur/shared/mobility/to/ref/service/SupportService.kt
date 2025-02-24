@@ -23,12 +23,13 @@ class SupportService {
         maasId: String,
         addressedTo: String?,
         supportRequest: SupportRequest?,
-    ): SupportStatus = SupportStatus(
-        id = supportRequest?.id,
-        status = SupportStatus.Status.PROCESSING,
-        comment = "comment",
-        time = OffsetDateTime.now(),
-        priority = SupportStatus.Priority.QUESTION,
-        contactInformationEndUser = "test.testesen@entur.org",
-    )
+    ): SupportStatus =
+        SupportStatus(
+            id = supportRequest?.id,
+            status = SupportStatus.Status.PROCESSING,
+            comment = "comment",
+            time = OffsetDateTime.now(),
+            priority = SupportStatus.Priority.QUESTION,
+            contactInformationEndUser = "test.testesen@entur.org",
+        )
 }
