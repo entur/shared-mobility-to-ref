@@ -86,8 +86,8 @@ val fare
                 ),
         )
 
-fun finalFare(amount: Float = 50.00F): Fare {
-    return Fare(
+fun finalFare(amount: Float = 50.00F): Fare =
+    Fare(
         estimated = false,
         parts =
             listOf(
@@ -101,4 +101,3 @@ fun finalFare(amount: Float = 50.00F): Fare {
                 ),
             ),
     )
-}

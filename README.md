@@ -46,7 +46,7 @@ This guide outlines how transport operator's can implement the `GET "/operator/m
 which is used to retrieve information about how the transport operator's API works and which endpoints that are supported. 
 The controller code can be found [here](src/main/kotlin/no/entur/shared/mobility/to/ref/controller/OperatorController.kt).
 
-Response model can be found [here](src/main/kotlin/no/entur/shared/mobility/to/ref/data/EndpointImplementation.kt). 
+Response model can be found [here](src/main/kotlin/no/entur/shared/mobility/to/ref/data/MetaProvider.kt). 
 Note that the response is a list of EndpointImplementation. 
 Required variables in the response:
 
