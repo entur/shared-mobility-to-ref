@@ -1,6 +1,6 @@
 package no.entur.shared.mobility.to.ref.data
 
-import no.entur.shared.mobility.to.ref.dto.Planning
+import no.entur.shared.mobility.to.ref.tomp150.dto.Planning
 import java.time.OffsetDateTime
 
 val planning

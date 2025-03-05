@@ -1,7 +1,7 @@
 package no.entur.shared.mobility.to.ref.data
 
-import no.entur.shared.mobility.to.ref.dto.Asset
-import no.entur.shared.mobility.to.ref.dto.AssetProperties
+import no.entur.shared.mobility.to.ref.tomp150.dto.Asset
+import no.entur.shared.mobility.to.ref.tomp150.dto.AssetProperties
 
 val asset
     get() =

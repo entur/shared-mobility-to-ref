@@ -2,6 +2,7 @@ package no.entur.shared.mobility.to.ref.controller
 
 import no.entur.shared.mobility.to.ref.Application
 import no.entur.shared.mobility.to.ref.service.TransportOperator
+import no.entur.shared.mobility.to.ref.tomp150.controller.SupportApiController
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.springframework.beans.factory.annotation.Autowired
@@ -11,7 +12,7 @@ import java.util.UUID
 @SpringBootTest(classes = [Application::class], webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class SupportControllerTest {
     @Autowired
-    private lateinit var supportController: SupportController
+    private lateinit var supportController: SupportApiController
 
     @Test
     fun supportIdStatusGet() {

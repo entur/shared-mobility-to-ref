@@ -1,7 +1,7 @@
 package no.entur.shared.mobility.to.ref.data
 
-import no.entur.shared.mobility.to.ref.dto.AssetClass
-import no.entur.shared.mobility.to.ref.dto.SystemInformation
+import no.entur.shared.mobility.to.ref.tomp150.dto.AssetClass
+import no.entur.shared.mobility.to.ref.tomp150.dto.SystemInformation
 import java.time.LocalDate
 
 val systemInformation

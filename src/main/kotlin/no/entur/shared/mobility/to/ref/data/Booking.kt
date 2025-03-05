@@ -1,12 +1,12 @@
 package no.entur.shared.mobility.to.ref.data
 
-import no.entur.shared.mobility.to.ref.dto.Booking
-import no.entur.shared.mobility.to.ref.dto.BookingState
-import no.entur.shared.mobility.to.ref.dto.Coordinates
-import no.entur.shared.mobility.to.ref.dto.Customer
-import no.entur.shared.mobility.to.ref.dto.Fare
-import no.entur.shared.mobility.to.ref.dto.FarePart
-import no.entur.shared.mobility.to.ref.dto.Place
+import no.entur.shared.mobility.to.ref.tomp150.dto.Booking
+import no.entur.shared.mobility.to.ref.tomp150.dto.BookingState
+import no.entur.shared.mobility.to.ref.tomp150.dto.Coordinates
+import no.entur.shared.mobility.to.ref.tomp150.dto.Customer
+import no.entur.shared.mobility.to.ref.tomp150.dto.Fare
+import no.entur.shared.mobility.to.ref.tomp150.dto.FarePart
+import no.entur.shared.mobility.to.ref.tomp150.dto.Place
 import java.time.OffsetDateTime
 import java.util.UUID
 

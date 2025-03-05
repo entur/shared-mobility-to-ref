@@ -1,10 +1,10 @@
 package no.entur.shared.mobility.to.ref.data
 
-import no.entur.shared.mobility.to.ref.dto.AssetClass
-import no.entur.shared.mobility.to.ref.dto.AssetType
-import no.entur.shared.mobility.to.ref.dto.ConditionDeposit
-import no.entur.shared.mobility.to.ref.dto.ConditionRequireOffboardingSteps
-import no.entur.shared.mobility.to.ref.dto.OffBoardingStep
+import no.entur.shared.mobility.to.ref.tomp150.dto.AssetClass
+import no.entur.shared.mobility.to.ref.tomp150.dto.AssetType
+import no.entur.shared.mobility.to.ref.tomp150.dto.ConditionDeposit
+import no.entur.shared.mobility.to.ref.tomp150.dto.ConditionRequireOffboardingSteps
+import no.entur.shared.mobility.to.ref.tomp150.dto.OffBoardingStep
 
 val assetType
     get() =

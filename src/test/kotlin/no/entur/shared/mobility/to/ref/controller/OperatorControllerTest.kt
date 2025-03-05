@@ -2,6 +2,7 @@ package no.entur.shared.mobility.to.ref.controller
 
 import no.entur.shared.mobility.to.ref.Application
 import no.entur.shared.mobility.to.ref.service.TransportOperator
+import no.entur.shared.mobility.to.ref.tomp150.controller.OperatorInformationApiController
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.springframework.beans.factory.annotation.Autowired
@@ -10,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest
 @SpringBootTest(classes = [Application::class], webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class OperatorControllerTest {
     @Autowired
-    private lateinit var operatorController: OperatorController
+    private lateinit var operatorController: OperatorInformationApiController
 
     @Test
     fun operatorAlertsGet() {

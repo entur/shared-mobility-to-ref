@@ -1,7 +1,7 @@
 package no.entur.shared.mobility.to.ref.data
 
-import no.entur.shared.mobility.to.ref.dto.Leg
-import no.entur.shared.mobility.to.ref.dto.LegState
+import no.entur.shared.mobility.to.ref.tomp150.dto.Leg
+import no.entur.shared.mobility.to.ref.tomp150.dto.LegState
 import java.time.OffsetDateTime
 import java.util.UUID
 
