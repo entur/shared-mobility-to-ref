@@ -14,12 +14,12 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type", visible = true)
 @JsonSubTypes()
-interface GeojjsonGeometry {
+interface GeojsonGeometry {
     @get:Schema(example = "null", requiredMode = Schema.RequiredMode.REQUIRED, description = "")
-    val type: GeojjsonGeometry.Type
+    val type: GeojsonGeometry.Type
 
     @get:Schema(example = "null", description = "")
-    val coordinates: GeojjsonGeometryCoordinates?
+    val coordinates: GeojsonGeometryCoordinates?
 
     /**
      *

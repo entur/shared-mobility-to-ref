@@ -77,7 +77,7 @@ data class Leg(
     @get:JsonProperty("pricing") val pricing: Fare? = null,
     @field:Valid
     @Schema(example = "null", description = "")
-    @get:JsonProperty("suboperator") val suboperator: Subooperator? = null,
+    @get:JsonProperty("suboperator") val suboperator: Suboperator? = null,
     @field:Valid
     @Schema(
         example = "null",

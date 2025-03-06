@@ -10,7 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema
  * @param description short description of the operator, should match Content-Language
  * @param contact contact information, should match Content-Language
  */
-data class Subooperator(
+data class Suboperator(
     @Schema(example = "null", required = true, description = "Name of the operator, could match Content-Language")
     @get:JsonProperty("name", required = true) val name: kotlin.String,
     @Schema(example = "null", description = "the maasId from the operator")
