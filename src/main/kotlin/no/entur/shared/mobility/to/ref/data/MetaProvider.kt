@@ -70,7 +70,7 @@ class MetaProvider(
                         Endpoint(method = POST, path = EndpointType.SUPPORT_POST.path, status = Status.IMPLEMENTED),
                     ),
                 scenarios = listOf(),
-                processIdentifiers = ProcessIdentifiers(),
+                processIdentifiers = ProcessIdentifiers(listOf(), listOf(), listOf(), listOf(), listOf(), listOf(), listOf()),
             ),
         )
 
@@ -119,7 +119,7 @@ class MetaProvider(
                         Endpoint(method = GET, path = EndpointType.PAYMENT_JOURNAL_ENTRY_GET.path, status = Status.IMPLEMENTED),
                     ),
                 scenarios = listOf(),
-                processIdentifiers = ProcessIdentifiers(),
+                processIdentifiers = ProcessIdentifiers(listOf(), listOf(), listOf(), listOf(), listOf(), listOf(), listOf()),
             ),
         )
 
@@ -169,7 +169,7 @@ class MetaProvider(
                         Endpoint(method = POST, path = EndpointType.SUPPORT_POST.path, status = Status.IMPLEMENTED),
                     ),
                 scenarios = listOf(),
-                processIdentifiers = ProcessIdentifiers(),
+                processIdentifiers = ProcessIdentifiers(listOf(), listOf(), listOf(), listOf(), listOf(), listOf(), listOf()),
             ),
         )
 }

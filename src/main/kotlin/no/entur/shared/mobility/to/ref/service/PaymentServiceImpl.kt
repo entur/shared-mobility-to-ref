@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.service
 
+import no.entur.shared.mobility.to.ref.controller.PaymentService
 import no.entur.shared.mobility.to.ref.dto.ExtraCosts
 import no.entur.shared.mobility.to.ref.dto.JournalCategory
 import no.entur.shared.mobility.to.ref.dto.JournalEntry
@@ -8,8 +9,8 @@ import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
 
 @Service
-class PaymentService {
-    fun paymentIdClaimExtraCostsPost(
+class PaymentServiceImpl : PaymentService {
+    override fun paymentIdClaimExtraCostsPost(
         acceptLanguage: String,
         api: String,
         apiVersion: String,
@@ -19,7 +20,7 @@ class PaymentService {
         extraCosts: ExtraCosts?,
     ): JournalEntry = throw NotImplementedError()
 
-    fun paymentJournalEntryGet(
+    override fun paymentJournalEntryGet(
         acceptLanguage: String,
         api: String,
         apiVersion: String,

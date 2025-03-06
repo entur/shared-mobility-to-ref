@@ -1,57 +1,61 @@
 package no.entur.shared.mobility.to.ref.dto
 
+import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonValue
 import io.swagger.v3.oas.annotations.media.Schema
 import jakarta.validation.Valid
+import no.entur.shared.mobility.to.ref.dto.Day
 
 /**
  *
  * @param startTime
  * @param endTime
- * @param days An array of abbreviations (first 3 letters) of English names of the days of the week that this hour object applies to
- * (i.e. [\"mon\", \"tue\"]). Each day can only appear once within all of the hours objects in this feed.
+ * @param days An array of abbreviations (first 3 letters) of English names of the days of the week that this hour object applies to (i.e. [\"mon\", \"tue\"]). Each day can only appear once within all of the hours objects in this feed.
  * @param userType This indicates that this set of rental hours applies to either members or non-members only.
- * @param stationId If this parameter is present, it means that startTime and endTime correspond to the opening and closing hours of the
- * station. (GET /operator/stations)
- * @param regionId If this parameter is present, it means that startTime and endTime correspond to the opening and closing hours for the
- * region. (GET /operator/regions)
+ * @param stationId If this parameter is present, it means that startTime and endTime correspond to the opening and closing hours of the station. (GET /operator/stations)
+ * @param regionId If this parameter is present, it means that startTime and endTime correspond to the opening and closing hours for the region. (GET /operator/regions)
  */
 data class SystemHours(
-    @Schema(example = "null", required = true)
-    @get:JsonProperty("startTime", required = true) val startTime: String,
-    @Schema(example = "null", required = true)
-    @get:JsonProperty("endTime", required = true) val endTime: String,
+    @Schema(example = "null", required = true, description = "")
+    @get:JsonProperty("startTime", required = true) val startTime: kotlin.String,
+    @Schema(example = "null", required = true, description = "")
+    @get:JsonProperty("endTime", required = true) val endTime: kotlin.String,
     @field:Valid
     @Schema(
         example = "null",
         required = true,
-        description = """An array of abbreviations (first 3 letters) of English names of the days of the week that this hour object 
-            |applies to (i.e. ["mon", "tue"]). Each day can only appear once within all of the hours objects in this feed.""",
+        description = "An array of abbreviations (first 3 letters) of English names of the days of the week that this hour object applies to (i.e. [\"mon\", \"tue\"]). Each day can only appear once within all of the hours objects in this feed.",
     )
-    @get:JsonProperty("days", required = true) val days: List<Day>,
-    @Schema(
-        example = "MEMBER",
-        description = "This indicates that this set of rental hours applies to either members or non-members only.",
-    )
-    val userType: UserType? = null,
+    @get:JsonProperty("days", required = true) val days: kotlin.collections.List<Day>,
+    @Schema(example = "MEMBER", description = "This indicates that this set of rental hours applies to either members or non-members only.")
+    @get:JsonProperty("userType") val userType: SystemHours.UserType? = null,
     @Schema(
         example = "null",
-        description = """If this parameter is present, it means that startTime and endTime correspond to the opening and closing hours of 
-            |the station. (GET /operator/stations)""",
+        description = "If this parameter is present, it means that startTime and endTime correspond to the opening and closing hours of the station. (GET /operator/stations)",
     )
-    val stationId: String? = null,
+    @get:JsonProperty("stationId") val stationId: kotlin.String? = null,
     @Schema(
         example = "null",
-        description = """If this parameter is present, it means that startTime and endTime correspond to the opening and closing hours for 
-            |the region. (GET /operator/regions)""",
+        description = "If this parameter is present, it means that startTime and endTime correspond to the opening and closing hours for the region. (GET /operator/regions)",
     )
-    val regionId: String? = null,
+    @get:JsonProperty("regionId") val regionId: kotlin.String? = null,
 ) {
     /**
      * This indicates that this set of rental hours applies to either members or non-members only.
+     * Values: MEMBER,NON_MEMBERS
      */
-    enum class UserType {
-        MEMBER,
-        NON_MEMBERS,
+    enum class UserType(
+        @get:JsonValue val value: kotlin.String,
+    ) {
+        MEMBER("MEMBER"),
+        NON_MEMBERS("NON_MEMBERS"),
+        ;
+
+        companion object {
+            @JvmStatic
+            @JsonCreator
+            fun forValue(value: kotlin.String): UserType = values().first { it -> it.value == value }
+        }
     }
 }

@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.dto
 
+import com.fasterxml.jackson.annotation.JsonProperty
 import io.swagger.v3.oas.annotations.media.Schema
 
 /**
@@ -8,8 +9,8 @@ import io.swagger.v3.oas.annotations.media.Schema
  * @param place
  */
 data class ChamberOfCommerceInfo(
-    @Schema(example = "null")
-    val number: String? = null,
-    @Schema(example = "null")
-    val place: String? = null,
+    @Schema(example = "null", description = "")
+    @get:JsonProperty("number") val number: kotlin.String? = null,
+    @Schema(example = "null", description = "")
+    @get:JsonProperty("place") val place: kotlin.String? = null,
 )

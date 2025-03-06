@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.dto
 
+import com.fasterxml.jackson.annotation.JsonProperty
 import io.swagger.v3.oas.annotations.media.Schema
 import jakarta.validation.constraints.Size
 
@@ -11,7 +12,7 @@ import jakarta.validation.constraints.Size
 data class AssetPropertiesEcoLabelInner(
     @get:Size(min = 2, max = 2)
     @Schema(example = "NL", description = "two-letter country codes according to ISO 3166-1")
-    val countryCode: String? = null,
-    @Schema(example = "null")
-    val ecoSticker: String? = null,
+    @get:JsonProperty("countryCode") val countryCode: kotlin.String? = null,
+    @Schema(example = "null", description = "")
+    @get:JsonProperty("ecoSticker") val ecoSticker: kotlin.String? = null,
 )

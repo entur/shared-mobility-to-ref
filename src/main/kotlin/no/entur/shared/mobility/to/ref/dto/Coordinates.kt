@@ -12,12 +12,12 @@ import jakarta.validation.constraints.DecimalMin
  */
 data class Coordinates(
     @get:DecimalMin("0")
-    @Schema(example = "6.169639", required = true)
-    @get:JsonProperty("lng", required = true) val lng: Float,
+    @Schema(example = "6.169639", required = true, description = "")
+    @get:JsonProperty("lng", required = true) val lng: kotlin.Float,
     @get:DecimalMin("0")
-    @Schema(example = "52.253279", required = true)
-    @get:JsonProperty("lat", required = true) val lat: Float,
+    @Schema(example = "52.253279", required = true, description = "")
+    @get:JsonProperty("lat", required = true) val lat: kotlin.Float,
     @get:DecimalMin("0")
     @Schema(example = "null", description = "altitude, in meters above sea level")
-    val alt: Float? = null,
+    @get:JsonProperty("alt") val alt: kotlin.Float? = null,
 )

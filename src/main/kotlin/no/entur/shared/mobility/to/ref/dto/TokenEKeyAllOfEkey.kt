@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.dto
 
+import com.fasterxml.jackson.annotation.JsonProperty
 import io.swagger.v3.oas.annotations.media.Schema
 
 /**
@@ -9,7 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class TokenEKeyAllOfEkey(
     @Schema(example = "null", description = "certificate")
-    val key: String? = null,
+    @get:JsonProperty("key") val key: kotlin.String? = null,
     @Schema(example = "null", description = "one time pass key")
-    val passkey: String? = null,
+    @get:JsonProperty("passkey") val passkey: kotlin.String? = null,
 )

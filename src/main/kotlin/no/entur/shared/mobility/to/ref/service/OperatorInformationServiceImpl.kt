@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.service
 
+import no.entur.shared.mobility.to.ref.controller.OperatorInformationService
 import no.entur.shared.mobility.to.ref.data.MetaProvider
 import no.entur.shared.mobility.to.ref.data.assetType
 import no.entur.shared.mobility.to.ref.data.systemInformation
@@ -22,10 +23,10 @@ import no.entur.shared.mobility.to.ref.service.TransportOperator.SCOOTER_OPERATO
 import org.springframework.stereotype.Service
 
 @Service
-class OperatorService(
+class OperatorInformationServiceImpl(
     private val metaProvider: MetaProvider,
-) {
-    fun operatorAlertsGet(
+) : OperatorInformationService {
+    override fun operatorAlertsGet(
         acceptLanguage: String,
         api: String,
         apiVersion: String,
@@ -37,7 +38,7 @@ class OperatorService(
         stationId: String?,
     ): List<SystemAlert> = throw NotImplementedError()
 
-    fun operatorAvailableAssetsGet(
+    override fun operatorAvailableAssetsGet(
         acceptLanguage: String,
         api: String,
         apiVersion: String,
@@ -55,7 +56,7 @@ class OperatorService(
             else -> throw NotImplementedError()
         }
 
-    fun operatorInformationGet(
+    override fun operatorInformationGet(
         acceptLanguage: String,
         api: String,
         apiVersion: String,
@@ -69,7 +70,7 @@ class OperatorService(
             else -> throw NotImplementedError()
         }
 
-    fun operatorMetaGet(
+    override fun operatorMetaGet(
         acceptLanguage: String,
         maasId: String,
         addressedTo: String?,
@@ -83,7 +84,7 @@ class OperatorService(
             else -> emptyList()
         }
 
-    fun operatorOperatingCalendarGet(
+    override fun operatorOperatingCalendarGet(
         acceptLanguage: String,
         api: String,
         apiVersion: String,
@@ -93,7 +94,7 @@ class OperatorService(
         stationId: String?,
     ): List<SystemCalendar> = throw NotImplementedError()
 
-    fun operatorOperatingHoursGet(
+    override fun operatorOperatingHoursGet(
         acceptLanguage: String,
         api: String,
         apiVersion: String,
@@ -103,10 +104,10 @@ class OperatorService(
         stationId: String?,
     ): List<SystemHours> = throw NotImplementedError()
 
-    fun operatorPingGet(acceptLanguage: String) {
+    override fun operatorPingGet(acceptLanguage: String) {
     }
 
-    fun operatorPricingPlansGet(
+    override fun operatorPricingPlansGet(
         acceptLanguage: String,
         api: String,
         apiVersion: String,
@@ -116,7 +117,7 @@ class OperatorService(
         stationId: String?,
     ): List<SystemPricingPlan> = throw NotImplementedError()
 
-    fun operatorRegionsGet(
+    override fun operatorRegionsGet(
         acceptLanguage: String,
         api: String,
         apiVersion: String,
@@ -126,7 +127,7 @@ class OperatorService(
         limit: Int?,
     ): List<SystemRegion> = throw NotImplementedError()
 
-    fun operatorStationsGet(
+    override fun operatorStationsGet(
         acceptLanguage: String,
         api: String,
         apiVersion: String,

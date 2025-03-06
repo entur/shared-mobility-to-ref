@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.dto
 
+import com.fasterxml.jackson.annotation.JsonProperty
 import io.swagger.v3.oas.annotations.media.Schema
 import jakarta.validation.constraints.Min
 
@@ -13,14 +14,14 @@ import jakarta.validation.constraints.Min
 data class BookingAllOfExtraData(
     @get:Min(0)
     @Schema(example = "null", description = "the predicted time before the asset will arrive, in minutes")
-    val safeWaitTime: Int? = null,
+    @get:JsonProperty("safeWaitTime") val safeWaitTime: kotlin.Int? = null,
     @get:Min(0)
     @Schema(example = "null", description = "the maximum time before the asset will arrive, in minutes")
-    val maxWaitTime: Int? = null,
+    @get:JsonProperty("maxWaitTime") val maxWaitTime: kotlin.Int? = null,
     @get:Min(0)
     @Schema(example = "null", description = "the predicted time the legs will take, in minutes")
-    val safeTravelTime: Int? = null,
+    @get:JsonProperty("safeTravelTime") val safeTravelTime: kotlin.Int? = null,
     @get:Min(0)
     @Schema(example = "null", description = "the maximum time the legs will take, in minutes")
-    val maxTravelTime: Int? = null,
-) : HashMap<String, Any>()
+    @get:JsonProperty("maxTravelTime") val maxTravelTime: kotlin.Int? = null,
+)

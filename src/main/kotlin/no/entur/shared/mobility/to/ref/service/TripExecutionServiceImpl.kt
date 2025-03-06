@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.service
 
+import no.entur.shared.mobility.to.ref.controller.TripExecutionService
 import no.entur.shared.mobility.to.ref.data.leg
 import no.entur.shared.mobility.to.ref.data.legWithHighDepositAmount
 import no.entur.shared.mobility.to.ref.data.legWithoutDeposit
@@ -20,8 +21,8 @@ import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
 
 @Service
-class LegsService {
-    fun legsIdAncillariesCategoryNumberDelete(
+class TripExecutionServiceImpl : TripExecutionService {
+    override fun legsIdAncillariesCategoryNumberDelete(
         acceptLanguage: String,
         api: String,
         apiVersion: String,
@@ -32,7 +33,7 @@ class LegsService {
         addressedTo: String?,
     ): Leg = throw NotImplementedError()
 
-    fun legsIdAncillariesCategoryNumberPost(
+    override fun legsIdAncillariesCategoryNumberPost(
         acceptLanguage: String,
         api: String,
         apiVersion: String,
@@ -43,7 +44,7 @@ class LegsService {
         addressedTo: String?,
     ): Leg = throw NotImplementedError()
 
-    fun legsIdAvailableAssetsGet(
+    override fun legsIdAvailableAssetsGet(
         acceptLanguage: String,
         api: String,
         apiVersion: String,
@@ -54,7 +55,7 @@ class LegsService {
         limit: Int?,
     ): List<Asset> = throw NotImplementedError()
 
-    fun legsIdConfirmationPost(
+    override fun legsIdConfirmationPost(
         acceptLanguage: String,
         api: String,
         apiVersion: String,
@@ -62,14 +63,14 @@ class LegsService {
         confirmationRequest: ConfirmationRequest?,
     ): Boolean = true
 
-    fun legsIdEventsPost(
+    override fun legsIdEventsPost(
         acceptLanguage: String,
         api: String,
         apiVersion: String,
         maasId: String,
         id: String,
         addressedTo: String?,
-        legEvent: LegEvent,
+        legEvent: LegEvent?,
     ): Leg {
         val leg =
             when (addressedTo) {
@@ -83,7 +84,7 @@ class LegsService {
         return leg.copy(
             id = id,
             state =
-                when (legEvent.event) {
+                when (legEvent!!.event) {
                     LegEvent.Event.PREPARE -> LegState.PREPARING
                     LegEvent.Event.ASSIGN_ASSET -> LegState.NOT_STARTED
                     LegEvent.Event.SET_IN_USE -> LegState.IN_USE
@@ -105,7 +106,7 @@ class LegsService {
         )
     }
 
-    fun legsIdGet(
+    override fun legsIdGet(
         acceptLanguage: String,
         api: String,
         apiVersion: String,
@@ -125,7 +126,7 @@ class LegsService {
         return leg.copy(id = id)
     }
 
-    fun legsIdProgressGet(
+    override fun legsIdProgressGet(
         acceptLanguage: String,
         api: String,
         apiVersion: String,
@@ -135,7 +136,7 @@ class LegsService {
         locationOnly: Boolean,
     ): LegProgress = throw NotImplementedError()
 
-    fun legsIdProgressPost(
+    override fun legsIdProgressPost(
         acceptLanguage: String,
         api: String,
         apiVersion: String,
@@ -149,7 +150,7 @@ class LegsService {
         }
     }
 
-    fun legsIdPut(
+    override fun legsIdPut(
         acceptLanguage: String,
         api: String,
         apiVersion: String,
