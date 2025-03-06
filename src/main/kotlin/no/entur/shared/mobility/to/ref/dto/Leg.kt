@@ -5,15 +5,6 @@ import io.swagger.v3.oas.annotations.media.Schema
 import jakarta.validation.Valid
 import jakarta.validation.constraints.Max
 import jakarta.validation.constraints.Min
-import no.entur.shared.mobility.to.ref.dto.Asset
-import no.entur.shared.mobility.to.ref.dto.AssetType
-import no.entur.shared.mobility.to.ref.dto.Condition
-import no.entur.shared.mobility.to.ref.dto.Fare
-import no.entur.shared.mobility.to.ref.dto.Information
-import no.entur.shared.mobility.to.ref.dto.LegState
-import no.entur.shared.mobility.to.ref.dto.Place
-import no.entur.shared.mobility.to.ref.dto.Suboperator
-import no.entur.shared.mobility.to.ref.dto.Token
 
 /**
  * A planned (segment of) a booked trip using one asset type
@@ -86,7 +77,7 @@ data class Leg(
     @get:JsonProperty("pricing") val pricing: Fare? = null,
     @field:Valid
     @Schema(example = "null", description = "")
-    @get:JsonProperty("suboperator") val suboperator: Suboperator? = null,
+    @get:JsonProperty("suboperator") val suboperator: Subooperator? = null,
     @field:Valid
     @Schema(
         example = "null",

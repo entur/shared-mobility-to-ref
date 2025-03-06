@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonSubTypes
 import com.fasterxml.jackson.annotation.JsonTypeInfo
 import com.fasterxml.jackson.annotation.JsonValue
 import io.swagger.v3.oas.annotations.media.Schema
-import no.entur.shared.mobility.to.ref.dto.GeojsonGeometryCoordinates
 
 /**
  * geoJSON geometry
@@ -15,12 +14,12 @@ import no.entur.shared.mobility.to.ref.dto.GeojsonGeometryCoordinates
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type", visible = true)
 @JsonSubTypes()
-interface GeojsonGeometry {
+interface GeojjsonGeometry {
     @get:Schema(example = "null", requiredMode = Schema.RequiredMode.REQUIRED, description = "")
-    val type: GeojsonGeometry.Type
+    val type: GeojjsonGeometry.Type
 
     @get:Schema(example = "null", description = "")
-    val coordinates: GeojsonGeometryCoordinates?
+    val coordinates: GeojjsonGeometryCoordinates?
 
     /**
      *

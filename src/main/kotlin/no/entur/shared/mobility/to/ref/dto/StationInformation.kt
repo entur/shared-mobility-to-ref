@@ -5,9 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonValue
 import io.swagger.v3.oas.annotations.media.Schema
 import jakarta.validation.Valid
-import no.entur.shared.mobility.to.ref.dto.Address
-import no.entur.shared.mobility.to.ref.dto.Coordinates
-import no.entur.shared.mobility.to.ref.dto.GeojsonGeometry
 
 /**
  *
@@ -61,7 +58,7 @@ data class StationInformation(
     @get:JsonProperty("regionId") val regionId: kotlin.String? = null,
     @field:Valid
     @Schema(example = "null", description = "")
-    @get:JsonProperty("stationArea") val stationArea: GeojsonGeometry? = null,
+    @get:JsonProperty("stationArea") val stationArea: GeojjsonGeometry? = null,
     @Schema(
         example = "null",
         description = "parking_lot (Off-street parking lot) street_parking (Curbside parking) underground_parking (Parking that is below street level, station may be non-communicating) sidewalk_parking (Park vehicle on sidewalk, out of the pedestrian right of way) other",
