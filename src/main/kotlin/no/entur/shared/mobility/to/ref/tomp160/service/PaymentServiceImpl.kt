@@ -1,14 +1,14 @@
-package no.entur.shared.mobility.to.ref.tomp150.service
+package no.entur.shared.mobility.to.ref.tomp160.service
 
-import no.entur.shared.mobility.to.ref.tomp150.controller.PaymentService
-import no.entur.shared.mobility.to.ref.tomp150.dto.ExtraCosts
-import no.entur.shared.mobility.to.ref.tomp150.dto.JournalCategory
-import no.entur.shared.mobility.to.ref.tomp150.dto.JournalEntry
-import no.entur.shared.mobility.to.ref.tomp150.dto.JournalState
+import no.entur.shared.mobility.to.ref.tomp160.controller.PaymentService
+import no.entur.shared.mobility.to.ref.tomp160.dto.ExtraCosts
+import no.entur.shared.mobility.to.ref.tomp160.dto.JournalCategory
+import no.entur.shared.mobility.to.ref.tomp160.dto.JournalEntry
+import no.entur.shared.mobility.to.ref.tomp160.dto.JournalState
 import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
 
-@Service("PaymentServiceTomp150")
+@Service("PaymentServiceTomp160")
 class PaymentServiceImpl : PaymentService {
     override fun paymentIdClaimExtraCostsPost(
         acceptLanguage: String,

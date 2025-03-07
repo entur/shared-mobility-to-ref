@@ -1,4 +1,4 @@
-package no.entur.shared.mobility.to.ref.tomp150.service
+package no.entur.shared.mobility.to.ref.tomp160.service
 
 import no.entur.shared.mobility.to.ref.config.TransportOperator.ALL_IMPLEMENTING_OPERATOR
 import no.entur.shared.mobility.to.ref.config.TransportOperator.BIKE_OPERATOR
@@ -7,19 +7,19 @@ import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR
 import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_3
 import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE
 import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_NO_DEPOSIT
-import no.entur.shared.mobility.to.ref.tomp150.controller.TripExecutionService
-import no.entur.shared.mobility.to.ref.tomp150.data.leg
-import no.entur.shared.mobility.to.ref.tomp150.data.legWithHighDepositAmount
-import no.entur.shared.mobility.to.ref.tomp150.data.legWithoutDeposit
-import no.entur.shared.mobility.to.ref.tomp150.dto.ConfirmationRequest
-import no.entur.shared.mobility.to.ref.tomp150.dto.Leg
-import no.entur.shared.mobility.to.ref.tomp150.dto.LegEvent
-import no.entur.shared.mobility.to.ref.tomp150.dto.LegProgress
-import no.entur.shared.mobility.to.ref.tomp150.dto.LegState
+import no.entur.shared.mobility.to.ref.tomp160.controller.TripExecutionService
+import no.entur.shared.mobility.to.ref.tomp160.data.leg
+import no.entur.shared.mobility.to.ref.tomp160.data.legWithHighDepositAmount
+import no.entur.shared.mobility.to.ref.tomp160.data.legWithoutDeposit
+import no.entur.shared.mobility.to.ref.tomp160.dto.ConfirmationRequest
+import no.entur.shared.mobility.to.ref.tomp160.dto.Leg
+import no.entur.shared.mobility.to.ref.tomp160.dto.LegEvent
+import no.entur.shared.mobility.to.ref.tomp160.dto.LegProgress
+import no.entur.shared.mobility.to.ref.tomp160.dto.LegState
 import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
 
-@Service("TripExecutionServiceTomp150")
+@Service("TripExecutionServiceTomp160")
 class TripExecutionServiceImpl : TripExecutionService {
     override fun legsIdAncillariesCategoryNumberDelete(
         acceptLanguage: String,
@@ -52,7 +52,7 @@ class TripExecutionServiceImpl : TripExecutionService {
         addressedTo: String?,
         offset: Int,
         limit: Int?,
-    ): List<no.entur.shared.mobility.to.ref.tomp150.dto.Asset> = throw NotImplementedError()
+    ): List<no.entur.shared.mobility.to.ref.tomp160.dto.Asset> = throw NotImplementedError()
 
     override fun legsIdConfirmationPost(
         acceptLanguage: String,

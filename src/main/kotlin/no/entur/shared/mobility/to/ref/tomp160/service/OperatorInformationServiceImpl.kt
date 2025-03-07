@@ -1,4 +1,4 @@
-package no.entur.shared.mobility.to.ref.tomp150.service
+package no.entur.shared.mobility.to.ref.tomp160.service
 
 import no.entur.shared.mobility.to.ref.config.TransportOperator.ALL_IMPLEMENTING_OPERATOR
 import no.entur.shared.mobility.to.ref.config.TransportOperator.BIKE_OPERATOR
@@ -7,25 +7,26 @@ import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR
 import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_3
 import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE
 import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_NO_DEPOSIT
-import no.entur.shared.mobility.to.ref.tomp150.controller.OperatorInformationService
-import no.entur.shared.mobility.to.ref.tomp150.data.MetaProvider
-import no.entur.shared.mobility.to.ref.tomp150.data.assetType
-import no.entur.shared.mobility.to.ref.tomp150.data.systemInformation
-import no.entur.shared.mobility.to.ref.tomp150.dto.AssetType
-import no.entur.shared.mobility.to.ref.tomp150.dto.EndpointImplementation
-import no.entur.shared.mobility.to.ref.tomp150.dto.StationInformation
-import no.entur.shared.mobility.to.ref.tomp150.dto.SystemAlert
-import no.entur.shared.mobility.to.ref.tomp150.dto.SystemCalendar
-import no.entur.shared.mobility.to.ref.tomp150.dto.SystemHours
-import no.entur.shared.mobility.to.ref.tomp150.dto.SystemInformation
-import no.entur.shared.mobility.to.ref.tomp150.dto.SystemPricingPlan
-import no.entur.shared.mobility.to.ref.tomp150.dto.SystemRegion
+import no.entur.shared.mobility.to.ref.tomp160.controller.OperatorInformationService
+import no.entur.shared.mobility.to.ref.tomp160.data.MetaProvider
+import no.entur.shared.mobility.to.ref.tomp160.data.assetType
+import no.entur.shared.mobility.to.ref.tomp160.data.systemInformation
+import no.entur.shared.mobility.to.ref.tomp160.dto.AssetType
+import no.entur.shared.mobility.to.ref.tomp160.dto.EndpointImplementation
+import no.entur.shared.mobility.to.ref.tomp160.dto.StationInformation
+import no.entur.shared.mobility.to.ref.tomp160.dto.SystemAlert
+import no.entur.shared.mobility.to.ref.tomp160.dto.SystemCalendar
+import no.entur.shared.mobility.to.ref.tomp160.dto.SystemHours
+import no.entur.shared.mobility.to.ref.tomp160.dto.SystemInformation
+import no.entur.shared.mobility.to.ref.tomp160.dto.SystemPricingPlan
+import no.entur.shared.mobility.to.ref.tomp160.dto.SystemRegion
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Service
+import java.math.BigDecimal
 
-@Service("OperatorInformationServiceTomp150")
+@Service("OperatorInformationServiceTomp160")
 class OperatorInformationServiceImpl(
-    @Qualifier("tomp150MetaProvider") private val metaProvider: MetaProvider,
+    @Qualifier("tomp160MetaProvider") private val metaProvider: MetaProvider,
 ) : OperatorInformationService {
     override fun operatorAlertsGet(
         acceptLanguage: String,
@@ -49,6 +50,7 @@ class OperatorInformationServiceImpl(
         limit: Int?,
         regionId: String?,
         stationId: String?,
+        boundingbox: List<BigDecimal>?,
     ): List<AssetType> =
         when (addressedTo) {
             SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3 -> throw NotImplementedError()

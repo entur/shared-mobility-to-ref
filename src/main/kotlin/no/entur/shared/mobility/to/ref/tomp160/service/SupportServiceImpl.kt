@@ -1,12 +1,12 @@
-package no.entur.shared.mobility.to.ref.tomp150.service
+package no.entur.shared.mobility.to.ref.tomp160.service
 
-import no.entur.shared.mobility.to.ref.tomp150.controller.SupportService
-import no.entur.shared.mobility.to.ref.tomp150.dto.SupportRequest
-import no.entur.shared.mobility.to.ref.tomp150.dto.SupportStatus
+import no.entur.shared.mobility.to.ref.tomp160.controller.SupportService
+import no.entur.shared.mobility.to.ref.tomp160.dto.SupportRequest
+import no.entur.shared.mobility.to.ref.tomp160.dto.SupportStatus
 import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
 
-@Service("SupportServiceTomp150")
+@Service("SupportServiceTomp160")
 class SupportServiceImpl : SupportService {
     override fun supportIdStatusGet(
         acceptLanguage: String,

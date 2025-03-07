@@ -1,4 +1,4 @@
-package no.entur.shared.mobility.to.ref.tomp150.service
+package no.entur.shared.mobility.to.ref.tomp160.service
 
 import no.entur.shared.mobility.to.ref.config.TransportOperator.ALL_IMPLEMENTING_OPERATOR
 import no.entur.shared.mobility.to.ref.config.TransportOperator.BIKE_OPERATOR
@@ -7,14 +7,14 @@ import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR
 import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_3
 import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE
 import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_NO_DEPOSIT
-import no.entur.shared.mobility.to.ref.tomp150.controller.BookingOptionalService
-import no.entur.shared.mobility.to.ref.tomp150.data.booking
-import no.entur.shared.mobility.to.ref.tomp150.dto.Booking
-import no.entur.shared.mobility.to.ref.tomp150.dto.BookingState
+import no.entur.shared.mobility.to.ref.tomp160.controller.BookingOptionalService
+import no.entur.shared.mobility.to.ref.tomp160.data.booking
+import no.entur.shared.mobility.to.ref.tomp160.dto.Booking
+import no.entur.shared.mobility.to.ref.tomp160.dto.BookingState
 import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
 
-@Service("BookingsOptionalServiceTomp150")
+@Service("BookingsOptionalServiceTomp160")
 class BookingsOptionalServiceImpl : BookingOptionalService {
     override fun bookingsGet(
         acceptLanguage: String,

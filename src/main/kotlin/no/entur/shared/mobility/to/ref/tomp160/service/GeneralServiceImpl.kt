@@ -1,10 +1,10 @@
-package no.entur.shared.mobility.to.ref.tomp150.service
+package no.entur.shared.mobility.to.ref.tomp160.service
 
-import no.entur.shared.mobility.to.ref.tomp150.controller.GeneralService
-import no.entur.shared.mobility.to.ref.tomp150.dto.Notification
+import no.entur.shared.mobility.to.ref.tomp160.controller.GeneralService
+import no.entur.shared.mobility.to.ref.tomp160.dto.Notification
 import org.springframework.stereotype.Service
 
-@Service("GeneralServiceTomp150")
+@Service("GeneralServiceTomp160")
 class GeneralServiceImpl : GeneralService {
     override fun bookingsIdNotificationsGet(
         acceptLanguage: String,

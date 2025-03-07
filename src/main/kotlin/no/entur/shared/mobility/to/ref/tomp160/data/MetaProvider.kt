@@ -1,19 +1,19 @@
-package no.entur.shared.mobility.to.ref.tomp150.data
+package no.entur.shared.mobility.to.ref.tomp160.data
 
 import no.entur.shared.mobility.to.ref.config.EndpointType
-import no.entur.shared.mobility.to.ref.tomp150.dto.Endpoint
-import no.entur.shared.mobility.to.ref.tomp150.dto.Endpoint.EventType
-import no.entur.shared.mobility.to.ref.tomp150.dto.Endpoint.Method.DELETE
-import no.entur.shared.mobility.to.ref.tomp150.dto.Endpoint.Method.GET
-import no.entur.shared.mobility.to.ref.tomp150.dto.Endpoint.Method.POST
-import no.entur.shared.mobility.to.ref.tomp150.dto.Endpoint.Method.PUT
-import no.entur.shared.mobility.to.ref.tomp150.dto.Endpoint.Status
-import no.entur.shared.mobility.to.ref.tomp150.dto.EndpointImplementation
-import no.entur.shared.mobility.to.ref.tomp150.dto.ProcessIdentifiers
+import no.entur.shared.mobility.to.ref.tomp160.dto.Endpoint
+import no.entur.shared.mobility.to.ref.tomp160.dto.Endpoint.EventType
+import no.entur.shared.mobility.to.ref.tomp160.dto.Endpoint.Method.DELETE
+import no.entur.shared.mobility.to.ref.tomp160.dto.Endpoint.Method.GET
+import no.entur.shared.mobility.to.ref.tomp160.dto.Endpoint.Method.POST
+import no.entur.shared.mobility.to.ref.tomp160.dto.Endpoint.Method.PUT
+import no.entur.shared.mobility.to.ref.tomp160.dto.Endpoint.Status
+import no.entur.shared.mobility.to.ref.tomp160.dto.EndpointImplementation
+import no.entur.shared.mobility.to.ref.tomp160.dto.ProcessIdentifiers
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 
-@Component("tomp150MetaProvider")
+@Component("tomp160MetaProvider")
 class MetaProvider(
     @Value("\${baseUrl}")
     val baseUrl: String,
