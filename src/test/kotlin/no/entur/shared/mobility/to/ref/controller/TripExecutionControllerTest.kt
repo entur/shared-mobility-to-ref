@@ -1,11 +1,7 @@
 package no.entur.shared.mobility.to.ref.controller
 
 import no.entur.shared.mobility.to.ref.Application
-import no.entur.shared.mobility.to.ref.dto.AssetType
-import no.entur.shared.mobility.to.ref.dto.Coordinates
-import no.entur.shared.mobility.to.ref.dto.Leg
 import no.entur.shared.mobility.to.ref.dto.LegEvent
-import no.entur.shared.mobility.to.ref.dto.Place
 import no.entur.shared.mobility.to.ref.service.TransportOperator
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -15,9 +11,9 @@ import java.time.OffsetDateTime
 import java.util.UUID
 
 @SpringBootTest(classes = [Application::class], webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class LegsControllerTest {
+class TripExecutionControllerTest {
     @Autowired
-    private lateinit var legsController: LegsController
+    private lateinit var legsController: TripExecutionController
 
     @Test
     fun legsIdAncillariesCategoryNumberDelete() {
@@ -68,17 +64,6 @@ class LegsControllerTest {
     }
 
     @Test
-    fun legsIdConfirmationPost() {
-        legsController.legsIdConfirmationPost(
-            acceptLanguage = "NOB",
-            api = "TOMP",
-            apiVersion = "1.5.0",
-            id = UUID.randomUUID().toString(),
-            confirmationRequest = null,
-        )
-    }
-
-    @Test
     fun legsIdEventsPost() {
         legsController.legsIdEventsPost(
             acceptLanguage = "NOB",
@@ -116,31 +101,5 @@ class LegsControllerTest {
                 locationOnly = true,
             )
         }
-    }
-
-    @Test
-    fun legsIdProgressPost() {
-        legsController.legsIdProgressPost(
-            acceptLanguage = "NOB",
-            api = "TOMP",
-            apiVersion = "1.5.0",
-            maasId = "entur:maas:shared-mobility",
-            id = UUID.randomUUID().toString(),
-            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
-            legProgress = null,
-        )
-    }
-
-    @Test
-    fun legsIdPut() {
-        legsController.legsIdPut(
-            acceptLanguage = "NOB",
-            api = "TOMP",
-            apiVersion = "1.5.0",
-            maasId = "entur:maas:shared-mobility",
-            id = UUID.randomUUID().toString(),
-            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
-            leg = Leg(from = Place(Coordinates(0F, 0F, 0F)), assetType = AssetType(id = "")),
-        )
     }
 }

@@ -1,32 +1,29 @@
 package no.entur.shared.mobility.to.ref.controller
 
-import io.swagger.v3.oas.annotations.Operation
-import io.swagger.v3.oas.annotations.Parameter
-import io.swagger.v3.oas.annotations.enums.ParameterIn
-import io.swagger.v3.oas.annotations.media.ArraySchema
-import io.swagger.v3.oas.annotations.media.Content
-import io.swagger.v3.oas.annotations.media.Schema
-import io.swagger.v3.oas.annotations.responses.ApiResponse
+import io.swagger.v3.oas.annotations.*
+import io.swagger.v3.oas.annotations.enums.*
+import io.swagger.v3.oas.annotations.media.*
+import io.swagger.v3.oas.annotations.responses.*
+import io.swagger.v3.oas.annotations.security.*
 import jakarta.validation.Valid
 import no.entur.shared.mobility.to.ref.dto.Error
 import no.entur.shared.mobility.to.ref.dto.SupportRequest
 import no.entur.shared.mobility.to.ref.dto.SupportStatus
-import no.entur.shared.mobility.to.ref.service.SupportService
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
 import org.springframework.validation.annotation.Validated
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestHeader
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
+import kotlin.collections.List
 
-@RestController
+@RestController("no.entur.shared.mobility.to.ref.controller.SupportController")
 @Validated
+@RequestMapping("\${api.base-path:/bike}")
 class SupportController(
-    private val supportService: SupportService,
+    @Autowired(required = true) val service: SupportService,
 ) {
     @Operation(
-        hidden = true,
+        summary = "",
         operationId = "supportIdStatusGet",
         description = """Gets the status report of the support request. Last status (highest order number) is the current status""",
         responses = [
@@ -37,20 +34,17 @@ class SupportController(
             ),
             ApiResponse(
                 responseCode = "400",
-                description = """Bad request. See https://github.com/TOMP-WG/TOMP-API/wiki/Error-handling-in-TOMP for further explanation 
-                    |of error code.""",
+                description = "Bad request. See https://github.com/TOMP-WG/TOMP-API/wiki/Error-handling-in-TOMP for further explanation of error code.",
                 content = [Content(schema = Schema(implementation = Error::class))],
             ),
             ApiResponse(
                 responseCode = "401",
-                description = """Although the HTTP standard specifies "unauthorized", semantically this response means "unauthenticated". 
-                    |That is, the client must authenticate itself to get the requested response.""",
+                description = "Although the HTTP standard specifies \"unauthorized\", semantically this response means \"unauthenticated\". That is, the client must authenticate itself to get the requested response.",
                 content = [Content(schema = Schema(implementation = Error::class))],
             ),
             ApiResponse(
                 responseCode = "403",
-                description = """The client does not have access rights to the content, i.e. they are unauthorized, so server is rejecting 
-                    |to give proper response. Unlike 401, the client's identity is known to the server.""",
+                description = "The client does not have access rights to the content, i.e. they are unauthorized, so server is rejecting to give proper response. Unlike 401, the client's identity is known to the server.",
                 content = [Content(schema = Schema(implementation = Error::class))],
             ),
             ApiResponse(
@@ -58,48 +52,52 @@ class SupportController(
                 description = "The requested resources does not exist or the requester is not authorized to see it or know it exists.",
             ),
         ],
+        security = [
+            SecurityRequirement(
+                name = "BasicAuth",
+            ), SecurityRequirement(
+                name = "ApiKeyAuth",
+            ), SecurityRequirement(
+                name = "OpenId",
+            ), SecurityRequirement(name = "BearerAuth"), SecurityRequirement(name = "OAuth", scopes = [ ]),
+        ],
     )
-    @GetMapping(value = ["/support/{id}/status"], produces = ["application/json"])
+    @RequestMapping(
+        method = [RequestMethod.GET],
+        value = ["/support/{id}/status"],
+        produces = ["application/json"],
+    )
     fun supportIdStatusGet(
         @Parameter(
-            description = """A list of the languages/localizations the user would like to see the results in. For user privacy and ease of 
-                |use on the TO side, this list should be kept as short as possible, ideally just one language tag from the list in 
-                |operator/information""",
+            description = "A list of the languages/localizations the user would like to see the results in. For user privacy and ease of use on the TO side, this list should be kept as short as possible, ideally just one language tag from the list in operator/information",
             `in` = ParameterIn.HEADER,
             required = true,
-        )
-        @RequestHeader(value = "Accept-Language", required = true)
-        acceptLanguage: String,
+        ) @RequestHeader(value = "Accept-Language", required = true) acceptLanguage: kotlin.String,
         @Parameter(
             description = "API description, can be TOMP or maybe other (specific/derived) API definitions",
             `in` = ParameterIn.HEADER,
             required = true,
-        )
-        @RequestHeader(value = "Api", required = true)
-        api: String,
-        @Parameter(description = "Version of the API.", `in` = ParameterIn.HEADER, required = true)
-        @RequestHeader(value = "Api-Version", required = true)
-        apiVersion: String,
-        @Parameter(description = "The ID of the sending maas operator", `in` = ParameterIn.HEADER, required = true)
-        @RequestHeader(value = "maas-id", required = true)
-        maasId: String,
-        @Parameter(description = "Booking identifier", required = true)
-        @PathVariable("id")
-        id: String,
-        @Parameter(description = "The ID of the maas operator that has to receive this message", `in` = ParameterIn.HEADER)
-        @RequestHeader(value = "addressed-to", required = false)
-        addressedTo: String?,
-    ): List<SupportStatus> =
-        supportService.supportIdStatusGet(
-            acceptLanguage,
-            api,
-            apiVersion,
-            maasId,
-            id,
-            addressedTo,
-        )
+        ) @RequestHeader(value = "Api", required = true) api: kotlin.String,
+        @Parameter(
+            description = "Version of the API.",
+            `in` = ParameterIn.HEADER,
+            required = true,
+        ) @RequestHeader(value = "Api-Version", required = true) apiVersion: kotlin.String,
+        @Parameter(
+            description = "The ID of the sending maas operator",
+            `in` = ParameterIn.HEADER,
+            required = true,
+        ) @RequestHeader(value = "maas-id", required = true) maasId: kotlin.String,
+        @Parameter(description = "Booking identifier", required = true) @PathVariable("id") id: kotlin.String,
+        @Parameter(
+            description = "The ID of the maas operator that has to receive this message",
+            `in` = ParameterIn.HEADER,
+        ) @RequestHeader(value = "addressed-to", required = false) addressedTo: kotlin.String?,
+    ): ResponseEntity<List<SupportStatus>> =
+        ResponseEntity(service.supportIdStatusGet(acceptLanguage, api, apiVersion, maasId, id, addressedTo), HttpStatus.valueOf(200))
 
     @Operation(
+        summary = "",
         operationId = "supportPost",
         description = """creates a request for support from end user via MP""",
         responses = [
@@ -110,20 +108,17 @@ class SupportController(
             ),
             ApiResponse(
                 responseCode = "400",
-                description = """Bad request. See https://github.com/TOMP-WG/TOMP-API/wiki/Error-handling-in-TOMP for further explanation 
-                    |of error code.""",
+                description = "Bad request. See https://github.com/TOMP-WG/TOMP-API/wiki/Error-handling-in-TOMP for further explanation of error code.",
                 content = [Content(schema = Schema(implementation = Error::class))],
             ),
             ApiResponse(
                 responseCode = "401",
-                description = """Although the HTTP standard specifies "unauthorized", semantically this response means "unauthenticated". 
-                    |That is, the client must authenticate itself to get the requested response.""",
+                description = "Although the HTTP standard specifies \"unauthorized\", semantically this response means \"unauthenticated\". That is, the client must authenticate itself to get the requested response.",
                 content = [Content(schema = Schema(implementation = Error::class))],
             ),
             ApiResponse(
                 responseCode = "403",
-                description = """The client does not have access rights to the content, i.e. they are unauthorized, so server is rejecting 
-                    |to give proper response. Unlike 401, the client's identity is known to the server.""",
+                description = "The client does not have access rights to the content, i.e. they are unauthorized, so server is rejecting to give proper response. Unlike 401, the client's identity is known to the server.",
                 content = [Content(schema = Schema(implementation = Error::class))],
             ),
             ApiResponse(
@@ -131,44 +126,48 @@ class SupportController(
                 description = "The requested resources does not exist or the requester is not authorized to see it or know it exists.",
             ),
         ],
+        security = [
+            SecurityRequirement(
+                name = "BasicAuth",
+            ), SecurityRequirement(
+                name = "ApiKeyAuth",
+            ), SecurityRequirement(
+                name = "OpenId",
+            ), SecurityRequirement(name = "BearerAuth"), SecurityRequirement(name = "OAuth", scopes = [ ]),
+        ],
     )
-    @PostMapping(value = ["/support/"], produces = ["application/json"], consumes = ["application/json"])
+    @RequestMapping(
+        method = [RequestMethod.POST],
+        value = ["/support/"],
+        produces = ["application/json"],
+        consumes = ["application/json"],
+    )
     fun supportPost(
         @Parameter(
-            description = """A list of the languages/localizations the user would like to see the results in. For user privacy and ease of 
-                |use on the TO side, this list should be kept as short as possible, ideally just one language tag from the list in 
-                |operator/information""",
+            description = "A list of the languages/localizations the user would like to see the results in. For user privacy and ease of use on the TO side, this list should be kept as short as possible, ideally just one language tag from the list in operator/information",
             `in` = ParameterIn.HEADER,
             required = true,
-        )
-        @RequestHeader(value = "Accept-Language", required = true)
-        acceptLanguage: String,
+        ) @RequestHeader(value = "Accept-Language", required = true) acceptLanguage: kotlin.String,
         @Parameter(
             description = "API description, can be TOMP or maybe other (specific/derived) API definitions",
             `in` = ParameterIn.HEADER,
             required = true,
-        )
-        @RequestHeader(value = "Api", required = true)
-        api: String,
-        @Parameter(description = "Version of the API.", `in` = ParameterIn.HEADER, required = true)
-        @RequestHeader(value = "Api-Version", required = true)
-        apiVersion: String,
-        @Parameter(description = "The ID of the sending maas operator", `in` = ParameterIn.HEADER, required = true)
-        @RequestHeader(value = "maas-id", required = true)
-        maasId: String,
-        @Parameter(description = "The ID of the maas operator that has to receive this message", `in` = ParameterIn.HEADER)
-        @RequestHeader(value = "addressed-to", required = false)
-        addressedTo: String?,
-        @Valid
-        @RequestBody(required = false)
-        supportRequest: SupportRequest?,
-    ): SupportStatus =
-        supportService.supportPost(
-            acceptLanguage,
-            api,
-            apiVersion,
-            maasId,
-            addressedTo,
-            supportRequest,
-        )
+        ) @RequestHeader(value = "Api", required = true) api: kotlin.String,
+        @Parameter(
+            description = "Version of the API.",
+            `in` = ParameterIn.HEADER,
+            required = true,
+        ) @RequestHeader(value = "Api-Version", required = true) apiVersion: kotlin.String,
+        @Parameter(
+            description = "The ID of the sending maas operator",
+            `in` = ParameterIn.HEADER,
+            required = true,
+        ) @RequestHeader(value = "maas-id", required = true) maasId: kotlin.String,
+        @Parameter(
+            description = "The ID of the maas operator that has to receive this message",
+            `in` = ParameterIn.HEADER,
+        ) @RequestHeader(value = "addressed-to", required = false) addressedTo: kotlin.String?,
+        @Parameter(description = "") @Valid @RequestBody(required = false) supportRequest: SupportRequest?,
+    ): ResponseEntity<SupportStatus> =
+        ResponseEntity(service.supportPost(acceptLanguage, api, apiVersion, maasId, addressedTo, supportRequest), HttpStatus.valueOf(200))
 }

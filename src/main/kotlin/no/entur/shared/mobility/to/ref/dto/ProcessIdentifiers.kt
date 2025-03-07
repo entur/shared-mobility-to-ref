@@ -14,18 +14,18 @@ import io.swagger.v3.oas.annotations.media.Schema
  * @param general
  */
 data class ProcessIdentifiers(
-    @Schema(example = "null", required = true)
-    @get:JsonProperty("operatorInformation", required = true) val operatorInformation: List<String> = emptyList(),
-    @Schema(example = "null", required = true)
-    @get:JsonProperty("planning", required = true) val planning: List<String> = emptyList(),
-    @Schema(example = "null", required = true)
-    @get:JsonProperty("booking", required = true) val booking: List<String> = emptyList(),
-    @Schema(example = "null", required = true)
-    @get:JsonProperty("tripExecution", required = true) val tripExecution: List<String> = emptyList(),
-    @Schema(example = "null", required = true)
-    @get:JsonProperty("support", required = true) val support: List<String> = emptyList(),
-    @Schema(example = "null", required = true)
-    @get:JsonProperty("payment", required = true) val payment: List<String> = emptyList(),
-    @Schema(example = "null", required = true)
-    @get:JsonProperty("general", required = true) val general: List<String> = emptyList(),
+    @Schema(example = "null", required = true, description = "")
+    @get:JsonProperty("operatorInformation", required = true) val operatorInformation: kotlin.collections.List<kotlin.String>,
+    @Schema(example = "null", required = true, description = "")
+    @get:JsonProperty("planning", required = true) val planning: kotlin.collections.List<kotlin.String>,
+    @Schema(example = "null", required = true, description = "")
+    @get:JsonProperty("booking", required = true) val booking: kotlin.collections.List<kotlin.String>,
+    @Schema(example = "null", required = true, description = "")
+    @get:JsonProperty("tripExecution", required = true) val tripExecution: kotlin.collections.List<kotlin.String>,
+    @Schema(example = "null", required = true, description = "")
+    @get:JsonProperty("support", required = true) val support: kotlin.collections.List<kotlin.String>,
+    @Schema(example = "null", required = true, description = "")
+    @get:JsonProperty("payment", required = true) val payment: kotlin.collections.List<kotlin.String>,
+    @Schema(example = "null", required = true, description = "")
+    @get:JsonProperty("general", required = true) val general: kotlin.collections.List<kotlin.String>,
 )

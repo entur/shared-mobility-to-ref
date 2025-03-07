@@ -1,6 +1,7 @@
 package no.entur.shared.mobility.to.ref.controller
 
 import no.entur.shared.mobility.to.ref.Application
+import no.entur.shared.mobility.to.ref.controller.OperatorInformationController
 import no.entur.shared.mobility.to.ref.service.TransportOperator
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -10,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest
 @SpringBootTest(classes = [Application::class], webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class OperatorControllerTest {
     @Autowired
-    private lateinit var operatorController: OperatorController
+    private lateinit var operatorController: OperatorInformationController
 
     @Test
     fun operatorAlertsGet() {

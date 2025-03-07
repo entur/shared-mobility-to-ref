@@ -1,10 +1,13 @@
 package no.entur.shared.mobility.to.ref.dto
 
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonValue
 import io.swagger.v3.oas.annotations.media.Schema
 import jakarta.validation.Valid
 import jakarta.validation.constraints.DecimalMin
 import jakarta.validation.constraints.Min
-import java.time.OffsetDateTime
+import no.entur.shared.mobility.to.ref.dto.Place
 
 /**
  * the current status of support
@@ -22,66 +25,99 @@ import java.time.OffsetDateTime
  * @param urls urls to clarify the support request e.g. pictures showing damage
  */
 data class SupportStatus(
-    @Schema(example = "PROCESSING")
-    val status: Status? = null,
+    @Schema(example = "PROCESSING", description = "")
+    @get:JsonProperty("status") val status: SupportStatus.Status? = null,
     @Schema(example = "9", description = "time in minutes to expected resolution of support request")
-    val timeToResolution: Int? = null,
+    @get:JsonProperty("timeToResolution") val timeToResolution: kotlin.Int? = null,
     @get:Min(0)
     @Schema(example = "null", description = "the sequence number of status of the support issue")
-    val order: Int? = null,
+    @get:JsonProperty("order") val order: kotlin.Int? = null,
     @Schema(example = "null", description = "free text to send to the end user.")
-    val comment: String? = null,
+    @get:JsonProperty("comment") val comment: kotlin.String? = null,
     @Schema(example = "null", description = "the booking id")
-    val id: String? = null,
-    @Schema(example = "null")
-    val supportType: SupportType? = null,
+    @get:JsonProperty("id") val id: kotlin.String? = null,
+    @Schema(example = "null", description = "")
+    @get:JsonProperty("supportType") val supportType: SupportStatus.SupportType? = null,
     @field:Valid
-    @Schema(example = "null")
-    val location: Place? = null,
-    @Schema(example = "null")
-    val time: OffsetDateTime? = null,
+    @Schema(example = "null", description = "")
+    @get:JsonProperty("location") val location: Place? = null,
+    @Schema(example = "null", description = "")
+    @get:JsonProperty("time") val time: java.time.OffsetDateTime? = null,
     @Schema(example = "null", description = "the priority of the support request.")
-    val priority: Priority? = null,
-    @Schema(
-        example = "null",
-        description = "contact information of the end user in case of direct response requests, like phone number",
-    )
-    val contactInformationEndUser: String? = null,
+    @get:JsonProperty("priority") val priority: SupportStatus.Priority? = null,
+    @Schema(example = "null", description = "contact information of the end user in case of direct response requests, like phone number")
+    @get:JsonProperty("contactInformationEndUser") val contactInformationEndUser: kotlin.String? = null,
     @get:DecimalMin("0")
     @Schema(example = "null", description = "time to respond in minutes.")
-    val requestedResponseTime: Double? = null,
+    @get:JsonProperty("requestedResponseTime") val requestedResponseTime: kotlin.Double? = null,
     @Schema(example = "null", description = "urls to clarify the support request e.g. pictures showing damage")
-    val urls: List<String>? = null,
+    @get:JsonProperty("urls") val urls: kotlin.collections.List<kotlin.String>? = null,
 ) {
-    enum class Status {
-        PROCESSING,
-        UPDATE_REQUESTED,
-        RESOLVED,
-        CANCELLED,
+    /**
+     *
+     * Values: PROCESSING,UPDATE_REQUESTED,RESOLVED,CANCELLED
+     */
+    enum class Status(
+        @get:JsonValue val value: kotlin.String,
+    ) {
+        PROCESSING("PROCESSING"),
+        UPDATE_REQUESTED("UPDATE_REQUESTED"),
+        RESOLVED("RESOLVED"),
+        CANCELLED("CANCELLED"),
+        ;
+
+        companion object {
+            @JvmStatic
+            @JsonCreator
+            fun forValue(value: kotlin.String): Status = values().first { it -> it.value == value }
+        }
     }
 
-    enum class SupportType {
-        BROKEN_DOWN,
-        NOT_AT_LOCATION,
-        MISSING_AFTER_PAUSE,
-        NOT_CLEAN,
-        NOT_AVAILABLE,
-        UNABLE_TO_OPEN,
-        UNABLE_TO_CLOSE,
-        API_TECHNICAL,
-        API_FUNCTIONAL,
-        ACCIDENT,
-        OTHER,
+    /**
+     *
+     * Values: BROKEN_DOWN,NOT_AT_LOCATION,MISSING_AFTER_PAUSE,NOT_CLEAN,NOT_AVAILABLE,UNABLE_TO_OPEN,UNABLE_TO_CLOSE,API_TECHNICAL,API_FUNCTIONAL,ACCIDENT,OTHER
+     */
+    enum class SupportType(
+        @get:JsonValue val value: kotlin.String,
+    ) {
+        BROKEN_DOWN("BROKEN_DOWN"),
+        NOT_AT_LOCATION("NOT_AT_LOCATION"),
+        MISSING_AFTER_PAUSE("MISSING_AFTER_PAUSE"),
+        NOT_CLEAN("NOT_CLEAN"),
+        NOT_AVAILABLE("NOT_AVAILABLE"),
+        UNABLE_TO_OPEN("UNABLE_TO_OPEN"),
+        UNABLE_TO_CLOSE("UNABLE_TO_CLOSE"),
+        API_TECHNICAL("API_TECHNICAL"),
+        API_FUNCTIONAL("API_FUNCTIONAL"),
+        ACCIDENT("ACCIDENT"),
+        OTHER("OTHER"),
+        ;
+
+        companion object {
+            @JvmStatic
+            @JsonCreator
+            fun forValue(value: kotlin.String): SupportType = values().first { it -> it.value == value }
+        }
     }
 
     /**
      * the priority of the support request.
+     * Values: ERROR_CANNOT_CONTINUE,ERROR_CAN_CONTINUE,DISTURBING_ISSUE,QUESTION,OTHER
      */
-    enum class Priority {
-        ERROR_CANNOT_CONTINUE,
-        ERROR_CAN_CONTINUE,
-        DISTURBING_ISSUE,
-        QUESTION,
-        OTHER,
+    enum class Priority(
+        @get:JsonValue val value: kotlin.String,
+    ) {
+        ERROR_CANNOT_CONTINUE("ERROR_CANNOT_CONTINUE"),
+        ERROR_CAN_CONTINUE("ERROR_CAN_CONTINUE"),
+        DISTURBING_ISSUE("DISTURBING_ISSUE"),
+        QUESTION("QUESTION"),
+        OTHER("OTHER"),
+        ;
+
+        companion object {
+            @JvmStatic
+            @JsonCreator
+            fun forValue(value: kotlin.String): Priority = values().first { it -> it.value == value }
+        }
     }
 }

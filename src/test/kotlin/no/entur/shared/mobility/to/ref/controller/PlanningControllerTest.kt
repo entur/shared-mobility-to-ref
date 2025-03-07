@@ -1,6 +1,9 @@
 package no.entur.shared.mobility.to.ref.controller
 
 import no.entur.shared.mobility.to.ref.Application
+import no.entur.shared.mobility.to.ref.controller.PlanningController
+import no.entur.shared.mobility.to.ref.data.place
+import no.entur.shared.mobility.to.ref.dto.OneStopBookingRequest
 import no.entur.shared.mobility.to.ref.service.TransportOperator
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -10,6 +13,18 @@ import org.springframework.boot.test.context.SpringBootTest
 class PlanningControllerTest {
     @Autowired
     private lateinit var planningController: PlanningController
+
+    @Test
+    fun bookingsOneStopPost() {
+        planningController.bookingsOneStopPost(
+            acceptLanguage = "NOB",
+            api = "TOMP",
+            apiVersion = "1.5.0",
+            maasId = "entur:maas:shared-mobility",
+            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
+            oneStopBookingRequest = OneStopBookingRequest(from = place),
+        )
+    }
 
     @Test
     fun planningInquiriesPost() {

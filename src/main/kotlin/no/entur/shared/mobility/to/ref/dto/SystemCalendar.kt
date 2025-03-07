@@ -11,10 +11,8 @@ import jakarta.validation.constraints.Min
  * @param startDay Starting day for the system operations (1-31)
  * @param endMonth Ending month for the system operations (1-12)
  * @param endDay Ending day for the system operations (1-31)
- * @param stationId If this parameter is present, it means that start and end parameters correspond to the opening and closing days of the
- * station. (GET /operator/stations)
- * @param regionId If this parameter is present, it means that start and end parameters correspond to the opening and closing days for the
- * region. (GET /operator/regions)
+ * @param stationId If this parameter is present, it means that start and end prameters correspond to the opening and closing days of the station. (GET /operator/stations)
+ * @param regionId If this parameter is present, it means that start and end prameters correspond to the opening and closing days for the region. (GET /operator/regions)
  * @param startYear Starting year for the system operations
  * @param endYear Ending year for the system operations
  */
@@ -22,33 +20,31 @@ data class SystemCalendar(
     @get:Min(1)
     @get:Max(12)
     @Schema(example = "1", required = true, description = "Starting month for the system operations (1-12)")
-    @get:JsonProperty("startMonth", required = true) val startMonth: Int,
+    @get:JsonProperty("startMonth", required = true) val startMonth: kotlin.Int,
     @get:Min(1)
     @get:Max(31)
     @Schema(example = "1", required = true, description = "Starting day for the system operations (1-31)")
-    @get:JsonProperty("startDay", required = true) val startDay: Int,
+    @get:JsonProperty("startDay", required = true) val startDay: kotlin.Int,
     @get:Min(1)
     @get:Max(12)
     @Schema(example = "12", required = true, description = "Ending month for the system operations (1-12)")
-    @get:JsonProperty("endMonth", required = true) val endMonth: Int,
+    @get:JsonProperty("endMonth", required = true) val endMonth: kotlin.Int,
     @get:Min(1)
     @get:Max(31)
     @Schema(example = "31", required = true, description = "Ending day for the system operations (1-31)")
-    @get:JsonProperty("endDay", required = true) val endDay: Int,
+    @get:JsonProperty("endDay", required = true) val endDay: kotlin.Int,
     @Schema(
         example = "null",
-        description = """If this parameter is present, it means that start and end parameters correspond to the opening and closing days of 
-            |the station. (GET /operator/stations)""",
+        description = "If this parameter is present, it means that start and end prameters correspond to the opening and closing days of the station. (GET /operator/stations)",
     )
-    val stationId: String? = null,
+    @get:JsonProperty("stationId") val stationId: kotlin.String? = null,
     @Schema(
         example = "null",
-        description = """If this parameter is present, it means that start and end parameters correspond to the opening and closing days 
-            |for the region. (GET /operator/regions)""",
+        description = "If this parameter is present, it means that start and end prameters correspond to the opening and closing days for the region. (GET /operator/regions)",
     )
-    val regionId: String? = null,
+    @get:JsonProperty("regionId") val regionId: kotlin.String? = null,
     @Schema(example = "2019", description = "Starting year for the system operations")
-    val startYear: Int? = null,
+    @get:JsonProperty("startYear") val startYear: kotlin.Int? = null,
     @Schema(example = "2099", description = "Ending year for the system operations")
-    val endYear: Int? = null,
+    @get:JsonProperty("endYear") val endYear: kotlin.Int? = null,
 )
