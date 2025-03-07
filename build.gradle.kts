@@ -50,10 +50,10 @@ tasks.withType<KotlinCompile> {
 
 val generatedSources = file("$projectDir/src/main/kotlin")
 val swaggerSpecLocation = "$projectDir/src/main/resources/swagger-spec"
-val modelPackageTomp150 = "no.entur.shared.mobility.to.ref.dto"
-val apiPackageTomp150 = "no.entur.shared.mobility.to.ref.controller"
-val modelPathTomp150 = file("$projectDir/src/main/kotlin/no/entur/shared/mobility/to/ref/dto")
-val apiPathTomp150 = file("$projectDir/src/main/kotlin/no/entur/shared/mobility/to/ref/controller")
+val modelPackageTomp150 = "no.entur.shared.mobility.to.ref.tomp150.dto"
+val apiPackageTomp150 = "no.entur.shared.mobility.to.ref.tomp150.controller"
+val modelPathTomp150 = file("$projectDir/src/main/kotlin/no/entur/shared/mobility/to/ref/tomp150/dto")
+val apiPathTomp150 = file("$projectDir/src/main/kotlin/no/entur/shared/mobility/to/ref/tomp150/controller")
 ktlint {
     version = "1.5.0"
     debug = true
