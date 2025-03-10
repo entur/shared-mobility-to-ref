@@ -19,7 +19,7 @@ import no.entur.shared.mobility.to.ref.tomp150.dto.LegState
 import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
 
-@Service
+@Service("TripExecutionServiceTomp150")
 class TripExecutionServiceImpl : TripExecutionService {
     override fun legsIdAncillariesCategoryNumberDelete(
         acceptLanguage: String,

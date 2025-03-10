@@ -6,7 +6,7 @@ import no.entur.shared.mobility.to.ref.tomp150.dto.SupportStatus
 import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
 
-@Service
+@Service("SupportServiceTomp150")
 class SupportServiceImpl : SupportService {
     override fun supportIdStatusGet(
         acceptLanguage: String,

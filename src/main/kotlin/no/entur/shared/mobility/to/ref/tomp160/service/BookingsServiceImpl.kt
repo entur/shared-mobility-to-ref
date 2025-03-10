@@ -1,0 +1,79 @@
+package no.entur.shared.mobility.to.ref.tomp160.service
+
+import no.entur.shared.mobility.to.ref.config.TransportOperator.ALL_IMPLEMENTING_OPERATOR
+import no.entur.shared.mobility.to.ref.config.TransportOperator.BIKE_OPERATOR
+import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR
+import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_2
+import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_3
+import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE
+import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_NO_DEPOSIT
+import no.entur.shared.mobility.to.ref.tomp160.controller.BookingService
+import no.entur.shared.mobility.to.ref.tomp160.data.booking
+import no.entur.shared.mobility.to.ref.tomp160.data.bookingHigherDepositAmountThanTotalAmount
+import no.entur.shared.mobility.to.ref.tomp160.data.bookingWithoutDeposit
+import no.entur.shared.mobility.to.ref.tomp160.data.finalFare
+import no.entur.shared.mobility.to.ref.tomp160.dto.Booking
+import no.entur.shared.mobility.to.ref.tomp160.dto.BookingOperation
+import no.entur.shared.mobility.to.ref.tomp160.dto.BookingRequest
+import org.springframework.stereotype.Service
+
+@Service("BookingsServiceTomp160")
+class BookingsServiceImpl : BookingService {
+    override fun bookingsIdEventsPost(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        id: String,
+        addressedTo: String?,
+        bookingOperation: BookingOperation?,
+    ): Booking {
+        val booking: Booking =
+            when (addressedTo) {
+                SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3 -> throw NotImplementedError()
+                SCOOTER_OPERATOR_NO_DEPOSIT -> throw NotImplementedError()
+                SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> throw NotImplementedError()
+                BIKE_OPERATOR -> throw NotImplementedError()
+                ALL_IMPLEMENTING_OPERATOR -> booking
+                else -> throw NotImplementedError()
+            }
+        return booking.copy(id = id)
+    }
+
+    override fun bookingsIdGet(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        id: String,
+        addressedTo: String?,
+    ): Booking {
+        val booking: Booking =
+            when (addressedTo) {
+                SCOOTER_OPERATOR_NO_DEPOSIT -> bookingWithoutDeposit
+                SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> bookingHigherDepositAmountThanTotalAmount
+                SCOOTER_OPERATOR -> booking.copy(pricing = finalFare(50.00F))
+                SCOOTER_OPERATOR_2 -> booking.copy(pricing = finalFare(5.00F))
+                SCOOTER_OPERATOR_3 -> booking.copy(pricing = finalFare(15.00F))
+                BIKE_OPERATOR -> booking
+                ALL_IMPLEMENTING_OPERATOR -> booking
+                else -> throw NotImplementedError()
+            }
+        return booking.copy(id = id)
+    }
+
+    override fun bookingsPost(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        bookingRequest: BookingRequest,
+        addressedTo: String?,
+    ): Booking =
+        when (addressedTo) {
+            SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3 -> throw NotImplementedError()
+            BIKE_OPERATOR -> throw NotImplementedError()
+            ALL_IMPLEMENTING_OPERATOR -> booking
+            else -> throw NotImplementedError()
+        }
+}

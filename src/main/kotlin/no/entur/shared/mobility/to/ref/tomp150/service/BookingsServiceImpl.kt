@@ -17,7 +17,7 @@ import no.entur.shared.mobility.to.ref.tomp150.dto.BookingOperation
 import no.entur.shared.mobility.to.ref.tomp150.dto.BookingRequest
 import org.springframework.stereotype.Service
 
-@Service
+@Service("BookingsServiceTomp150")
 class BookingsServiceImpl : BookingService {
     override fun bookingsIdEventsPost(
         acceptLanguage: String,

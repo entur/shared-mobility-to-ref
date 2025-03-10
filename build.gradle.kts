@@ -54,6 +54,10 @@ val modelPackageTomp150 = "no.entur.shared.mobility.to.ref.tomp150.dto"
 val apiPackageTomp150 = "no.entur.shared.mobility.to.ref.tomp150.controller"
 val modelPathTomp150 = file("$projectDir/src/main/kotlin/no/entur/shared/mobility/to/ref/tomp150/dto")
 val apiPathTomp150 = file("$projectDir/src/main/kotlin/no/entur/shared/mobility/to/ref/tomp150/controller")
+val modelPackageTomp160 = "no.entur.shared.mobility.to.ref.tomp160.dto"
+val apiPackageTomp160 = "no.entur.shared.mobility.to.ref.tomp160.controller"
+val modelPathTomp160 = file("$projectDir/src/main/kotlin/no/entur/shared/mobility/to/ref/tomp160/dto")
+val apiPathTomp160 = file("$projectDir/src/main/kotlin/no/entur/shared/mobility/to/ref/tomp160/controller")
 ktlint {
     version = "1.5.0"
     debug = true
@@ -65,9 +69,25 @@ ktlint {
         exclude {
             it.file.path.contains(apiPathTomp150.path)
         }
+        exclude {
+            it.file.path.contains(modelPathTomp160.path)
+        }
+        exclude {
+            it.file.path.contains(apiPathTomp160.path)
+        }
     }
 }
 
+val configOptionsTomp =
+    mapOf(
+        "apiSuffix" to "",
+        "useSpringBoot3" to "true",
+        "useTags" to "true",
+        "beanQualifiers" to "true",
+        "serviceInterface" to "true",
+        "enumPropertyNaming" to "UPPERCASE",
+        "sourceFolder" to "",
+    )
 tasks.register<org.openapitools.generator.gradle.plugin.tasks.GenerateTask>("buildTomp150") {
     generatorName.set("kotlin-spring")
     outputDir.set("$generatedSources")
@@ -75,7 +95,6 @@ tasks.register<org.openapitools.generator.gradle.plugin.tasks.GenerateTask>("bui
     version.set("v1")
     modelPackage.set(modelPackageTomp150)
     apiPackage.set(apiPackageTomp150)
-    apiNameSuffix.set("BraController")
     globalProperties.set(
         mapOf(
             "apis" to "Booking,BookingOptional,General,OperatorInformation,Payment,Planning,Support,TripExecution",
@@ -85,18 +104,26 @@ tasks.register<org.openapitools.generator.gradle.plugin.tasks.GenerateTask>("bui
             "apiTests" to "false",
         ),
     )
+    configOptions.set(configOptionsTomp)
+}
 
-    configOptions.set(
+tasks.register<org.openapitools.generator.gradle.plugin.tasks.GenerateTask>("buildTomp160") {
+    generatorName.set("kotlin-spring")
+    outputDir.set("$generatedSources")
+    inputSpec.set("$swaggerSpecLocation/TOMP-API.1.6.yaml")
+    version.set("v1")
+    modelPackage.set(modelPackageTomp160)
+    apiPackage.set(apiPackageTomp160)
+    globalProperties.set(
         mapOf(
-            "apiSuffix" to "",
-            "useSpringBoot3" to "true",
-            "useTags" to "true",
-            "beanQualifiers" to "true",
-            "serviceInterface" to "true",
-            "enumPropertyNaming" to "UPPERCASE",
-            "sourceFolder" to "",
+            "apis" to "Booking,BookingOptional,General,OperatorInformation,Payment,Planning,Support,TripExecution,CustomerManagement",
+            "models" to "",
+            "modelDocs" to "false",
+            "modelTests" to "false",
+            "apiTests" to "false",
         ),
     )
+    configOptions.set(configOptionsTomp)
 }
 
 tasks.withType<Test> {
@@ -105,9 +132,11 @@ tasks.withType<Test> {
 
 tasks.named("compileKotlin") {
     dependsOn(":buildTomp150")
+    dependsOn(":buildTomp160")
 }
 tasks.named("runKtlintFormatOverMainSourceSet") {
     dependsOn(":buildTomp150")
+    dependsOn(":buildTomp160")
 }
 
 tasks.named("runKtlintCheckOverMainSourceSet") {

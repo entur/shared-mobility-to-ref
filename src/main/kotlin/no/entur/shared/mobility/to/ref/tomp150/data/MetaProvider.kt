@@ -13,7 +13,7 @@ import no.entur.shared.mobility.to.ref.tomp150.dto.ProcessIdentifiers
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 
-@Component
+@Component("tomp150MetaProvider")
 class MetaProvider(
     @Value("\${baseUrl}")
     val baseUrl: String,

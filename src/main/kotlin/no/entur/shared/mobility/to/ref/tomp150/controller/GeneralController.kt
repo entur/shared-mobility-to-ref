@@ -31,7 +31,7 @@ import kotlin.collections.Map
 
 @RestController("no.entur.shared.mobility.to.ref.tomp150.controller.GeneralController")
 @Validated
-@RequestMapping("\${api.base-path:/bike}")
+@RequestMapping("\${api.base-path:}")
 class GeneralController(@Autowired(required = true) val service: GeneralService) {
 
     @Operation(

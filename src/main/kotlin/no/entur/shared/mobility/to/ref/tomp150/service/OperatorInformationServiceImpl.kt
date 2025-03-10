@@ -20,11 +20,12 @@ import no.entur.shared.mobility.to.ref.tomp150.dto.SystemHours
 import no.entur.shared.mobility.to.ref.tomp150.dto.SystemInformation
 import no.entur.shared.mobility.to.ref.tomp150.dto.SystemPricingPlan
 import no.entur.shared.mobility.to.ref.tomp150.dto.SystemRegion
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Service
 
-@Service
+@Service("OperatorInformationServiceTomp150")
 class OperatorInformationServiceImpl(
-    private val metaProvider: MetaProvider,
+    @Qualifier("tomp150MetaProvider") private val metaProvider: MetaProvider,
 ) : OperatorInformationService {
     override fun operatorAlertsGet(
         acceptLanguage: String,
