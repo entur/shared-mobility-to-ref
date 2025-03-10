@@ -53,7 +53,7 @@ security:
   - OpenId: [ ]
 
 servers:
-  - url: https://tomp.dat.nl/bike/
+  - url: https://tomp.dat.nl/
 
 paths:
   /plannings:

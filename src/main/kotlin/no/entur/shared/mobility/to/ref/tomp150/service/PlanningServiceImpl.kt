@@ -23,7 +23,7 @@ import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
 import java.util.UUID
 
-@Service
+@Service("PlanningServiceTomp150")
 class PlanningServiceImpl : PlanningService {
     override fun planningInquiriesPost(
         acceptLanguage: String,
