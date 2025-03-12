@@ -86,7 +86,7 @@ val fare
                 ),
         )
 
-fun finalFare(amount: Float = 50.00F): Fare =
+fun finalFare(amount: Float = 25.00F): Fare =
     Fare(
         estimated = false,
         parts =
