@@ -8,7 +8,7 @@ import no.entur.shared.mobility.to.ref.tomp150.dto.JournalState
 import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
 
-@Service
+@Service("PaymentServiceTomp150")
 class PaymentServiceImpl : PaymentService {
     override fun paymentIdClaimExtraCostsPost(
         acceptLanguage: String,

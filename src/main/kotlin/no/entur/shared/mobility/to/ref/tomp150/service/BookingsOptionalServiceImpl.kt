@@ -14,7 +14,7 @@ import no.entur.shared.mobility.to.ref.tomp150.dto.BookingState
 import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
 
-@Service
+@Service("BookingsOptionalServiceTomp150")
 class BookingsOptionalServiceImpl : BookingOptionalService {
     override fun bookingsGet(
         acceptLanguage: String,

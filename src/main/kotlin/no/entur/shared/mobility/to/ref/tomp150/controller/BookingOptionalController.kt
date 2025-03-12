@@ -32,7 +32,7 @@ import kotlin.collections.Map
 
 @RestController("no.entur.shared.mobility.to.ref.tomp150.controller.BookingOptionalController")
 @Validated
-@RequestMapping("\${api.base-path:/bike}")
+@RequestMapping("\${api.base-path:}")
 class BookingOptionalController(@Autowired(required = true) val service: BookingOptionalService) {
 
     @Operation(

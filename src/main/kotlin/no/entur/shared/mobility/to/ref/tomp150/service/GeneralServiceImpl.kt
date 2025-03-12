@@ -4,7 +4,7 @@ import no.entur.shared.mobility.to.ref.tomp150.controller.GeneralService
 import no.entur.shared.mobility.to.ref.tomp150.dto.Notification
 import org.springframework.stereotype.Service
 
-@Service
+@Service("GeneralServiceTomp150")
 class GeneralServiceImpl : GeneralService {
     override fun bookingsIdNotificationsGet(
         acceptLanguage: String,
