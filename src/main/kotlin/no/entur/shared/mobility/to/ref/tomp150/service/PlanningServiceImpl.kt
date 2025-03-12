@@ -120,7 +120,7 @@ class PlanningServiceImpl : PlanningService {
             when (addressedTo) {
                 SCOOTER_OPERATOR_NO_DEPOSIT -> bookingWithoutDeposit
                 SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> bookingHigherDepositAmountThanTotalAmount
-                SCOOTER_OPERATOR -> booking.copy(pricing = finalFare(50.00F))
+                SCOOTER_OPERATOR -> booking.copy(pricing = finalFare(25.00F))
                 SCOOTER_OPERATOR_2 -> booking.copy(pricing = finalFare(5.00F))
                 SCOOTER_OPERATOR_3 -> booking.copy(pricing = finalFare(15.00F))
                 BIKE_OPERATOR -> booking
