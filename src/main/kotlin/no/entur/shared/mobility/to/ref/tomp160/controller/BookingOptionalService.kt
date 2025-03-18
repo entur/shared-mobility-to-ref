@@ -2,7 +2,6 @@ package no.entur.shared.mobility.to.ref.tomp160.controller
 
 import no.entur.shared.mobility.to.ref.tomp160.dto.Booking
 import no.entur.shared.mobility.to.ref.tomp160.dto.BookingState
-import no.entur.shared.mobility.to.ref.tomp160.dto.Error
 
 interface BookingOptionalService {
 
@@ -26,7 +25,19 @@ interface BookingOptionalService {
      *         or Although the HTTP standard specifies \&quot;unauthorized\&quot;, semantically this response means \&quot;unauthenticated\&quot;. That is, the client must authenticate itself to get the requested response. (status code 401)
      * @see BookingOptional#bookingsGet
      */
-    fun bookingsGet(acceptLanguage: kotlin.String, api: kotlin.String, apiVersion: kotlin.String, maasId: kotlin.String, addressedTo: kotlin.String?, state: BookingState?, minTime: java.time.OffsetDateTime?, maxTime: java.time.OffsetDateTime?, minPrice: kotlin.Float?, maxPrice: kotlin.Float?, containsAssetType: kotlin.String?): List<Booking>
+    fun bookingsGet(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        addressedTo: String?,
+        state: BookingState?,
+        minTime: java.time.OffsetDateTime?,
+        maxTime: java.time.OffsetDateTime?,
+        minPrice: Float?,
+        maxPrice: Float?,
+        containsAssetType: String?
+    ): List<Booking>
 
     /**
      * PUT /bookings/{id}
@@ -48,7 +59,15 @@ interface BookingOptionalService {
      *         or The requested resource is no longer available. This is permanent. (status code 410)
      * @see BookingOptional#bookingsIdPut
      */
-    fun bookingsIdPut(acceptLanguage: kotlin.String, api: kotlin.String, apiVersion: kotlin.String, maasId: kotlin.String, id: kotlin.String, booking: Booking, addressedTo: kotlin.String?): Booking
+    fun bookingsIdPut(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        id: String,
+        booking: Booking,
+        addressedTo: String?
+    ): Booking
 
     /**
      * DELETE /bookings/{id}/subscription
@@ -69,7 +88,14 @@ interface BookingOptionalService {
      *         or Unexpected error (status code 200)
      * @see BookingOptional#bookingsIdSubscriptionDelete
      */
-    fun bookingsIdSubscriptionDelete(acceptLanguage: kotlin.String, api: kotlin.String, apiVersion: kotlin.String, maasId: kotlin.String, id: kotlin.String, addressedTo: kotlin.String?): Unit
+    fun bookingsIdSubscriptionDelete(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        id: String,
+        addressedTo: String?
+    ): Unit
 
     /**
      * POST /bookings/{id}/subscription
@@ -89,5 +115,12 @@ interface BookingOptionalService {
      *         or The requested resource is no longer available. This is permanent. (status code 410)
      * @see BookingOptional#bookingsIdSubscriptionPost
      */
-    fun bookingsIdSubscriptionPost(acceptLanguage: kotlin.String, api: kotlin.String, apiVersion: kotlin.String, maasId: kotlin.String, id: kotlin.String, addressedTo: kotlin.String?): Unit
+    fun bookingsIdSubscriptionPost(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        id: String,
+        addressedTo: String?
+    ): Unit
 }

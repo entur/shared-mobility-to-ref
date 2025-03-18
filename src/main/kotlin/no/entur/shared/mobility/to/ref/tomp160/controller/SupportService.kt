@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp160.controller
 
-import no.entur.shared.mobility.to.ref.tomp160.dto.Error
 import no.entur.shared.mobility.to.ref.tomp160.dto.SupportRequest
 import no.entur.shared.mobility.to.ref.tomp160.dto.SupportStatus
 
@@ -23,7 +22,14 @@ interface SupportService {
      *         or The requested resources does not exist or the requester is not authorized to see it or know it exists. (status code 404)
      * @see Support#supportIdStatusGet
      */
-    fun supportIdStatusGet(acceptLanguage: kotlin.String, api: kotlin.String, apiVersion: kotlin.String, maasId: kotlin.String, id: kotlin.String, addressedTo: kotlin.String?): List<SupportStatus>
+    fun supportIdStatusGet(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        id: String,
+        addressedTo: String?
+    ): List<SupportStatus>
 
     /**
      * POST /support/
@@ -42,5 +48,12 @@ interface SupportService {
      *         or The requested resources does not exist or the requester is not authorized to see it or know it exists. (status code 404)
      * @see Support#supportPost
      */
-    fun supportPost(acceptLanguage: kotlin.String, api: kotlin.String, apiVersion: kotlin.String, maasId: kotlin.String, addressedTo: kotlin.String?, supportRequest: SupportRequest?): SupportStatus
+    fun supportPost(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        addressedTo: String?,
+        supportRequest: SupportRequest?
+    ): SupportStatus
 }

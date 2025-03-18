@@ -2,7 +2,6 @@ package no.entur.shared.mobility.to.ref.tomp160.controller
 
 import no.entur.shared.mobility.to.ref.tomp160.dto.AssetType
 import no.entur.shared.mobility.to.ref.tomp160.dto.EndpointImplementation
-import no.entur.shared.mobility.to.ref.tomp160.dto.Error
 import no.entur.shared.mobility.to.ref.tomp160.dto.StationInformation
 import no.entur.shared.mobility.to.ref.tomp160.dto.SystemAlert
 import no.entur.shared.mobility.to.ref.tomp160.dto.SystemCalendar
@@ -10,6 +9,7 @@ import no.entur.shared.mobility.to.ref.tomp160.dto.SystemHours
 import no.entur.shared.mobility.to.ref.tomp160.dto.SystemInformation
 import no.entur.shared.mobility.to.ref.tomp160.dto.SystemPricingPlan
 import no.entur.shared.mobility.to.ref.tomp160.dto.SystemRegion
+import java.math.BigDecimal
 
 interface OperatorInformationService {
 
@@ -31,7 +31,17 @@ interface OperatorInformationService {
      *         or Although the HTTP standard specifies \&quot;unauthorized\&quot;, semantically this response means \&quot;unauthenticated\&quot;. That is, the client must authenticate itself to get the requested response. (status code 401)
      * @see OperatorInformation#operatorAlertsGet
      */
-    fun operatorAlertsGet(acceptLanguage: kotlin.String, api: kotlin.String, apiVersion: kotlin.String, maasId: kotlin.String, addressedTo: kotlin.String?, offset: kotlin.Int, limit: kotlin.Int?, regionId: kotlin.String?, stationId: kotlin.String?): List<SystemAlert>
+    fun operatorAlertsGet(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        addressedTo: String?,
+        offset: Int,
+        limit: Int?,
+        regionId: String?,
+        stationId: String?
+    ): List<SystemAlert>
 
     /**
      * GET /operator/available-assets
@@ -54,7 +64,18 @@ interface OperatorInformationService {
      *         or The requested resources does not exist or the requester is not authorized to see it or know it exists. (status code 404)
      * @see OperatorInformation#operatorAvailableAssetsGet
      */
-    fun operatorAvailableAssetsGet(acceptLanguage: kotlin.String, api: kotlin.String, apiVersion: kotlin.String, maasId: kotlin.String, addressedTo: kotlin.String?, offset: kotlin.Int, limit: kotlin.Int?, regionId: kotlin.String?, stationId: kotlin.String?, boundingbox: kotlin.collections.List<java.math.BigDecimal>?): List<AssetType>
+    fun operatorAvailableAssetsGet(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        addressedTo: String?,
+        offset: Int,
+        limit: Int?,
+        regionId: String?,
+        stationId: String?,
+        boundingbox: List<BigDecimal>?
+    ): List<AssetType>
 
     /**
      * GET /operator/information : describes the system
@@ -70,7 +91,13 @@ interface OperatorInformationService {
      *         or Although the HTTP standard specifies \&quot;unauthorized\&quot;, semantically this response means \&quot;unauthenticated\&quot;. That is, the client must authenticate itself to get the requested response. (status code 401)
      * @see OperatorInformation#operatorInformationGet
      */
-    fun operatorInformationGet(acceptLanguage: kotlin.String, api: kotlin.String, apiVersion: kotlin.String, maasId: kotlin.String, addressedTo: kotlin.String?): SystemInformation
+    fun operatorInformationGet(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        addressedTo: String?
+    ): SystemInformation
 
     /**
      * GET /operator/meta : describes the running implementations
@@ -82,7 +109,7 @@ interface OperatorInformationService {
      * @return successful operation (status code 200)
      * @see OperatorInformation#operatorMetaGet
      */
-    fun operatorMetaGet(acceptLanguage: kotlin.String, maasId: kotlin.String, addressedTo: kotlin.String?): List<EndpointImplementation>
+    fun operatorMetaGet(acceptLanguage: String, maasId: String, addressedTo: String?): List<EndpointImplementation>
 
     /**
      * GET /operator/operating-calendar : describes the operating calendar for a system. An array of year objects defined as follows (if start/end year are omitted, then assume the start and end months do not change from year to year). [from GFBS]
@@ -99,7 +126,15 @@ interface OperatorInformationService {
      *         or Although the HTTP standard specifies \&quot;unauthorized\&quot;, semantically this response means \&quot;unauthenticated\&quot;. That is, the client must authenticate itself to get the requested response. (status code 401)
      * @see OperatorInformation#operatorOperatingCalendarGet
      */
-    fun operatorOperatingCalendarGet(acceptLanguage: kotlin.String, api: kotlin.String, apiVersion: kotlin.String, maasId: kotlin.String, addressedTo: kotlin.String?, regionId: kotlin.String?, stationId: kotlin.String?): List<SystemCalendar>
+    fun operatorOperatingCalendarGet(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        addressedTo: String?,
+        regionId: String?,
+        stationId: String?
+    ): List<SystemCalendar>
 
     /**
      * GET /operator/operating-hours : describes the system hours of operation
@@ -117,7 +152,15 @@ interface OperatorInformationService {
      *         or Although the HTTP standard specifies \&quot;unauthorized\&quot;, semantically this response means \&quot;unauthenticated\&quot;. That is, the client must authenticate itself to get the requested response. (status code 401)
      * @see OperatorInformation#operatorOperatingHoursGet
      */
-    fun operatorOperatingHoursGet(acceptLanguage: kotlin.String, api: kotlin.String, apiVersion: kotlin.String, maasId: kotlin.String, addressedTo: kotlin.String?, regionId: kotlin.String?, stationId: kotlin.String?): List<SystemHours>
+    fun operatorOperatingHoursGet(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        addressedTo: String?,
+        regionId: String?,
+        stationId: String?
+    ): List<SystemHours>
 
     /**
      * GET /operator/ping : Describes the status of the Transport Operator - whether the APIs are running or not
@@ -129,7 +172,7 @@ interface OperatorInformationService {
      *         or not every endpoint functions properly (status code 500)
      * @see OperatorInformation#operatorPingGet
      */
-    fun operatorPingGet(acceptLanguage: kotlin.String): Unit
+    fun operatorPingGet(acceptLanguage: String): Unit
 
     /**
      * GET /operator/pricing-plans : gives pricing information
@@ -148,7 +191,15 @@ interface OperatorInformationService {
      *         or The client does not have access rights to the content, i.e. they are unauthorized, so server is rejecting to give proper response. Unlike 401, the client&#39;s identity is known to the server. (status code 403)
      * @see OperatorInformation#operatorPricingPlansGet
      */
-    fun operatorPricingPlansGet(acceptLanguage: kotlin.String, api: kotlin.String, apiVersion: kotlin.String, maasId: kotlin.String, addressedTo: kotlin.String?, regionId: kotlin.String?, stationId: kotlin.String?): List<SystemPricingPlan>
+    fun operatorPricingPlansGet(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        addressedTo: String?,
+        regionId: String?,
+        stationId: String?
+    ): List<SystemPricingPlan>
 
     /**
      * GET /operator/regions : describes regions for a system that is broken up by geographic or political region. It is defined as a separate feed to allow for additional region metadata (such as shape definitions). [from GBFS]
@@ -165,7 +216,15 @@ interface OperatorInformationService {
      *         or Although the HTTP standard specifies \&quot;unauthorized\&quot;, semantically this response means \&quot;unauthenticated\&quot;. That is, the client must authenticate itself to get the requested response. (status code 401)
      * @see OperatorInformation#operatorRegionsGet
      */
-    fun operatorRegionsGet(acceptLanguage: kotlin.String, api: kotlin.String, apiVersion: kotlin.String, maasId: kotlin.String, addressedTo: kotlin.String?, offset: kotlin.Int, limit: kotlin.Int?): List<SystemRegion>
+    fun operatorRegionsGet(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        addressedTo: String?,
+        offset: Int,
+        limit: Int?
+    ): List<SystemRegion>
 
     /**
      * GET /operator/stations : describes all available stations
@@ -187,5 +246,17 @@ interface OperatorInformationService {
      *         or Although the HTTP standard specifies \&quot;unauthorized\&quot;, semantically this response means \&quot;unauthenticated\&quot;. That is, the client must authenticate itself to get the requested response. (status code 401)
      * @see OperatorInformation#operatorStationsGet
      */
-    fun operatorStationsGet(acceptLanguage: kotlin.String, api: kotlin.String, apiVersion: kotlin.String, maasId: kotlin.String, addressedTo: kotlin.String?, offset: kotlin.Int, limit: kotlin.Int?, regionId: kotlin.String?, lon: kotlin.Float?, lat: kotlin.Float?, radius: kotlin.Float?): List<StationInformation>
+    fun operatorStationsGet(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        addressedTo: String?,
+        offset: Int,
+        limit: Int?,
+        regionId: String?,
+        lon: Float?,
+        lat: Float?,
+        radius: Float?
+    ): List<StationInformation>
 }

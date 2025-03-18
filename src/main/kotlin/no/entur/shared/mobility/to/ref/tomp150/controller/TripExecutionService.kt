@@ -2,7 +2,6 @@ package no.entur.shared.mobility.to.ref.tomp150.controller
 
 import no.entur.shared.mobility.to.ref.tomp150.dto.Asset
 import no.entur.shared.mobility.to.ref.tomp150.dto.ConfirmationRequest
-import no.entur.shared.mobility.to.ref.tomp150.dto.Error
 import no.entur.shared.mobility.to.ref.tomp150.dto.Leg
 import no.entur.shared.mobility.to.ref.tomp150.dto.LegEvent
 import no.entur.shared.mobility.to.ref.tomp150.dto.LegProgress
@@ -29,7 +28,16 @@ interface TripExecutionService {
      *         or The requested resources does not exist or the requester is not authorized to see it or know it exists. (status code 404)
      * @see TripExecution#legsIdAncillariesCategoryNumberDelete
      */
-    fun legsIdAncillariesCategoryNumberDelete(acceptLanguage: kotlin.String, api: kotlin.String, apiVersion: kotlin.String, maasId: kotlin.String, id: kotlin.String, category: kotlin.String, number: kotlin.String, addressedTo: kotlin.String?): Leg
+    fun legsIdAncillariesCategoryNumberDelete(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        id: String,
+        category: String,
+        number: String,
+        addressedTo: String?
+    ): Leg
 
     /**
      * POST /legs/{id}/ancillaries/{category}/{number}
@@ -51,7 +59,16 @@ interface TripExecutionService {
      *         or The requested resources does not exist or the requester is not authorized to see it or know it exists. (status code 404)
      * @see TripExecution#legsIdAncillariesCategoryNumberPost
      */
-    fun legsIdAncillariesCategoryNumberPost(acceptLanguage: kotlin.String, api: kotlin.String, apiVersion: kotlin.String, maasId: kotlin.String, id: kotlin.String, category: kotlin.String, number: kotlin.String, addressedTo: kotlin.String?): Leg
+    fun legsIdAncillariesCategoryNumberPost(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        id: String,
+        category: String,
+        number: String,
+        addressedTo: String?
+    ): Leg
 
     /**
      * GET /legs/{id}/available-assets
@@ -72,7 +89,16 @@ interface TripExecutionService {
      *         or The requested resources does not exist or the requester is not authorized to see it or know it exists. (status code 404)
      * @see TripExecution#legsIdAvailableAssetsGet
      */
-    fun legsIdAvailableAssetsGet(acceptLanguage: kotlin.String, api: kotlin.String, apiVersion: kotlin.String, maasId: kotlin.String, id: kotlin.String, addressedTo: kotlin.String?, offset: kotlin.Int, limit: kotlin.Int?): List<Asset>
+    fun legsIdAvailableAssetsGet(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        id: String,
+        addressedTo: String?,
+        offset: Int,
+        limit: Int?
+    ): List<Asset>
 
     /**
      * POST /legs/{id}/confirmation
@@ -88,7 +114,13 @@ interface TripExecutionService {
      *         or The requested resources does not exist or the requester is not authorized to see it or know it exists. (status code 404)
      * @see TripExecution#legsIdConfirmationPost
      */
-    fun legsIdConfirmationPost(acceptLanguage: kotlin.String, api: kotlin.String, apiVersion: kotlin.String, id: kotlin.String, confirmationRequest: ConfirmationRequest?): kotlin.Boolean
+    fun legsIdConfirmationPost(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        id: String,
+        confirmationRequest: ConfirmationRequest?
+    ): Boolean
 
     /**
      * POST /legs/{id}/events
@@ -110,7 +142,15 @@ interface TripExecutionService {
      *         or In case of temporary malfunctioning, this response can be send (e.g. bluetooth lock jammed). See also https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Retry-After (status code 503)
      * @see TripExecution#legsIdEventsPost
      */
-    fun legsIdEventsPost(acceptLanguage: kotlin.String, api: kotlin.String, apiVersion: kotlin.String, maasId: kotlin.String, id: kotlin.String, addressedTo: kotlin.String?, legEvent: LegEvent?): Leg
+    fun legsIdEventsPost(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        id: String,
+        addressedTo: String?,
+        legEvent: LegEvent?
+    ): Leg
 
     /**
      * GET /legs/{id}
@@ -128,7 +168,14 @@ interface TripExecutionService {
      *         or The requested resources does not exist or the requester is not authorized to see it or know it exists. (status code 404)
      * @see TripExecution#legsIdGet
      */
-    fun legsIdGet(acceptLanguage: kotlin.String, api: kotlin.String, apiVersion: kotlin.String, maasId: kotlin.String, id: kotlin.String, addressedTo: kotlin.String?): Leg
+    fun legsIdGet(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        id: String,
+        addressedTo: String?
+    ): Leg
 
     /**
      * GET /legs/{id}/progress
@@ -146,7 +193,15 @@ interface TripExecutionService {
      *         or The requested resources does not exist or the requester is not authorized to see it or know it exists. (status code 404)
      * @see TripExecution#legsIdProgressGet
      */
-    fun legsIdProgressGet(acceptLanguage: kotlin.String, api: kotlin.String, apiVersion: kotlin.String, maasId: kotlin.String, id: kotlin.String, addressedTo: kotlin.String?, locationOnly: kotlin.Boolean): LegProgress
+    fun legsIdProgressGet(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        id: String,
+        addressedTo: String?,
+        locationOnly: Boolean
+    ): LegProgress
 
     /**
      * POST /legs/{id}/progress
@@ -166,7 +221,15 @@ interface TripExecutionService {
      *         or The requested resources does not exist or the requester is not authorized to see it or know it exists. (status code 404)
      * @see TripExecution#legsIdProgressPost
      */
-    fun legsIdProgressPost(acceptLanguage: kotlin.String, api: kotlin.String, apiVersion: kotlin.String, maasId: kotlin.String, id: kotlin.String, addressedTo: kotlin.String?, legProgress: LegProgress?): Unit
+    fun legsIdProgressPost(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        id: String,
+        addressedTo: String?,
+        legProgress: LegProgress?
+    ): Unit
 
     /**
      * PUT /legs/{id}
@@ -186,5 +249,13 @@ interface TripExecutionService {
      *         or The requested resources does not exist or the requester is not authorized to see it or know it exists. (status code 404)
      * @see TripExecution#legsIdPut
      */
-    fun legsIdPut(acceptLanguage: kotlin.String, api: kotlin.String, apiVersion: kotlin.String, maasId: kotlin.String, id: kotlin.String, leg: Leg, addressedTo: kotlin.String?): Unit
+    fun legsIdPut(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        id: String,
+        leg: Leg,
+        addressedTo: String?
+    ): Unit
 }

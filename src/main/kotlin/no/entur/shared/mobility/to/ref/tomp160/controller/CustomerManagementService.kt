@@ -2,7 +2,6 @@ package no.entur.shared.mobility.to.ref.tomp160.controller
 
 import no.entur.shared.mobility.to.ref.tomp160.dto.Customer
 import no.entur.shared.mobility.to.ref.tomp160.dto.CustomerAccount
-import no.entur.shared.mobility.to.ref.tomp160.dto.CustomersPostDefaultResponse
 
 interface CustomerManagementService {
 
@@ -17,7 +16,7 @@ interface CustomerManagementService {
      *         or Bad request. See https://github.com/TOMP-WG/TOMP-API/wiki/Error-handling-in-TOMP for further explanation of error code. (status code 200)
      * @see CustomerManagement#customersIdDelete
      */
-    fun customersIdDelete(acceptLanguage: kotlin.String, id: kotlin.String, notificationUrl: kotlin.String?): Unit
+    fun customersIdDelete(acceptLanguage: String, id: String, notificationUrl: String?): Unit
 
     /**
      * GET /customers/{id} : [MP-&gt;TO] get the customer account on the TO system
@@ -29,7 +28,7 @@ interface CustomerManagementService {
      *         or Bad request. See https://github.com/TOMP-WG/TOMP-API/wiki/Error-handling-in-TOMP for further explanation of error code. (status code 200)
      * @see CustomerManagement#customersIdGet
      */
-    fun customersIdGet(acceptLanguage: kotlin.String, id: kotlin.String, notificationUrl: kotlin.String?): CustomerAccount
+    fun customersIdGet(acceptLanguage: String, id: String, notificationUrl: String?): CustomerAccount
 
     /**
      * PATCH /customers/{id} : [MP-&gt;TO] update the CUSTOMER ACCOUNT on the TO system
@@ -43,7 +42,12 @@ interface CustomerManagementService {
      *         or Bad request. See https://github.com/TOMP-WG/TOMP-API/wiki/Error-handling-in-TOMP for further explanation of error code. (status code 200)
      * @see CustomerManagement#customersIdPatch
      */
-    fun customersIdPatch(acceptLanguage: kotlin.String, id: kotlin.String, notificationUrl: kotlin.String?, body: kotlin.Any?): CustomerAccount
+    fun customersIdPatch(
+        acceptLanguage: String,
+        id: String,
+        notificationUrl: String?,
+        body: Any?
+    ): CustomerAccount
 
     /**
      * POST /customers : [MP-&gt;TO] create a TO CUSTOMER ACCOUNT for the customer
@@ -56,5 +60,5 @@ interface CustomerManagementService {
      *         or Bad request. See https://github.com/TOMP-WG/TOMP-API/wiki/Error-handling-in-TOMP for further explanation of error code. (status code 200)
      * @see CustomerManagement#customersPost
      */
-    fun customersPost(acceptLanguage: kotlin.String, notificationUrl: kotlin.String?, body: Customer?): CustomerAccount
+    fun customersPost(acceptLanguage: String, notificationUrl: String?, body: Customer?): CustomerAccount
 }
