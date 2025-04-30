@@ -3,7 +3,6 @@ package no.entur.shared.mobility.to.ref.tomp160.controller
 import no.entur.shared.mobility.to.ref.tomp160.dto.Booking
 import no.entur.shared.mobility.to.ref.tomp160.dto.BookingOperation
 import no.entur.shared.mobility.to.ref.tomp160.dto.BookingRequest
-import no.entur.shared.mobility.to.ref.tomp160.dto.Error
 
 interface BookingService {
 
@@ -26,7 +25,15 @@ interface BookingService {
      *         or The requested resource is no longer available. This is permanent. (status code 410)
      * @see Booking#bookingsIdEventsPost
      */
-    fun bookingsIdEventsPost(acceptLanguage: kotlin.String, api: kotlin.String, apiVersion: kotlin.String, maasId: kotlin.String, id: kotlin.String, addressedTo: kotlin.String?, bookingOperation: BookingOperation?): Booking
+    fun bookingsIdEventsPost(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        id: String,
+        addressedTo: String?,
+        bookingOperation: BookingOperation?
+    ): Booking
 
     /**
      * GET /bookings/{id}
@@ -44,7 +51,14 @@ interface BookingService {
      *         or The requested resource is no longer available. This is permanent. (status code 410)
      * @see Booking#bookingsIdGet
      */
-    fun bookingsIdGet(acceptLanguage: kotlin.String, api: kotlin.String, apiVersion: kotlin.String, maasId: kotlin.String, id: kotlin.String, addressedTo: kotlin.String?): Booking
+    fun bookingsIdGet(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        id: String,
+        addressedTo: String?
+    ): Booking
 
     /**
      * POST /bookings
@@ -66,5 +80,12 @@ interface BookingService {
      *         or Preconditions are not met in order to access the requested resource. This might happen e.g. if a booking is made but the user has been blocked by the TO. See https://github.com/TOMP-WG/TOMP-API/wiki/Error-handling-in-TOMP for further explanation of error code. (status code 428)
      * @see Booking#bookingsPost
      */
-    fun bookingsPost(acceptLanguage: kotlin.String, api: kotlin.String, apiVersion: kotlin.String, maasId: kotlin.String, bookingRequest: BookingRequest, addressedTo: kotlin.String?): Booking
+    fun bookingsPost(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        bookingRequest: BookingRequest,
+        addressedTo: String?
+    ): Booking
 }

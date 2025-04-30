@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp160.controller
 
-import no.entur.shared.mobility.to.ref.tomp160.dto.Error
 import no.entur.shared.mobility.to.ref.tomp160.dto.Notification
 
 interface GeneralService {
@@ -23,7 +22,14 @@ interface GeneralService {
      *         or The requested resource is no longer available. This is permanent. (status code 410)
      * @see General#bookingsIdNotificationsGet
      */
-    fun bookingsIdNotificationsGet(acceptLanguage: kotlin.String, api: kotlin.String, apiVersion: kotlin.String, maasId: kotlin.String, id: kotlin.String, addressedTo: kotlin.String?): List<Notification>
+    fun bookingsIdNotificationsGet(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        id: String,
+        addressedTo: String?
+    ): List<Notification>
 
     /**
      * POST /bookings/{id}/notifications
@@ -44,5 +50,13 @@ interface GeneralService {
      *         or The requested resource is no longer available. This is permanent. (status code 410)
      * @see General#bookingsIdNotificationsPost
      */
-    fun bookingsIdNotificationsPost(acceptLanguage: kotlin.String, api: kotlin.String, apiVersion: kotlin.String, maasId: kotlin.String, id: kotlin.String, addressedTo: kotlin.String?, notification: Notification?): Unit
+    fun bookingsIdNotificationsPost(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        id: String,
+        addressedTo: String?,
+        notification: Notification?
+    ): Unit
 }

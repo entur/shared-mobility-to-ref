@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp150.controller
 
-import no.entur.shared.mobility.to.ref.tomp150.dto.Error
 import no.entur.shared.mobility.to.ref.tomp150.dto.ExtraCosts
 import no.entur.shared.mobility.to.ref.tomp150.dto.JournalCategory
 import no.entur.shared.mobility.to.ref.tomp150.dto.JournalEntry
@@ -25,7 +24,15 @@ interface PaymentService {
      *         or The client does not have access rights to the content, i.e. they are unauthorized, so server is rejecting to give proper response. Unlike 401, the client&#39;s identity is known to the server. (status code 403)
      * @see Payment#paymentIdClaimExtraCostsPost
      */
-    fun paymentIdClaimExtraCostsPost(acceptLanguage: kotlin.String, api: kotlin.String, apiVersion: kotlin.String, maasId: kotlin.String, id: kotlin.String, addressedTo: kotlin.String?, extraCosts: ExtraCosts?): JournalEntry
+    fun paymentIdClaimExtraCostsPost(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        id: String,
+        addressedTo: String?,
+        extraCosts: ExtraCosts?
+    ): JournalEntry
 
     /**
      * GET /payment/journal-entry
@@ -49,5 +56,18 @@ interface PaymentService {
      *         or The client does not have access rights to the content, i.e. they are unauthorized, so server is rejecting to give proper response. Unlike 401, the client&#39;s identity is known to the server. (status code 403)
      * @see Payment#paymentJournalEntryGet
      */
-    fun paymentJournalEntryGet(acceptLanguage: kotlin.String, api: kotlin.String, apiVersion: kotlin.String, maasId: kotlin.String, addressedTo: kotlin.String?, from: java.time.OffsetDateTime?, to: java.time.OffsetDateTime?, state: JournalState?, id: kotlin.String?, category: JournalCategory?, offset: kotlin.Int, limit: kotlin.Int?): List<JournalEntry>
+    fun paymentJournalEntryGet(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        addressedTo: String?,
+        from: java.time.OffsetDateTime?,
+        to: java.time.OffsetDateTime?,
+        state: JournalState?,
+        id: String?,
+        category: JournalCategory?,
+        offset: Int,
+        limit: Int?
+    ): List<JournalEntry>
 }

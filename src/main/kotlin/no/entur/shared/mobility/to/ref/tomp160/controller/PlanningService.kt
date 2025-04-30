@@ -1,7 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp160.controller
 
 import no.entur.shared.mobility.to.ref.tomp160.dto.Booking
-import no.entur.shared.mobility.to.ref.tomp160.dto.Error
 import no.entur.shared.mobility.to.ref.tomp160.dto.OneStopBookingRequest
 import no.entur.shared.mobility.to.ref.tomp160.dto.Planning
 import no.entur.shared.mobility.to.ref.tomp160.dto.PlanningRequest
@@ -25,7 +24,14 @@ interface PlanningService {
      *         or this booking cannot be done. (status code 406)
      * @see Planning#bookingsOneStopPost
      */
-    fun bookingsOneStopPost(acceptLanguage: kotlin.String, api: kotlin.String, apiVersion: kotlin.String, maasId: kotlin.String, addressedTo: kotlin.String?, oneStopBookingRequest: OneStopBookingRequest?): Booking
+    fun bookingsOneStopPost(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        addressedTo: String?,
+        oneStopBookingRequest: OneStopBookingRequest?
+    ): Booking
 
     /**
      * POST /planning/inquiries
@@ -43,7 +49,14 @@ interface PlanningService {
      *         or The client does not have access rights to the content, i.e. they are unauthorized, so server is rejecting to give proper response. Unlike 401, the client&#39;s identity is known to the server. (status code 403)
      * @see Planning#planningInquiriesPost
      */
-    fun planningInquiriesPost(acceptLanguage: kotlin.String, api: kotlin.String, apiVersion: kotlin.String, maasId: kotlin.String, addressedTo: kotlin.String?, planningRequest: PlanningRequest?): Planning
+    fun planningInquiriesPost(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        addressedTo: String?,
+        planningRequest: PlanningRequest?
+    ): Planning
 
     /**
      * POST /planning/offers
@@ -61,7 +74,14 @@ interface PlanningService {
      *         or The client does not have access rights to the content, i.e. they are unauthorized, so server is rejecting to give proper response. Unlike 401, the client&#39;s identity is known to the server. (status code 403)
      * @see Planning#planningOffersPost
      */
-    fun planningOffersPost(acceptLanguage: kotlin.String, api: kotlin.String, apiVersion: kotlin.String, maasId: kotlin.String, addressedTo: kotlin.String?, planningRequest: PlanningRequest?): Planning
+    fun planningOffersPost(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        addressedTo: String?,
+        planningRequest: PlanningRequest?
+    ): Planning
 
     /**
      * POST /plannings
@@ -81,5 +101,13 @@ interface PlanningService {
      * @deprecated
      * @see Planning#planningsPost
      */
-    fun planningsPost(acceptLanguage: kotlin.String, api: kotlin.String, apiVersion: kotlin.String, maasId: kotlin.String, addressedTo: kotlin.String?, bookingIntent: kotlin.Boolean, planningRequest: PlanningRequest?): Planning
+    fun planningsPost(
+        acceptLanguage: String,
+        api: String,
+        apiVersion: String,
+        maasId: String,
+        addressedTo: String?,
+        bookingIntent: Boolean,
+        planningRequest: PlanningRequest?
+    ): Planning
 }
