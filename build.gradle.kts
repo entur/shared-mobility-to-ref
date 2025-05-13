@@ -5,8 +5,8 @@ plugins {
     idea
     id("org.springframework.boot") version "3.4.5"
     id("io.spring.dependency-management") version "1.1.7"
-    kotlin("jvm") version "2.1.20"
-    kotlin("plugin.spring") version "2.1.20"
+    kotlin("jvm") version "2.1.21"
+    kotlin("plugin.spring") version "2.1.21"
     id("org.openapi.generator") version "7.13.0"
     id("org.jlleitschuh.gradle.ktlint") version "12.2.0"
 }
@@ -28,7 +28,7 @@ dependencies {
     implementation("jakarta.validation:jakarta.validation-api:3.1.1")
     implementation("io.swagger.core.v3:swagger-annotations:2.2.30")
     implementation("io.swagger.core.v3:swagger-models:2.2.30")
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.6")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.8")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.flywaydb:flyway-core")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -39,7 +39,7 @@ dependencies {
     testImplementation("org.springframework.security:spring-security-test")
     testImplementation("io.kotest:kotest-property:5.9.1")
     testImplementation("io.kotest:kotest-assertions-core:5.9.1")
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.6")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.8")
 }
 
 tasks.withType<KotlinCompile> {
