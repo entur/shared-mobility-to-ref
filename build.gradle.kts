@@ -26,9 +26,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("jakarta.validation:jakarta.validation-api:3.1.1")
-    implementation("io.swagger.core.v3:swagger-annotations:2.2.32")
-    implementation("io.swagger.core.v3:swagger-models:2.2.32")
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.8")
+    implementation("io.swagger.core.v3:swagger-annotations:2.2.33")
+    implementation("io.swagger.core.v3:swagger-models:2.2.33")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.9")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.flywaydb:flyway-core")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -39,7 +39,7 @@ dependencies {
     testImplementation("org.springframework.security:spring-security-test")
     testImplementation("io.kotest:kotest-property:5.9.1")
     testImplementation("io.kotest:kotest-assertions-core:5.9.1")
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.8")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.9")
 }
 
 tasks.withType<KotlinCompile> {
