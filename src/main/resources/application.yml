@@ -1,3 +1,21 @@
+spring:
+  profiles:
+    active: ${APP_ENV:default}
+  cloud:
+    openfeign:
+      lazy-attributes-resolution: true
+      client:
+        config:
+          default:
+            connectTimeout: 10000
+            readTimeout: 30000
+            follow-redirects: true
+            logger-level: full
+            response-interceptor:
+            request-interceptors:
+          router:
+            url: http://shared-mobility-router${ENVIRONMENT_URL}.entur.internal
+
 management:
   endpoint.health.show-details: always
   endpoints.web:
@@ -8,4 +26,17 @@ management:
       enabled: true
     readinessState:
       enabled: true
-baseUrl: ${AUTH0_INT_CLIENT_AUD:https://api.dev.entur.io}/shared-mobility-to-ref/v1
+baseUrl: https://api${ENVIRONMENT_URL_IO}.entur.io/shared-mobility-to-ref/v1
+entur:
+  clients:
+    auth0:
+      permissionStore:
+        clientId: ${MNG_AUTH0_INT_CLIENT_ID:client_id}
+        secret: ${MNG_AUTH0_INT_CLIENT_SECRET:secret}
+        domain: internal${ENVIRONMENT_URL_IO}.entur.org
+        audience: https://api${ENVIRONMENT_URL_IO}.entur.io
+    should-refresh-threshold: 3600
+    must-refresh-threshold: 360
+
+ENVIRONMENT_URL: .dev
+ENVIRONMENT_URL_IO: .dev

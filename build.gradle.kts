@@ -1,5 +1,6 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import java.io.ByteArrayOutputStream
 
 plugins {
     idea
@@ -19,19 +20,42 @@ java {
 }
 
 repositories {
+    val artifactoryUser =
+        project.properties["entur_artifactory_user"]
+            ?: System.getenv("ARTIFACTORY_USER")
+            ?: System.getenv("ARTIFACTORY_AUTH_USER")
+    val artifactoryPassword =
+        project.properties["entur_artifactory_password"]
+            ?: System.getenv("ARTIFACTORY_PASSWORD")
+            ?: System.getenv("ARTIFACTORY_AUTH_TOKEN")
+    println("Artifactory user: ${artifactoryUser ?: "NOT SET"}")
+
     mavenCentral()
+    // Entur Artifactory internal release
+    maven {
+        url = uri("https://entur2.jfrog.io/entur2/entur-release-standard")
+        credentials {
+            username = "$artifactoryUser"
+            password = "$artifactoryPassword"
+        }
+    }
 }
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
     implementation("jakarta.validation:jakarta.validation-api:3.1.1")
     implementation("io.swagger.core.v3:swagger-annotations:2.2.34")
     implementation("io.swagger.core.v3:swagger-models:2.2.34")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.9")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.flywaydb:flyway-core")
+    implementation("io.github.openfeign:feign-httpclient:13.6")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+
+    // Security
+    implementation("org.entur.auth:oidc-auth-client-spring-boot-starter:4.6.0")
     runtimeOnly("com.h2database:h2")
     runtimeOnly("io.micrometer:micrometer-registry-prometheus")
     runtimeOnly("org.postgresql:postgresql")
@@ -40,6 +64,13 @@ dependencies {
     testImplementation("io.kotest:kotest-property:6.0.1")
     testImplementation("io.kotest:kotest-assertions-core:6.0.1")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.9")
+}
+
+dependencyManagement {
+    imports {
+        mavenBom("com.google.cloud:spring-cloud-gcp-dependencies:7.2.0")
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:2025.0.0")
+    }
 }
 
 tasks.withType<KotlinCompile> {
@@ -145,4 +176,103 @@ tasks.named("runKtlintCheckOverMainSourceSet") {
 }
 tasks.named("runKtlintCheckOverTestSourceSet") {
     dependsOn("runKtlintFormatOverTestSourceSet")
+}
+
+tasks.register("fetchSecrets") {
+    group = "setup"
+
+    doLast {
+        // Define project ID
+        val projectId = "ent-shmo-dev"
+
+        // Function to run shell commands and return output
+        fun runCommand(command: String): String {
+            val output = ByteArrayOutputStream()
+            project
+                .exec {
+                    // Corrected commandLine configuration
+                    commandLine =
+                        if (System.getProperty("os.name").lowercase().contains("windows")) {
+                            listOf("cmd", "/c", command)
+                        } else {
+                            listOf("sh", "-c", command)
+                        }
+                    standardOutput = output
+                }.assertNormalExitValue() // Ensure command ran without errors
+            return output.toString().trim()
+        }
+
+        // Fetch secrets using gcloud commands
+        val clientId =
+            runCommand("""gcloud secrets versions access latest --secret=MNG_AUTH0_INT_CLIENT_ID --project="$projectId"""")
+        val clientSecret =
+            runCommand("""gcloud secrets versions access latest --secret=MNG_AUTH0_INT_CLIENT_SECRET --project="$projectId"""")
+
+        // Store fetched secrets in extra properties
+        project.extensions.extraProperties.set("MNG_AUTH0_INT_CLIENT_ID", clientId)
+        project.extensions.extraProperties.set("MNG_AUTH0_INT_CLIENT_SECRET", clientSecret)
+    }
+}
+
+tasks.register<Exec>("dockerBuild") {
+    dependsOn("assemble") // Sikrer at applikasjonen er bygget før Docker-image bygges
+    group = "docker"
+    description = "Builds the Docker image."
+
+    // Docker build-kommandoen
+    commandLine("docker", "build", "-t", "shared-mobility-to-ref-0.0.1:latest", ".")
+    doLast {
+        println("Docker image has been built successfully.")
+    }
+}
+
+tasks.register<Exec>("run") {
+    dependsOn("dockerBuild", "fetchSecrets")
+
+    group = "application"
+    description = "Runs the Docker container."
+
+    doFirst {
+        println("Running the application with fetched secrets and Docker...")
+
+        // Retrieve the dynamically fetched secrets
+        val clientId = project.extra["MNG_AUTH0_INT_CLIENT_ID"] as String
+        val clientSecret = project.extra["MNG_AUTH0_INT_CLIENT_SECRET"] as String
+
+        // Define the container name
+        val containerName = "shared-mobility-to-ref"
+
+        // Stop and remove any existing container with the same name
+        val existingContainerId = ByteArrayOutputStream()
+        exec {
+            commandLine("docker", "ps", "-q", "--filter", "name=^$containerName$")
+            standardOutput = existingContainerId
+        }
+        if (existingContainerId.toString().trim().isNotEmpty()) {
+            println("Stopping existing container $containerName...")
+            exec {
+                commandLine("docker", "stop", existingContainerId.toString().trim())
+            }
+        }
+
+        // Set the command to run the new Docker container
+        commandLine(
+            "docker",
+            "run",
+            "--name",
+            "shared-mobility-to-ref",
+            "--rm",
+            "-p",
+            "8080:8080",
+            "-e",
+            "APP_ENV=local",
+            "-e",
+            "MNG_AUTH0_INT_CLIENT_ID=$clientId",
+            "-e",
+            "MNG_AUTH0_INT_CLIENT_SECRET=$clientSecret",
+            "shared-mobility-to-ref-0.0.1",
+        )
+    }
+    // Set working directory to project directory
+    workingDir = project.projectDir
 }

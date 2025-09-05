@@ -6,6 +6,6 @@ common:
   configmap:
     enabled: true
     data:
-      AUTH0_INT_CLIENT_DOMAIN: internal.dev.entur.org
-      AUTH0_INT_CLIENT_AUD: https://api.dev.entur.io
+      ENVIRONMENT_URL: .dev
+      ENVIRONMENT_URL_IO: .dev
       jwt_environment: dev
