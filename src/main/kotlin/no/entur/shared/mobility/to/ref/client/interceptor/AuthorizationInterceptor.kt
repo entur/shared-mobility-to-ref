@@ -1,4 +1,4 @@
-package no.entur.shared.mobility.client.interceptor
+package no.entur.shared.mobility.to.ref.client.interceptor
 
 import feign.RequestInterceptor
 import feign.RequestTemplate
