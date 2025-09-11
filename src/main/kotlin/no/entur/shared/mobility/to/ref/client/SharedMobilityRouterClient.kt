@@ -3,7 +3,7 @@ package no.entur.shared.mobility.to.ref.client
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.enums.ParameterIn
 import jakarta.validation.Valid
-import no.entur.shared.mobility.client.interceptor.AuthorizationConfig
+import no.entur.shared.mobility.to.ref.client.interceptor.AuthorizationConfig
 import no.entur.shared.mobility.to.ref.tomp160.dto.Leg
 import no.entur.shared.mobility.to.ref.tomp160.dto.LegEvent
 import org.springframework.cloud.openfeign.FeignClient
