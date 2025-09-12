@@ -6,8 +6,8 @@ plugins {
     idea
     id("org.springframework.boot") version "3.5.5"
     id("io.spring.dependency-management") version "1.1.7"
-    kotlin("jvm") version "2.2.10"
-    kotlin("plugin.spring") version "2.2.10"
+    kotlin("jvm") version "2.2.20"
+    kotlin("plugin.spring") version "2.2.20"
     id("org.openapi.generator") version "7.15.0"
     id("org.jlleitschuh.gradle.ktlint") version "13.1.0"
 }
@@ -48,7 +48,7 @@ dependencies {
     implementation("jakarta.validation:jakarta.validation-api:3.1.1")
     implementation("io.swagger.core.v3:swagger-annotations:2.2.36")
     implementation("io.swagger.core.v3:swagger-models:2.2.36")
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.12")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.13")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.flywaydb:flyway-core")
     implementation("io.github.openfeign:feign-httpclient:13.6")
@@ -61,9 +61,9 @@ dependencies {
     runtimeOnly("org.postgresql:postgresql")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
-    testImplementation("io.kotest:kotest-property:6.0.2")
-    testImplementation("io.kotest:kotest-assertions-core:6.0.2")
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.12")
+    testImplementation("io.kotest:kotest-property:6.0.3")
+    testImplementation("io.kotest:kotest-assertions-core:6.0.3")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.13")
 }
 
 dependencyManagement {
