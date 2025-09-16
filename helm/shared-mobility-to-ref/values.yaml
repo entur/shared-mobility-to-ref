@@ -22,10 +22,10 @@ common:
         path: "/actuator/health/livenessState"
       readiness:
         path: "/actuator/health/readinessState"
-#  secrets:
-#    auth:
-#      - MNG_AUTH0_INT_CLIENT_ID
-#      - MNG_AUTH0_INT_CLIENT_SECRET
+  secrets:
+    auth:
+      - MNG_AUTH0_INT_CLIENT_ID
+      - MNG_AUTH0_INT_CLIENT_SECRET
   configmap:
     enabled: true
     data:
