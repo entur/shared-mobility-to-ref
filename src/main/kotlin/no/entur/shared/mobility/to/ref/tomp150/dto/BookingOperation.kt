@@ -48,7 +48,8 @@ data class BookingOperation(
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Operation {
-                return values().first{it -> it.value == value}
+                return values().firstOrNull{it -> it.value == value}
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'BookingOperation'")
             }
         }
     }
@@ -67,7 +68,8 @@ data class BookingOperation(
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): ExtendReason {
-                return values().first{it -> it.value == value}
+                return values().firstOrNull{it -> it.value == value}
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'BookingOperation'")
             }
         }
     }
@@ -87,7 +89,8 @@ data class BookingOperation(
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Origin {
-                return values().first{it -> it.value == value}
+                return values().firstOrNull{it -> it.value == value}
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'BookingOperation'")
             }
         }
     }

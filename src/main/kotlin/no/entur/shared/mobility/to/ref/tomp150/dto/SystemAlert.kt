@@ -72,7 +72,8 @@ data class SystemAlert(
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): AlertType {
-                return values().first{it -> it.value == value}
+                return values().firstOrNull{it -> it.value == value}
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'SystemAlert'")
             }
         }
     }

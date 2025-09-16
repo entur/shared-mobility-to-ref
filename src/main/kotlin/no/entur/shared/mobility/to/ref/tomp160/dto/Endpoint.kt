@@ -74,7 +74,8 @@ data class Endpoint(
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Method {
-                return values().first{it -> it.value == value}
+                return values().firstOrNull{it -> it.value == value}
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Endpoint'")
             }
         }
     }
@@ -93,7 +94,8 @@ data class Endpoint(
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Status {
-                return values().first{it -> it.value == value}
+                return values().firstOrNull{it -> it.value == value}
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Endpoint'")
             }
         }
     }
@@ -121,7 +123,8 @@ data class Endpoint(
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): EventType {
-                return values().first{it -> it.value == value}
+                return values().firstOrNull{it -> it.value == value}
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Endpoint'")
             }
         }
     }
@@ -144,7 +147,8 @@ data class Endpoint(
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): ExternalType {
-                return values().first{it -> it.value == value}
+                return values().firstOrNull{it -> it.value == value}
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Endpoint'")
             }
         }
     }

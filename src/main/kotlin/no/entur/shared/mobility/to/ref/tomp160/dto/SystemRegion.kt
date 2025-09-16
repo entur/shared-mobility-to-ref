@@ -72,7 +72,8 @@ data class SystemRegion(
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
-                return values().first{it -> it.value == value}
+                return values().firstOrNull{it -> it.value == value}
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'SystemRegion'")
             }
         }
     }
@@ -90,7 +91,8 @@ data class SystemRegion(
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): TypeUnit {
-                return values().first{it -> it.value == value}
+                return values().firstOrNull{it -> it.value == value}
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'SystemRegion'")
             }
         }
     }

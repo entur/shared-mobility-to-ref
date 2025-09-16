@@ -118,7 +118,8 @@ data class FarePart(
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
-                return values().first{it -> it.value == value}
+                return values().firstOrNull{it -> it.value == value}
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'FarePart'")
             }
         }
     }
@@ -137,7 +138,8 @@ data class FarePart(
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Kind {
-                return values().first{it -> it.value == value}
+                return values().firstOrNull{it -> it.value == value}
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'FarePart'")
             }
         }
     }
@@ -159,7 +161,8 @@ data class FarePart(
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): UnitType {
-                return values().first{it -> it.value == value}
+                return values().firstOrNull{it -> it.value == value}
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'FarePart'")
             }
         }
     }
@@ -179,7 +182,8 @@ data class FarePart(
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): ScaleType {
-                return values().first{it -> it.value == value}
+                return values().firstOrNull{it -> it.value == value}
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'FarePart'")
             }
         }
     }
@@ -197,7 +201,8 @@ data class FarePart(
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): PropertyClass {
-                return values().first{it -> it.value == value}
+                return values().firstOrNull{it -> it.value == value}
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'FarePart'")
             }
         }
     }
@@ -215,7 +220,8 @@ data class FarePart(
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): AssetState {
-                return values().first{it -> it.value == value}
+                return values().firstOrNull{it -> it.value == value}
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'FarePart'")
             }
         }
     }

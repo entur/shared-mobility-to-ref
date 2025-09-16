@@ -225,7 +225,8 @@ data class AssetProperties(
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Fuel {
-                return values().first{it -> it.value == value}
+                return values().firstOrNull{it -> it.value == value}
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'AssetProperties'")
             }
         }
     }
@@ -248,7 +249,8 @@ data class AssetProperties(
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Propulsion {
-                return values().first{it -> it.value == value}
+                return values().firstOrNull{it -> it.value == value}
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'AssetProperties'")
             }
         }
     }
@@ -269,7 +271,8 @@ data class AssetProperties(
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): EnergyLabel {
-                return values().first{it -> it.value == value}
+                return values().firstOrNull{it -> it.value == value}
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'AssetProperties'")
             }
         }
     }
@@ -288,7 +291,8 @@ data class AssetProperties(
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Gearbox {
-                return values().first{it -> it.value == value}
+                return values().firstOrNull{it -> it.value == value}
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'AssetProperties'")
             }
         }
     }
@@ -310,7 +314,8 @@ data class AssetProperties(
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): EasyAccessibility {
-                return values().first{it -> it.value == value}
+                return values().firstOrNull{it -> it.value == value}
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'AssetProperties'")
             }
         }
     }
