@@ -130,7 +130,8 @@ data class SystemInformation(
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): TypeOfSystem {
-                return values().first{it -> it.value == value}
+                return values().firstOrNull{it -> it.value == value}
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'SystemInformation'")
             }
         }
     }
@@ -150,7 +151,8 @@ data class SystemInformation(
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): ProductType {
-                return values().first{it -> it.value == value}
+                return values().firstOrNull{it -> it.value == value}
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'SystemInformation'")
             }
         }
     }

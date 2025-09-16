@@ -57,7 +57,8 @@ data class Information(
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
-                return values().first{it -> it.value == value}
+                return values().firstOrNull{it -> it.value == value}
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Information'")
             }
         }
     }
@@ -76,7 +77,8 @@ data class Information(
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Goal {
-                return values().first{it -> it.value == value}
+                return values().firstOrNull{it -> it.value == value}
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Information'")
             }
         }
     }
@@ -100,7 +102,8 @@ data class Information(
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): ShowTime {
-                return values().first{it -> it.value == value}
+                return values().firstOrNull{it -> it.value == value}
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Information'")
             }
         }
     }
