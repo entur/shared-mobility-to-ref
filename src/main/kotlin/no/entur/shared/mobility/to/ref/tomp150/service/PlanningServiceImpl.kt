@@ -13,18 +13,23 @@ import no.entur.shared.mobility.to.ref.tomp150.data.booking
 import no.entur.shared.mobility.to.ref.tomp150.data.bookingHigherDepositAmountThanTotalAmount
 import no.entur.shared.mobility.to.ref.tomp150.data.bookingWithoutDeposit
 import no.entur.shared.mobility.to.ref.tomp150.data.finalFare
+import no.entur.shared.mobility.to.ref.tomp150.data.leg
 import no.entur.shared.mobility.to.ref.tomp150.data.planning
 import no.entur.shared.mobility.to.ref.tomp150.dto.AssetProperties
 import no.entur.shared.mobility.to.ref.tomp150.dto.Booking
+import no.entur.shared.mobility.to.ref.tomp150.dto.LegState
 import no.entur.shared.mobility.to.ref.tomp150.dto.OneStopBookingRequest
 import no.entur.shared.mobility.to.ref.tomp150.dto.Planning
 import no.entur.shared.mobility.to.ref.tomp150.dto.PlanningRequest
+import no.entur.shared.mobility.to.ref.tomp160.service.EventScheduler
 import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
 import java.util.UUID
 
 @Service("PlanningServiceTomp150")
-class PlanningServiceImpl : PlanningService {
+class PlanningServiceImpl(
+    private val eventScheduler: EventScheduler,
+) : PlanningService {
     override fun planningInquiriesPost(
         acceptLanguage: String,
         api: String,
@@ -123,7 +128,12 @@ class PlanningServiceImpl : PlanningService {
                 SCOOTER_OPERATOR -> booking.copy(pricing = finalFare(25.00F))
                 SCOOTER_OPERATOR_2 -> booking.copy(pricing = finalFare(5.00F))
                 SCOOTER_OPERATOR_3 -> booking.copy(pricing = finalFare(15.00F))
-                BIKE_OPERATOR -> booking
+                BIKE_OPERATOR -> {
+                    val notStartedLeg = leg.copy(state = LegState.NOT_STARTED)
+                    eventScheduler.addToEventQueue(notStartedLeg.id!!)
+                    booking.copy(legs = listOf(notStartedLeg))
+                }
+
                 ALL_IMPLEMENTING_OPERATOR -> booking
                 else -> throw NotImplementedError()
             }
