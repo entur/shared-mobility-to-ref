@@ -62,6 +62,7 @@ dependencies {
     testImplementation("org.springframework.security:spring-security-test")
     testImplementation("io.kotest:kotest-property:6.0.3")
     testImplementation("io.kotest:kotest-assertions-core:6.0.3")
+    testImplementation("io.mockk:mockk:1.14.5")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.13")
 }
 

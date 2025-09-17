@@ -21,14 +21,13 @@ import no.entur.shared.mobility.to.ref.tomp150.dto.LegState
 import no.entur.shared.mobility.to.ref.tomp150.dto.OneStopBookingRequest
 import no.entur.shared.mobility.to.ref.tomp150.dto.Planning
 import no.entur.shared.mobility.to.ref.tomp150.dto.PlanningRequest
-import no.entur.shared.mobility.to.ref.tomp160.service.EventScheduler
 import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
 import java.util.UUID
 
 @Service("PlanningServiceTomp150")
 class PlanningServiceImpl(
-    private val eventScheduler: EventScheduler,
+    private val eventScheduler150: EventScheduler150,
 ) : PlanningService {
     override fun planningInquiriesPost(
         acceptLanguage: String,
@@ -130,7 +129,7 @@ class PlanningServiceImpl(
                 SCOOTER_OPERATOR_3 -> booking.copy(pricing = finalFare(15.00F))
                 BIKE_OPERATOR -> {
                     val notStartedLeg = leg.copy(state = LegState.NOT_STARTED)
-                    eventScheduler.addToEventQueue(notStartedLeg.id!!)
+                    eventScheduler150.addToEventQueue(notStartedLeg.id!!)
                     booking.copy(legs = listOf(notStartedLeg))
                 }
 

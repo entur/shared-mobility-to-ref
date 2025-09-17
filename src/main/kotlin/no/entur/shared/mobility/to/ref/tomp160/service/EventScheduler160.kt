@@ -8,7 +8,7 @@ import java.time.OffsetDateTime
 import java.util.concurrent.ConcurrentLinkedQueue
 
 @Service
-class EventScheduler(
+class EventScheduler160(
     private val sharedMobilityRouterClient: SharedMobilityRouterClient,
 ) {
     val queue: ConcurrentLinkedQueue<String> = ConcurrentLinkedQueue()
@@ -20,8 +20,7 @@ class EventScheduler(
     @Scheduled(initialDelay = 10_000, fixedRate = 30_000)
     fun schedule() {
         queue.forEach {
-
-            sharedMobilityRouterClient.legsIdEventsPost(
+            sharedMobilityRouterClient.legsIdEventsPost160(
                 id = it,
                 addressedTo = "Entur",
                 legEvent = LegEvent(OffsetDateTime.now(), LegEvent.Event.SET_IN_USE),
