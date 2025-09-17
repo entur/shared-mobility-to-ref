@@ -11,13 +11,13 @@ import java.util.concurrent.ConcurrentLinkedQueue
 class EventScheduler150(
     private val sharedMobilityRouterClient: SharedMobilityRouterClient,
 ) {
-    val queue: ConcurrentLinkedQueue<String> = ConcurrentLinkedQueue()
+    private val queue: ConcurrentLinkedQueue<String> = ConcurrentLinkedQueue()
 
     fun addToEventQueue(legId: String) {
         queue.add(legId)
     }
 
-    @Scheduled(initialDelay = 10_000, fixedRate = 30_000)
+    @Scheduled(initialDelay = 10_000, fixedDelay = 30_000)
     fun schedule() {
         queue.forEach {
             sharedMobilityRouterClient.legsIdEventsPost150(
