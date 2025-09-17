@@ -1,6 +1,5 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import java.io.ByteArrayOutputStream
 
 plugins {
     idea
@@ -183,23 +182,25 @@ tasks.register("fetchSecrets") {
 
     doLast {
         // Define project ID
-        val projectId = "ent-shmo-dev"
+        val projectId = "ent-shmotoref-dev"
 
         // Function to run shell commands and return output
         fun runCommand(command: String): String {
-            val output = ByteArrayOutputStream()
-            project
-                .exec {
-                    // Corrected commandLine configuration
-                    commandLine =
-                        if (System.getProperty("os.name").lowercase().contains("windows")) {
-                            listOf("cmd", "/c", command)
-                        } else {
-                            listOf("sh", "-c", command)
-                        }
-                    standardOutput = output
-                }.assertNormalExitValue() // Ensure command ran without errors
-            return output.toString().trim()
+            val ex =
+                providers
+                    .exec {
+                        // Corrected commandLine configuration
+                        commandLine =
+                            if (System.getProperty("os.name").lowercase().contains("windows")) {
+                                listOf("cmd", "/c", command)
+                            } else {
+                                listOf("sh", "-c", command)
+                            }
+                    }
+            ex.result.get().assertNormalExitValue() // Ensure the command ran without errors
+            return ex.standardOutput.asText
+                .get()
+                .trim()
         }
 
         // Fetch secrets using gcloud commands
@@ -243,16 +244,18 @@ tasks.register<Exec>("run") {
         val containerName = "shared-mobility-to-ref"
 
         // Stop and remove any existing container with the same name
-        val existingContainerId = ByteArrayOutputStream()
-        exec {
-            commandLine("docker", "ps", "-q", "--filter", "name=^$containerName$")
-            standardOutput = existingContainerId
-        }
-        if (existingContainerId.toString().trim().isNotEmpty()) {
-            println("Stopping existing container $containerName...")
-            exec {
-                commandLine("docker", "stop", existingContainerId.toString().trim())
-            }
+        val existingContainerId =
+            providers
+                .exec {
+                    commandLine("docker", "ps", "-q", "--filter", "name=^$containerName$")
+                }.standardOutput.asText
+        if (existingContainerId.get().trim().isNotEmpty()) {
+            println("Stopping existing container $containerName with id ${existingContainerId.get()}...")
+            providers
+                .exec {
+                    commandLine("docker", "stop", existingContainerId.get())
+                }.result
+                .get()
         }
 
         // Set the command to run the new Docker container
