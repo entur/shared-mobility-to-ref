@@ -45,8 +45,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
     implementation("jakarta.validation:jakarta.validation-api:3.1.1")
-    implementation("io.swagger.core.v3:swagger-annotations:2.2.36")
-    implementation("io.swagger.core.v3:swagger-models:2.2.36")
+    implementation("io.swagger.core.v3:swagger-annotations:2.2.37")
+    implementation("io.swagger.core.v3:swagger-models:2.2.37")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.13")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.flywaydb:flyway-core")
@@ -67,7 +67,7 @@ dependencies {
 
 dependencyManagement {
     imports {
-        mavenBom("com.google.cloud:spring-cloud-gcp-dependencies:7.3.0")
+        mavenBom("com.google.cloud:spring-cloud-gcp-dependencies:7.3.1")
         mavenBom("org.springframework.cloud:spring-cloud-dependencies:2025.0.0")
     }
 }
