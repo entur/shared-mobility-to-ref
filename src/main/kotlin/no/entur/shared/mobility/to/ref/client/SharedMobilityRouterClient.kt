@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestHeader
 @Component
 @FeignClient("router", configuration = [AuthorizationConfig::class])
 interface SharedMobilityRouterClient {
-    @PostMapping(value = ["tomp/1_5_0/legs/{id}/events"], produces = ["application/json"], consumes = ["application/json"])
+    @PostMapping(value = ["tomp/1.5.0/legs/{id}/events"], produces = ["application/json"], consumes = ["application/json"])
     fun legsIdEventsPost150(
         @Parameter(
             description = """A list of the languages/localizations the user would like to see the results in. For user privacy and ease of
@@ -51,7 +51,7 @@ interface SharedMobilityRouterClient {
         legEvent: no.entur.shared.mobility.to.ref.tomp150.dto.LegEvent?,
     ): no.entur.shared.mobility.to.ref.tomp150.dto.Leg
 
-    @PostMapping(value = ["tomp/1_6_0/legs/{id}/events"], produces = ["application/json"], consumes = ["application/json"])
+    @PostMapping(value = ["tomp/1.6.0/legs/{id}/events"], produces = ["application/json"], consumes = ["application/json"])
     fun legsIdEventsPost160(
         @Parameter(
             description = """A list of the languages/localizations the user would like to see the results in. For user privacy and ease of
