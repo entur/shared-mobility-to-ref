@@ -11,21 +11,39 @@ import java.util.concurrent.ConcurrentLinkedQueue
 class EventScheduler150(
     private val sharedMobilityRouterClient: SharedMobilityRouterClient,
 ) {
-    private val queue: ConcurrentLinkedQueue<String> = ConcurrentLinkedQueue()
+    private val bookedQueue: ConcurrentLinkedQueue<String> = ConcurrentLinkedQueue()
+    private val inUseQueue: ConcurrentLinkedQueue<String> = ConcurrentLinkedQueue()
 
     fun addToEventQueue(legId: String) {
-        queue.add(legId)
+        bookedQueue.add(legId)
     }
 
-    @Scheduled(initialDelay = 10_000, fixedDelay = 30_000)
-    fun schedule() {
-        queue.forEach {
+    @Scheduled(initialDelay = 10_000, fixedDelay = 30 * SECONDS)
+    fun setInUse() {
+        bookedQueue.forEach {
             sharedMobilityRouterClient.legsIdEventsPost150(
                 id = it,
                 addressedTo = "Entur",
                 legEvent = LegEvent(OffsetDateTime.now(), LegEvent.Event.SET_IN_USE),
             )
-            queue.remove(it)
+            bookedQueue.remove(it)
+            inUseQueue.add(it)
         }
+    }
+
+    @Scheduled(initialDelay = 10_000, fixedDelay = 300 * SECONDS)
+    fun setFinished() {
+        inUseQueue.forEach {
+            sharedMobilityRouterClient.legsIdEventsPost150(
+                id = it,
+                addressedTo = "Entur",
+                legEvent = LegEvent(OffsetDateTime.now(), LegEvent.Event.FINISH),
+            )
+            inUseQueue.remove(it)
+        }
+    }
+
+    companion object {
+        const val SECONDS = 1000L
     }
 }
