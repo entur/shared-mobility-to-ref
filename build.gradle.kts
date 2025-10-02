@@ -52,6 +52,18 @@ dependencies {
     implementation("org.flywaydb:flyway-core")
     implementation("io.github.openfeign:feign-httpclient:13.6")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+    // Override versions with vulnerabilities
+    implementation("commons-fileupload:commons-fileupload") {
+        version {
+            strictly("1.6.0")
+        }
+    }
+    implementation("org.apache.commons:commons-lang3") {
+        version {
+            strictly("3.19.0")
+        }
+    }
+    // override end
 
     // Security
     implementation("org.entur.auth:oidc-auth-client-spring-boot-starter:4.6.0")
