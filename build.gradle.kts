@@ -80,7 +80,7 @@ dependencies {
 
 dependencyManagement {
     imports {
-        mavenBom("com.google.cloud:spring-cloud-gcp-dependencies:7.3.2")
+        mavenBom("com.google.cloud:spring-cloud-gcp-dependencies:7.4.0")
         mavenBom("org.springframework.cloud:spring-cloud-dependencies:2025.0.0")
     }
 }
