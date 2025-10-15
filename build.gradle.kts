@@ -45,8 +45,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
     implementation("jakarta.validation:jakarta.validation-api:3.1.1")
-    implementation("io.swagger.core.v3:swagger-annotations:2.2.38")
-    implementation("io.swagger.core.v3:swagger-models:2.2.38")
+    implementation("io.swagger.core.v3:swagger-annotations:2.2.39")
+    implementation("io.swagger.core.v3:swagger-models:2.2.39")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.13")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.flywaydb:flyway-core")
@@ -72,15 +72,15 @@ dependencies {
     runtimeOnly("org.postgresql:postgresql")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
-    testImplementation("io.kotest:kotest-property:6.0.3")
-    testImplementation("io.kotest:kotest-assertions-core:6.0.3")
+    testImplementation("io.kotest:kotest-property:6.0.4")
+    testImplementation("io.kotest:kotest-assertions-core:6.0.4")
     testImplementation("io.mockk:mockk:1.14.6")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.13")
 }
 
 dependencyManagement {
     imports {
-        mavenBom("com.google.cloud:spring-cloud-gcp-dependencies:7.3.2")
+        mavenBom("com.google.cloud:spring-cloud-gcp-dependencies:7.4.0")
         mavenBom("org.springframework.cloud:spring-cloud-dependencies:2025.0.0")
     }
 }
