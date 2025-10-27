@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import jakarta.validation.constraints.DecimalMax
@@ -25,7 +26,7 @@ data class TokenEKeyAllOfLock(
 
     @Schema(example = "null", description = "how it advertises itself")
     @get:JsonProperty("deviceName") val deviceName: kotlin.String? = null
-    ) {
+) {
 
 }
 

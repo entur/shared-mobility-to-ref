@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import no.entur.shared.mobility.to.ref.tomp160.dto.Error
@@ -24,7 +25,7 @@ data class CustomersPostDefaultResponse(
     @get:Size(max=10)
     @Schema(example = "null", description = "")
     @get:JsonProperty("errors") val errors: kotlin.collections.List<Error>? = null
-    ) {
+) {
 
 }
 

@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -200,7 +201,7 @@ data class AssetProperties(
     @field:Valid
     @Schema(example = "null", description = "this object can contain extra information about the type of asset. For instance values from the 'Woordenboek Reizigerskenmerken'. [https://github.com/efel85/TOMP-API/issues/17]. These values can also be used in the planning.")
     @get:JsonProperty("meta") val meta: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null
-    ) {
+) {
 
     /**
     * 

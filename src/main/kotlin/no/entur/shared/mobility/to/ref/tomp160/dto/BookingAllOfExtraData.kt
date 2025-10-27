@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import jakarta.validation.constraints.DecimalMax
@@ -37,7 +38,7 @@ data class BookingAllOfExtraData(
     @get:Min(0)
     @Schema(example = "null", description = "the maximum time the legs will take, in minutes")
     @get:JsonProperty("maxTravelTime") val maxTravelTime: kotlin.Int? = null
-    ) {
+) {
 
 }
 

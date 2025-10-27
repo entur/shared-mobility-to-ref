@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -53,7 +54,7 @@ data class SystemRegion(
     @field:Valid
     @Schema(example = "null", description = "")
     @get:JsonProperty("serviceArea") val serviceArea: GeojsonPolygon? = null
-    ) {
+) {
 
     /**
     * the type of area. Default this is 'OPERATING', but other area's can be published here as well (since 1.3.0). Before 1.3.0, it was only allowed to communicate OPERATING area's.

@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -40,7 +41,7 @@ data class Information(
     @Schema(example = "null", description = "the moment when the information must be displayed")
     @Deprecated(message = "")
     @get:JsonProperty("showTime") val showTime: Information.ShowTime? = null
-    ) {
+) {
 
     /**
     * the type of the information provided

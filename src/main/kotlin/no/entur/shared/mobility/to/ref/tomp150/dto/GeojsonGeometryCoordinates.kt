@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
+import java.util.Locale
 import java.util.Objects
 import jakarta.validation.constraints.DecimalMax
 import jakarta.validation.constraints.DecimalMin
@@ -17,7 +18,7 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 class GeojsonGeometryCoordinates(
 
-    ) {
+) {
 
 }
 

@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import no.entur.shared.mobility.to.ref.tomp150.dto.BookingStep
@@ -53,7 +54,7 @@ data class EndpointImplementationSteps(
     @field:Valid
     @Schema(example = "null", description = "this array should be considered as a sequence!")
     @get:JsonProperty("resuming") val resuming: kotlin.collections.List<ResumingStep>? = null
-    ) {
+) {
 
 }
 

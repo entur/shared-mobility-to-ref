@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -51,7 +52,7 @@ data class SystemRegion(
 
     @Schema(example = "[[[1.0,1.0],[0.0,1.0],[0.0,0.0],[1.0,0.0],[1.0,1.0]]]", description = "geojson representation of a polygon. First and last point must be equal. See also https://geojson.org/geojson-spec.html#polygon and example https://geojson.org/geojson-spec.html#id4. The order should be lon, lat [[[lon1, lat1], [lon2,lat2], [lon3,lat3], [lon1,lat1]]], the first point should match the last point.")
     @get:JsonProperty("serviceArea") val serviceArea: kotlin.collections.List<kotlin.collections.List<kotlin.collections.List<kotlin.Float>>>? = null
-    ) {
+) {
 
     /**
     * the type of area. Default this is 'OPERATING', but other area's can be published here as well (since 1.3.0). Before 1.3.0, it was only allowed to communicate OPERATING area's.

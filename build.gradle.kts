@@ -63,6 +63,11 @@ dependencies {
             strictly("3.19.0")
         }
     }
+    implementation("ch.qos.logback:logback-core") {
+        version {
+            strictly("1.5.19")
+        }
+    }
     // override end
 
     // Security

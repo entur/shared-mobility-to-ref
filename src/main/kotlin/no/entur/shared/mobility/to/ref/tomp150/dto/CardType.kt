@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -37,7 +38,7 @@ data class CardType(
 
     @Schema(example = "null", description = "references to accepting parties, only if applicable")
     @get:JsonProperty("acceptors") val acceptors: kotlin.collections.List<kotlin.String>? = null
-    ) {
+) {
 
     /**
     * The broad category of card

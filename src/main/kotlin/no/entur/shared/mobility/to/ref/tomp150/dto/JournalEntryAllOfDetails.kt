@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -90,7 +91,7 @@ data class JournalEntryAllOfDetails(
     @field:Valid
     @Schema(example = "null", description = "Arbitrary metadata that a TO can add, like voucher codes")
     @get:JsonProperty("meta") val meta: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null
-    ) {
+) {
 
     /**
     * 

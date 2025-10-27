@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import no.entur.shared.mobility.to.ref.tomp160.dto.TokenData
@@ -29,7 +30,7 @@ data class TokenQR(
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("version") val version: kotlin.String? = null
-    ) : TokenData{
+) : TokenData {
 
 }
 

@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import no.entur.shared.mobility.to.ref.tomp160.dto.AssetProperties
@@ -97,7 +98,7 @@ data class Asset(
     @field:Valid
     @Schema(example = "null", description = "")
     @get:JsonProperty("overriddenProperties") val overriddenProperties: AssetProperties? = null
-    ) {
+) {
 
 }
 

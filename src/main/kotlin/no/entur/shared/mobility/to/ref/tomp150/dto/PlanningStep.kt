@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -44,7 +45,7 @@ data class PlanningStep(
 
     @Schema(example = "null", description = "the `RESULT_SHOWN` action requires the MP to display some information to the customer when it is viewing the proposed legs.")
     @get:JsonProperty("action") val action: PlanningStep.Action? = null
-    ) {
+) {
 
     /**
     * the type of the information provided

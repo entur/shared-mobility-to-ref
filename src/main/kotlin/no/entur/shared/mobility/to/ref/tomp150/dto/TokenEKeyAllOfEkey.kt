@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import jakarta.validation.constraints.DecimalMax
@@ -25,7 +26,7 @@ data class TokenEKeyAllOfEkey(
 
     @Schema(example = "null", description = "one time pass key")
     @get:JsonProperty("passkey") val passkey: kotlin.String? = null
-    ) {
+) {
 
 }
 
