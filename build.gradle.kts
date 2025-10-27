@@ -67,9 +67,7 @@ dependencies {
 
     // Security
     implementation("org.entur.auth:oidc-auth-client-spring-boot-starter:4.6.0")
-    runtimeOnly("com.h2database:h2")
     runtimeOnly("io.micrometer:micrometer-registry-prometheus")
-    runtimeOnly("org.postgresql:postgresql")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
     testImplementation("io.kotest:kotest-property:6.0.4")
