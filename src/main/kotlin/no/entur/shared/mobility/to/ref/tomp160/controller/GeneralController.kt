@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.RestController
 @RestController("no.entur.shared.mobility.to.ref.tomp160.controller.GeneralController")
 @Validated
 @RequestMapping("\${api.base-path:/tomp160}")
-@Hidden
 class GeneralController(@Autowired(required = true) val service: GeneralService) {
 
     @Operation(
@@ -68,6 +67,7 @@ class GeneralController(@Autowired(required = true) val service: GeneralService)
         value = ["/bookings/{id}/notifications"],
         produces = ["application/json"]
     )
+    @Hidden
     fun bookingsIdNotificationsGet(
         @Parameter(
             description = "A list of the languages/localizations the user would like to see the results in. For user privacy and ease of use on the TO side, this list should be kept as short as possible, ideally just one language tag from the list in operator/information",
