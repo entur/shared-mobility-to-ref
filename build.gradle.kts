@@ -7,7 +7,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.7"
     kotlin("jvm") version "2.2.21"
     kotlin("plugin.spring") version "2.2.21"
-    id("org.openapi.generator") version "7.16.0"
+    id("org.openapi.generator") version "7.17.0"
     id("org.jlleitschuh.gradle.ktlint") version "13.1.0"
 }
 
@@ -45,9 +45,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
     implementation("jakarta.validation:jakarta.validation-api:3.1.1")
-    implementation("io.swagger.core.v3:swagger-annotations:2.2.39")
-    implementation("io.swagger.core.v3:swagger-models:2.2.39")
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.13")
+    implementation("io.swagger.core.v3:swagger-annotations:2.2.40")
+    implementation("io.swagger.core.v3:swagger-models:2.2.40")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.14")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.flywaydb:flyway-core")
     implementation("io.github.openfeign:feign-httpclient:13.6")
@@ -73,12 +73,12 @@ dependencies {
     testImplementation("io.kotest:kotest-property:6.0.4")
     testImplementation("io.kotest:kotest-assertions-core:6.0.4")
     testImplementation("io.mockk:mockk:1.14.6")
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.13")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.14")
 }
 
 dependencyManagement {
     imports {
-        mavenBom("com.google.cloud:spring-cloud-gcp-dependencies:7.4.0")
+        mavenBom("com.google.cloud:spring-cloud-gcp-dependencies:7.4.1")
         mavenBom("org.springframework.cloud:spring-cloud-dependencies:2025.0.0")
     }
 }
