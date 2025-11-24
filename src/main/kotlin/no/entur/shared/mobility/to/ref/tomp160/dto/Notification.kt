@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -42,7 +43,7 @@ data class Notification(
 
     @Schema(example = "null", description = "whenever the booking contains multiple legs, this field is mandatory and contain the id of the leg related to the notification.")
     @get:JsonProperty("legId") val legId: kotlin.String? = null
-    ) {
+) {
 
     /**
     * 

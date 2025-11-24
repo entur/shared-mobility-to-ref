@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import jakarta.validation.constraints.DecimalMax
@@ -29,7 +30,7 @@ data class ConnectedLegInfo(
 
     @Schema(example = "null", description = "the identification of the previous asset type, like a discount combi. This field (in case of a specific asset type) or asset reference must be filled.")
     @get:JsonProperty("assetTypeReference") val assetTypeReference: kotlin.String? = null
-    ) {
+) {
 
 }
 

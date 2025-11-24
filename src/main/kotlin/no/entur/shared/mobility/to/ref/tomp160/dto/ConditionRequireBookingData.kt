@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -34,7 +35,7 @@ data class ConditionRequireBookingData(
 
     @Schema(example = "deposit50eu", description = "An identifier for this condition that can be used to refer to this condition")
     @get:JsonProperty("id") override val id: kotlin.String? = null
-    ) : Condition{
+) : Condition {
 
     /**
     * 

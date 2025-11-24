@@ -2,13 +2,15 @@ package no.entur.shared.mobility.to.ref.tomp150.service
 
 import io.mockk.mockk
 import io.mockk.verify
-import no.entur.shared.mobility.to.ref.config.TransportOperator.BIKE_OPERATOR
+import no.entur.shared.mobility.to.ref.config.TransportOperator.COLUMBI_BIKE
+import no.entur.shared.mobility.to.ref.config.TransportOperator.URBAN_BIKE
 import no.entur.shared.mobility.to.ref.config.operators
 import no.entur.shared.mobility.to.ref.tomp150.dto.Coordinates
 import no.entur.shared.mobility.to.ref.tomp150.dto.Customer
 import no.entur.shared.mobility.to.ref.tomp150.dto.OneStopBookingRequest
 import no.entur.shared.mobility.to.ref.tomp150.dto.Place
 import org.junit.jupiter.api.Test
+import kotlin.collections.contains
 
 class PlanningServiceImplTest {
     private val eventScheduler150: EventScheduler150 = mockk(relaxed = true)
@@ -22,7 +24,7 @@ class PlanningServiceImplTest {
             "",
             "",
             "",
-            BIKE_OPERATOR,
+            COLUMBI_BIKE,
             OneStopBookingRequest(
                 customer = Customer(""),
                 from = Place(coordinates = Coordinates(0.0F, 0.0F)),
@@ -35,7 +37,7 @@ class PlanningServiceImplTest {
 
     @Test
     fun `bookingsOneStopPost should not call eventScheduler if the call doesn't come from a bike operator`() {
-        operators.filter { it != BIKE_OPERATOR }.forEach {
+        operators.filter { it !in setOf(COLUMBI_BIKE, URBAN_BIKE) }.forEach {
             planningServiceImpl.bookingsOneStopPost(
                 "",
                 "",

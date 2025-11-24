@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import no.entur.shared.mobility.to.ref.tomp160.dto.Booking
@@ -27,7 +28,7 @@ data class Planning(
     @field:Valid
     @Schema(example = "null", required = true, description = "")
     @get:JsonProperty("options", required = true) val options: kotlin.collections.List<Booking>
-    ) {
+) {
 
 }
 

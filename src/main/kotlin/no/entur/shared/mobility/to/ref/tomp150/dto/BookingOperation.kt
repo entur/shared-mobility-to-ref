@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -31,7 +32,7 @@ data class BookingOperation(
 
     @Schema(example = "null", description = "This operation can be done on behalf of another party. The MP can act on behalf of the END_USER (cancel this booking for me); to override the default origin. In case this field is missing, it must be assumed that the events the MP is sending, this field should contain \"MP\". And in case the TO is sending, \"TO\".")
     @get:JsonProperty("origin") val origin: BookingOperation.Origin? = null
-    ) {
+) {
 
     /**
     * the operation that is requested. When extra time is needed to complete the initial booking, EXTEND_EXPIRY_TIME can be used. In the response there is the 'Expiry' header field to supply the new expiry timestamp.

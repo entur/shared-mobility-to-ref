@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import jakarta.validation.constraints.DecimalMax
@@ -45,7 +46,7 @@ data class ProcessIdentifiers(
 
     @Schema(example = "null", required = true, description = "")
     @get:JsonProperty("general", required = true) val general: kotlin.collections.List<kotlin.String>
-    ) {
+) {
 
 }
 

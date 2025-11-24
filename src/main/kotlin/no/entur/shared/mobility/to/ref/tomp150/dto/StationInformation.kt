@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -139,7 +140,7 @@ data class StationInformation(
     @Schema(example = "https://www.rentmyfreebike.com/app?sid=1234567890&platform=ios", description = "ios uri for renting assets at this station. Only added to be consistent with GBFS 2.0.")
     @Deprecated(message = "")
     @get:JsonProperty("rentalUrlIOS") val rentalUrlIOS: kotlin.String? = null
-    ) {
+) {
 
     /**
     * parking_lot (Off-street parking lot) street_parking (Curbside parking) underground_parking (Parking that is below street level, station may be non-communicating) sidewalk_parking (Park vehicle on sidewalk, out of the pedestrian right of way) other

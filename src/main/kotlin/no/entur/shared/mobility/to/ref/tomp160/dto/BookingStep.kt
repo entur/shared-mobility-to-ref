@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -44,7 +45,7 @@ data class BookingStep(
 
     @Schema(example = "null", description = "The possible steps are described here<br> `PENDING` - to show whenever the booking is in PENDING state (not confirmed)<br> `WAITING` - to indicate that the TO is processing the booking, optionally after an extension of the expiry time<br> `WAITING_FOR_PAYMENT` - to indicate that the payment hasn't been settled, after an extension of the expiry time with reason payment<br> `CONFIRMED` - to show whenever the booking is in a COMMITTED state (confirmed)<br> `CANCELLED` - to show whenever the booking is cancelled<br> `CONDITIONAL_CONFIRMED` - to show whenever the booking is conditionally confirmed (see process identifiers)<br> `EXPIRED` - to show whenever the booking is expired (the expiry time has passed)<br>")
     @get:JsonProperty("action") val action: BookingStep.Action? = null
-    ) {
+) {
 
     /**
     * the type of the information provided

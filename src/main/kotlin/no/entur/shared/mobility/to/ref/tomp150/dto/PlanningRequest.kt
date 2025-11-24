@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import no.entur.shared.mobility.to.ref.tomp150.dto.ConnectedLegInfo
@@ -80,7 +81,7 @@ data class PlanningRequest(
     @field:Valid
     @Schema(example = "null", description = "dictionary for extra fields (bilatural agreements)")
     @get:JsonProperty("extraInfo") val extraInfo: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null
-    ) {
+) {
 
 }
 

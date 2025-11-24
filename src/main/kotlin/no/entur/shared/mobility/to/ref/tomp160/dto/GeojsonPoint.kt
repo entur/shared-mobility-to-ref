@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import no.entur.shared.mobility.to.ref.tomp160.dto.GeojsonGeometry
@@ -26,7 +27,7 @@ data class GeojsonPoint(
     @get:Size(min=2,max=2) 
     @Schema(example = "[4.53432,55.324523]", description = "")
     @get:JsonProperty("coordinates") val coordinates: kotlin.collections.List<kotlin.Float>? = null
-    ) : GeojsonGeometry{
+) : GeojsonGeometry {
 
 }
 

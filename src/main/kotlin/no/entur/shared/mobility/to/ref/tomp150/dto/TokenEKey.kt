@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import no.entur.shared.mobility.to.ref.tomp150.dto.TokenData
@@ -33,7 +34,7 @@ data class TokenEKey(
 
     @Schema(example = "null", required = true, description = "")
     @get:JsonProperty("tokenType", required = true) override val tokenType: kotlin.String
-    ) : TokenData{
+) : TokenData {
 
 }
 

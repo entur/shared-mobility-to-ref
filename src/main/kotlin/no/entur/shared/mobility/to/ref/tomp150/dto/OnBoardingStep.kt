@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -44,7 +45,7 @@ data class OnBoardingStep(
 
     @Schema(example = "null", description = "The possible steps are described here<br> `SEND_PREPARE` - indicate the leg is going to start <br> `UNLOCK_LOCKER` - user action - optionally triggered by the PREPARE event<br> `DISCONNECT_CHARGER` - requested user action <br> `SHOW_DAMAGES` - show known damages to end user <br> `UNLOCK_ASSET` - requested user action or triggered by SET_IN_USE event <br> `START_ASSET` - requested user action <br> `SEND_OPEN_TRUNK` - request TO to open trunk/helmet case remotely<br> `UNLOCK_TRUNK` - requested user action <br> `TAKE_HELMET` - requested user action <br> `SEND_SET_IN_USE` - request to start leg <br> `SEND_ASSIGN_ASSET` - request to assign the specified asset to the leg <br> `LOCK_LOCKER` - requested user action")
     @get:JsonProperty("action") val action: OnBoardingStep.Action? = null
-    ) {
+) {
 
     /**
     * the type of the information provided

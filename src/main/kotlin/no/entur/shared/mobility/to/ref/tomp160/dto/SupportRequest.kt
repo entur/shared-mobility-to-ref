@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -68,7 +69,7 @@ data class SupportRequest(
 
     @Schema(example = "null", description = "the (visual) ID on the asset, to report damage on an asset that hasn't been booked.")
     @get:JsonProperty("assetId") val assetId: kotlin.String? = null
-    ) {
+) {
 
     /**
     * 

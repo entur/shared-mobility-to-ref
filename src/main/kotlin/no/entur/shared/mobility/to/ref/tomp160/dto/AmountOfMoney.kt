@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import jakarta.validation.constraints.DecimalMax
@@ -42,7 +43,7 @@ data class AmountOfMoney(
     @get:Size(min=2,max=2)
     @Schema(example = "NL", description = "two-letter country codes according to ISO 3166-1")
     @get:JsonProperty("vatCountryCode") val vatCountryCode: kotlin.String? = null
-    ) {
+) {
 
 }
 

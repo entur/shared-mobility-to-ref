@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import no.entur.shared.mobility.to.ref.tomp160.dto.CardType
@@ -55,7 +56,7 @@ data class Traveler(
 
     @Schema(example = "null", description = "provider for personal information. Can be a URI or identifier.")
     @get:JsonProperty("knownIdentifierProvider") val knownIdentifierProvider: kotlin.String? = null
-    ) {
+) {
 
 }
 

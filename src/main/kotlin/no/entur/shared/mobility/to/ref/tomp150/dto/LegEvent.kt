@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -41,7 +42,7 @@ data class LegEvent(
     @field:Valid
     @Schema(example = "null", description = "")
     @get:JsonProperty("asset") val asset: Asset? = null
-    ) {
+) {
 
     /**
     * 

@@ -1,12 +1,13 @@
 package no.entur.shared.mobility.to.ref.tomp150.service
 
 import no.entur.shared.mobility.to.ref.config.TransportOperator.ALL_IMPLEMENTING_OPERATOR
-import no.entur.shared.mobility.to.ref.config.TransportOperator.BIKE_OPERATOR
+import no.entur.shared.mobility.to.ref.config.TransportOperator.COLUMBI_BIKE
 import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR
 import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_2
 import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_3
 import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE
 import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_NO_DEPOSIT
+import no.entur.shared.mobility.to.ref.config.TransportOperator.URBAN_BIKE
 import no.entur.shared.mobility.to.ref.tomp150.controller.BookingService
 import no.entur.shared.mobility.to.ref.tomp150.data.booking
 import no.entur.shared.mobility.to.ref.tomp150.data.bookingHigherDepositAmountThanTotalAmount
@@ -30,10 +31,6 @@ class BookingsServiceImpl : BookingService {
     ): Booking {
         val booking: Booking =
             when (addressedTo) {
-                SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3 -> throw NotImplementedError()
-                SCOOTER_OPERATOR_NO_DEPOSIT -> throw NotImplementedError()
-                SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> throw NotImplementedError()
-                BIKE_OPERATOR -> throw NotImplementedError()
                 ALL_IMPLEMENTING_OPERATOR -> booking
                 else -> throw NotImplementedError()
             }
@@ -55,8 +52,7 @@ class BookingsServiceImpl : BookingService {
                 SCOOTER_OPERATOR -> booking.copy(pricing = finalFare(25.00F))
                 SCOOTER_OPERATOR_2 -> booking.copy(pricing = finalFare(5.00F))
                 SCOOTER_OPERATOR_3 -> booking.copy(pricing = finalFare(15.00F))
-                BIKE_OPERATOR -> booking
-                ALL_IMPLEMENTING_OPERATOR -> booking
+                COLUMBI_BIKE, URBAN_BIKE, ALL_IMPLEMENTING_OPERATOR -> booking
                 else -> throw NotImplementedError()
             }
         return booking.copy(id = id)
@@ -71,8 +67,6 @@ class BookingsServiceImpl : BookingService {
         addressedTo: String?,
     ): Booking =
         when (addressedTo) {
-            SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3 -> throw NotImplementedError()
-            BIKE_OPERATOR -> throw NotImplementedError()
             ALL_IMPLEMENTING_OPERATOR -> booking
             else -> throw NotImplementedError()
         }

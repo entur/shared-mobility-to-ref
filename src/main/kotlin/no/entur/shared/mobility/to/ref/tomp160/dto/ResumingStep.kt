@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -44,7 +45,7 @@ data class ResumingStep(
 
     @Schema(example = "null", description = "possible values<br> `UNLOCK_ASSET` - user action, could be triggered by SET_IN_USE event<br> `SEND_OPEN_TRUNK` - request TO to open trunk remotely<br> `UNLOCK_TRUNK` - user action<br> `TAKE_HELMET` - user action<br> `LOCK_TRUNK` - user action<br> `START_ASSET` - user action<br> `SEND_SET_IN_USE` - the TO wants to be informed that the leg is resumed. Optionally triggers the unlock of the vehicle")
     @get:JsonProperty("action") val action: ResumingStep.Action? = null
-    ) {
+) {
 
     /**
     * the type of the information provided

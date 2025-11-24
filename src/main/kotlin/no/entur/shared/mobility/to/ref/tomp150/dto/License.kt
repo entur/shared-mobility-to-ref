@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -43,7 +44,7 @@ data class License(
     @field:Valid
     @Schema(example = "null", description = "")
     @get:JsonProperty("validUntil") val validUntil: java.time.LocalDate? = null
-    ) {
+) {
 
 }
 

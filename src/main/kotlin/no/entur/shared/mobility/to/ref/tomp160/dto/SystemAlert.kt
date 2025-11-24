@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -55,7 +56,7 @@ data class SystemAlert(
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("lastUpdated") val lastUpdated: java.time.OffsetDateTime? = null
-    ) {
+) {
 
     /**
     * 

@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -45,7 +46,7 @@ data class SystemHours(
 
     @Schema(example = "null", description = "If this parameter is present, it means that startTime and endTime correspond to the opening and closing hours for the region. (GET /operator/regions)")
     @get:JsonProperty("regionId") val regionId: kotlin.String? = null
-    ) {
+) {
 
     /**
     * This indicates that this set of rental hours applies to either members or non-members only.

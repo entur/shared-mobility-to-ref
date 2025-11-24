@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -49,7 +50,7 @@ data class Requirement(
 
     @Schema(example = "null", description = "days of week that are applicable")
     @get:JsonProperty("applicable-days") val applicableDays: kotlin.collections.List<Requirement.ApplicableDays>? = null
-    ) {
+) {
 
     /**
     * days of week that are applicable

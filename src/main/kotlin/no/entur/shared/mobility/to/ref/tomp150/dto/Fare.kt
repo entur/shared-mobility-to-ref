@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import no.entur.shared.mobility.to.ref.tomp150.dto.FarePart
@@ -35,7 +36,7 @@ data class Fare(
 
     @Schema(example = "null", description = "in the future we'll set up an enumeration of possible \"fare classes\". For now it's free format.")
     @get:JsonProperty("class") val propertyClass: kotlin.String? = null
-    ) {
+) {
 
 }
 
