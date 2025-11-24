@@ -11,35 +11,49 @@ import java.util.concurrent.ConcurrentLinkedQueue
 class EventScheduler150(
     private val sharedMobilityRouterClient: SharedMobilityRouterClient,
 ) {
-    private val bookedQueue: ConcurrentLinkedQueue<String> = ConcurrentLinkedQueue()
-    private val inUseQueue: ConcurrentLinkedQueue<String> = ConcurrentLinkedQueue()
+    private val bookedStartMessageQueue: ConcurrentLinkedQueue<String> = ConcurrentLinkedQueue()
+    private val bookedStartQueue: ConcurrentLinkedQueue<String> = ConcurrentLinkedQueue()
+    private val tripEndQueue: ConcurrentLinkedQueue<String> = ConcurrentLinkedQueue()
 
     fun addToEventQueue(legId: String) {
-        bookedQueue.add(legId)
+        bookedStartMessageQueue.add(legId)
     }
 
-    @Scheduled(initialDelay = 10_000, fixedDelay = 30 * SECONDS)
-    fun setInUse() {
-        bookedQueue.forEach {
+    @Scheduled(initialDelay = 10_000, fixedDelay = 1 * SECONDS)
+    fun messageTakeBike() {
+        bookedStartMessageQueue.forEach {
             sharedMobilityRouterClient.legsIdEventsPost150(
                 id = it,
                 addressedTo = "Entur",
                 legEvent = LegEvent(OffsetDateTime.now(), LegEvent.Event.SET_IN_USE),
             )
-            bookedQueue.remove(it)
-            inUseQueue.add(it)
+            bookedStartMessageQueue.remove(it)
+            bookedStartQueue.add(it)
+        }
+    }
+
+    @Scheduled(initialDelay = 10_000, fixedDelay = 20 * SECONDS)
+    fun setInUse() {
+        bookedStartQueue.forEach {
+            sharedMobilityRouterClient.legsIdEventsPost150(
+                id = it,
+                addressedTo = "Entur",
+                legEvent = LegEvent(OffsetDateTime.now(), LegEvent.Event.SET_IN_USE),
+            )
+            bookedStartQueue.remove(it)
+            tripEndQueue.add(it)
         }
     }
 
     @Scheduled(initialDelay = 10_000, fixedDelay = 300 * SECONDS)
     fun setFinished() {
-        inUseQueue.forEach {
+        tripEndQueue.forEach {
             sharedMobilityRouterClient.legsIdEventsPost150(
                 id = it,
                 addressedTo = "Entur",
                 legEvent = LegEvent(OffsetDateTime.now(), LegEvent.Event.FINISH),
             )
-            inUseQueue.remove(it)
+            tripEndQueue.remove(it)
         }
     }
 
