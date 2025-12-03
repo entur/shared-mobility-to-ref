@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import no.entur.shared.mobility.to.ref.tomp150.dto.Fare
@@ -55,7 +56,7 @@ data class SystemPricingPlan(
 
     @Schema(example = "null", description = "Is there currently an increase in price in response to increased demand in this pricing plan? If this field is empty, it means there is no surge pricing in effect.")
     @get:JsonProperty("surgePricing") val surgePricing: kotlin.Boolean? = null
-    ) {
+) {
 
 }
 

@@ -1,12 +1,13 @@
 package no.entur.shared.mobility.to.ref.tomp150.service
 
 import no.entur.shared.mobility.to.ref.config.TransportOperator.ALL_IMPLEMENTING_OPERATOR
-import no.entur.shared.mobility.to.ref.config.TransportOperator.BIKE_OPERATOR
+import no.entur.shared.mobility.to.ref.config.TransportOperator.COLUMBI_BIKE
 import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR
 import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_2
 import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_3
 import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE
 import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_NO_DEPOSIT
+import no.entur.shared.mobility.to.ref.config.TransportOperator.URBAN_BIKE
 import no.entur.shared.mobility.to.ref.tomp150.controller.PlanningService
 import no.entur.shared.mobility.to.ref.tomp150.data.asset
 import no.entur.shared.mobility.to.ref.tomp150.data.booking
@@ -38,8 +39,6 @@ class PlanningServiceImpl(
         planningRequest: PlanningRequest?,
     ): Planning =
         when (addressedTo) {
-            SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3 -> throw NotImplementedError()
-            BIKE_OPERATOR -> throw NotImplementedError()
             ALL_IMPLEMENTING_OPERATOR -> planning
             else -> throw NotImplementedError()
         }
@@ -59,9 +58,7 @@ class PlanningServiceImpl(
             when (addressedTo) {
                 SCOOTER_OPERATOR_NO_DEPOSIT -> bookingWithoutDeposit
                 SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> bookingHigherDepositAmountThanTotalAmount
-                SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3 -> booking
-                BIKE_OPERATOR -> booking
-                ALL_IMPLEMENTING_OPERATOR -> booking
+                SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3, COLUMBI_BIKE, URBAN_BIKE, ALL_IMPLEMENTING_OPERATOR -> booking
                 else -> throw NotImplementedError()
             }
 
@@ -106,8 +103,6 @@ class PlanningServiceImpl(
         planningRequest: PlanningRequest?,
     ): Planning =
         when (addressedTo) {
-            SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3 -> throw NotImplementedError()
-            BIKE_OPERATOR -> throw NotImplementedError()
             ALL_IMPLEMENTING_OPERATOR -> planning
             else -> throw NotImplementedError()
         }
@@ -127,8 +122,14 @@ class PlanningServiceImpl(
                 SCOOTER_OPERATOR -> booking.copy(pricing = finalFare(25.00F))
                 SCOOTER_OPERATOR_2 -> booking.copy(pricing = finalFare(5.00F))
                 SCOOTER_OPERATOR_3 -> booking.copy(pricing = finalFare(15.00F))
-                BIKE_OPERATOR -> {
+                COLUMBI_BIKE -> {
                     val notStartedLeg = leg.copy(state = LegState.NOT_STARTED)
+                    eventScheduler150.addToEventQueue(notStartedLeg.id!!)
+                    booking.copy(legs = listOf(notStartedLeg))
+                }
+
+                URBAN_BIKE -> {
+                    val notStartedLeg = leg.copy(state = LegState.NOT_STARTED, id = URBAN_BIKE + leg.id)
                     eventScheduler150.addToEventQueue(notStartedLeg.id!!)
                     booking.copy(legs = listOf(notStartedLeg))
                 }

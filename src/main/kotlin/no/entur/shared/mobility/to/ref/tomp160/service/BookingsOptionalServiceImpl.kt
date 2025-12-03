@@ -1,12 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp160.service
 
 import no.entur.shared.mobility.to.ref.config.TransportOperator.ALL_IMPLEMENTING_OPERATOR
-import no.entur.shared.mobility.to.ref.config.TransportOperator.BIKE_OPERATOR
-import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR
-import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_2
-import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_3
-import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE
-import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_NO_DEPOSIT
 import no.entur.shared.mobility.to.ref.tomp160.controller.BookingOptionalService
 import no.entur.shared.mobility.to.ref.tomp160.data.booking
 import no.entur.shared.mobility.to.ref.tomp160.dto.Booking
@@ -30,10 +24,6 @@ class BookingsOptionalServiceImpl : BookingOptionalService {
         containsAssetType: String?,
     ): List<Booking> =
         when (addressedTo) {
-            SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3 -> throw NotImplementedError()
-            SCOOTER_OPERATOR_NO_DEPOSIT -> throw NotImplementedError()
-            SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> throw NotImplementedError()
-            BIKE_OPERATOR -> throw NotImplementedError()
             ALL_IMPLEMENTING_OPERATOR -> listOf(booking)
             else -> throw NotImplementedError()
         }
@@ -74,8 +64,6 @@ class BookingsOptionalServiceImpl : BookingOptionalService {
         addressedTo: String?,
     ): Booking =
         when (addressedTo) {
-            SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3 -> throw NotImplementedError()
-            BIKE_OPERATOR -> throw NotImplementedError()
             ALL_IMPLEMENTING_OPERATOR -> booking
             else -> throw NotImplementedError()
         }

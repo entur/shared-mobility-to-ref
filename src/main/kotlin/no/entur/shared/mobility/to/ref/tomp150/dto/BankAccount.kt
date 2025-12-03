@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import jakarta.validation.constraints.DecimalMax
@@ -34,7 +35,7 @@ data class BankAccount(
 
     @Schema(example = "null", description = "bank identification, like BIC code")
     @get:JsonProperty("bankIdentification") val bankIdentification: kotlin.String? = null
-    ) {
+) {
 
 }
 

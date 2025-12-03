@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import jakarta.validation.constraints.DecimalMax
@@ -57,7 +58,7 @@ data class SystemCalendar(
 
     @Schema(example = "2099", description = "Ending year for the system operations")
     @get:JsonProperty("endYear") val endYear: kotlin.Int? = null
-    ) {
+) {
 
 }
 

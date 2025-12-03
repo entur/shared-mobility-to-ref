@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -71,7 +72,7 @@ data class SupportStatus(
 
     @Schema(example = "null", description = "urls to clarify the support request e.g. pictures showing damage")
     @get:JsonProperty("urls") val urls: kotlin.collections.List<kotlin.String>? = null
-    ) {
+) {
 
     /**
     * 

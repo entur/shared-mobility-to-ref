@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import no.entur.shared.mobility.to.ref.tomp160.dto.Endpoint
@@ -49,7 +50,7 @@ data class EndpointImplementation(
     @field:Valid
     @Schema(example = "null", description = "")
     @get:JsonProperty("steps") val steps: EndpointImplementationSteps? = null
-    ) {
+) {
 
 }
 

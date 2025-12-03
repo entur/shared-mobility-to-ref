@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import jakarta.validation.constraints.DecimalMax
@@ -26,7 +27,7 @@ data class AssetPropertiesEcoLabelInner(
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("ecoSticker") val ecoSticker: kotlin.String? = null
-    ) {
+) {
 
 }
 

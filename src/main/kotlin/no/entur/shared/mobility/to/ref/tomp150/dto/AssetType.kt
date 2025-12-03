@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -70,7 +71,7 @@ data class AssetType(
     @field:Valid
     @Schema(example = "null", description = "extra information about the asset type, making it possible to f.x. specifying that booking this car requires a driver license.")
     @get:JsonProperty("conditions") val conditions: kotlin.collections.List<Condition>? = null
-    ) {
+) {
 
 }
 

@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -32,7 +33,7 @@ data class StopReference(
     @get:Size(min=2,max=2)
     @Schema(example = "NL", required = true, description = "two-letter country codes according to ISO 3166-1")
     @get:JsonProperty("country", required = true) val country: kotlin.String
-    ) {
+) {
 
     /**
     * type of external reference (GTFS, CHB).

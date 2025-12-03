@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import jakarta.validation.constraints.DecimalMax
@@ -41,7 +42,7 @@ data class Error(
 
     @Schema(example = "null", description = "A URI reference that identifies the specific occurrence of the problem.  It may or may not yield further information if dereferenced.")
     @get:JsonProperty("instance") val instance: kotlin.String? = null
-    ) {
+) {
 
 }
 

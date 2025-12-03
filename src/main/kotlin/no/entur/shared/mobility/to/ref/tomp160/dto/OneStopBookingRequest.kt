@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import no.entur.shared.mobility.to.ref.tomp160.dto.ConnectedLegInfo
@@ -90,7 +91,7 @@ data class OneStopBookingRequest(
 
     @Schema(example = "null", description = "The callback URL of the Maas Provider, to use as base url for callback, f.x. the POST legs/{id}/events and POST /bookings/{id}/events. Only to be provided when this deviates from standard or agreed URL.")
     @get:JsonProperty("callbackUrl") val callbackUrl: kotlin.String? = null
-    ) {
+) {
 
 }
 

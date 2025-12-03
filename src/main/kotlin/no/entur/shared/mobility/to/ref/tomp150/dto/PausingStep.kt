@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
+import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -44,7 +45,7 @@ data class PausingStep(
 
     @Schema(example = "null", description = "allowed actions<br> `SEND_PAUSE` - send leg event PAUSE to inform the TO<br> `PARK_ASSIST` - user action, the end user can be informed how and where to park<br> `LOCK_ASSET` - user action, can be triggered by the PAUSE event<br> `SEND_OPEN_TRUNK` - request TO to open the trunk remotely<br> `UNLOCK_TRUNK` - user action<br> `STOW_HELMET` - user action<br> `LOCK_TRUNK` - user action")
     @get:JsonProperty("action") val action: PausingStep.Action? = null
-    ) {
+) {
 
     /**
     * the type of the information provided

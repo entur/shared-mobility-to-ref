@@ -1,12 +1,13 @@
 package no.entur.shared.mobility.to.ref.tomp150.service
 
 import no.entur.shared.mobility.to.ref.config.TransportOperator.ALL_IMPLEMENTING_OPERATOR
-import no.entur.shared.mobility.to.ref.config.TransportOperator.BIKE_OPERATOR
+import no.entur.shared.mobility.to.ref.config.TransportOperator.COLUMBI_BIKE
 import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR
 import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_2
 import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_3
 import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE
 import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_NO_DEPOSIT
+import no.entur.shared.mobility.to.ref.config.TransportOperator.URBAN_BIKE
 import no.entur.shared.mobility.to.ref.tomp150.controller.OperatorInformationService
 import no.entur.shared.mobility.to.ref.tomp150.data.MetaProvider
 import no.entur.shared.mobility.to.ref.tomp150.data.assetType
@@ -51,8 +52,6 @@ class OperatorInformationServiceImpl(
         stationId: String?,
     ): List<AssetType> =
         when (addressedTo) {
-            SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3 -> throw NotImplementedError()
-            BIKE_OPERATOR -> throw NotImplementedError()
             ALL_IMPLEMENTING_OPERATOR -> listOf(assetType)
             else -> throw NotImplementedError()
         }
@@ -65,8 +64,6 @@ class OperatorInformationServiceImpl(
         addressedTo: String?,
     ): SystemInformation =
         when (addressedTo) {
-            SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3 -> throw NotImplementedError()
-            BIKE_OPERATOR -> throw NotImplementedError()
             ALL_IMPLEMENTING_OPERATOR -> systemInformation
             else -> throw NotImplementedError()
         }
@@ -77,10 +74,13 @@ class OperatorInformationServiceImpl(
         addressedTo: String?,
     ): List<EndpointImplementation> =
         when (addressedTo) {
-            SCOOTER_OPERATOR_NO_DEPOSIT -> metaProvider.scooterOperatorEndpointImplementations()
-            SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> metaProvider.scooterOperatorEndpointImplementations()
-            SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3 -> metaProvider.scooterOperatorEndpointImplementations()
-            BIKE_OPERATOR -> metaProvider.bikeOperatorEndpointImplementations()
+            SCOOTER_OPERATOR_NO_DEPOSIT,
+            SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE,
+            SCOOTER_OPERATOR,
+            SCOOTER_OPERATOR_2,
+            SCOOTER_OPERATOR_3,
+            -> metaProvider.scooterOperatorEndpointImplementations()
+            COLUMBI_BIKE, URBAN_BIKE -> metaProvider.bikeOperatorEndpointImplementations()
             ALL_IMPLEMENTING_OPERATOR -> metaProvider.allEndpointImplementations()
             else -> emptyList()
         }
