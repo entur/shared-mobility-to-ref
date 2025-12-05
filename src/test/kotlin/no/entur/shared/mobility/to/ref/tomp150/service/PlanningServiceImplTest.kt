@@ -10,7 +10,6 @@ import no.entur.shared.mobility.to.ref.tomp150.dto.Customer
 import no.entur.shared.mobility.to.ref.tomp150.dto.OneStopBookingRequest
 import no.entur.shared.mobility.to.ref.tomp150.dto.Place
 import org.junit.jupiter.api.Test
-import kotlin.collections.contains
 
 class PlanningServiceImplTest {
     private val eventScheduler150: EventScheduler150 = mockk(relaxed = true)
@@ -32,7 +31,7 @@ class PlanningServiceImplTest {
             ),
         )
 
-        verify(exactly = 1) { eventScheduler150.addToEventQueue(any()) }
+        verify(exactly = 1) { eventScheduler150.addToEventQueue(any(), any(), COLUMBI_BIKE) }
     }
 
     @Test
@@ -52,6 +51,6 @@ class PlanningServiceImplTest {
             )
         }
 
-        verify(exactly = 0) { eventScheduler150.addToEventQueue(any()) }
+        verify(exactly = 0) { eventScheduler150.addToEventQueue(any(), any(), any()) }
     }
 }

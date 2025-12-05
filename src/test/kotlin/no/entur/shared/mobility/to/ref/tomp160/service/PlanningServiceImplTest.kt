@@ -31,7 +31,7 @@ class PlanningServiceImplTest {
             ),
         )
 
-        verify(exactly = 1) { eventScheduler160.addToEventQueue(any()) }
+        verify(exactly = 1) { eventScheduler160.addToEventQueue(any(), any(), COLUMBI_BIKE) }
     }
 
     @Test
@@ -51,6 +51,6 @@ class PlanningServiceImplTest {
             )
         }
 
-        verify(exactly = 0) { eventScheduler160.addToEventQueue(any()) }
+        verify(exactly = 0) { eventScheduler160.addToEventQueue(any(), any(), any()) }
     }
 }

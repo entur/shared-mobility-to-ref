@@ -124,16 +124,9 @@ class PlanningServiceImpl(
                 SCOOTER_OPERATOR_3 -> booking.copy(pricing = finalFare(15.00F))
                 COLUMBI_BIKE -> {
                     val notStartedLeg = leg.copy(state = LegState.NOT_STARTED)
-                    eventScheduler160.addToEventQueue(notStartedLeg.id!!)
+                    eventScheduler160.addToEventQueue(booking.id!!, notStartedLeg.id!!, addressedTo)
                     booking.copy(legs = listOf(notStartedLeg))
                 }
-
-                URBAN_BIKE -> {
-                    val notStartedLeg = leg.copy(state = LegState.NOT_STARTED, id = URBAN_BIKE + leg.id)
-                    eventScheduler160.addToEventQueue(notStartedLeg.id!!)
-                    booking.copy(legs = listOf(notStartedLeg))
-                }
-
                 ALL_IMPLEMENTING_OPERATOR -> booking
                 else -> throw NotImplementedError()
             }
