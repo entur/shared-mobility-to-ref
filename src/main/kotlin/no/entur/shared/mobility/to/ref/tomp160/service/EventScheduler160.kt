@@ -1,7 +1,9 @@
 package no.entur.shared.mobility.to.ref.tomp160.service
 
 import no.entur.shared.mobility.to.ref.client.SharedMobilityRouterClient
+import no.entur.shared.mobility.to.ref.config.TransportOperator.URBAN_BIKE
 import no.entur.shared.mobility.to.ref.tomp160.dto.LegEvent
+import no.entur.shared.mobility.to.ref.tomp160.dto.Notification
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
@@ -11,36 +13,66 @@ import java.util.concurrent.ConcurrentLinkedQueue
 class EventScheduler160(
     private val sharedMobilityRouterClient: SharedMobilityRouterClient,
 ) {
-    private val bookedQueue: ConcurrentLinkedQueue<String> = ConcurrentLinkedQueue()
-    private val inUseQueue: ConcurrentLinkedQueue<String> = ConcurrentLinkedQueue()
+    private val bookedStartMessageQueue: ConcurrentLinkedQueue<Triple<String, String, String>> = ConcurrentLinkedQueue()
+    private val bookedStartQueue: ConcurrentLinkedQueue<Triple<String, String, String>> = ConcurrentLinkedQueue()
+    private val tripEndQueue: ConcurrentLinkedQueue<Triple<String, String, String>> = ConcurrentLinkedQueue()
 
-    fun addToEventQueue(legId: String) {
-        bookedQueue.add(legId)
+    fun addToEventQueue(
+        bookingId: String,
+        legId: String,
+        operatorId: String,
+    ) {
+        bookedStartMessageQueue.add(Triple(bookingId, legId, operatorId))
     }
 
-    @Scheduled(initialDelay = 10_000, fixedDelay = 30 * SECONDS)
-    fun setInUse() {
-        bookedQueue.forEach {
-            sharedMobilityRouterClient.legsIdEventsPost160(
-                id = it,
+    @Scheduled(initialDelay = 10_000, fixedDelay = 1 * SECONDS)
+    fun messageTakeBike() {
+        bookedStartMessageQueue.forEach {
+            sharedMobilityRouterClient.bookingsIdNotificationsPost160(
+                id = it.first,
+                maasId = it.third,
                 addressedTo = "Entur",
-                legEvent = LegEvent(OffsetDateTime.now(), LegEvent.Event.SET_IN_USE),
+                notification =
+                    Notification(
+                        legId = it.second,
+                        type = Notification.Type.MESSAGE_TO_END_USER,
+                        comment = "You can now take the bike.",
+                    ),
             )
-            bookedQueue.remove(it)
-            inUseQueue.add(it)
+            bookedStartMessageQueue.remove(it)
+            bookedStartQueue.add(it)
+        }
+    }
+
+    @Scheduled(initialDelay = 10_000, fixedDelay = 20 * SECONDS)
+    fun setInUse() {
+        bookedStartQueue.forEach {
+            postLeg(it, LegEvent.Event.SET_IN_USE)
+            bookedStartQueue.remove(it)
+            if (it.third != URBAN_BIKE) {
+                tripEndQueue.add(it)
+            }
         }
     }
 
     @Scheduled(initialDelay = 10_000, fixedDelay = 300 * SECONDS)
     fun setFinished() {
-        inUseQueue.forEach {
-            sharedMobilityRouterClient.legsIdEventsPost160(
-                id = it,
-                addressedTo = "Entur",
-                legEvent = LegEvent(OffsetDateTime.now(), LegEvent.Event.FINISH),
-            )
-            inUseQueue.remove(it)
+        tripEndQueue.forEach {
+            postLeg(it, LegEvent.Event.FINISH)
+            tripEndQueue.remove(it)
         }
+    }
+
+    fun postLeg(
+        triple: Triple<String, String, String>,
+        event: LegEvent.Event,
+    ) {
+        sharedMobilityRouterClient.legsIdEventsPost160(
+            id = triple.first,
+            maasId = triple.third,
+            addressedTo = "Entur",
+            legEvent = LegEvent(OffsetDateTime.now(), event),
+        )
     }
 
     companion object {
