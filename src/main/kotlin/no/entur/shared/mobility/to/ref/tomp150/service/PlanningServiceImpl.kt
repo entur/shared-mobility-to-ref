@@ -51,14 +51,19 @@ class PlanningServiceImpl(
         addressedTo: String?,
         planningRequest: PlanningRequest?,
     ): Planning {
-        // If extraInfo.vehicleCode is present this should be used to find the corresponding assetId / vehicleId / bike_id
+        // If extraInfo.vehicleCode is present this should be used to find the corresponding assetId/vehicleId/bike_id
         val extraInfo = planningRequest?.from?.extraInfo
 
         val booking =
             when (addressedTo) {
                 SCOOTER_OPERATOR_NO_DEPOSIT -> bookingWithoutDeposit
                 SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> bookingHigherDepositAmountThanTotalAmount
-                SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3, COLUMBI_BIKE, URBAN_BIKE, ALL_IMPLEMENTING_OPERATOR -> booking
+                SCOOTER_OPERATOR,
+                SCOOTER_OPERATOR_2,
+                SCOOTER_OPERATOR_3,
+                COLUMBI_BIKE,
+                URBAN_BIKE,
+                ALL_IMPLEMENTING_OPERATOR -> booking
                 else -> throw NotImplementedError()
             }
 
@@ -124,8 +129,9 @@ class PlanningServiceImpl(
                 SCOOTER_OPERATOR_3 -> booking.copy(pricing = finalFare(15.00F))
                 COLUMBI_BIKE, URBAN_BIKE -> {
                     val notStartedLeg = leg.copy(state = LegState.NOT_STARTED)
-                    eventScheduler150.addToEventQueue(booking.id!!, notStartedLeg.id!!, addressedTo)
-                    booking.copy(legs = listOf(notStartedLeg))
+                    val bikeBooking = booking.copy(legs = listOf(notStartedLeg))
+                    eventScheduler150.addToEventQueue(bikeBooking.id!!, notStartedLeg.id!!, addressedTo)
+                    bikeBooking
                 }
                 ALL_IMPLEMENTING_OPERATOR -> booking
                 else -> throw NotImplementedError()
@@ -137,7 +143,9 @@ class PlanningServiceImpl(
                 booking.legs?.map { leg ->
                     leg.copy(
                         from = oneStopBookingRequest.from,
-                        asset = asset.copy(id = oneStopBookingRequest.useAssets?.first() ?: UUID.randomUUID().toString()),
+                        asset = asset.copy(
+                            id = oneStopBookingRequest.useAssets?.first() ?: UUID.randomUUID().toString()
+                        ),
                     )
                 },
         )
