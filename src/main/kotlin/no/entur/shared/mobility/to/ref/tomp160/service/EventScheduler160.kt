@@ -68,7 +68,7 @@ class EventScheduler160(
         event: LegEvent.Event,
     ) {
         sharedMobilityRouterClient.legsIdEventsPost160(
-            id = triple.first,
+            id = triple.second,
             maasId = triple.third,
             addressedTo = "Entur",
             legEvent = LegEvent(OffsetDateTime.now(), event),
