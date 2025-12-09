@@ -63,7 +63,9 @@ class PlanningServiceImpl(
                 SCOOTER_OPERATOR_3,
                 COLUMBI_BIKE,
                 URBAN_BIKE,
-                ALL_IMPLEMENTING_OPERATOR -> booking
+                ALL_IMPLEMENTING_OPERATOR,
+                -> booking
+
                 else -> throw NotImplementedError()
             }
 
@@ -133,6 +135,7 @@ class PlanningServiceImpl(
                     eventScheduler150.addToEventQueue(bikeBooking.id!!, notStartedLeg.id!!, addressedTo)
                     bikeBooking
                 }
+
                 ALL_IMPLEMENTING_OPERATOR -> booking
                 else -> throw NotImplementedError()
             }
@@ -143,9 +146,7 @@ class PlanningServiceImpl(
                 booking.legs?.map { leg ->
                     leg.copy(
                         from = oneStopBookingRequest.from,
-                        asset = asset.copy(
-                            id = oneStopBookingRequest.useAssets?.first() ?: UUID.randomUUID().toString()
-                        ),
+                        asset = asset.copy(id = oneStopBookingRequest.useAssets?.first() ?: UUID.randomUUID().toString()),
                     )
                 },
         )
