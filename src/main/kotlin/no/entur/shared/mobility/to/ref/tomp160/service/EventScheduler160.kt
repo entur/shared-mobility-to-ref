@@ -13,8 +13,8 @@ import java.util.concurrent.ConcurrentLinkedQueue
 class EventScheduler160(
     private val sharedMobilityRouterClient: SharedMobilityRouterClient,
 ) {
-    private val bookedStartMessageQueue: ConcurrentLinkedQueue<Triple<String, String, String>> = ConcurrentLinkedQueue()
-    private val bookedStartQueue: ConcurrentLinkedQueue<Triple<String, String, String>> = ConcurrentLinkedQueue()
+    private val startMessageQueue: ConcurrentLinkedQueue<Triple<String, String, String>> = ConcurrentLinkedQueue()
+    private val tripStartQueue: ConcurrentLinkedQueue<Triple<String, String, String>> = ConcurrentLinkedQueue()
     private val tripEndQueue: ConcurrentLinkedQueue<Triple<String, String, String>> = ConcurrentLinkedQueue()
 
     fun addToEventQueue(
@@ -22,33 +22,35 @@ class EventScheduler160(
         legId: String,
         operatorId: String,
     ) {
-        bookedStartMessageQueue.add(Triple(bookingId, legId, operatorId))
+        startMessageQueue.add(Triple(bookingId, legId, operatorId))
     }
 
     @Scheduled(initialDelay = 10_000, fixedDelay = 1 * SECONDS)
     fun messageTakeBike() {
-        bookedStartMessageQueue.forEach {
-            sharedMobilityRouterClient.bookingsIdNotificationsPost160(
-                id = it.first,
-                maasId = it.third,
-                addressedTo = "Entur",
-                notification =
-                    Notification(
-                        legId = it.second,
-                        type = Notification.Type.MESSAGE_TO_END_USER,
-                        comment = "You can now take the bike.",
-                    ),
-            )
-            bookedStartMessageQueue.remove(it)
-            bookedStartQueue.add(it)
+        startMessageQueue.forEach {
+            runCatching {
+                sharedMobilityRouterClient.bookingsIdNotificationsPost160(
+                    id = it.first,
+                    maasId = it.third,
+                    addressedTo = "Entur",
+                    notification =
+                        Notification(
+                            legId = it.second,
+                            type = Notification.Type.MESSAGE_TO_END_USER,
+                            comment = "You can now take the bike.",
+                        ),
+                )
+            }
+            startMessageQueue.remove(it)
+            tripStartQueue.add(it)
         }
     }
 
     @Scheduled(initialDelay = 10_000, fixedDelay = 20 * SECONDS)
     fun setInUse() {
-        bookedStartQueue.forEach {
+        tripStartQueue.forEach {
             postLeg(it, LegEvent.Event.SET_IN_USE)
-            bookedStartQueue.remove(it)
+            tripStartQueue.remove(it)
             if (it.third != URBAN_BIKE) {
                 tripEndQueue.add(it)
             }
@@ -63,16 +65,18 @@ class EventScheduler160(
         }
     }
 
-    fun postLeg(
+    private fun postLeg(
         triple: Triple<String, String, String>,
         event: LegEvent.Event,
     ) {
-        sharedMobilityRouterClient.legsIdEventsPost160(
-            id = triple.second,
-            maasId = triple.third,
-            addressedTo = "Entur",
-            legEvent = LegEvent(OffsetDateTime.now(), event),
-        )
+        runCatching {
+            sharedMobilityRouterClient.legsIdEventsPost160(
+                id = triple.second,
+                maasId = triple.third,
+                addressedTo = "Entur",
+                legEvent = LegEvent(OffsetDateTime.now(), event),
+            )
+        }
     }
 
     companion object {
