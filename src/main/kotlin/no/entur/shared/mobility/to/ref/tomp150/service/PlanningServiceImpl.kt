@@ -65,7 +65,6 @@ class PlanningServiceImpl(
                 URBAN_BIKE,
                 ALL_IMPLEMENTING_OPERATOR,
                 -> booking
-
                 else -> throw NotImplementedError()
             }
 
@@ -146,7 +145,10 @@ class PlanningServiceImpl(
                 booking.legs?.map { leg ->
                     leg.copy(
                         from = oneStopBookingRequest.from,
-                        asset = asset.copy(id = oneStopBookingRequest.useAssets?.first() ?: UUID.randomUUID().toString()),
+                        asset =
+                            asset.copy(
+                                id = oneStopBookingRequest.useAssets?.first() ?: UUID.randomUUID().toString(),
+                            ),
                     )
                 },
         )

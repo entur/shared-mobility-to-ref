@@ -1,3 +1,4 @@
+
 package no.entur.shared.mobility.to.ref.tomp160.service
 
 import no.entur.shared.mobility.to.ref.client.SharedMobilityRouterClient

@@ -100,6 +100,10 @@ val modelPackageTomp160 = "no.entur.shared.mobility.to.ref.tomp160.dto"
 val apiPackageTomp160 = "no.entur.shared.mobility.to.ref.tomp160.controller"
 val modelPathTomp160 = file("$projectDir/src/main/kotlin/no/entur/shared/mobility/to/ref/tomp160/dto")
 val apiPathTomp160 = file("$projectDir/src/main/kotlin/no/entur/shared/mobility/to/ref/tomp160/controller")
+val modelPackageTomp200 = "no.entur.shared.mobility.to.ref.tomp200.dto"
+val apiPackageTomp200 = "no.entur.shared.mobility.to.ref.tomp200.controller"
+val modelPathTomp200 = file("$projectDir/src/main/kotlin/no/entur/shared/mobility/to/ref/tomp200/dto")
+val apiPathTomp200 = file("$projectDir/src/main/kotlin/no/entur/shared/mobility/to/ref/tomp200/controller")
 ktlint {
     version = "1.5.0"
     debug = true
@@ -116,6 +120,12 @@ ktlint {
         }
         exclude {
             it.file.path.contains(apiPathTomp160.path)
+        }
+        exclude {
+            it.file.path.contains(modelPathTomp200.path)
+        }
+        exclude {
+            it.file.path.contains(apiPathTomp200.path)
         }
     }
 }
@@ -168,6 +178,27 @@ tasks.register<org.openapitools.generator.gradle.plugin.tasks.GenerateTask>("bui
     configOptions.set(configOptionsTomp)
 }
 
+for (file in File("$swaggerSpecLocation/2.0.0/").listFiles()) {
+    tasks.register<org.openapitools.generator.gradle.plugin.tasks.GenerateTask>("buildTomp200.${file.nameWithoutExtension}") {
+        generatorName.set("kotlin-spring")
+        outputDir.set("$generatedSources")
+        inputSpec.set("$swaggerSpecLocation/2.0.0/${file.name}")
+        version.set("v1")
+        modelPackage.set(modelPackageTomp200)
+        apiPackage.set(apiPackageTomp200)
+        globalProperties.set(
+            mapOf(
+//        "a to "Booking,BookingOptional,General,OperatorInformation,Payment,Planning,Support,TripExecution,CustomerManagement",
+                "models" to "",
+                "modelDocs" to "false",
+                "modelTests" to "false",
+                "apiTests" to "false",
+            ),
+        )
+        configOptions.set(configOptionsTomp)
+    }
+}
+
 tasks.withType<Test> {
     useJUnitPlatform()
 }
@@ -175,10 +206,16 @@ tasks.withType<Test> {
 tasks.named("compileKotlin") {
     dependsOn(":buildTomp150")
     dependsOn(":buildTomp160")
+    for (file in File("$swaggerSpecLocation/2.0.0/").listFiles()) {
+        dependsOn("buildTomp200.${file.nameWithoutExtension}")
+    }
 }
 tasks.named("runKtlintFormatOverMainSourceSet") {
     dependsOn(":buildTomp150")
     dependsOn(":buildTomp160")
+    for (file in File("$swaggerSpecLocation/2.0.0/").listFiles()) {
+        dependsOn("buildTomp200.${file.nameWithoutExtension}")
+    }
 }
 
 tasks.named("runKtlintCheckOverMainSourceSet") {
