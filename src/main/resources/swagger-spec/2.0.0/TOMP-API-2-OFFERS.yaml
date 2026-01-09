@@ -132,7 +132,7 @@ components:
           discriminator:
             propertyName: type
             mapping:
-              travel_specification: "TOMP-API-1-CORE.yaml#/components/schemas/travelSpecification"
+              travel_specification: "#/components/schemas/travelSpecification"
               trip_pattern: "#/components/schemas/tripPattern"
         requirements:
           $ref: "TOMP-API-1-CORE.yaml#/components/schemas/travellerRequirements"

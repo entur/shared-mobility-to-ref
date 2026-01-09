@@ -520,4 +520,3 @@ components:
           QRCODE: "#/components/schemas/binaryTicket"
           AZTECCODE: "#/components/schemas/binaryTicket"
           EKEY: "#/components/schemas/eKey"
-          OTHER: "#/components/schemas/customProperties"
