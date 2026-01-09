@@ -110,22 +110,13 @@ ktlint {
     verbose = true
     filter {
         exclude {
-            it.file.path.contains(modelPathTomp150.path)
+            it.file.path.contains(modelPathTomp150.path) || it.file.path.contains(apiPathTomp150.path)
         }
         exclude {
-            it.file.path.contains(apiPathTomp150.path)
+            it.file.path.contains(modelPathTomp160.path) || it.file.path.contains(apiPathTomp160.path)
         }
         exclude {
-            it.file.path.contains(modelPathTomp160.path)
-        }
-        exclude {
-            it.file.path.contains(apiPathTomp160.path)
-        }
-        exclude {
-            it.file.path.contains(modelPathTomp200.path)
-        }
-        exclude {
-            it.file.path.contains(apiPathTomp200.path)
+            it.file.path.contains(modelPathTomp200.path) || it.file.path.contains(apiPathTomp200.path)
         }
     }
 }
@@ -147,9 +138,10 @@ tasks.register<org.openapitools.generator.gradle.plugin.tasks.GenerateTask>("bui
     version.set("v1")
     modelPackage.set(modelPackageTomp150)
     apiPackage.set(apiPackageTomp150)
+    skipOverwrite.set(true)
     globalProperties.set(
         mapOf(
-//            "apis" to "Booking,BookingOptional,General,OperatorInformation,Payment,Planning,Support,TripExecution",
+            "apis" to "Booking,BookingOptional,General,OperatorInformation,Payment,Planning,Support,TripExecution",
             "models" to "",
             "modelDocs" to "false",
             "modelTests" to "false",
@@ -166,9 +158,10 @@ tasks.register<org.openapitools.generator.gradle.plugin.tasks.GenerateTask>("bui
     version.set("v1")
     modelPackage.set(modelPackageTomp160)
     apiPackage.set(apiPackageTomp160)
+    skipOverwrite.set(true)
     globalProperties.set(
         mapOf(
-//            "apis" to "Booking,BookingOptional,General,OperatorInformation,Payment,Planning,Support,TripExecution,CustomerManagement",
+            "apis" to "Booking,BookingOptional,General,OperatorInformation,Payment,Planning,Support,TripExecution,CustomerManagement",
             "models" to "",
             "modelDocs" to "false",
             "modelTests" to "false",
@@ -186,6 +179,7 @@ for (file in File("$swaggerSpecLocation/2.0.0/").listFiles()) {
         version.set("v1")
         modelPackage.set(modelPackageTomp200)
         apiPackage.set(apiPackageTomp200)
+        skipOverwrite.set(true)
         globalProperties.set(
             mapOf(
                 "apis" to "",
