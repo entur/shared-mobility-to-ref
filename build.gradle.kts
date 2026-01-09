@@ -186,11 +186,9 @@ for (file in File("$swaggerSpecLocation/2.0.0/").listFiles()) {
         version.set("v1")
         modelPackage.set(modelPackageTomp200)
         apiPackage.set(apiPackageTomp200)
-//        generateAliasAsModel = true
         globalProperties.set(
             mapOf(
-//        "a to "Booking,BookingOptional,General,OperatorInformation,Payment,Planning,Support,TripExecution,CustomerManagement",
-//                "apis" to "",
+                "apis" to "",
                 "models" to "",
                 "modelDocs" to "false",
                 "modelTests" to "false",

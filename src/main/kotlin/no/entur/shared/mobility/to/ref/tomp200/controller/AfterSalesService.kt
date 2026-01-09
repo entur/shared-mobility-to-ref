@@ -1,0 +1,118 @@
+package no.entur.shared.mobility.to.ref.tomp200.controller
+
+import no.entur.shared.mobility.to.ref.tomp200.dto.CancelPackageOperationRequest
+import no.entur.shared.mobility.to.ref.tomp200.dto.ConfirmPaymentEntryRequest
+import no.entur.shared.mobility.to.ref.tomp200.dto.GetRedressOptionsDefaultResponse
+import no.entur.shared.mobility.to.ref.tomp200.dto.Package
+import no.entur.shared.mobility.to.ref.tomp200.dto.PaymentCategory
+import no.entur.shared.mobility.to.ref.tomp200.dto.PaymentState
+import no.entur.shared.mobility.to.ref.tomp200.dto.Payments
+import no.entur.shared.mobility.to.ref.tomp200.dto.RedressOptionRequestRequest
+import no.entur.shared.mobility.to.ref.tomp200.dto.RedressOptions
+import no.entur.shared.mobility.to.ref.tomp200.dto.RefundDepositRequestRequest
+
+interface AfterSalesService {
+
+    /**
+     * POST /processes/cancel-package/execution : Cancel a package in confirmed state for (technical issues).
+     * Cancel this package. This endpoint is only there to correct (technical) issues.&lt;br&gt; Normally, after purchase, you have to request redress options, claim it and confirm the claim.&lt;br&gt; &lt;br&gt; Before purchase you release a package.&lt;br&gt; During the purchase you rollback a package.&lt;br&gt;
+     *
+     * @param acceptLanguage  (required)
+     * @param authorization Header field, JWT must be supplied (required)
+     * @param cancelPackageOperationRequest  (optional)
+     * @return a single instance of a package (status code 200)
+     *         or Bad request. See https://github.com/TOMP-WG/TOMP-API/wiki/Error-handling-in-TOMP for further explanation of error code. (status code 200)
+     * @see AfterSales#cancelPackageOperation
+     */
+    fun cancelPackageOperation(acceptLanguage: kotlin.String, authorization: kotlin.String, cancelPackageOperationRequest: CancelPackageOperationRequest?): Package
+
+    /**
+     * POST /processes/confirm-payment/execution : Confirm a financial transaction
+     * The MP (reseller) confirms a payment
+     *
+     * @param acceptLanguage  (required)
+     * @param authorization Header field, JWT must be supplied (required)
+     * @param confirmPaymentEntryRequest  (optional)
+     * @return the payment is acknowledged (status code 204)
+     *         or Bad request. See https://github.com/TOMP-WG/TOMP-API/wiki/Error-handling-in-TOMP for further explanation of error code. (status code 200)
+     * @see AfterSales#confirmPaymentEntry
+     */
+    fun confirmPaymentEntry(acceptLanguage: kotlin.String, authorization: kotlin.String, confirmPaymentEntryRequest: ConfirmPaymentEntryRequest?): Unit
+
+    /**
+     * POST /processes/confirm-redress-option/execution
+     * confirm the claimed redress option
+     *
+     * @param acceptLanguage  (required)
+     * @param authorization Header field, JWT must be supplied (required)
+     * @param redressOptionRequestRequest  (optional)
+     * @return a single instance of a package (status code 200)
+     *         or Bad request. See https://github.com/TOMP-WG/TOMP-API/wiki/Error-handling-in-TOMP for further explanation of error code. (status code 200)
+     * @see AfterSales#confirmRedressOptionRequest
+     */
+    fun confirmRedressOptionRequest(acceptLanguage: kotlin.String, authorization: kotlin.String, redressOptionRequestRequest: RedressOptionRequestRequest?): Package
+
+    /**
+     * GET /collections/payments/items : Retrieve financial details
+     * Returns all the JOURNAL ENTRIES that should be paid
+     *
+     * @param acceptLanguage  (required)
+     * @param authorization Header field, JWT must be supplied (required)
+     * @param limit The optional limit parameter limits the number of items that are presented in the response document.  Only items are counted that are on the first level of the collection in the response document. Nested objects contained within the explicitly requested items shall not be counted.  Minimum &#x3D; 1. Maximum &#x3D; 10000. Default &#x3D; 100. (optional, default to 100)
+     * @param offset The optional offset parameter representing the starting index of the returned collection.  Only items are counted that are on the first level of the collection in the response document. Nested objects contained within the explicitly requested items shall not be counted.  Default &#x3D; 0. (optional, default to 0)
+     * @param startTime start of the selection (optional)
+     * @param endTime end of the selection (optional)
+     * @param invoiceState  (optional)
+     * @param `package`  (optional)
+     * @param category type of PAYMENT DETAIL (e.g. fare, addition costs, fines, ...) (optional)
+     * @param onBehalveOf the identity of the reseller. Only to be used in a PSP (externalized payments) setup. (optional)
+     * @return journal entries (status code 200)
+     *         or Bad request. See https://github.com/TOMP-WG/TOMP-API/wiki/Error-handling-in-TOMP for further explanation of error code. (status code 200)
+     * @see AfterSales#getPaymentOverview
+     */
+    fun getPaymentOverview(acceptLanguage: kotlin.String, authorization: kotlin.String, limit: kotlin.Int, offset: kotlin.Int, startTime: java.time.OffsetDateTime?, endTime: java.time.OffsetDateTime?, invoiceState: PaymentState?, `package`: kotlin.String?, category: PaymentCategory?, onBehalveOf: kotlin.String?): Payments
+
+    /**
+     * GET /collections/redress-options/items : Retrieve redress options for a guarantee
+     * Returns possible refund or replacement options for a guarantee
+     *
+     * @param acceptLanguage  (required)
+     * @param authorization Header field, JWT must be supplied (required)
+     * @param packageId the id of the package that contains a purchased product (required)
+     * @param offerId the offer with a guarantee (optional)
+     * @param legId the offer with a guarantee (optional)
+     * @param guaranteeId the unfulfilled guarantee (optional)
+     * @param travellerId to request redresses for a single traveller (optional)
+     * @param ancillaryId to request redresses for a not-used ancillary or ancillary to remove (optional)
+     * @param supportTicket reference to support ticket(s) to claim redress options (optional)
+     * @return a list of redress options (status code 200)
+     *         or Bad request. See https://github.com/TOMP-WG/TOMP-API/wiki/Error-handling-in-TOMP for further explanation of error code. (status code 200)
+     * @see AfterSales#getRedressOptions
+     */
+    fun getRedressOptions(acceptLanguage: kotlin.String, authorization: kotlin.String, packageId: kotlin.String, offerId: kotlin.String?, legId: kotlin.String?, guaranteeId: kotlin.String?, travellerId: kotlin.String?, ancillaryId: kotlin.String?, supportTicket: kotlin.String?): RedressOptions
+
+    /**
+     * POST /processes/claim-redress-option/execution
+     * redress options must be claimed &amp; confirmed
+     *
+     * @param acceptLanguage  (required)
+     * @param authorization Header field, JWT must be supplied (required)
+     * @param redressOptionRequestRequest  (optional)
+     * @return a single instance of a package (status code 200)
+     *         or Bad request. See https://github.com/TOMP-WG/TOMP-API/wiki/Error-handling-in-TOMP for further explanation of error code. (status code 200)
+     * @see AfterSales#redressOptionRequest
+     */
+    fun redressOptionRequest(acceptLanguage: kotlin.String, authorization: kotlin.String, redressOptionRequestRequest: RedressOptionRequestRequest?): Package
+
+    /**
+     * POST /processes/refund-deposit/execution : Request to refund a deposit
+     *
+     * @param acceptLanguage  (required)
+     * @param authorization Header field, JWT must be supplied (required)
+     * @param refundDepositRequestRequest  (optional)
+     * @return the payment is acknowledged (status code 204)
+     *         or Bad request. See https://github.com/TOMP-WG/TOMP-API/wiki/Error-handling-in-TOMP for further explanation of error code. (status code 200)
+     * @see AfterSales#refundDepositRequest
+     */
+    fun refundDepositRequest(acceptLanguage: kotlin.String, authorization: kotlin.String, refundDepositRequestRequest: RefundDepositRequestRequest?): Unit
+}
