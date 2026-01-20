@@ -7,6 +7,7 @@ import no.entur.shared.mobility.to.ref.tomp150.dto.Notification
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
+import java.time.temporal.ChronoUnit
 import java.util.concurrent.ConcurrentLinkedQueue
 
 @Service
@@ -15,7 +16,32 @@ class EventScheduler150(
 ) {
     private val startMessageQueue: ConcurrentLinkedQueue<Triple<String, String, String>> = ConcurrentLinkedQueue()
     private val tripStartQueue: ConcurrentLinkedQueue<Triple<String, String, String>> = ConcurrentLinkedQueue()
-    private val tripEndQueue: ConcurrentLinkedQueue<Triple<String, String, String>> = ConcurrentLinkedQueue()
+
+    /**
+     * For operators != URBAN_BIKE: old behavior (auto-finish after some delay).
+     * For URBAN_BIKE: we simulate "drop-off next to station" with:
+     *  1) notification ("place bike next to station/dock is full")
+     *  2) an extended window where an explicit/manual finish is allowed
+     *  3) auto-finish when the window expires
+     */
+    private val tripEndQueue: ConcurrentLinkedQueue<ScheduledTripEnd> = ConcurrentLinkedQueue()
+
+    /**
+     * Tracks if we've already sent the "near station drop-off" notification for a given booking/leg.
+     * This keeps the logic simple without needing a mutable field inside ScheduledTripEnd.
+     */
+    private val nearStationNotified: MutableSet<String> =
+        java.util.concurrent.ConcurrentHashMap
+            .newKeySet()
+
+    data class ScheduledTripEnd(
+        val bookingId: String,
+        val legId: String,
+        val operatorId: String,
+        val createdAt: OffsetDateTime = OffsetDateTime.now(),
+        val finishAt: OffsetDateTime,
+        val nearStationDropoff: Boolean,
+    )
 
     fun addToEventQueue(
         bookingId: String,
@@ -23,6 +49,32 @@ class EventScheduler150(
         operatorId: String,
     ) {
         startMessageQueue.add(Triple(bookingId, legId, operatorId))
+    }
+
+    /**
+     * Optional: call this from a controller/service when the user explicitly ends the trip.
+     * - If the trip is in URBAN_BIKE near-station mode, we finish immediately (manual finish).
+     * - Also removes pending scheduled auto-finish entries.
+     */
+    fun finishTripManually(
+        bookingId: String,
+        legId: String,
+        operatorId: String,
+    ) {
+        // Post FINISH immediately
+        postLeg(Triple(bookingId, legId, operatorId), LegEvent.Event.FINISH)
+
+        // Remove any scheduled auto-finish entries for this leg
+        val iterator = tripEndQueue.iterator()
+        while (iterator.hasNext()) {
+            val task = iterator.next()
+            if (task.bookingId == bookingId && task.legId == legId && task.operatorId == operatorId) {
+                iterator.remove()
+            }
+        }
+
+        // Also clear notification tracking (not strictly required, but avoids memory growth in long-running demos)
+        nearStationNotified.remove(key(bookingId, legId, operatorId))
     }
 
     @Scheduled(initialDelay = 10_000, fixedDelay = 1 * SECONDS)
@@ -48,20 +100,91 @@ class EventScheduler150(
 
     @Scheduled(initialDelay = 10_000, fixedDelay = 20 * SECONDS)
     fun setInUse() {
-        tripStartQueue.forEach {
-            postLeg(it, LegEvent.Event.SET_IN_USE)
-            tripStartQueue.remove(it)
-            if (it.third != URBAN_BIKE) {
-                tripEndQueue.add(it)
+        tripStartQueue.forEach { triple ->
+            postLeg(triple, LegEvent.Event.SET_IN_USE)
+            tripStartQueue.remove(triple)
+
+            if (triple.third != URBAN_BIKE) {
+                // Old behavior: schedule finish "soon-ish" (existing demo behavior)
+                tripEndQueue.add(
+                    ScheduledTripEnd(
+                        bookingId = triple.first,
+                        legId = triple.second,
+                        operatorId = triple.third,
+                        finishAt = OffsetDateTime.now().plusSeconds(DEFAULT_AUTO_FINISH_SECONDS),
+                        nearStationDropoff = false,
+                    ),
+                )
+            } else {
+                // URBAN_BIKE: simulate "delivery next to station when dock is full"
+                // IMPORTANT: In real life this would be triggered when START_FINISHING comes in.
+                // Here we create the near-station workflow as part of the demo once trip is IN_USE.
+                tripEndQueue.add(
+                    ScheduledTripEnd(
+                        bookingId = triple.first,
+                        legId = triple.second,
+                        operatorId = triple.third,
+                        finishAt = OffsetDateTime.now().plusMinutes(NEAR_STATION_MANUAL_FINISH_WINDOW_MINUTES),
+                        nearStationDropoff = true,
+                    ),
+                )
             }
         }
     }
 
-    @Scheduled(initialDelay = 10_000, fixedDelay = 300 * SECONDS)
+    /**
+     * Send notification quickly for URBAN_BIKE "near station drop-off" tasks.
+     * This simulates: "dock is full, place bike next to station".
+     */
+    @Scheduled(initialDelay = 10_000, fixedDelay = 2 * SECONDS)
+    fun notifyNearStationDropoff() {
+        val now = OffsetDateTime.now()
+        tripEndQueue
+            .filter { it.nearStationDropoff }
+            .forEach { task ->
+                val k = key(task.bookingId, task.legId, task.operatorId)
+
+                // Send once, shortly after task creation
+                val readyToNotify =
+                    ChronoUnit.SECONDS.between(task.createdAt, now) >= NEAR_STATION_NOTIFICATION_DELAY_SECONDS
+
+                if (!nearStationNotified.contains(k) && readyToNotify) {
+                    runCatching {
+                        sharedMobilityRouterClient.bookingsIdNotificationsPost150(
+                            id = task.bookingId,
+                            maasId = task.operatorId,
+                            addressedTo = "Entur",
+                            notification =
+                                Notification(
+                                    legId = task.legId,
+                                    type = Notification.Type.MESSAGE_TO_END_USER,
+                                    comment = "Dock is full. Please place the bike next to the station and end the trip in the app.",
+                                ),
+                        )
+                    }
+                    nearStationNotified.add(k)
+                }
+            }
+    }
+
+    /**
+     * Auto-finish any scheduled entries whose finishAt has passed.
+     * This covers:
+     *  - non-URBAN_BIKE (old behavior)
+     *  - URBAN_BIKE near-station dropoff if user never "manually" finishes
+     */
+    @Scheduled(initialDelay = 10_000, fixedDelay = 5 * SECONDS)
     fun setFinished() {
-        tripEndQueue.forEach {
-            postLeg(it, LegEvent.Event.FINISH)
-            tripEndQueue.remove(it)
+        val now = OffsetDateTime.now()
+        val iterator = tripEndQueue.iterator()
+
+        while (iterator.hasNext()) {
+            val task = iterator.next()
+            if (!task.finishAt.isAfter(now)) {
+                postLeg(Triple(task.bookingId, task.legId, task.operatorId), LegEvent.Event.FINISH)
+                iterator.remove()
+                nearStationNotified.remove(key(task.bookingId, task.legId, task.operatorId))
+            }
         }
     }
 
@@ -79,7 +202,24 @@ class EventScheduler150(
         }
     }
 
+    private fun key(
+        bookingId: String,
+        legId: String,
+        operatorId: String,
+    ) = "$bookingId|$legId|$operatorId"
+
     companion object {
+        /**
+         * NOTE: This constant name is misleading in the original code; it's milliseconds.
+         * Keeping it as-is for minimal change footprint.
+         */
         const val SECONDS = 1000L
+
+        // Old behavior: how long until we auto-finish for non-URBAN_BIKE in this demo
+        const val DEFAULT_AUTO_FINISH_SECONDS: Long = 30
+
+        // URBAN_BIKE near-station flow
+        const val NEAR_STATION_NOTIFICATION_DELAY_SECONDS: Long = 3
+        const val NEAR_STATION_MANUAL_FINISH_WINDOW_MINUTES: Long = 10
     }
 }
