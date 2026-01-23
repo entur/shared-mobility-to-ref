@@ -8,21 +8,20 @@ import io.mockk.slot
 import io.mockk.verify
 import no.entur.shared.mobility.to.ref.client.SharedMobilityRouterClient
 import no.entur.shared.mobility.to.ref.tomp150.dto.LegEvent
+import no.entur.shared.mobility.to.ref.tomp150.service.EventScheduler150.ScheduledTripEnd
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import java.util.concurrent.ConcurrentLinkedQueue
+import java.time.OffsetDateTime
 
 class EventScheduler150Test {
     private val sharedMobilityRouterClient: SharedMobilityRouterClient = mockk(relaxed = true)
-
     private val eventScheduler = EventScheduler150(sharedMobilityRouterClient)
 
     @BeforeEach
     fun setup() {
-        // Clear queues before each test
-        getQueue("startMessageQueue").clear()
-        getQueue("tripStartQueue").clear()
-        getQueue("tripEndQueue").clear()
+        eventScheduler.startMessageQueueForTest().clear()
+        eventScheduler.tripStartQueueForTest().clear()
+        eventScheduler.tripEndQueueForTest().clear()
     }
 
     @Test
@@ -31,7 +30,7 @@ class EventScheduler150Test {
 
         eventScheduler.messageTakeBike()
 
-        verify {
+        verify(exactly = 1) {
             sharedMobilityRouterClient.bookingsIdNotificationsPost150(
                 maasId = OPERATOR_ID,
                 id = BOOKING_ID,
@@ -39,12 +38,15 @@ class EventScheduler150Test {
                 notification = any(),
             )
         }
-        getQueue("startMessageQueue") shouldHaveSize 0
+
+        eventScheduler.startMessageQueueForTest() shouldHaveSize 0
+        eventScheduler.tripStartQueueForTest() shouldHaveSize 1
     }
 
     @Test
     fun `messageTakeBike that fails should still remove the item from the queue`() {
         eventScheduler.addToEventQueue(BOOKING_ID, LEG_ID, OPERATOR_ID)
+
         every {
             sharedMobilityRouterClient.bookingsIdNotificationsPost150(
                 maasId = OPERATOR_ID,
@@ -52,11 +54,11 @@ class EventScheduler150Test {
                 addressedTo = ENTUR,
                 notification = any(),
             )
-        } throws RuntimeException()
+        } throws RuntimeException("boom")
 
         eventScheduler.messageTakeBike()
 
-        verify {
+        verify(exactly = 1) {
             sharedMobilityRouterClient.bookingsIdNotificationsPost150(
                 maasId = OPERATOR_ID,
                 id = BOOKING_ID,
@@ -64,17 +66,20 @@ class EventScheduler150Test {
                 notification = any(),
             )
         }
-        getQueue("startMessageQueue") shouldHaveSize 0
+
+        // Koden din remover alltid fra startMessageQueue og add'er til tripStartQueue uansett runCatching-resultat
+        eventScheduler.startMessageQueueForTest() shouldHaveSize 0
+        eventScheduler.tripStartQueueForTest() shouldHaveSize 1
     }
 
     @Test
     fun `setInUse should call legsIdEventsPost150 to start trip`() {
-        val tripStartQueue = getQueue("tripStartQueue")
+        val tripStartQueue = eventScheduler.tripStartQueueForTest()
         tripStartQueue.add(Triple(BOOKING_ID, LEG_ID, OPERATOR_ID))
 
         eventScheduler.setInUse()
 
-        verify {
+        verify(exactly = 1) {
             sharedMobilityRouterClient.legsIdEventsPost150(
                 id = LEG_ID,
                 maasId = OPERATOR_ID,
@@ -82,13 +87,15 @@ class EventScheduler150Test {
                 legEvent = any(),
             )
         }
+
         tripStartQueue shouldHaveSize 0
     }
 
     @Test
     fun `setInUse that fails should still remove the item from the queue`() {
-        val tripStartQueue = getQueue("tripStartQueue")
+        val tripStartQueue = eventScheduler.tripStartQueueForTest()
         tripStartQueue.add(Triple(BOOKING_ID, LEG_ID, OPERATOR_ID))
+
         val slot = slot<LegEvent>()
         every {
             sharedMobilityRouterClient.legsIdEventsPost150(
@@ -97,11 +104,11 @@ class EventScheduler150Test {
                 addressedTo = ENTUR,
                 legEvent = capture(slot),
             )
-        } throws RuntimeException()
+        } throws RuntimeException("boom")
 
         eventScheduler.setInUse()
 
-        verify {
+        verify(exactly = 1) {
             sharedMobilityRouterClient.legsIdEventsPost150(
                 id = LEG_ID,
                 maasId = OPERATOR_ID,
@@ -109,18 +116,28 @@ class EventScheduler150Test {
                 legEvent = any(),
             )
         }
+
         slot.captured.event shouldBe LegEvent.Event.SET_IN_USE
         tripStartQueue shouldHaveSize 0
     }
 
     @Test
     fun `setFinished should call legsIdEventsPost150 to end trip`() {
-        val tripEndQueue = getQueue("tripEndQueue")
-        tripEndQueue.add(Triple(BOOKING_ID, LEG_ID, OPERATOR_ID))
+        val tripEndQueue = eventScheduler.tripEndQueueForTest()
+
+        tripEndQueue.add(
+            ScheduledTripEnd(
+                bookingId = BOOKING_ID,
+                legId = LEG_ID,
+                operatorId = OPERATOR_ID,
+                finishAt = OffsetDateTime.now().minusSeconds(1), // due
+                nearStationDropoff = false,
+            ),
+        )
 
         eventScheduler.setFinished()
 
-        verify {
+        verify(exactly = 1) {
             sharedMobilityRouterClient.legsIdEventsPost150(
                 id = LEG_ID,
                 maasId = OPERATOR_ID,
@@ -128,13 +145,24 @@ class EventScheduler150Test {
                 legEvent = any(),
             )
         }
+
         tripEndQueue shouldHaveSize 0
     }
 
     @Test
     fun `setFinished that fails should still remove the item from the queue`() {
-        val tripEndQueue = getQueue("tripEndQueue")
-        tripEndQueue.add(Triple(BOOKING_ID, LEG_ID, OPERATOR_ID))
+        val tripEndQueue = eventScheduler.tripEndQueueForTest()
+
+        tripEndQueue.add(
+            ScheduledTripEnd(
+                bookingId = BOOKING_ID,
+                legId = LEG_ID,
+                operatorId = OPERATOR_ID,
+                finishAt = OffsetDateTime.now().minusSeconds(1), // due
+                nearStationDropoff = false,
+            ),
+        )
+
         val slot = slot<LegEvent>()
         every {
             sharedMobilityRouterClient.legsIdEventsPost150(
@@ -143,11 +171,11 @@ class EventScheduler150Test {
                 addressedTo = ENTUR,
                 legEvent = capture(slot),
             )
-        } throws RuntimeException()
+        } throws RuntimeException("boom")
 
         eventScheduler.setFinished()
 
-        verify {
+        verify(exactly = 1) {
             sharedMobilityRouterClient.legsIdEventsPost150(
                 id = LEG_ID,
                 maasId = OPERATOR_ID,
@@ -155,15 +183,9 @@ class EventScheduler150Test {
                 legEvent = any(),
             )
         }
+
         slot.captured.event shouldBe LegEvent.Event.FINISH
         tripEndQueue shouldHaveSize 0
-    }
-
-    private fun getQueue(name: String): ConcurrentLinkedQueue<Any> {
-        val field = EventScheduler150::class.java.getDeclaredField(name)
-        field.isAccessible = true
-        @Suppress("UNCHECKED_CAST")
-        return field.get(eventScheduler) as ConcurrentLinkedQueue<Any>
     }
 
     companion object {

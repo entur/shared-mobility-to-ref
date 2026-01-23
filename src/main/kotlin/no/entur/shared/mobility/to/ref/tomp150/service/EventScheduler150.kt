@@ -16,6 +16,16 @@ class EventScheduler150(
 ) {
     private val startMessageQueue: ConcurrentLinkedQueue<Triple<String, String, String>> = ConcurrentLinkedQueue()
     private val tripStartQueue: ConcurrentLinkedQueue<Triple<String, String, String>> = ConcurrentLinkedQueue()
+    /**
+     * Test hooks (avoid reflection in unit tests).
+     * Marked internal so production API surface is unaffected outside the module.
+     */
+    internal fun startMessageQueueForTest(): ConcurrentLinkedQueue<Triple<String, String, String>> = startMessageQueue
+
+    internal fun tripStartQueueForTest(): ConcurrentLinkedQueue<Triple<String, String, String>> = tripStartQueue
+
+    internal fun tripEndQueueForTest(): ConcurrentLinkedQueue<ScheduledTripEnd> = tripEndQueue
+
 
     /**
      * For operators != URBAN_BIKE: old behavior (auto-finish after some delay).
@@ -104,8 +114,9 @@ class EventScheduler150(
             postLeg(triple, LegEvent.Event.SET_IN_USE)
             tripStartQueue.remove(triple)
 
+            // Keep old auto-finish behavior for non-URBAN_BIKE operators only.
+            // For URBAN_BIKE, the "near station" workflow is triggered by START_FINISHING in TripExecutionServiceImpl.
             if (triple.third != URBAN_BIKE) {
-                // Old behavior: schedule finish "soon-ish" (existing demo behavior)
                 tripEndQueue.add(
                     ScheduledTripEnd(
                         bookingId = triple.first,
@@ -113,19 +124,6 @@ class EventScheduler150(
                         operatorId = triple.third,
                         finishAt = OffsetDateTime.now().plusSeconds(DEFAULT_AUTO_FINISH_SECONDS),
                         nearStationDropoff = false,
-                    ),
-                )
-            } else {
-                // URBAN_BIKE: simulate "delivery next to station when dock is full"
-                // IMPORTANT: In real life this would be triggered when START_FINISHING comes in.
-                // Here we create the near-station workflow as part of the demo once trip is IN_USE.
-                tripEndQueue.add(
-                    ScheduledTripEnd(
-                        bookingId = triple.first,
-                        legId = triple.second,
-                        operatorId = triple.third,
-                        finishAt = OffsetDateTime.now().plusMinutes(NEAR_STATION_MANUAL_FINISH_WINDOW_MINUTES),
-                        nearStationDropoff = true,
                     ),
                 )
             }
@@ -186,6 +184,22 @@ class EventScheduler150(
                 nearStationNotified.remove(key(task.bookingId, task.legId, task.operatorId))
             }
         }
+    }
+
+    fun scheduleNearStationDropoff(
+        bookingId: String,
+        legId: String,
+        operatorId: String,
+    ) {
+        tripEndQueue.add(
+            ScheduledTripEnd(
+                bookingId = bookingId,
+                legId = legId,
+                operatorId = operatorId,
+                finishAt = OffsetDateTime.now().plusMinutes(NEAR_STATION_MANUAL_FINISH_WINDOW_MINUTES),
+                nearStationDropoff = true,
+            ),
+        )
     }
 
     private fun postLeg(
