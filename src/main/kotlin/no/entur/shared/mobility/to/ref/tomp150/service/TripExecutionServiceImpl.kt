@@ -21,7 +21,9 @@ import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
 
 @Service("TripExecutionServiceTomp150")
-class TripExecutionServiceImpl : TripExecutionService {
+class TripExecutionServiceImpl(
+    private val eventScheduler150: EventScheduler150,
+) : TripExecutionService {
     override fun legsIdAncillariesCategoryNumberDelete(
         acceptLanguage: String,
         api: String,
@@ -79,6 +81,20 @@ class TripExecutionServiceImpl : TripExecutionService {
                 SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3, COLUMBI_BIKE, URBAN_BIKE, ALL_IMPLEMENTING_OPERATOR -> leg
                 else -> throw NotImplementedError()
             }
+
+        // NEW: Trigger "near station drop-off" workflow when START_FINISHING is received for URBAN_BIKE
+        if (addressedTo == URBAN_BIKE && legEvent?.event == LegEvent.Event.START_FINISHING) {
+            // We don't have bookingId here, only legId + operatorId.
+            // In this demo we re-use legId as bookingId for notification endpoint calls that require bookingId.
+            // If you have a real bookingId available elsewhere, wire that in instead.
+            val bookingId = id
+            eventScheduler150.scheduleNearStationDropoff(
+                bookingId = bookingId,
+                legId = id,
+                operatorId = addressedTo,
+            )
+        }
+
         return leg.copy(
             id = id,
             state =
