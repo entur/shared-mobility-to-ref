@@ -95,6 +95,18 @@ class TripExecutionServiceImpl(
             )
         }
 
+        // NEW: If MaaS/app sends FINISH, cancel any scheduled auto-finish
+        // to avoid double FINISH from the scheduler.
+        if (addressedTo == URBAN_BIKE && legEvent?.event == LegEvent.Event.FINISH) {
+            // In this demo we reuse legId as bookingId
+            val bookingId = id
+            eventScheduler150.cancelScheduledFinish(
+                bookingId = bookingId,
+                legId = id,
+                operatorId = addressedTo,
+            )
+        }
+
         return leg.copy(
             id = id,
             state =

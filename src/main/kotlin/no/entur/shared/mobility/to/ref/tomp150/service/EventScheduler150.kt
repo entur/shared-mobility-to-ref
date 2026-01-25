@@ -16,6 +16,7 @@ class EventScheduler150(
 ) {
     private val startMessageQueue: ConcurrentLinkedQueue<Triple<String, String, String>> = ConcurrentLinkedQueue()
     private val tripStartQueue: ConcurrentLinkedQueue<Triple<String, String, String>> = ConcurrentLinkedQueue()
+
     /**
      * Test hooks (avoid reflection in unit tests).
      * Marked internal so production API surface is unaffected outside the module.
@@ -25,7 +26,6 @@ class EventScheduler150(
     internal fun tripStartQueueForTest(): ConcurrentLinkedQueue<Triple<String, String, String>> = tripStartQueue
 
     internal fun tripEndQueueForTest(): ConcurrentLinkedQueue<ScheduledTripEnd> = tripEndQueue
-
 
     /**
      * For operators != URBAN_BIKE: old behavior (auto-finish after some delay).
@@ -44,6 +44,30 @@ class EventScheduler150(
         java.util.concurrent.ConcurrentHashMap
             .newKeySet()
 
+       /**
+     * Cancel any scheduled auto-finish for this booking/leg/operator.
+     * Used when a FINISH event is received from MaaS/app to avoid double FINISH.
+    */
+    fun cancelScheduledFinish(
+        bookingId: String,
+        legId: String,
+        operatorId: String,
+    ) {
+        val iterator = tripEndQueue.iterator()
+        while (iterator.hasNext()) {
+            val task = iterator.next()
+            if (
+                task.bookingId == bookingId &&
+                task.legId == legId &&
+                task.operatorId == operatorId
+            ) {
+                iterator.remove()
+            }
+        }
+
+        nearStationNotified.remove(key(bookingId, legId, operatorId))
+    }
+
     data class ScheduledTripEnd(
         val bookingId: String,
         val legId: String,
@@ -59,32 +83,6 @@ class EventScheduler150(
         operatorId: String,
     ) {
         startMessageQueue.add(Triple(bookingId, legId, operatorId))
-    }
-
-    /**
-     * Optional: call this from a controller/service when the user explicitly ends the trip.
-     * - If the trip is in URBAN_BIKE near-station mode, we finish immediately (manual finish).
-     * - Also removes pending scheduled auto-finish entries.
-     */
-    fun finishTripManually(
-        bookingId: String,
-        legId: String,
-        operatorId: String,
-    ) {
-        // Post FINISH immediately
-        postLeg(Triple(bookingId, legId, operatorId), LegEvent.Event.FINISH)
-
-        // Remove any scheduled auto-finish entries for this leg
-        val iterator = tripEndQueue.iterator()
-        while (iterator.hasNext()) {
-            val task = iterator.next()
-            if (task.bookingId == bookingId && task.legId == legId && task.operatorId == operatorId) {
-                iterator.remove()
-            }
-        }
-
-        // Also clear notification tracking (not strictly required, but avoids memory growth in long-running demos)
-        nearStationNotified.remove(key(bookingId, legId, operatorId))
     }
 
     @Scheduled(initialDelay = 10_000, fixedDelay = 1 * SECONDS)
@@ -168,8 +166,7 @@ class EventScheduler150(
     /**
      * Auto-finish any scheduled entries whose finishAt has passed.
      * This covers:
-     *  - non-URBAN_BIKE (old behavior)
-     *  - URBAN_BIKE near-station dropoff if user never "manually" finishes
+     *  URBAN_BIKE near-station dropoff if no FINISH is received from MaaS/app
      */
     @Scheduled(initialDelay = 10_000, fixedDelay = 5 * SECONDS)
     fun setFinished() {
