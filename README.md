@@ -497,3 +497,50 @@ addressed-to: toOperator456
 The response model can be found in the [Booking](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Booking.kt) class.
 
 This endpoint provides detailed information about bookings that match the specified filters, including the booking ID, state, start and end locations, times, asset type, and price. This is crucial for managing and tracking bookings efficiently.
+
+
+
+### 🟢 Urban bike – near station drop-off flow (TO-ref)
+
+TO-ref simulates how a transport operator can support delivery of urban bikes when docking stations are full.
+
+#### Flow overview
+
+1. **Trip start**
+
+   * The booking is created with a single leg in `NOT_STARTED`
+   * TO-ref sends a notification: *“You can now take the bike”*
+   * The leg is transitioned to `IN_USE`
+
+2. **Start finishing**
+
+   * When MaaS sends `START_FINISHING` for an `URBAN_BIKE` leg:
+
+     * TO-ref schedules a *near-station drop-off workflow*
+     * A short delay later, a notification is sent to the end user:
+
+       > “Dock is full. Please place the bike next to the station and end the trip in the app.”
+
+3. **Finishing window**
+
+   * The trip remains in `FINISHING` for a configurable time window
+   * During this window, MaaS is expected to send `FINISH`
+
+4. **Finish handling**
+
+   * If `FINISH` is received from MaaS:
+
+     * Any scheduled auto-finish is cancelled
+     * The trip is completed immediately
+   * If no `FINISH` is received:
+
+     * TO-ref auto-finishes the trip when the window expires
+
+#### Notes
+
+* TO-ref does **not** initiate manual finish itself
+* `FINISH` is always expected to come from MaaS / the client app
+* The scheduler only acts as a fallback to avoid stuck trips
+* This behaviour is specific to `URBAN_BIKE`; other operators keep the old auto-finish behaviour
+
+---
