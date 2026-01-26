@@ -5,9 +5,9 @@ plugins {
     idea
     id("org.springframework.boot") version "3.5.7"
     id("io.spring.dependency-management") version "1.1.7"
-    kotlin("jvm") version "2.2.21"
-    kotlin("plugin.spring") version "2.2.21"
-    id("org.openapi.generator") version "7.16.0"
+    kotlin("jvm") version "2.3.0"
+    kotlin("plugin.spring") version "2.3.0"
+    id("org.openapi.generator") version "7.19.0"
     id("org.jlleitschuh.gradle.ktlint") version "13.1.0"
 }
 
@@ -45,8 +45,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
     implementation("jakarta.validation:jakarta.validation-api:3.1.1")
-    implementation("io.swagger.core.v3:swagger-annotations:2.2.39")
-    implementation("io.swagger.core.v3:swagger-models:2.2.39")
+    implementation("io.swagger.core.v3:swagger-annotations:2.2.42")
+    implementation("io.swagger.core.v3:swagger-models:2.2.42")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.13")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.flywaydb:flyway-core")
@@ -70,16 +70,16 @@ dependencies {
     runtimeOnly("io.micrometer:micrometer-registry-prometheus")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
-    testImplementation("io.kotest:kotest-property:6.0.4")
-    testImplementation("io.kotest:kotest-assertions-core:6.0.4")
-    testImplementation("io.mockk:mockk:1.14.6")
+    testImplementation("io.kotest:kotest-property:6.1.1")
+    testImplementation("io.kotest:kotest-assertions-core:6.1.1")
+    testImplementation("io.mockk:mockk:1.14.7")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.13")
 }
 
 dependencyManagement {
     imports {
-        mavenBom("com.google.cloud:spring-cloud-gcp-dependencies:7.4.0")
-        mavenBom("org.springframework.cloud:spring-cloud-dependencies:2025.0.0")
+        mavenBom("com.google.cloud:spring-cloud-gcp-dependencies:7.4.3")
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:2025.1.0")
     }
 }
 
