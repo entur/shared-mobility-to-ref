@@ -141,7 +141,7 @@ class TripExecutionServiceImpl(
         legId: String,
         operatorId: String,
     ): String {
-// Example (real TO): return bookingRepository.findByLegId(legId, operatorId).bookingId
+        // Example (real TO): return bookingRepository.findByLegId(legId, operatorId).bookingId
         return legId
     }
 

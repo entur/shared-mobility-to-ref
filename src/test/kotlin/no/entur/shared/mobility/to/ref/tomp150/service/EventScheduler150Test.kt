@@ -67,7 +67,8 @@ class EventScheduler150Test {
             )
         }
 
-        // Koden din remover alltid fra startMessageQueue og add'er til tripStartQueue uansett runCatching-resultat
+        // The code always removes the item from startMessageQueue and adds it to tripStartQueue,
+        // regardless of the runCatching result
         eventScheduler.startMessageQueueForTest() shouldHaveSize 0
         eventScheduler.tripStartQueueForTest() shouldHaveSize 1
     }
