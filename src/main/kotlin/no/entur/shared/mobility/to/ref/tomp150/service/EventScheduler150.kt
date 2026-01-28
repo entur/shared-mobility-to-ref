@@ -44,10 +44,13 @@ class EventScheduler150(
         java.util.concurrent.ConcurrentHashMap
             .newKeySet()
 
-       /**
+    /**
      * Cancel any scheduled auto-finish for this booking/leg/operator.
-     * Used when a FINISH event is received from MaaS/app to avoid double FINISH.
-    */
+     * Used when a FINISH event is received from MaaS/app to avoid double FINISH from the scheduler fallback.
+     *
+     * NOTE: In a real transport operator implementation, bookingId is typically resolved from legId via the operator's
+     *  own persistence layer. TO-ref is a demo and may use bookingId == legId in some flows.
+     */
     fun cancelScheduledFinish(
         bookingId: String,
         legId: String,
@@ -164,7 +167,7 @@ class EventScheduler150(
     }
 
     /**
-     * Auto-finish any scheduled entries whose finishAt has passed.
+     * Auto-finish any scheduled entries whose finishAt has passed (fallback).
      * This covers:
      *  URBAN_BIKE near-station dropoff if no FINISH is received from MaaS/app
      */
@@ -183,6 +186,12 @@ class EventScheduler150(
         }
     }
 
+    /**
+     * Schedule the URBAN_BIKE "near station drop-off" fallback window.
+     *
+     * In a real TO, bookingId can be resolved from legId via the operator's own database.
+     * In TO-ref (demo), some flows may use bookingId == legId to keep things simple.
+     */
     fun scheduleNearStationDropoff(
         bookingId: String,
         legId: String,

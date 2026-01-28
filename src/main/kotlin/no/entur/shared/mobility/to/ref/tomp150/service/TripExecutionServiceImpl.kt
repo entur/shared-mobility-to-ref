@@ -84,10 +84,7 @@ class TripExecutionServiceImpl(
 
         // NEW: Trigger "near station drop-off" workflow when START_FINISHING is received for URBAN_BIKE
         if (addressedTo == URBAN_BIKE && legEvent?.event == LegEvent.Event.START_FINISHING) {
-            // We don't have bookingId here, only legId + operatorId.
-            // In this demo we re-use legId as bookingId for notification endpoint calls that require bookingId.
-            // If you have a real bookingId available elsewhere, wire that in instead.
-            val bookingId = id
+            val bookingId = resolveBookingIdForNotification(legId = id, operatorId = addressedTo)
             eventScheduler150.scheduleNearStationDropoff(
                 bookingId = bookingId,
                 legId = id,
@@ -98,8 +95,7 @@ class TripExecutionServiceImpl(
         // NEW: If MaaS/app sends FINISH, cancel any scheduled auto-finish
         // to avoid double FINISH from the scheduler.
         if (addressedTo == URBAN_BIKE && legEvent?.event == LegEvent.Event.FINISH) {
-            // In this demo we reuse legId as bookingId
-            val bookingId = id
+            val bookingId = resolveBookingIdForNotification(legId = id, operatorId = addressedTo)
             eventScheduler150.cancelScheduledFinish(
                 bookingId = bookingId,
                 legId = id,
@@ -130,6 +126,23 @@ class TripExecutionServiceImpl(
                 },
             asset = legEvent.asset,
         )
+    }
+
+    /**
+     * Resolve bookingId for operations that originate from leg-based TOMP endpoints.
+     *
+     * In real transport operators this is typically a lookup in the operator's own persistence layer
+     * (e.g. bookingRepository.findByLegId(...)).
+     *
+     * TO-ref is a demo implementation without such a database, so we intentionally use
+     * bookingId == legId to keep the flow testable and easy to understand.
+     */
+    private fun resolveBookingIdForNotification(
+        legId: String,
+        operatorId: String,
+    ): String {
+// Example (real TO): return bookingRepository.findByLegId(legId, operatorId).bookingId
+        return legId
     }
 
     override fun legsIdGet(
