@@ -21,7 +21,9 @@ import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
 
 @Service("TripExecutionServiceTomp150")
-class TripExecutionServiceImpl : TripExecutionService {
+class TripExecutionServiceImpl(
+    private val eventScheduler150: EventScheduler150,
+) : TripExecutionService {
     override fun legsIdAncillariesCategoryNumberDelete(
         acceptLanguage: String,
         api: String,
@@ -79,6 +81,28 @@ class TripExecutionServiceImpl : TripExecutionService {
                 SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3, COLUMBI_BIKE, URBAN_BIKE, ALL_IMPLEMENTING_OPERATOR -> leg
                 else -> throw NotImplementedError()
             }
+
+        // NEW: Trigger "near station drop-off" workflow when START_FINISHING is received for URBAN_BIKE
+        if (addressedTo == URBAN_BIKE && legEvent?.event == LegEvent.Event.START_FINISHING) {
+            val bookingId = resolveBookingIdForNotification(legId = id, operatorId = addressedTo)
+            eventScheduler150.scheduleNearStationDropoff(
+                bookingId = bookingId,
+                legId = id,
+                operatorId = addressedTo,
+            )
+        }
+
+        // NEW: If MaaS/app sends FINISH, cancel any scheduled auto-finish
+        // to avoid double FINISH from the scheduler.
+        if (addressedTo == URBAN_BIKE && legEvent?.event == LegEvent.Event.FINISH) {
+            val bookingId = resolveBookingIdForNotification(legId = id, operatorId = addressedTo)
+            eventScheduler150.cancelScheduledFinish(
+                bookingId = bookingId,
+                legId = id,
+                operatorId = addressedTo,
+            )
+        }
+
         return leg.copy(
             id = id,
             state =
@@ -102,6 +126,23 @@ class TripExecutionServiceImpl : TripExecutionService {
                 },
             asset = legEvent.asset,
         )
+    }
+
+    /**
+     * Resolve bookingId for operations that originate from leg-based TOMP endpoints.
+     *
+     * In real transport operators this is typically a lookup in the operator's own persistence layer
+     * (e.g. bookingRepository.findByLegId(...)).
+     *
+     * TO-ref is a demo implementation without such a database, so we intentionally use
+     * bookingId == legId to keep the flow testable and easy to understand.
+     */
+    private fun resolveBookingIdForNotification(
+        legId: String,
+        operatorId: String,
+    ): String {
+        // Example (real TO): return bookingRepository.findByLegId(legId, operatorId).bookingId
+        return legId
     }
 
     override fun legsIdGet(
