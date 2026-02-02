@@ -514,7 +514,7 @@ TO-ref simulates how a transport operator can support delivery of urban bikes wh
 
 2. **Start finishing**
 
-   * When MaaS sends `START_FINISHING` for an `URBAN_BIKE` leg:
+   * When MaaS sends `START_FINISHING` for an `COLUMBI_BIKE` leg:
 
      * TO-ref schedules a *near-station drop-off workflow*
      * A short delay later, a notification is sent to the end user:
@@ -541,6 +541,105 @@ TO-ref simulates how a transport operator can support delivery of urban bikes wh
 * TO-ref does **not** initiate manual finish itself
 * `FINISH` is always expected to come from MaaS / the client app
 * The scheduler only acts as a fallback to avoid stuck trips
-* This behaviour is specific to `URBAN_BIKE`; other operators keep the old auto-finish behaviour
+* This behaviour is specific to `COLUMBI_BIKE`; other operators keep the old auto-finish behaviour
+
+---
+
+
+---
+
+## ⏱️ Scheduler configuration (recommended values)
+
+TO-ref uses Spring `@Scheduled` jobs to simulate transport operator background behaviour.
+The values below control **how quickly** the system reacts and **how long** it waits before applying fallback actions.
+
+> **Important note on time units**
+> The constant `SECONDS` used in the code actually represents **milliseconds** (`1000L`).
+> The name is historical and misleading, but kept as-is to minimise the change footprint.
+
+The recommendations below are chosen to balance:
+
+* realistic end-user behaviour
+* predictable demo behaviour
+* low system load
+
+---
+
+### 1) `setInUse()`
+
+**What it does**
+Transitions a leg to `IN_USE` after the trip has started in the demo flow.
+For non-`*_BIKE` operators, the leg is also scheduled for the legacy auto-finish behaviour.
+
+**Recommended**
+
+* `initialDelay`: **10s**
+* `fixedDelay`: **20s**
+
+**Why**
+
+* `initialDelay = 10s` allows the application to fully start before background processing begins.
+* `fixedDelay = 20s` is responsive enough for demos and development without running continuously.
+  This is a simulation, not a real-time system.
+
+---
+
+### 2) `notifyNearStationDropoff()`
+
+**What it does**
+Sends a notification to the end user when the *near-station drop-off* workflow is triggered
+(e.g. *“Dock is full. Please place the bike next to the station and end the trip in the app.”*).
+
+The job waits for `NEAR_STATION_NOTIFICATION_DELAY_SECONDS` before notifying, to simulate a more realistic sequence of events.
+
+**Recommended**
+
+* `initialDelay`: **10s**
+* `fixedDelay`: **5s**
+* `NEAR_STATION_NOTIFICATION_DELAY_SECONDS`: **3s**
+
+**Why**
+
+* `fixedDelay = 5s` provides near-real-time feedback while keeping system load low.
+* `NEAR_STATION_NOTIFICATION_DELAY_SECONDS = 3s` introduces a short, intentional delay so that
+  `START_FINISHING` and the user notification do not occur at the exact same moment.
+  This improves realism and makes logs easier to follow.
+* `initialDelay = 10s` ensures safe startup behaviour.
+
+> For very fast local demos, `fixedDelay` can be reduced to **1s**, but **5s** is a good default.
+
+---
+
+### 3) `setFinished()`
+
+**What it does**
+Automatically finishes trips when their `finishAt` timestamp has passed (fallback behaviour).
+
+This is especially important for the `*_BIKE` near-station flow:
+if MaaS / the client app does **not** send `FINISH` within the allowed window,
+TO-ref completes the trip automatically to avoid stuck `FINISHING` states.
+
+**Recommended**
+
+* `initialDelay`: **10s**
+* `fixedDelay`: **1s**
+* `NEAR_STATION_MANUAL_FINISH_WINDOW_MINUTES`: **10 minutes**
+
+**Why**
+
+* `fixedDelay = 1s` ensures precise and predictable completion once the finish window expires.
+* `NEAR_STATION_MANUAL_FINISH_WINDOW_MINUTES = 10` is a realistic compromise:
+
+  * gives the end user and MaaS sufficient time to finish manually
+  * prevents trips from remaining in an unfinished state for too long
+* `initialDelay = 10s` ensures stable startup behaviour.
+
+---
+
+### Summary of recommended timings
+
+* **setInUse**: start after **10s**, then every **20s**
+* **notifyNearStationDropoff**: start after **10s**, check every **5s**, notify after **3s**
+* **setFinished**: start after **10s**, check every **1s**, auto-finish after **10 minutes** if no `FINISH` is received
 
 ---

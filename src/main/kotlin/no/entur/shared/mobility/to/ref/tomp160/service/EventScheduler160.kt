@@ -1,7 +1,7 @@
 package no.entur.shared.mobility.to.ref.tomp160.service
 
 import no.entur.shared.mobility.to.ref.client.SharedMobilityRouterClient
-import no.entur.shared.mobility.to.ref.config.TransportOperator.URBAN_BIKE
+import no.entur.shared.mobility.to.ref.config.TransportOperator.COLUMBI_BIKE
 import no.entur.shared.mobility.to.ref.tomp160.dto.LegEvent
 import no.entur.shared.mobility.to.ref.tomp160.dto.Notification
 import org.springframework.scheduling.annotation.Scheduled
@@ -51,7 +51,7 @@ class EventScheduler160(
         tripStartQueue.forEach {
             postLeg(it, LegEvent.Event.SET_IN_USE)
             tripStartQueue.remove(it)
-            if (it.third != URBAN_BIKE) {
+            if (it.third != COLUMBI_BIKE) {
                 tripEndQueue.add(it)
             }
         }

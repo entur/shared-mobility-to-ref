@@ -17,6 +17,7 @@ import no.entur.shared.mobility.to.ref.tomp150.dto.Leg
 import no.entur.shared.mobility.to.ref.tomp150.dto.LegEvent
 import no.entur.shared.mobility.to.ref.tomp150.dto.LegProgress
 import no.entur.shared.mobility.to.ref.tomp150.dto.LegState
+import no.entur.shared.mobility.to.ref.tomp150.service.EventScheduler150.Companion.NEAR_STATION_MANUAL_FINISH_WINDOW_MINUTES
 import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
 
@@ -82,25 +83,27 @@ class TripExecutionServiceImpl(
                 else -> throw NotImplementedError()
             }
 
-        // NEW: Trigger "near station drop-off" workflow when START_FINISHING is received for URBAN_BIKE
-        if (addressedTo == URBAN_BIKE && legEvent?.event == LegEvent.Event.START_FINISHING) {
+        // NEW: Trigger "near station drop-off" workflow when START_FINISHING is received for COLUMBI_BIKE
+        if (addressedTo == COLUMBI_BIKE && legEvent?.event == LegEvent.Event.START_FINISHING) {
             val bookingId = resolveBookingIdForNotification(legId = id, operatorId = addressedTo)
-            eventScheduler150.scheduleNearStationDropoff(
+
+            eventScheduler150.scheduleNearStationDropoff(bookingId, id, addressedTo)
+
+            eventScheduler150.scheduleFallbackFinish(
                 bookingId = bookingId,
                 legId = id,
                 operatorId = addressedTo,
+                finishAt = OffsetDateTime.now().plusMinutes(NEAR_STATION_MANUAL_FINISH_WINDOW_MINUTES),
             )
         }
 
         // NEW: If MaaS/app sends FINISH, cancel any scheduled auto-finish
         // to avoid double FINISH from the scheduler.
-        if (addressedTo == URBAN_BIKE && legEvent?.event == LegEvent.Event.FINISH) {
+        if (addressedTo == COLUMBI_BIKE && legEvent?.event == LegEvent.Event.FINISH) {
             val bookingId = resolveBookingIdForNotification(legId = id, operatorId = addressedTo)
-            eventScheduler150.cancelScheduledFinish(
-                bookingId = bookingId,
-                legId = id,
-                operatorId = addressedTo,
-            )
+
+            eventScheduler150.cancelScheduledFinish(bookingId, id, addressedTo)
+            eventScheduler150.cancelNearStationDropoff(bookingId, id, addressedTo)
         }
 
         return leg.copy(
@@ -142,7 +145,7 @@ class TripExecutionServiceImpl(
         operatorId: String,
     ): String {
         // Example (real TO): return bookingRepository.findByLegId(legId, operatorId).bookingId
-        return legId
+        return "bookingId"
     }
 
     override fun legsIdGet(
