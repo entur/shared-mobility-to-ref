@@ -6,8 +6,8 @@ We will primarily use Helm to keep track of different values in different enviro
 
 ### Use of the commands:
 
-1) **helm dependency update ./shared-mobility-to-ref**
-    - This command updates the dependencies for the Helm chart in the `./shared-mobility-to-ref` folder. If the chart has defined external dependencies in its `Chart.yaml`, `helm dependency update` will download and place these dependency charts in the `charts/` subfolder. This ensures that all necessary dependencies are in place and updated before you install or upgrade the chart.
+1) **helm dependency update ./helm/shared-mobility-to-ref**
+    - This command updates the dependencies for the Helm chart in the `./helm/shared-mobility-to-ref` folder. If the chart has defined external dependencies in its `Chart.yaml`, `helm dependency update` will download and place these dependency charts in the `charts/` subfolder. This ensures that all necessary dependencies are in place and updated before you install or upgrade the chart.
 
 2) **helm lint -f helm/shared-mobility-to-ref/env/values-kub-ent-dev.yaml ./helm/shared-mobility-to-ref/**
     - This command checks the Helm chart in `./helm/shared-mobility-to-ref/` for errors and best practices by using the values defined in `values-kub-ent-dev.yaml`. `helm lint` helps ensure that your chart is well-structured and free of common errors before distribution.
