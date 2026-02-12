@@ -102,8 +102,8 @@ class TripExecutionServiceImpl(
         if (addressedTo == COLUMBI_BIKE && legEvent?.event == LegEvent.Event.FINISH) {
             val bookingId = resolveBookingIdForNotification(legId = id, operatorId = addressedTo)
 
-            eventScheduler150.cancelScheduledFinish(bookingId, id, addressedTo)
-            eventScheduler150.cancelNearStationDropoff(bookingId, id, addressedTo)
+            eventScheduler150.cancelScheduledFinish(id, addressedTo)
+            eventScheduler150.cancelNearStationDropoff(id, addressedTo)
         }
 
         return leg.copy(

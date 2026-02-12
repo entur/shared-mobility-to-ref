@@ -75,7 +75,6 @@ class TripExecutionServiceImplTest {
 
         verify(exactly = 1) {
             scheduler.cancelScheduledFinish(
-                bookingId = expectedBookingId,
                 legId = legId,
                 operatorId = operatorId,
             )
@@ -83,7 +82,6 @@ class TripExecutionServiceImplTest {
 
         verify(exactly = 1) {
             scheduler.cancelNearStationDropoff(
-                bookingId = expectedBookingId,
                 legId = legId,
                 operatorId = operatorId,
             )

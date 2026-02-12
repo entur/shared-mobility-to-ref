@@ -2,7 +2,6 @@ package no.entur.shared.mobility.to.ref.tomp150.service
 
 import no.entur.shared.mobility.to.ref.client.SharedMobilityRouterClient
 import no.entur.shared.mobility.to.ref.config.TransportOperator.COLUMBI_BIKE
-import no.entur.shared.mobility.to.ref.config.TransportOperator.URBAN_BIKE
 import no.entur.shared.mobility.to.ref.tomp150.dto.LegEvent
 import no.entur.shared.mobility.to.ref.tomp150.dto.Notification
 import org.springframework.scheduling.annotation.Scheduled
@@ -49,26 +48,26 @@ class EventScheduler150(
      *  own persistence layer.
      */
     fun cancelScheduledFinish(
-        bookingId: String,
         legId: String,
         operatorId: String,
     ) {
-        val k = key(bookingId, legId, operatorId)
+        val k = key(legId, operatorId)
 
-        tripEndQueue.removeIf { it.first == bookingId && it.second == legId && it.third == operatorId }
+        tripEndQueue.removeIf { it.second == legId && it.third == operatorId }
         tripEndFinishAt.remove(k)
 
+        // cleanup “send once” + delay bookkeeping
         nearStationNotified.remove(k)
+        nearStationCreatedAt.remove(k)
     }
 
     fun cancelNearStationDropoff(
-        bookingId: String,
         legId: String,
         operatorId: String,
     ) {
-        val k = key(bookingId, legId, operatorId)
+        val k = key(legId, operatorId)
 
-        nearStationDropoffQueue.removeIf { it.first == bookingId && it.second == legId && it.third == operatorId }
+        nearStationDropoffQueue.removeIf { it.second == legId && it.third == operatorId }
         nearStationCreatedAt.remove(k)
         nearStationNotified.remove(k)
     }
@@ -125,7 +124,7 @@ class EventScheduler150(
 
         while (iterator.hasNext()) {
             val (bookingId, legId, operatorId) = iterator.next()
-            val k = key(bookingId, legId, operatorId)
+            val k = key(legId, operatorId)
 
             val createdAt = nearStationCreatedAt[k] ?: now
             val readyToNotify =
@@ -134,7 +133,7 @@ class EventScheduler150(
             if (!nearStationNotified.contains(k) && readyToNotify) {
                 runCatching {
                     sharedMobilityRouterClient.bookingsIdNotificationsPost150(
-                        id = bookingId,
+                        id = bookingId, // <-- payload
                         maasId = operatorId,
                         addressedTo = "Entur",
                         notification =
@@ -148,7 +147,7 @@ class EventScheduler150(
 
                 nearStationNotified.add(k)
                 iterator.remove()
-                nearStationCreatedAt.remove(k) // cleanup
+                nearStationCreatedAt.remove(k)
             }
         }
     }
@@ -165,18 +164,20 @@ class EventScheduler150(
 
         while (iterator.hasNext()) {
             val (bookingId, legId, operatorId) = iterator.next()
-            val k = key(bookingId, legId, operatorId)
+            val k = key(legId, operatorId)
             val finishAt = tripEndFinishAt[k] ?: now
 
             if (!finishAt.isAfter(now)) {
+                // NB: postLeg tar Triple
                 postLeg(Triple(bookingId, legId, operatorId), LegEvent.Event.FINISH)
+
                 iterator.remove()
                 tripEndFinishAt.remove(k)
 
-                // cleanup related near-station state too
+                // cleanup near-station too (legId/operatorId identity)
                 nearStationNotified.remove(k)
                 nearStationCreatedAt.remove(k)
-                nearStationDropoffQueue.removeIf { it.first == bookingId && it.second == legId && it.third == operatorId }
+                nearStationDropoffQueue.removeIf { it.second == legId && it.third == operatorId }
             }
         }
     }
@@ -187,9 +188,8 @@ class EventScheduler150(
         operatorId: String,
         finishAt: OffsetDateTime,
     ) {
-        val triple = Triple(bookingId, legId, operatorId)
-        tripEndQueue.add(triple)
-        tripEndFinishAt[key(bookingId, legId, operatorId)] = finishAt
+        tripEndQueue.add(Triple(bookingId, legId, operatorId))
+        tripEndFinishAt[key(legId, operatorId)] = finishAt
     }
 
     /**
@@ -203,9 +203,8 @@ class EventScheduler150(
         legId: String,
         operatorId: String,
     ) {
-        val triple = Triple(bookingId, legId, operatorId)
-        nearStationDropoffQueue.add(triple)
-        nearStationCreatedAt.putIfAbsent(key(bookingId, legId, operatorId), OffsetDateTime.now())
+        nearStationDropoffQueue.add(Triple(bookingId, legId, operatorId))
+        nearStationCreatedAt.putIfAbsent(key(legId, operatorId), OffsetDateTime.now())
     }
 
     private fun postLeg(
@@ -223,10 +222,9 @@ class EventScheduler150(
     }
 
     private fun key(
-        bookingId: String,
         legId: String,
         operatorId: String,
-    ) = "$bookingId|$legId|$operatorId"
+    ) = "$legId|$operatorId"
 
     companion object {
         /**
