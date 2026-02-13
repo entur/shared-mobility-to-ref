@@ -508,43 +508,42 @@ TO-ref simulates how a transport operator can support delivery of urban bikes wh
 
 1. **Trip start**
 
-   * The booking is created with a single leg in `NOT_STARTED`
-   * TO-ref sends a notification: *“You can now take the bike”*
-   * The leg is transitioned to `IN_USE`
+  * The booking is created with a single leg in `NOT_STARTED`
+  * TO-ref sends a notification: *“You can now take the bike”*
+  * The leg is transitioned to `IN_USE`
 
 2. **Start finishing**
 
-   * When MaaS sends `START_FINISHING` for an `COLUMBI_BIKE` leg:
+  * When MaaS sends `START_FINISHING` for a `COLUMBI_BIKE` leg:
 
-     * TO-ref schedules a *near-station drop-off workflow*
-     * A short delay later, a notification is sent to the end user:
+    * TO-ref schedules a *near-station drop-off workflow*
+    * A notification is sent to the end user via a scheduled job:
 
-       > “Dock is full. Please place the bike next to the station and end the trip in the app.”
+      > “Dock is full. Please place the bike next to the station and end the trip in the app.”
 
 3. **Finishing window**
 
-   * The trip remains in `FINISHING` for a configurable time window
-   * During this window, MaaS is expected to send `FINISH`
+  * The trip remains in `FINISHING` for a configurable time window
+  * During this window, MaaS is expected to send `FINISH`
 
 4. **Finish handling**
 
-   * If `FINISH` is received from MaaS:
+  * If `FINISH` is received from MaaS:
 
-     * Any scheduled auto-finish is cancelled
-     * The trip is completed immediately
-   * If no `FINISH` is received:
+    * Any scheduled auto-finish is cancelled
+    * The trip is completed immediately
+  * If no `FINISH` is received:
 
-     * TO-ref auto-finishes the trip when the window expires
+    * TO-ref auto-finishes the trip when the window expires
 
 #### Notes
 
 * TO-ref does **not** initiate manual finish itself
 * `FINISH` is always expected to come from MaaS / the client app
-* The scheduler only acts as a fallback to avoid stuck trips
+* The scheduler acts as a fallback to avoid stuck trips
+* Notifications are sent asynchronously via scheduled jobs
+* If sending a notification fails, it will be retried on the next scheduler run
 * This behaviour is specific to `COLUMBI_BIKE`; other operators keep the old auto-finish behaviour
-
----
-
 
 ---
 
@@ -567,8 +566,8 @@ The recommendations below are chosen to balance:
 
 ### 1) `setInUse()`
 
-**What it does**
-Transitions a leg to `IN_USE` after the trip has started in the demo flow.
+**What it does**  
+Transitions a leg to `IN_USE` after the trip has started in the demo flow.  
 For non-`*_BIKE` operators, the leg is also scheduled for the legacy auto-finish behaviour.
 
 **Recommended**
@@ -578,41 +577,45 @@ For non-`*_BIKE` operators, the leg is also scheduled for the legacy auto-finish
 
 **Why**
 
-* `initialDelay = 10s` allows the application to fully start before background processing begins.
-* `fixedDelay = 20s` is responsive enough for demos and development without running continuously.
-  This is a simulation, not a real-time system.
+* `initialDelay = 10s` allows the application to fully start before background processing begins
+* `fixedDelay = 20s` is responsive enough for demos and development without running continuously
 
 ---
 
 ### 2) `notifyNearStationDropoff()`
 
-**What it does**
-Sends a notification to the end user when the *near-station drop-off* workflow is triggered
-(e.g. *“Dock is full. Please place the bike next to the station and end the trip in the app.”*).
+**What it does**  
+Sends a notification to the end user when the *near-station drop-off* workflow is triggered.
 
-The job waits for `NEAR_STATION_NOTIFICATION_DELAY_SECONDS` before notifying, to simulate a more realistic sequence of events.
+Example:
+
+> “Dock is full. Please place the bike next to the station and end the trip in the app.”
+
+Notifications are processed from an internal queue and sent asynchronously.
+
+**Important behaviour**
+
+* The job processes all queued notifications on each run
+* If sending fails, the entry remains in the queue and will be retried on the next run
+* There is **no artificial delay** between `START_FINISHING` and the notification
 
 **Recommended**
 
 * `initialDelay`: **10s**
-* `fixedDelay`: **5s**
-* `NEAR_STATION_NOTIFICATION_DELAY_SECONDS`: **3s**
+* `fixedDelay`: **300 * SECONDS (~5 minutes)**
 
 **Why**
 
-* `fixedDelay = 5s` provides near-real-time feedback while keeping system load low.
-* `NEAR_STATION_NOTIFICATION_DELAY_SECONDS = 3s` introduces a short, intentional delay so that
-  `START_FINISHING` and the user notification do not occur at the exact same moment.
-  This improves realism and makes logs easier to follow.
-* `initialDelay = 10s` ensures safe startup behaviour.
+* Keeps system load low in demo environments
+* Retry mechanism ensures eventual delivery without complex state handling
 
-> For very fast local demos, `fixedDelay` can be reduced to **1s**, but **5s** is a good default.
+> For faster feedback during development, the delay can be reduced (e.g. to **5s** or **1s**)
 
 ---
 
 ### 3) `setFinished()`
 
-**What it does**
+**What it does**  
 Automatically finishes trips when their `finishAt` timestamp has passed (fallback behaviour).
 
 This is especially important for the `*_BIKE` near-station flow:
@@ -627,19 +630,14 @@ TO-ref completes the trip automatically to avoid stuck `FINISHING` states.
 
 **Why**
 
-* `fixedDelay = 1s` ensures precise and predictable completion once the finish window expires.
-* `NEAR_STATION_MANUAL_FINISH_WINDOW_MINUTES = 10` is a realistic compromise:
-
-  * gives the end user and MaaS sufficient time to finish manually
-  * prevents trips from remaining in an unfinished state for too long
-* `initialDelay = 10s` ensures stable startup behaviour.
+* `fixedDelay = 1s` ensures precise and predictable completion once the finish window expires
+* `10 minutes` gives enough time for manual finish without leaving trips stuck
+* `initialDelay = 10s` ensures stable startup behaviour
 
 ---
 
 ### Summary of recommended timings
 
 * **setInUse**: start after **10s**, then every **20s**
-* **notifyNearStationDropoff**: start after **10s**, check every **5s**, notify after **3s**
+* **notifyNearStationDropoff**: start after **10s**, run every **~5 minutes**
 * **setFinished**: start after **10s**, check every **1s**, auto-finish after **10 minutes** if no `FINISH` is received
-
----

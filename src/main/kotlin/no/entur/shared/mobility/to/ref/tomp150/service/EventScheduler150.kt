@@ -4,6 +4,7 @@ import no.entur.shared.mobility.to.ref.client.SharedMobilityRouterClient
 import no.entur.shared.mobility.to.ref.config.TransportOperator.COLUMBI_BIKE
 import no.entur.shared.mobility.to.ref.tomp150.dto.LegEvent
 import no.entur.shared.mobility.to.ref.tomp150.dto.Notification
+import org.slf4j.LoggerFactory
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
@@ -17,13 +18,7 @@ class EventScheduler150(
     private val startMessageQueue: ConcurrentLinkedQueue<Triple<String, String, String>> = ConcurrentLinkedQueue()
     private val tripStartQueue: ConcurrentLinkedQueue<Triple<String, String, String>> = ConcurrentLinkedQueue()
 
-    // Fallback auto-finish (som før)
-
-    // NEW: near-station notification workflow
     private val nearStationDropoffQueue: ConcurrentLinkedQueue<Triple<String, String, String>> = ConcurrentLinkedQueue()
-
-    // Tracks if we already notified
-    private val nearStationNotified: MutableSet<String> = ConcurrentHashMap.newKeySet()
 
     private val tripEndFinishAt: MutableMap<String, OffsetDateTime> = ConcurrentHashMap()
 
@@ -37,6 +32,8 @@ class EventScheduler150(
      *  3) auto-finish when the window expires
      */
     private val tripEndQueue: ConcurrentLinkedQueue<Triple<String, String, String>> = ConcurrentLinkedQueue()
+
+    private val log = LoggerFactory.getLogger(EventScheduler150::class.java)
 
     /**
      * Cancel any scheduled auto-finish for this booking/leg/operator.
@@ -54,9 +51,6 @@ class EventScheduler150(
         tripEndQueue.removeIf { it.second == legId && it.third == operatorId }
         tripEndFinishAt.remove(k)
 
-        // cleanup “send once” + delay bookkeeping
-        nearStationNotified.remove(k)
-
         bookingIdByLegKey.remove(k)
     }
 
@@ -67,7 +61,6 @@ class EventScheduler150(
         val k = key(legId, operatorId)
 
         nearStationDropoffQueue.removeIf { it.second == legId && it.third == operatorId }
-        nearStationNotified.remove(k)
 
         bookingIdByLegKey.remove(k)
     }
@@ -126,23 +119,28 @@ class EventScheduler150(
 
         while (iterator.hasNext()) {
             val (bookingId, legId, operatorId) = iterator.next()
-            val k = key(legId, operatorId)
 
-            runCatching {
-                sharedMobilityRouterClient.bookingsIdNotificationsPost150(
-                    id = bookingId,
-                    maasId = operatorId,
-                    addressedTo = "Entur",
-                    notification =
-                        Notification(
-                            legId = legId,
-                            type = Notification.Type.MESSAGE_TO_END_USER,
-                            comment = "Dock is full. Please place the bike next to the station and end the trip in the app.",
-                        ),
-                )
+            val ok =
+                runCatching {
+                    sharedMobilityRouterClient.bookingsIdNotificationsPost150(
+                        id = bookingId,
+                        maasId = operatorId,
+                        addressedTo = "Entur",
+                        notification =
+                            Notification(
+                                legId = legId,
+                                type = Notification.Type.MESSAGE_TO_END_USER,
+                                comment = "Dock is full. Please place the bike next to the station and end the trip in the app.",
+                            ),
+                    )
+                }.isSuccess
+
+            if (ok) {
+                iterator.remove()
+            } else {
+                // Keep entry in queue for retry on next scheduler run.
+                log.warn("Failed to send near-station notification for legId={} operatorId={}", legId, operatorId)
             }
-
-            iterator.remove()
         }
     }
 
@@ -169,7 +167,6 @@ class EventScheduler150(
                 tripEndFinishAt.remove(k)
 
                 // cleanup near-station too (legId/operatorId identity)
-                nearStationNotified.remove(k)
                 nearStationDropoffQueue.removeIf { it.second == legId && it.third == operatorId }
 
                 bookingIdByLegKey.remove(k)
@@ -184,12 +181,15 @@ class EventScheduler150(
     ) {
         val k = key(legId, operatorId)
 
-        val bookingId =
-            bookingIdByLegKey[k]
-                ?: throw IllegalStateException(
-                    "Missing bookingId for legId=$legId operatorId=$operatorId. " +
-                        "scheduleNearStationDropoff() must be called before scheduleFallbackFinish().",
-                )
+        val bookingId = findBookingId(legId, operatorId)
+        if (bookingId == null) {
+            log.warn(
+                "Cannot schedule fallback finish: missing bookingId"
+            )
+            return
+        }
+
+        bookingIdByLegKey.putIfAbsent(k, bookingId)
 
         tripEndQueue.add(Triple(bookingId, legId, operatorId))
         tripEndFinishAt[k] = finishAt
@@ -207,9 +207,18 @@ class EventScheduler150(
     ) {
         val k = key(legId, operatorId)
 
-        val bookingId =
-            bookingIdByLegKey[k]
-                ?: error("Missing bookingId for legId=$legId operatorId=$operatorId")
+        val bookingId = findBookingId(legId, operatorId)
+        if (bookingId == null) {
+            log.warn(
+                "Cannot schedule near-station dropoff: missing bookingId. " +
+                    "Expected bookingIdByLegKey to be populated or present in an existing queue entry.",
+
+            )
+            return
+        }
+
+        // Keep mapping warm for later steps (fallback finish, notifications, etc.)
+        bookingIdByLegKey.putIfAbsent(k, bookingId)
 
         nearStationDropoffQueue.add(Triple(bookingId, legId, operatorId))
     }
@@ -226,6 +235,24 @@ class EventScheduler150(
                 legEvent = LegEvent(OffsetDateTime.now(), event),
             )
         }
+    }
+
+    private fun findBookingId(
+        legId: String,
+        operatorId: String,
+    ): String? {
+        // Prefer explicit mapping if present
+        val k = key(legId, operatorId)
+        bookingIdByLegKey[k]?.let { return it }
+
+        // Fall back to whatever we already have queued (Triple(bookingId, legId, operatorId))
+        fun ConcurrentLinkedQueue<Triple<String, String, String>>.find(): String? =
+            this.firstOrNull { it.second == legId && it.third == operatorId }?.first
+
+        return nearStationDropoffQueue.find()
+            ?: tripEndQueue.find()
+            ?: startMessageQueue.find()
+            ?: tripStartQueue.find()
     }
 
     private fun key(
