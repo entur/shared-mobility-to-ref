@@ -7,7 +7,6 @@ import no.entur.shared.mobility.to.ref.tomp150.dto.Notification
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
-import java.time.temporal.ChronoUnit
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ConcurrentLinkedQueue
 
@@ -26,10 +25,9 @@ class EventScheduler150(
     // Tracks if we already notified
     private val nearStationNotified: MutableSet<String> = ConcurrentHashMap.newKeySet()
 
-    // Tracks when START_FINISHING was received (to implement "delay before notify")
-    private val nearStationCreatedAt: MutableMap<String, OffsetDateTime> = ConcurrentHashMap()
-
     private val tripEndFinishAt: MutableMap<String, OffsetDateTime> = ConcurrentHashMap()
+
+    private val bookingIdByLegKey: MutableMap<String, String> = ConcurrentHashMap()
 
     /**
      * For operators != *_BIKE: old behavior (auto-finish after some delay).
@@ -58,7 +56,8 @@ class EventScheduler150(
 
         // cleanup “send once” + delay bookkeeping
         nearStationNotified.remove(k)
-        nearStationCreatedAt.remove(k)
+
+        bookingIdByLegKey.remove(k)
     }
 
     fun cancelNearStationDropoff(
@@ -68,8 +67,9 @@ class EventScheduler150(
         val k = key(legId, operatorId)
 
         nearStationDropoffQueue.removeIf { it.second == legId && it.third == operatorId }
-        nearStationCreatedAt.remove(k)
         nearStationNotified.remove(k)
+
+        bookingIdByLegKey.remove(k)
     }
 
     fun addToEventQueue(
@@ -77,6 +77,9 @@ class EventScheduler150(
         legId: String,
         operatorId: String,
     ) {
+        val k = key(legId, operatorId)
+        bookingIdByLegKey.putIfAbsent(k, bookingId)
+
         startMessageQueue.add(Triple(bookingId, legId, operatorId))
     }
 
@@ -119,36 +122,27 @@ class EventScheduler150(
      */
     @Scheduled(initialDelay = 10_000, fixedDelay = 300 * SECONDS)
     fun notifyNearStationDropoff() {
-        val now = OffsetDateTime.now()
         val iterator = nearStationDropoffQueue.iterator()
 
         while (iterator.hasNext()) {
             val (bookingId, legId, operatorId) = iterator.next()
             val k = key(legId, operatorId)
 
-            val createdAt = nearStationCreatedAt[k] ?: now
-            val readyToNotify =
-                ChronoUnit.SECONDS.between(createdAt, now) >= NEAR_STATION_NOTIFICATION_DELAY_SECONDS
-
-            if (!nearStationNotified.contains(k) && readyToNotify) {
-                runCatching {
-                    sharedMobilityRouterClient.bookingsIdNotificationsPost150(
-                        id = bookingId, // <-- payload
-                        maasId = operatorId,
-                        addressedTo = "Entur",
-                        notification =
-                            Notification(
-                                legId = legId,
-                                type = Notification.Type.MESSAGE_TO_END_USER,
-                                comment = "Dock is full. Please place the bike next to the station and end the trip in the app.",
-                            ),
-                    )
-                }
-
-                nearStationNotified.add(k)
-                iterator.remove()
-                nearStationCreatedAt.remove(k)
+            runCatching {
+                sharedMobilityRouterClient.bookingsIdNotificationsPost150(
+                    id = bookingId,
+                    maasId = operatorId,
+                    addressedTo = "Entur",
+                    notification =
+                        Notification(
+                            legId = legId,
+                            type = Notification.Type.MESSAGE_TO_END_USER,
+                            comment = "Dock is full. Please place the bike next to the station and end the trip in the app.",
+                        ),
+                )
             }
+
+            iterator.remove()
         }
     }
 
@@ -176,20 +170,29 @@ class EventScheduler150(
 
                 // cleanup near-station too (legId/operatorId identity)
                 nearStationNotified.remove(k)
-                nearStationCreatedAt.remove(k)
                 nearStationDropoffQueue.removeIf { it.second == legId && it.third == operatorId }
+
+                bookingIdByLegKey.remove(k)
             }
         }
     }
 
     fun scheduleFallbackFinish(
-        bookingId: String,
         legId: String,
         operatorId: String,
         finishAt: OffsetDateTime,
     ) {
+        val k = key(legId, operatorId)
+
+        val bookingId =
+            bookingIdByLegKey[k]
+                ?: throw IllegalStateException(
+                    "Missing bookingId for legId=$legId operatorId=$operatorId. " +
+                        "scheduleNearStationDropoff() must be called before scheduleFallbackFinish().",
+                )
+
         tripEndQueue.add(Triple(bookingId, legId, operatorId))
-        tripEndFinishAt[key(legId, operatorId)] = finishAt
+        tripEndFinishAt[k] = finishAt
     }
 
     /**
@@ -199,12 +202,16 @@ class EventScheduler150(
      * In TO-ref (demo), some flows may use bookingId == legId to keep things simple.
      */
     fun scheduleNearStationDropoff(
-        bookingId: String,
         legId: String,
         operatorId: String,
     ) {
+        val k = key(legId, operatorId)
+
+        val bookingId =
+            bookingIdByLegKey[k]
+                ?: error("Missing bookingId for legId=$legId operatorId=$operatorId")
+
         nearStationDropoffQueue.add(Triple(bookingId, legId, operatorId))
-        nearStationCreatedAt.putIfAbsent(key(legId, operatorId), OffsetDateTime.now())
     }
 
     private fun postLeg(
@@ -238,8 +245,5 @@ class EventScheduler150(
 
         // *_BIKE near-station flow
         const val NEAR_STATION_MANUAL_FINISH_WINDOW_MINUTES: Long = 10
-
-        // *_BIKE near-station flow
-        const val NEAR_STATION_NOTIFICATION_DELAY_SECONDS: Long = 3
     }
 }

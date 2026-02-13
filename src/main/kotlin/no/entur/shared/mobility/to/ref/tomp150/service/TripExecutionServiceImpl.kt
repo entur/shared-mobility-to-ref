@@ -85,12 +85,9 @@ class TripExecutionServiceImpl(
 
         // NEW: Trigger "near station drop-off" workflow when START_FINISHING is received for COLUMBI_BIKE
         if (addressedTo == COLUMBI_BIKE && legEvent?.event == LegEvent.Event.START_FINISHING) {
-            val bookingId = resolveBookingIdForNotification(legId = id, operatorId = addressedTo)
-
-            eventScheduler150.scheduleNearStationDropoff(bookingId, id, addressedTo)
+            eventScheduler150.scheduleNearStationDropoff(id, operatorId = addressedTo)
 
             eventScheduler150.scheduleFallbackFinish(
-                bookingId = bookingId,
                 legId = id,
                 operatorId = addressedTo,
                 finishAt = OffsetDateTime.now().plusMinutes(NEAR_STATION_MANUAL_FINISH_WINDOW_MINUTES),
@@ -100,8 +97,6 @@ class TripExecutionServiceImpl(
         // NEW: If MaaS/app sends FINISH, cancel any scheduled auto-finish
         // to avoid double FINISH from the scheduler.
         if (addressedTo == COLUMBI_BIKE && legEvent?.event == LegEvent.Event.FINISH) {
-            val bookingId = resolveBookingIdForNotification(legId = id, operatorId = addressedTo)
-
             eventScheduler150.cancelScheduledFinish(id, addressedTo)
             eventScheduler150.cancelNearStationDropoff(id, addressedTo)
         }
@@ -129,23 +124,6 @@ class TripExecutionServiceImpl(
                 },
             asset = legEvent.asset,
         )
-    }
-
-    /**
-     * Resolve bookingId for operations that originate from leg-based TOMP endpoints.
-     *
-     * In real transport operators this is typically a lookup in the operator's own persistence layer
-     * (e.g. bookingRepository.findByLegId(...)).
-     *
-     * TO-ref is a demo implementation without such a database, so we intentionally use
-     * bookingId == legId to keep the flow testable and easy to understand.
-     */
-    private fun resolveBookingIdForNotification(
-        legId: String,
-        operatorId: String,
-    ): String {
-        // Example (real TO): return bookingRepository.findByLegId(legId, operatorId).bookingId
-        return "bookingId"
     }
 
     override fun legsIdGet(

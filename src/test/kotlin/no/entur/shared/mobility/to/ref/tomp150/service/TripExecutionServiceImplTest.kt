@@ -31,11 +31,8 @@ class TripExecutionServiceImplTest {
                 ),
         )
 
-        val expectedBookingId = "bookingId"
-
         verify(exactly = 1) {
             scheduler.scheduleNearStationDropoff(
-                bookingId = expectedBookingId,
                 legId = legId,
                 operatorId = operatorId,
             )
@@ -43,7 +40,6 @@ class TripExecutionServiceImplTest {
 
         verify(exactly = 1) {
             scheduler.scheduleFallbackFinish(
-                bookingId = expectedBookingId,
                 legId = legId,
                 operatorId = operatorId,
                 finishAt = any(),
