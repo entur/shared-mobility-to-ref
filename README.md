@@ -500,7 +500,7 @@ This endpoint provides detailed information about bookings that match the specif
 
 
 
-### 🟢 Urban bike – near station drop-off flow (TO-ref)
+### 🟢 Urban bikes – near station drop-off flow (TO-ref)
 
 TO-ref simulates how a transport operator can support delivery of urban bikes when docking stations are full.
 

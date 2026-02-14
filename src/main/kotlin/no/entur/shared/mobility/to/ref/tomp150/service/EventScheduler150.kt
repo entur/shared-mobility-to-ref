@@ -160,7 +160,6 @@ class EventScheduler150(
             val finishAt = tripEndFinishAt[k] ?: now
 
             if (!finishAt.isAfter(now)) {
-                // NB: postLeg tar Triple
                 postLeg(Triple(bookingId, legId, operatorId), LegEvent.Event.FINISH)
 
                 iterator.remove()
@@ -184,7 +183,7 @@ class EventScheduler150(
         val bookingId = findBookingId(legId, operatorId)
         if (bookingId == null) {
             log.warn(
-                "Cannot schedule fallback finish: missing bookingId"
+                "Cannot schedule fallback finish: missing bookingId",
             )
             return
         }
@@ -212,7 +211,6 @@ class EventScheduler150(
             log.warn(
                 "Cannot schedule near-station dropoff: missing bookingId. " +
                     "Expected bookingIdByLegKey to be populated or present in an existing queue entry.",
-
             )
             return
         }

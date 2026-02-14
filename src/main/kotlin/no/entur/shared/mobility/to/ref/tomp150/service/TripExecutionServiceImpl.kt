@@ -83,7 +83,7 @@ class TripExecutionServiceImpl(
                 else -> throw NotImplementedError()
             }
 
-        // NEW: Trigger "near station drop-off" workflow when START_FINISHING is received for COLUMBI_BIKE
+        // Trigger "near station drop-off" workflow when START_FINISHING is received for COLUMBI_BIKE
         if (addressedTo == COLUMBI_BIKE && legEvent?.event == LegEvent.Event.START_FINISHING) {
             eventScheduler150.scheduleNearStationDropoff(id, operatorId = addressedTo)
 
@@ -94,7 +94,7 @@ class TripExecutionServiceImpl(
             )
         }
 
-        // NEW: If MaaS/app sends FINISH, cancel any scheduled auto-finish
+        // If MaaS/app sends FINISH, cancel any scheduled auto-finish
         // to avoid double FINISH from the scheduler.
         if (addressedTo == COLUMBI_BIKE && legEvent?.event == LegEvent.Event.FINISH) {
             eventScheduler150.cancelScheduledFinish(id, addressedTo)
