@@ -1,6 +1,7 @@
 package no.entur.shared.mobility.to.ref.tomp150.service
 
 import io.kotest.matchers.collections.shouldHaveSize
+import io.kotest.matchers.maps.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
@@ -10,7 +11,7 @@ import no.entur.shared.mobility.to.ref.client.SharedMobilityRouterClient
 import no.entur.shared.mobility.to.ref.tomp150.dto.LegEvent
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import java.util.concurrent.ConcurrentLinkedQueue
+import java.util.concurrent.ConcurrentHashMap
 
 class EventScheduler150Test {
     private val sharedMobilityRouterClient: SharedMobilityRouterClient = mockk(relaxed = true)
@@ -20,9 +21,7 @@ class EventScheduler150Test {
     @BeforeEach
     fun setup() {
         // Clear queues before each test
-        getQueue("startMessageQueue").clear()
-        getQueue("tripStartQueue").clear()
-        getQueue("tripEndQueue").clear()
+        getEventMap().clear()
     }
 
     @Test
@@ -39,7 +38,7 @@ class EventScheduler150Test {
                 notification = any(),
             )
         }
-        getQueue("startMessageQueue") shouldHaveSize 0
+        getEventMap() shouldHaveSize 0
     }
 
     @Test
@@ -64,12 +63,12 @@ class EventScheduler150Test {
                 notification = any(),
             )
         }
-        getQueue("startMessageQueue") shouldHaveSize 0
+        getEventMap() shouldHaveSize 0
     }
 
     @Test
     fun `setInUse should call legsIdEventsPost150 to start trip`() {
-        val tripStartQueue = getQueue("tripStartQueue")
+        val tripStartQueue = getEventMap()
         tripStartQueue.add(Triple(BOOKING_ID, LEG_ID, OPERATOR_ID))
 
         eventScheduler.setInUse()
@@ -87,7 +86,7 @@ class EventScheduler150Test {
 
     @Test
     fun `setInUse that fails should still remove the item from the queue`() {
-        val tripStartQueue = getQueue("tripStartQueue")
+        val tripStartQueue = getEventMap()
         tripStartQueue.add(Triple(BOOKING_ID, LEG_ID, OPERATOR_ID))
         val slot = slot<LegEvent>()
         every {
@@ -115,10 +114,10 @@ class EventScheduler150Test {
 
     @Test
     fun `setFinished should call legsIdEventsPost150 to end trip`() {
-        val tripEndQueue = getQueue("tripEndQueue")
+        val tripEndQueue = getEventMap()
         tripEndQueue.add(Triple(BOOKING_ID, LEG_ID, OPERATOR_ID))
 
-        eventScheduler.setFinished()
+        eventScheduler.handleFinish(automatedBehaviour)
 
         verify {
             sharedMobilityRouterClient.legsIdEventsPost150(
@@ -133,7 +132,7 @@ class EventScheduler150Test {
 
     @Test
     fun `setFinished that fails should still remove the item from the queue`() {
-        val tripEndQueue = getQueue("tripEndQueue")
+        val tripEndQueue = getEventMap()
         tripEndQueue.add(Triple(BOOKING_ID, LEG_ID, OPERATOR_ID))
         val slot = slot<LegEvent>()
         every {
@@ -145,7 +144,7 @@ class EventScheduler150Test {
             )
         } throws RuntimeException()
 
-        eventScheduler.setFinished()
+        eventScheduler.handleFinish(automatedBehaviour)
 
         verify {
             sharedMobilityRouterClient.legsIdEventsPost150(
@@ -159,11 +158,11 @@ class EventScheduler150Test {
         tripEndQueue shouldHaveSize 0
     }
 
-    private fun getQueue(name: String): ConcurrentLinkedQueue<Any> {
-        val field = EventScheduler150::class.java.getDeclaredField(name)
+    private fun getEventMap(): ConcurrentHashMap<String, AutomatedBehaviour> {
+        val field = EventScheduler150::class.java.getDeclaredField("eventMap")
         field.isAccessible = true
         @Suppress("UNCHECKED_CAST")
-        return field.get(eventScheduler) as ConcurrentLinkedQueue<Any>
+        return field.get(eventScheduler) as ConcurrentHashMap<String, AutomatedBehaviour>
     }
 
     companion object {

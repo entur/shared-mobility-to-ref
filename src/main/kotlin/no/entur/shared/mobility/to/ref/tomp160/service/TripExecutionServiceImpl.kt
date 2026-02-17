@@ -20,8 +20,10 @@ import no.entur.shared.mobility.to.ref.tomp160.dto.LegState
 import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
 
-@Service("TripExecutionServiceTomp160")
-class TripExecutionServiceImpl : TripExecutionService {
+@Service("TripExecutionServiceTomp150")
+class TripExecutionServiceImpl(
+    private val eventScheduler160: EventScheduler160,
+) : TripExecutionService {
     override fun legsIdAncillariesCategoryNumberDelete(
         acceptLanguage: String,
         api: String,
@@ -79,6 +81,18 @@ class TripExecutionServiceImpl : TripExecutionService {
                 SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3, COLUMBI_BIKE, URBAN_BIKE, ALL_IMPLEMENTING_OPERATOR -> leg
                 else -> throw NotImplementedError()
             }
+
+        // Trigger "near station drop-off" workflow when START_FINISHING is received for COLUMBI_BIKE
+        if (addressedTo == COLUMBI_BIKE && legEvent?.event == LegEvent.Event.START_FINISHING) {
+            eventScheduler160.addFullStationMessage(id)
+        }
+
+        // If MaaS/app sends FINISH, cancel any scheduled auto-finish
+        // to avoid double FINISH from the scheduler.
+        if (addressedTo == COLUMBI_BIKE && legEvent?.event == LegEvent.Event.FINISH) {
+            throw IllegalStateException("Illegal event: COLUMBI_BIKE should not send FINISH. Leg $id.")
+        }
+
         return leg.copy(
             id = id,
             state =

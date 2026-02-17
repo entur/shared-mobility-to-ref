@@ -17,7 +17,6 @@ import no.entur.shared.mobility.to.ref.tomp150.dto.Leg
 import no.entur.shared.mobility.to.ref.tomp150.dto.LegEvent
 import no.entur.shared.mobility.to.ref.tomp150.dto.LegProgress
 import no.entur.shared.mobility.to.ref.tomp150.dto.LegState
-import no.entur.shared.mobility.to.ref.tomp150.service.EventScheduler150.Companion.NEAR_STATION_MANUAL_FINISH_WINDOW_MINUTES
 import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
 
@@ -85,20 +84,13 @@ class TripExecutionServiceImpl(
 
         // Trigger "near station drop-off" workflow when START_FINISHING is received for COLUMBI_BIKE
         if (addressedTo == COLUMBI_BIKE && legEvent?.event == LegEvent.Event.START_FINISHING) {
-            eventScheduler150.scheduleNearStationDropoff(id, operatorId = addressedTo)
-
-            eventScheduler150.scheduleFallbackFinish(
-                legId = id,
-                operatorId = addressedTo,
-                finishAt = OffsetDateTime.now().plusMinutes(NEAR_STATION_MANUAL_FINISH_WINDOW_MINUTES),
-            )
+            eventScheduler150.addFullStationMessage(id)
         }
 
         // If MaaS/app sends FINISH, cancel any scheduled auto-finish
         // to avoid double FINISH from the scheduler.
         if (addressedTo == COLUMBI_BIKE && legEvent?.event == LegEvent.Event.FINISH) {
-            eventScheduler150.cancelScheduledFinish(id, addressedTo)
-            eventScheduler150.cancelNearStationDropoff(id, addressedTo)
+            throw IllegalStateException("Illegal event: COLUMBI_BIKE should not send FINISH. Leg $id.")
         }
 
         return leg.copy(

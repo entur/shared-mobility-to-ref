@@ -32,7 +32,7 @@ class TripExecutionServiceImplTest {
         )
 
         verify(exactly = 1) {
-            scheduler.scheduleNearStationDropoff(
+            scheduler.addFullStationMessage(
                 legId = legId,
                 operatorId = operatorId,
             )
