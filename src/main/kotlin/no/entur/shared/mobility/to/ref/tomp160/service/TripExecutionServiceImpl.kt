@@ -20,7 +20,7 @@ import no.entur.shared.mobility.to.ref.tomp160.dto.LegState
 import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
 
-@Service("TripExecutionServiceTomp150")
+@Service("TripExecutionServiceTomp160")
 class TripExecutionServiceImpl(
     private val eventScheduler160: EventScheduler160,
 ) : TripExecutionService {

@@ -64,7 +64,7 @@ class PlanningServiceImpl(
                 COLUMBI_BIKE,
                 URBAN_BIKE,
                 ALL_IMPLEMENTING_OPERATOR,
-                    -> booking
+                -> booking
 
                 else -> throw NotImplementedError()
             }
