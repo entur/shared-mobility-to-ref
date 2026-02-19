@@ -29,7 +29,7 @@ class EventScheduler150Test {
                 legId = LEG_ID,
                 operatorId = OPERATOR_ID,
                 triggerTime = OffsetDateTime.now().minusSeconds(1),
-                type = "TAKE_MESSAGE",
+                type = ScheduledLegActionType.TAKE_MESSAGE,
                 legEvent = LegEvent.Event.SET_IN_USE,
             )
 
@@ -37,16 +37,16 @@ class EventScheduler150Test {
 
         verify(exactly = 1) {
             sharedMobilityRouterClient.bookingsIdNotificationsPost150(
-                id = any(),
+                id = BOOKING_ID,
                 maasId = OPERATOR_ID,
                 addressedTo = "Entur",
                 notification = any(),
             )
         }
 
-        // Etter TAKE_MESSAGE skal eventet være oppdatert til SET_IN_USE (ikke fjernet)
         map shouldHaveSize 1
-        map[LEG_ID]!!.type shouldBe "SET_IN_USE"
+        map[LEG_ID]!!.type shouldBe ScheduledLegActionType.SET_IN_USE
+        map[LEG_ID]!!.legEvent shouldBe LegEvent.Event.SET_IN_USE
     }
 
     @Test
@@ -58,7 +58,7 @@ class EventScheduler150Test {
                 legId = LEG_ID,
                 operatorId = OPERATOR_ID,
                 triggerTime = OffsetDateTime.now().minusSeconds(1),
-                type = "SET_IN_USE",
+                type = ScheduledLegActionType.SET_IN_USE,
                 legEvent = LegEvent.Event.SET_IN_USE,
             )
 
@@ -74,7 +74,8 @@ class EventScheduler150Test {
         }
 
         map shouldHaveSize 1
-        map[LEG_ID]!!.type shouldBe "FINISH"
+        map[LEG_ID]!!.type shouldBe ScheduledLegActionType.FINISH
+        map[LEG_ID]!!.legEvent shouldBe LegEvent.Event.FINISH
     }
 
     @Test
@@ -86,7 +87,7 @@ class EventScheduler150Test {
                 legId = LEG_ID,
                 operatorId = OPERATOR_ID,
                 triggerTime = OffsetDateTime.now().minusSeconds(1),
-                type = "FINISH",
+                type = ScheduledLegActionType.FINISH,
                 legEvent = LegEvent.Event.FINISH,
             )
 

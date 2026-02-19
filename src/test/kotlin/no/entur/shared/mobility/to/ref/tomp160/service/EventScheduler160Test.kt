@@ -51,7 +51,7 @@ class EventScheduler160Test {
 
         // Assert: state transitioned (still 1 entry in map)
         getEventMap() shouldHaveSize 1
-        getEventMap()[LEG_ID]!!.type shouldBe "SET_IN_USE"
+        getEventMap()[LEG_ID]!!.type shouldBe ScheduledLegActionType.SET_IN_USE
         getEventMap()[LEG_ID]!!.legEvent shouldBe LegEvent.Event.SET_IN_USE
     }
 
@@ -85,7 +85,7 @@ class EventScheduler160Test {
             )
         }
         getEventMap() shouldHaveSize 1
-        getEventMap()[LEG_ID]!!.type shouldBe "TAKE_MESSAGE"
+        getEventMap()[LEG_ID]!!.type shouldBe ScheduledLegActionType.TAKE_MESSAGE
     }
 
     @Test
@@ -97,7 +97,7 @@ class EventScheduler160Test {
                 legId = LEG_ID,
                 operatorId = OPERATOR_ID,
                 triggerTime = OffsetDateTime.now().minusSeconds(1),
-                type = "SET_IN_USE",
+                type = ScheduledLegActionType.SET_IN_USE,
                 legEvent = LegEvent.Event.SET_IN_USE,
             )
 
@@ -119,7 +119,7 @@ class EventScheduler160Test {
 
         // Assert: transitioned to FINISH
         getEventMap() shouldHaveSize 1
-        getEventMap()[LEG_ID]!!.type shouldBe "FINISH"
+        getEventMap()[LEG_ID]!!.type shouldBe ScheduledLegActionType.FINISH
         getEventMap()[LEG_ID]!!.legEvent shouldBe LegEvent.Event.FINISH
     }
 
@@ -132,7 +132,7 @@ class EventScheduler160Test {
                 legId = LEG_ID,
                 operatorId = OPERATOR_ID,
                 triggerTime = OffsetDateTime.now().minusSeconds(1),
-                type = "SET_IN_USE",
+                type = ScheduledLegActionType.SET_IN_USE,
                 legEvent = LegEvent.Event.SET_IN_USE,
             )
 
@@ -158,7 +158,7 @@ class EventScheduler160Test {
             )
         }
         getEventMap() shouldHaveSize 1
-        getEventMap()[LEG_ID]!!.type shouldBe "SET_IN_USE"
+        getEventMap()[LEG_ID]!!.type shouldBe ScheduledLegActionType.SET_IN_USE
     }
 
     @Test
@@ -190,7 +190,7 @@ class EventScheduler160Test {
         notifSlot.captured.comment shouldBe "Dock is full. Please place the bike next and lock the bike."
 
         // Assert transitioned to FINISH
-        getEventMap()[LEG_ID]!!.type shouldBe "FINISH"
+        getEventMap()[LEG_ID]!!.type shouldBe ScheduledLegActionType.FINISH
         getEventMap()[LEG_ID]!!.legEvent shouldBe LegEvent.Event.FINISH
     }
 
@@ -203,7 +203,7 @@ class EventScheduler160Test {
                 legId = LEG_ID,
                 operatorId = OPERATOR_ID,
                 triggerTime = OffsetDateTime.now().minusSeconds(1),
-                type = "FINISH",
+                type = ScheduledLegActionType.FINISH,
                 legEvent = LegEvent.Event.FINISH,
             )
 
@@ -234,9 +234,9 @@ class EventScheduler160Test {
     }
 
     companion object {
-        const val BOOKING_ID = "bookingId"
-        const val LEG_ID = "legId"
-        const val OPERATOR_ID = "operatorId"
-        const val ENTUR = "Entur"
+        private const val BOOKING_ID = "bookingId"
+        private const val LEG_ID = "legId"
+        private const val OPERATOR_ID = "operatorId"
+        private const val ENTUR = "Entur"
     }
 }

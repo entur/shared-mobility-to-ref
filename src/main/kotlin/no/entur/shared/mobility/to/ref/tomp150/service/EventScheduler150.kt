@@ -1,3 +1,4 @@
+
 package no.entur.shared.mobility.to.ref.tomp150.service
 
 import no.entur.shared.mobility.to.ref.client.SharedMobilityRouterClient
@@ -16,16 +17,17 @@ class EventScheduler150(
 
     @Scheduled(initialDelay = 10_000, fixedDelay = 1000)
     fun handleScheduledLegAction() {
-        eventMap.keys.forEach {
-            val scheduledLegAction = eventMap[it]!!
-            if (scheduledLegAction.triggerTime > OffsetDateTime.now()) {
-                return@forEach
-            }
+        val now = OffsetDateTime.now()
+
+        // Iterate over a snapshot to avoid surprises if map is modified during handling
+        eventMap.entries.toList().forEach { (_, scheduledLegAction) ->
+            if (scheduledLegAction.triggerTime.isAfter(now)) return@forEach
+
             when (scheduledLegAction.type) {
-                "TAKE_MESSAGE" -> handleTakeBikeMessage(scheduledLegAction)
-                "SET_IN_USE" -> handleSetInUse(scheduledLegAction)
-                "FULL_STATION_MESSAGE" -> handleFullStationMessage(scheduledLegAction)
-                "FINISH" -> handleFinish(scheduledLegAction)
+                ScheduledLegActionType.TAKE_MESSAGE -> handleTakeBikeMessage(scheduledLegAction)
+                ScheduledLegActionType.SET_IN_USE -> handleSetInUse(scheduledLegAction)
+                ScheduledLegActionType.FULL_STATION_MESSAGE -> handleFullStationMessage(scheduledLegAction)
+                ScheduledLegActionType.FINISH -> handleFinish(scheduledLegAction)
             }
         }
     }
@@ -37,22 +39,22 @@ class EventScheduler150(
     ) {
         eventMap[legId] =
             ScheduledLegAction(
-                bookingId,
-                legId,
-                operatorId,
-                OffsetDateTime.now().plusSeconds(TAKE_MESSAGE_SECONDS),
-                "TAKE_MESSAGE",
-                LegEvent.Event.SET_IN_USE,
+                bookingId = bookingId,
+                legId = legId,
+                operatorId = operatorId,
+                triggerTime = OffsetDateTime.now().plusSeconds(TAKE_MESSAGE_SECONDS),
+                type = ScheduledLegActionType.TAKE_MESSAGE,
+                legEvent = LegEvent.Event.SET_IN_USE,
             )
     }
 
     fun addFullStationMessage(legId: String) {
-        val scheduledLegAction = eventMap[legId]!!
+        val scheduledLegAction = eventMap[legId] ?: return
 
         eventMap[scheduledLegAction.legId] =
             scheduledLegAction.copy(
                 triggerTime = OffsetDateTime.now().plusSeconds(FULL_STATION_MESSAGE_DELAY_SECONDS),
-                type = "FULL_STATION_MESSAGE",
+                type = ScheduledLegActionType.FULL_STATION_MESSAGE,
                 legEvent = LegEvent.Event.FINISH,
             )
     }
@@ -61,7 +63,7 @@ class EventScheduler150(
         postNotification(scheduledLegAction, "You can now take the bike.")
         eventMap[scheduledLegAction.legId] =
             scheduledLegAction.copy(
-                type = "SET_IN_USE",
+                type = ScheduledLegActionType.SET_IN_USE,
                 legEvent = LegEvent.Event.SET_IN_USE,
                 triggerTime = OffsetDateTime.now().plusSeconds(SET_IN_USE_SECONDS),
             )
@@ -71,7 +73,7 @@ class EventScheduler150(
         postLeg(scheduledLegAction)
         eventMap[scheduledLegAction.legId] =
             scheduledLegAction.copy(
-                type = "FINISH",
+                type = ScheduledLegActionType.FINISH,
                 legEvent = LegEvent.Event.FINISH,
                 triggerTime = OffsetDateTime.now().plusSeconds(DEFAULT_AUTO_FINISH_SECONDS),
             )
@@ -81,7 +83,7 @@ class EventScheduler150(
         postNotification(scheduledLegAction, "Dock is full. Please place the bike next and lock the bike.")
         eventMap[scheduledLegAction.legId] =
             scheduledLegAction.copy(
-                type = "FINISH",
+                type = ScheduledLegActionType.FINISH,
                 legEvent = LegEvent.Event.FINISH,
                 triggerTime = OffsetDateTime.now().plusSeconds(LOCK_BIKE_TO_FINISH_DELAY_SECONDS),
             )
@@ -129,11 +131,18 @@ class EventScheduler150(
     }
 }
 
+enum class ScheduledLegActionType {
+    TAKE_MESSAGE,
+    SET_IN_USE,
+    FULL_STATION_MESSAGE,
+    FINISH,
+}
+
 data class ScheduledLegAction(
     val bookingId: String,
     val legId: String,
     val operatorId: String,
     val triggerTime: OffsetDateTime,
-    val type: String,
+    val type: ScheduledLegActionType,
     val legEvent: LegEvent.Event,
 )
