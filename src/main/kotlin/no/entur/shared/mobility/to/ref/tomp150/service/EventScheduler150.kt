@@ -12,20 +12,20 @@ import java.util.concurrent.ConcurrentHashMap
 class EventScheduler150(
     private val sharedMobilityRouterClient: SharedMobilityRouterClient,
 ) {
-    private val eventMap = ConcurrentHashMap<String, AutomatedBehaviour>()
+    private val eventMap = ConcurrentHashMap<String, ScheduledLegAction>()
 
     @Scheduled(initialDelay = 10_000, fixedDelay = 1000)
-    fun handleAutomatedBehaviour() {
+    fun handleScheduledLegAction() {
         eventMap.keys.forEach {
-            val automatedBehaviour = eventMap[it]!!
-            if (automatedBehaviour.triggerTime > OffsetDateTime.now()) {
+            val scheduledLegAction = eventMap[it]!!
+            if (scheduledLegAction.triggerTime > OffsetDateTime.now()) {
                 return@forEach
             }
-            when (automatedBehaviour.type) {
-                "TAKE_MESSAGE" -> handleTakeBikeMessage(automatedBehaviour)
-                "SET_IN_USE" -> handleSetInUse(automatedBehaviour)
-                "FULL_STATION_MESSAGE" -> handleFullStationMessage(automatedBehaviour)
-                "FINISH" -> handleFinish(automatedBehaviour)
+            when (scheduledLegAction.type) {
+                "TAKE_MESSAGE" -> handleTakeBikeMessage(scheduledLegAction)
+                "SET_IN_USE" -> handleSetInUse(scheduledLegAction)
+                "FULL_STATION_MESSAGE" -> handleFullStationMessage(scheduledLegAction)
+                "FINISH" -> handleFinish(scheduledLegAction)
             }
         }
     }
@@ -36,7 +36,7 @@ class EventScheduler150(
         operatorId: String,
     ) {
         eventMap[legId] =
-            AutomatedBehaviour(
+            ScheduledLegAction(
                 bookingId,
                 legId,
                 operatorId,
@@ -47,73 +47,73 @@ class EventScheduler150(
     }
 
     fun addFullStationMessage(legId: String) {
-        val automatedBehaviour = eventMap[legId]!!
+        val scheduledLegAction = eventMap[legId]!!
 
-        eventMap[automatedBehaviour.legId] =
-            automatedBehaviour.copy(
+        eventMap[scheduledLegAction.legId] =
+            scheduledLegAction.copy(
                 triggerTime = OffsetDateTime.now().plusSeconds(FULL_STATION_MESSAGE_DELAY_SECONDS),
                 type = "FULL_STATION_MESSAGE",
                 legEvent = LegEvent.Event.FINISH,
             )
     }
 
-    private fun handleTakeBikeMessage(automatedBehaviour: AutomatedBehaviour) {
-        postNotification(automatedBehaviour, "You can now take the bike.")
-        eventMap[automatedBehaviour.legId] =
-            automatedBehaviour.copy(
+    private fun handleTakeBikeMessage(scheduledLegAction: ScheduledLegAction) {
+        postNotification(scheduledLegAction, "You can now take the bike.")
+        eventMap[scheduledLegAction.legId] =
+            scheduledLegAction.copy(
                 type = "SET_IN_USE",
                 legEvent = LegEvent.Event.SET_IN_USE,
                 triggerTime = OffsetDateTime.now().plusSeconds(SET_IN_USE_SECONDS),
             )
     }
 
-    private fun handleSetInUse(automatedBehaviour: AutomatedBehaviour) {
-        postLeg(automatedBehaviour)
-        eventMap[automatedBehaviour.legId] =
-            automatedBehaviour.copy(
+    private fun handleSetInUse(scheduledLegAction: ScheduledLegAction) {
+        postLeg(scheduledLegAction)
+        eventMap[scheduledLegAction.legId] =
+            scheduledLegAction.copy(
                 type = "FINISH",
                 legEvent = LegEvent.Event.FINISH,
                 triggerTime = OffsetDateTime.now().plusSeconds(DEFAULT_AUTO_FINISH_SECONDS),
             )
     }
 
-    private fun handleFullStationMessage(automatedBehaviour: AutomatedBehaviour) {
-        postNotification(automatedBehaviour, "Dock is full. Please place the bike next and lock the bike.")
-        eventMap[automatedBehaviour.legId] =
-            automatedBehaviour.copy(
+    private fun handleFullStationMessage(scheduledLegAction: ScheduledLegAction) {
+        postNotification(scheduledLegAction, "Dock is full. Please place the bike next and lock the bike.")
+        eventMap[scheduledLegAction.legId] =
+            scheduledLegAction.copy(
                 type = "FINISH",
                 legEvent = LegEvent.Event.FINISH,
                 triggerTime = OffsetDateTime.now().plusSeconds(LOCK_BIKE_TO_FINISH_DELAY_SECONDS),
             )
     }
 
-    private fun handleFinish(automatedBehaviour: AutomatedBehaviour) {
-        postLeg(automatedBehaviour)
-        eventMap.remove(automatedBehaviour.legId)
+    private fun handleFinish(scheduledLegAction: ScheduledLegAction) {
+        postLeg(scheduledLegAction)
+        eventMap.remove(scheduledLegAction.legId)
     }
 
-    private fun postLeg(automatedBehaviour: AutomatedBehaviour) {
+    private fun postLeg(scheduledLegAction: ScheduledLegAction) {
         runCatching {
             sharedMobilityRouterClient.legsIdEventsPost150(
-                id = automatedBehaviour.legId,
-                maasId = automatedBehaviour.operatorId,
+                id = scheduledLegAction.legId,
+                maasId = scheduledLegAction.operatorId,
                 addressedTo = "Entur",
-                legEvent = LegEvent(OffsetDateTime.now(), automatedBehaviour.legEvent),
+                legEvent = LegEvent(OffsetDateTime.now(), scheduledLegAction.legEvent),
             )
         }
     }
 
     private fun postNotification(
-        automatedBehaviour: AutomatedBehaviour,
+        scheduledLegAction: ScheduledLegAction,
         message: String,
     ) {
         sharedMobilityRouterClient.bookingsIdNotificationsPost150(
-            id = automatedBehaviour.bookingId,
-            maasId = automatedBehaviour.operatorId,
+            id = scheduledLegAction.bookingId,
+            maasId = scheduledLegAction.operatorId,
             addressedTo = "Entur",
             notification =
                 Notification(
-                    legId = automatedBehaviour.legId,
+                    legId = scheduledLegAction.legId,
                     type = Notification.Type.MESSAGE_TO_END_USER,
                     comment = message,
                 ),
@@ -129,7 +129,7 @@ class EventScheduler150(
     }
 }
 
-data class AutomatedBehaviour(
+data class ScheduledLegAction(
     val bookingId: String,
     val legId: String,
     val operatorId: String,

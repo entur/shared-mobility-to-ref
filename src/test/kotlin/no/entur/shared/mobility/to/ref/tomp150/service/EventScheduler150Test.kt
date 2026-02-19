@@ -24,7 +24,7 @@ class EventScheduler150Test {
     fun `TAKE_MESSAGE posts notification and schedules SET_IN_USE`() {
         val map = getEventMap()
         map[LEG_ID] =
-            AutomatedBehaviour(
+            ScheduledLegAction(
                 bookingId = BOOKING_ID,
                 legId = LEG_ID,
                 operatorId = OPERATOR_ID,
@@ -33,7 +33,7 @@ class EventScheduler150Test {
                 legEvent = LegEvent.Event.SET_IN_USE,
             )
 
-        eventScheduler.handleAutomatedBehaviour()
+        eventScheduler.handleScheduledLegAction()
 
         verify(exactly = 1) {
             sharedMobilityRouterClient.bookingsIdNotificationsPost150(
@@ -53,7 +53,7 @@ class EventScheduler150Test {
     fun `SET_IN_USE posts leg event and schedules FINISH`() {
         val map = getEventMap()
         map[LEG_ID] =
-            AutomatedBehaviour(
+            ScheduledLegAction(
                 bookingId = BOOKING_ID,
                 legId = LEG_ID,
                 operatorId = OPERATOR_ID,
@@ -62,7 +62,7 @@ class EventScheduler150Test {
                 legEvent = LegEvent.Event.SET_IN_USE,
             )
 
-        eventScheduler.handleAutomatedBehaviour()
+        eventScheduler.handleScheduledLegAction()
 
         verify(exactly = 1) {
             sharedMobilityRouterClient.legsIdEventsPost150(
@@ -81,7 +81,7 @@ class EventScheduler150Test {
     fun `FINISH posts leg event and removes entry`() {
         val map = getEventMap()
         map[LEG_ID] =
-            AutomatedBehaviour(
+            ScheduledLegAction(
                 bookingId = BOOKING_ID,
                 legId = LEG_ID,
                 operatorId = OPERATOR_ID,
@@ -90,7 +90,7 @@ class EventScheduler150Test {
                 legEvent = LegEvent.Event.FINISH,
             )
 
-        eventScheduler.handleAutomatedBehaviour()
+        eventScheduler.handleScheduledLegAction()
 
         verify(exactly = 1) {
             sharedMobilityRouterClient.legsIdEventsPost150(
@@ -104,11 +104,11 @@ class EventScheduler150Test {
         map shouldHaveSize 0
     }
 
-    private fun getEventMap(): ConcurrentHashMap<String, AutomatedBehaviour> {
+    private fun getEventMap(): ConcurrentHashMap<String, ScheduledLegAction> {
         val field = EventScheduler150::class.java.getDeclaredField("eventMap")
         field.isAccessible = true
         @Suppress("UNCHECKED_CAST")
-        return field.get(eventScheduler) as ConcurrentHashMap<String, AutomatedBehaviour>
+        return field.get(eventScheduler) as ConcurrentHashMap<String, ScheduledLegAction>
     }
 
     companion object {

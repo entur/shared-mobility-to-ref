@@ -24,7 +24,7 @@ class EventScheduler160Test {
     }
 
     @Test
-    fun `handleAutomatedBehaviour - TAKE_MESSAGE sends notification and transitions to SET_IN_USE`() {
+    fun `handleScheduledLegAction - TAKE_MESSAGE sends notification and transitions to SET_IN_USE`() {
         // Arrange
         eventScheduler.addTakeBikeMessage(BOOKING_ID, LEG_ID, OPERATOR_ID)
 
@@ -35,7 +35,7 @@ class EventScheduler160Test {
         val notifSlot = slot<Notification>()
 
         // Act
-        eventScheduler.handleAutomatedBehaviour()
+        eventScheduler.handleScheduledLegAction()
 
         // Assert: notification posted
         verify(exactly = 1) {
@@ -56,7 +56,7 @@ class EventScheduler160Test {
     }
 
     @Test
-    fun `handleAutomatedBehaviour - TAKE_MESSAGE failure keeps entry for retry`() {
+    fun `handleScheduledLegAction - TAKE_MESSAGE failure keeps entry for retry`() {
         // Arrange
         eventScheduler.addTakeBikeMessage(BOOKING_ID, LEG_ID, OPERATOR_ID)
 
@@ -73,7 +73,7 @@ class EventScheduler160Test {
         } throws RuntimeException("boom")
 
         // Act
-        eventScheduler.handleAutomatedBehaviour()
+        eventScheduler.handleScheduledLegAction()
 
         // Assert: attempted, but entry remains and stays on same step
         verify(exactly = 1) {
@@ -89,10 +89,10 @@ class EventScheduler160Test {
     }
 
     @Test
-    fun `handleAutomatedBehaviour - SET_IN_USE posts leg event and transitions to FINISH`() {
+    fun `handleScheduledLegAction - SET_IN_USE posts leg event and transitions to FINISH`() {
         // Arrange: directly seed SET_IN_USE step (due now)
         getEventMap()[LEG_ID] =
-            AutomatedBehaviour(
+            ScheduledLegAction(
                 bookingId = BOOKING_ID,
                 legId = LEG_ID,
                 operatorId = OPERATOR_ID,
@@ -104,7 +104,7 @@ class EventScheduler160Test {
         val legEventSlot = slot<LegEvent>()
 
         // Act
-        eventScheduler.handleAutomatedBehaviour()
+        eventScheduler.handleScheduledLegAction()
 
         // Assert: leg event posted
         verify(exactly = 1) {
@@ -124,10 +124,10 @@ class EventScheduler160Test {
     }
 
     @Test
-    fun `handleAutomatedBehaviour - SET_IN_USE failure keeps entry for retry`() {
+    fun `handleScheduledLegAction - SET_IN_USE failure keeps entry for retry`() {
         // Arrange
         getEventMap()[LEG_ID] =
-            AutomatedBehaviour(
+            ScheduledLegAction(
                 bookingId = BOOKING_ID,
                 legId = LEG_ID,
                 operatorId = OPERATOR_ID,
@@ -146,7 +146,7 @@ class EventScheduler160Test {
         } throws RuntimeException("boom")
 
         // Act
-        eventScheduler.handleAutomatedBehaviour()
+        eventScheduler.handleScheduledLegAction()
 
         // Assert
         verify(exactly = 1) {
@@ -176,7 +176,7 @@ class EventScheduler160Test {
         val notifSlot = slot<Notification>()
 
         // Act
-        eventScheduler.handleAutomatedBehaviour()
+        eventScheduler.handleScheduledLegAction()
 
         // Assert notification content
         verify(exactly = 1) {
@@ -195,10 +195,10 @@ class EventScheduler160Test {
     }
 
     @Test
-    fun `handleAutomatedBehaviour - FINISH posts leg finish and removes entry`() {
+    fun `handleScheduledLegAction - FINISH posts leg finish and removes entry`() {
         // Arrange
         getEventMap()[LEG_ID] =
-            AutomatedBehaviour(
+            ScheduledLegAction(
                 bookingId = BOOKING_ID,
                 legId = LEG_ID,
                 operatorId = OPERATOR_ID,
@@ -210,7 +210,7 @@ class EventScheduler160Test {
         val legEventSlot = slot<LegEvent>()
 
         // Act
-        eventScheduler.handleAutomatedBehaviour()
+        eventScheduler.handleScheduledLegAction()
 
         // Assert: FINISH posted and entry removed
         verify(exactly = 1) {
@@ -226,11 +226,11 @@ class EventScheduler160Test {
         getEventMap() shouldHaveSize 0
     }
 
-    private fun getEventMap(): ConcurrentHashMap<String, AutomatedBehaviour> {
+    private fun getEventMap(): ConcurrentHashMap<String, ScheduledLegAction> {
         val field = EventScheduler160::class.java.getDeclaredField("eventMap")
         field.isAccessible = true
         @Suppress("UNCHECKED_CAST")
-        return field.get(eventScheduler) as ConcurrentHashMap<String, AutomatedBehaviour>
+        return field.get(eventScheduler) as ConcurrentHashMap<String, ScheduledLegAction>
     }
 
     companion object {
