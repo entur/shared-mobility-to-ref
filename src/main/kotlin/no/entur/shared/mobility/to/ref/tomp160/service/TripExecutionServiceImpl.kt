@@ -82,13 +82,10 @@ class TripExecutionServiceImpl(
                 else -> throw NotImplementedError()
             }
 
-        // Trigger "near station drop-off" workflow when START_FINISHING is received for COLUMBI_BIKE
         if (addressedTo == COLUMBI_BIKE && legEvent?.event == LegEvent.Event.START_FINISHING) {
             eventScheduler160.addFullStationMessage(id)
         }
 
-        // If MaaS/app sends FINISH, cancel any scheduled auto-finish
-        // to avoid double FINISH from the scheduler.
         if (addressedTo == COLUMBI_BIKE && legEvent?.event == LegEvent.Event.FINISH) {
             throw IllegalStateException("Illegal event: COLUMBI_BIKE should not send FINISH. Leg $id.")
         }

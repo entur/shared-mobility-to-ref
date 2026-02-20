@@ -21,7 +21,7 @@ class EventScheduler150Test {
     }
 
     @Test
-    fun `TAKE_MESSAGE posts notification and schedules SET_IN_USE`() {
+    fun `handleScheduledLegAction for TAKE_MESSAGE posts notification and schedules SET_IN_USE`() {
         val map = getEventMap()
         map[LEG_ID] =
             ScheduledLegAction(
