@@ -65,6 +65,7 @@ class PlanningServiceImpl(
                 URBAN_BIKE,
                 ALL_IMPLEMENTING_OPERATOR,
                 -> booking
+
                 else -> throw NotImplementedError()
             }
 
@@ -131,9 +132,10 @@ class PlanningServiceImpl(
                 COLUMBI_BIKE, URBAN_BIKE -> {
                     val notStartedLeg = leg.copy(state = LegState.NOT_STARTED)
                     val bikeBooking = booking.copy(legs = listOf(notStartedLeg))
-                    eventScheduler160.addToEventQueue(bikeBooking.id!!, notStartedLeg.id!!, addressedTo)
+                    eventScheduler160.addTakeBikeMessage(bikeBooking.id!!, notStartedLeg.id!!, addressedTo)
                     bikeBooking
                 }
+
                 ALL_IMPLEMENTING_OPERATOR -> booking
                 else -> throw NotImplementedError()
             }
@@ -145,9 +147,7 @@ class PlanningServiceImpl(
                     leg.copy(
                         from = oneStopBookingRequest.from,
                         asset =
-                            asset.copy(
-                                id = oneStopBookingRequest.useAssets?.first() ?: UUID.randomUUID().toString(),
-                            ),
+                            asset.copy(id = oneStopBookingRequest.useAssets?.first() ?: UUID.randomUUID().toString()),
                     )
                 },
         )

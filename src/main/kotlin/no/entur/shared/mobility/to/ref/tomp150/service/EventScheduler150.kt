@@ -1,85 +1,148 @@
+
 package no.entur.shared.mobility.to.ref.tomp150.service
 
 import no.entur.shared.mobility.to.ref.client.SharedMobilityRouterClient
-import no.entur.shared.mobility.to.ref.config.TransportOperator.URBAN_BIKE
 import no.entur.shared.mobility.to.ref.tomp150.dto.LegEvent
 import no.entur.shared.mobility.to.ref.tomp150.dto.Notification
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
-import java.util.concurrent.ConcurrentLinkedQueue
+import java.util.concurrent.ConcurrentHashMap
 
 @Service
 class EventScheduler150(
     private val sharedMobilityRouterClient: SharedMobilityRouterClient,
 ) {
-    private val startMessageQueue: ConcurrentLinkedQueue<Triple<String, String, String>> = ConcurrentLinkedQueue()
-    private val tripStartQueue: ConcurrentLinkedQueue<Triple<String, String, String>> = ConcurrentLinkedQueue()
-    private val tripEndQueue: ConcurrentLinkedQueue<Triple<String, String, String>> = ConcurrentLinkedQueue()
+    private val eventMap = ConcurrentHashMap<String, ScheduledLegAction>()
 
-    fun addToEventQueue(
+    @Scheduled(initialDelay = 10_000, fixedDelay = 1000)
+    fun handleScheduledLegAction() {
+        val now = OffsetDateTime.now()
+
+        // Iterate over a snapshot to avoid surprises if map is modified during handling
+        eventMap.entries.toList().forEach { (_, scheduledLegAction) ->
+            if (scheduledLegAction.triggerTime.isAfter(now)) return@forEach
+
+            when (scheduledLegAction.type) {
+                ScheduledLegActionType.TAKE_MESSAGE -> handleTakeBikeMessage(scheduledLegAction)
+                ScheduledLegActionType.SET_IN_USE -> handleSetInUse(scheduledLegAction)
+                ScheduledLegActionType.FULL_STATION_MESSAGE -> handleFullStationMessage(scheduledLegAction)
+                ScheduledLegActionType.FINISH -> handleFinish(scheduledLegAction)
+            }
+        }
+    }
+
+    fun addTakeBikeMessage(
         bookingId: String,
         legId: String,
         operatorId: String,
     ) {
-        startMessageQueue.add(Triple(bookingId, legId, operatorId))
+        eventMap[legId] =
+            ScheduledLegAction(
+                bookingId = bookingId,
+                legId = legId,
+                operatorId = operatorId,
+                triggerTime = OffsetDateTime.now().plusSeconds(TAKE_MESSAGE_SECONDS),
+                type = ScheduledLegActionType.TAKE_MESSAGE,
+                legEvent = LegEvent.Event.SET_IN_USE,
+            )
     }
 
-    @Scheduled(initialDelay = 10_000, fixedDelay = 1 * SECONDS)
-    fun messageTakeBike() {
-        startMessageQueue.forEach {
-            runCatching {
-                sharedMobilityRouterClient.bookingsIdNotificationsPost150(
-                    id = it.first,
-                    maasId = it.third,
-                    addressedTo = "Entur",
-                    notification =
-                        Notification(
-                            legId = it.second,
-                            type = Notification.Type.MESSAGE_TO_END_USER,
-                            comment = "You can now take the bike.",
-                        ),
-                )
-            }
-            startMessageQueue.remove(it)
-            tripStartQueue.add(it)
-        }
+    fun addFullStationMessage(legId: String) {
+        val scheduledLegAction = eventMap[legId] ?: return
+
+        eventMap[scheduledLegAction.legId] =
+            scheduledLegAction.copy(
+                triggerTime = OffsetDateTime.now().plusSeconds(FULL_STATION_MESSAGE_DELAY_SECONDS),
+                type = ScheduledLegActionType.FULL_STATION_MESSAGE,
+                legEvent = LegEvent.Event.FINISH,
+            )
     }
 
-    @Scheduled(initialDelay = 10_000, fixedDelay = 20 * SECONDS)
-    fun setInUse() {
-        tripStartQueue.forEach {
-            postLeg(it, LegEvent.Event.SET_IN_USE)
-            tripStartQueue.remove(it)
-            if (it.third != URBAN_BIKE) {
-                tripEndQueue.add(it)
-            }
-        }
+    private fun handleTakeBikeMessage(scheduledLegAction: ScheduledLegAction) {
+        postNotification(scheduledLegAction, "You can now take the bike.")
+        eventMap[scheduledLegAction.legId] =
+            scheduledLegAction.copy(
+                type = ScheduledLegActionType.SET_IN_USE,
+                legEvent = LegEvent.Event.SET_IN_USE,
+                triggerTime = OffsetDateTime.now().plusSeconds(SET_IN_USE_SECONDS),
+            )
     }
 
-    @Scheduled(initialDelay = 10_000, fixedDelay = 300 * SECONDS)
-    fun setFinished() {
-        tripEndQueue.forEach {
-            postLeg(it, LegEvent.Event.FINISH)
-            tripEndQueue.remove(it)
-        }
+    private fun handleSetInUse(scheduledLegAction: ScheduledLegAction) {
+        postLeg(scheduledLegAction)
+        eventMap[scheduledLegAction.legId] =
+            scheduledLegAction.copy(
+                type = ScheduledLegActionType.FINISH,
+                legEvent = LegEvent.Event.FINISH,
+                triggerTime = OffsetDateTime.now().plusSeconds(DEFAULT_AUTO_FINISH_SECONDS),
+            )
     }
 
-    private fun postLeg(
-        triple: Triple<String, String, String>,
-        event: LegEvent.Event,
-    ) {
+    private fun handleFullStationMessage(scheduledLegAction: ScheduledLegAction) {
+        postNotification(scheduledLegAction, "Dock is full. Please place the bike next and lock the bike.")
+        eventMap[scheduledLegAction.legId] =
+            scheduledLegAction.copy(
+                type = ScheduledLegActionType.FINISH,
+                legEvent = LegEvent.Event.FINISH,
+                triggerTime = OffsetDateTime.now().plusSeconds(LOCK_BIKE_TO_FINISH_DELAY_SECONDS),
+            )
+    }
+
+    private fun handleFinish(scheduledLegAction: ScheduledLegAction) {
+        postLeg(scheduledLegAction)
+        eventMap.remove(scheduledLegAction.legId)
+    }
+
+    private fun postLeg(scheduledLegAction: ScheduledLegAction) {
         runCatching {
             sharedMobilityRouterClient.legsIdEventsPost150(
-                id = triple.second,
-                maasId = triple.third,
+                id = scheduledLegAction.legId,
+                maasId = scheduledLegAction.operatorId,
                 addressedTo = "Entur",
-                legEvent = LegEvent(OffsetDateTime.now(), event),
+                legEvent = LegEvent(OffsetDateTime.now(), scheduledLegAction.legEvent),
             )
         }
     }
 
+    private fun postNotification(
+        scheduledLegAction: ScheduledLegAction,
+        message: String,
+    ) {
+        sharedMobilityRouterClient.bookingsIdNotificationsPost150(
+            id = scheduledLegAction.bookingId,
+            maasId = scheduledLegAction.operatorId,
+            addressedTo = "Entur",
+            notification =
+                Notification(
+                    legId = scheduledLegAction.legId,
+                    type = Notification.Type.MESSAGE_TO_END_USER,
+                    comment = message,
+                ),
+        )
+    }
+
     companion object {
-        const val SECONDS = 1000L
+        const val DEFAULT_AUTO_FINISH_SECONDS: Long = 120
+        const val TAKE_MESSAGE_SECONDS = 1L
+        const val SET_IN_USE_SECONDS = 5L
+        const val LOCK_BIKE_TO_FINISH_DELAY_SECONDS = 5L
+        const val FULL_STATION_MESSAGE_DELAY_SECONDS: Long = 1
     }
 }
+
+enum class ScheduledLegActionType {
+    TAKE_MESSAGE,
+    SET_IN_USE,
+    FULL_STATION_MESSAGE,
+    FINISH,
+}
+
+data class ScheduledLegAction(
+    val bookingId: String,
+    val legId: String,
+    val operatorId: String,
+    val triggerTime: OffsetDateTime,
+    val type: ScheduledLegActionType,
+    val legEvent: LegEvent.Event,
+)

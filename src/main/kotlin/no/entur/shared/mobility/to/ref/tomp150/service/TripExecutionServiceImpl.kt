@@ -21,7 +21,9 @@ import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
 
 @Service("TripExecutionServiceTomp150")
-class TripExecutionServiceImpl : TripExecutionService {
+class TripExecutionServiceImpl(
+    private val eventScheduler150: EventScheduler150,
+) : TripExecutionService {
     override fun legsIdAncillariesCategoryNumberDelete(
         acceptLanguage: String,
         api: String,
@@ -79,6 +81,15 @@ class TripExecutionServiceImpl : TripExecutionService {
                 SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3, COLUMBI_BIKE, URBAN_BIKE, ALL_IMPLEMENTING_OPERATOR -> leg
                 else -> throw NotImplementedError()
             }
+
+        if (addressedTo == COLUMBI_BIKE && legEvent?.event == LegEvent.Event.START_FINISHING) {
+            eventScheduler150.addFullStationMessage(id)
+        }
+
+        if (addressedTo == COLUMBI_BIKE && legEvent?.event == LegEvent.Event.FINISH) {
+            throw IllegalStateException("Illegal event: COLUMBI_BIKE should not send FINISH. Leg $id.")
+        }
+
         return leg.copy(
             id = id,
             state =

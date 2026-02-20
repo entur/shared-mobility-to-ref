@@ -497,3 +497,147 @@ addressed-to: toOperator456
 The response model can be found in the [Booking](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Booking.kt) class.
 
 This endpoint provides detailed information about bookings that match the specified filters, including the booking ID, state, start and end locations, times, asset type, and price. This is crucial for managing and tracking bookings efficiently.
+
+
+
+### 🟢 Urban bikes – near station drop-off flow (TO-ref)
+
+TO-ref simulates how a transport operator can support delivery of urban bikes when docking stations are full.
+
+#### Flow overview
+
+1. **Trip start**
+
+  * The booking is created with a single leg in `NOT_STARTED`
+  * TO-ref sends a notification: *“You can now take the bike”*
+  * The leg is transitioned to `IN_USE`
+
+2. **Start finishing**
+
+  * When MaaS sends `START_FINISHING` for a `COLUMBI_BIKE` leg:
+
+    * TO-ref schedules a *near-station drop-off workflow*
+    * A notification is sent to the end user via a scheduled job:
+
+      > “Dock is full. Please place the bike next to the station and end the trip in the app.”
+
+3. **Finishing window**
+
+  * The trip remains in `FINISHING` for a configurable time window
+  * During this window, MaaS is expected to send `FINISH`
+
+4. **Finish handling**
+
+  * If `FINISH` is received from MaaS:
+
+    * Any scheduled auto-finish is cancelled
+    * The trip is completed immediately
+  * If no `FINISH` is received:
+
+    * TO-ref auto-finishes the trip when the window expires
+
+#### Notes
+
+* TO-ref does **not** initiate manual finish itself
+* `FINISH` is always expected to come from MaaS / the client app
+* The scheduler acts as a fallback to avoid stuck trips
+* Notifications are sent asynchronously via scheduled jobs
+* If sending a notification fails, it will be retried on the next scheduler run
+* This behaviour is specific to `COLUMBI_BIKE`; other operators keep the old auto-finish behaviour
+
+---
+
+## ⏱️ Scheduler configuration (recommended values)
+
+TO-ref uses Spring `@Scheduled` jobs to simulate transport operator background behaviour.
+The values below control **how quickly** the system reacts and **how long** it waits before applying fallback actions.
+
+> **Important note on time units**
+> The constant `SECONDS` used in the code actually represents **milliseconds** (`1000L`).
+> The name is historical and misleading, but kept as-is to minimise the change footprint.
+
+The recommendations below are chosen to balance:
+
+* realistic end-user behaviour
+* predictable demo behaviour
+* low system load
+
+---
+
+### 1) `setInUse()`
+
+**What it does**  
+Transitions a leg to `IN_USE` after the trip has started in the demo flow.  
+For non-`*_BIKE` operators, the leg is also scheduled for the legacy auto-finish behaviour.
+
+**Recommended**
+
+* `initialDelay`: **10s**
+* `fixedDelay`: **20s**
+
+**Why**
+
+* `initialDelay = 10s` allows the application to fully start before background processing begins
+* `fixedDelay = 20s` is responsive enough for demos and development without running continuously
+
+---
+
+### 2) `notifyNearStationDropoff()`
+
+**What it does**  
+Sends a notification to the end user when the *near-station drop-off* workflow is triggered.
+
+Example:
+
+> “Dock is full. Please place the bike next to the station and end the trip in the app.”
+
+Notifications are processed from an internal queue and sent asynchronously.
+
+**Important behaviour**
+
+* The job processes all queued notifications on each run
+* If sending fails, the entry remains in the queue and will be retried on the next run
+* There is **no artificial delay** between `START_FINISHING` and the notification
+
+**Recommended**
+
+* `initialDelay`: **10s**
+* `fixedDelay`: **300 * SECONDS (~5 minutes)**
+
+**Why**
+
+* Keeps system load low in demo environments
+* Retry mechanism ensures eventual delivery without complex state handling
+
+> For faster feedback during development, the delay can be reduced (e.g. to **5s** or **1s**)
+
+---
+
+### 3) `setFinished()`
+
+**What it does**  
+Automatically finishes trips when their `finishAt` timestamp has passed (fallback behaviour).
+
+This is especially important for the `*_BIKE` near-station flow:
+if MaaS / the client app does **not** send `FINISH` within the allowed window,
+TO-ref completes the trip automatically to avoid stuck `FINISHING` states.
+
+**Recommended**
+
+* `initialDelay`: **10s**
+* `fixedDelay`: **1s**
+* `NEAR_STATION_MANUAL_FINISH_WINDOW_MINUTES`: **10 minutes**
+
+**Why**
+
+* `fixedDelay = 1s` ensures precise and predictable completion once the finish window expires
+* `10 minutes` gives enough time for manual finish without leaving trips stuck
+* `initialDelay = 10s` ensures stable startup behaviour
+
+---
+
+### Summary of recommended timings
+
+* **setInUse**: start after **10s**, then every **20s**
+* **notifyNearStationDropoff**: start after **10s**, run every **~5 minutes**
+* **setFinished**: start after **10s**, check every **1s**, auto-finish after **10 minutes** if no `FINISH` is received

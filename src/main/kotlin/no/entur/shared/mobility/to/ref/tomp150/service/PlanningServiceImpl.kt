@@ -132,7 +132,7 @@ class PlanningServiceImpl(
                 COLUMBI_BIKE, URBAN_BIKE -> {
                     val notStartedLeg = leg.copy(state = LegState.NOT_STARTED)
                     val bikeBooking = booking.copy(legs = listOf(notStartedLeg))
-                    eventScheduler150.addToEventQueue(bikeBooking.id!!, notStartedLeg.id!!, addressedTo)
+                    eventScheduler150.addTakeBikeMessage(bikeBooking.id!!, notStartedLeg.id!!, addressedTo)
                     bikeBooking
                 }
 
@@ -146,7 +146,8 @@ class PlanningServiceImpl(
                 booking.legs?.map { leg ->
                     leg.copy(
                         from = oneStopBookingRequest.from,
-                        asset = asset.copy(id = oneStopBookingRequest.useAssets?.first() ?: UUID.randomUUID().toString()),
+                        asset =
+                            asset.copy(id = oneStopBookingRequest.useAssets?.first() ?: UUID.randomUUID().toString()),
                     )
                 },
         )
