@@ -162,12 +162,10 @@ class EventScheduler160Test {
     }
 
     @Test
-    fun `addFullStationMessage switches to FULL_STATION_MESSAGE and next run sends full station notification`() {
-        // Arrange: start with a normal entry
+    fun `startNearStationFlow sends PARKING_WARNING and schedules FULL_STATION_MESSAGE`() {
+        // Arrange
         eventScheduler.addTakeBikeMessage(BOOKING_ID, LEG_ID, OPERATOR_ID)
-
-        // Switch flow
-        eventScheduler.addFullStationMessage(LEG_ID)
+        eventScheduler.startNearStationFlow(LEG_ID)
 
         // Make due now
         val map = getEventMap()
@@ -178,7 +176,7 @@ class EventScheduler160Test {
         // Act
         eventScheduler.handleScheduledLegAction()
 
-        // Assert notification content
+        // Assert: parking warning sent
         verify(exactly = 1) {
             sharedMobilityRouterClient.bookingsIdNotificationsPost160(
                 id = BOOKING_ID,
@@ -187,9 +185,48 @@ class EventScheduler160Test {
                 notification = capture(notifSlot),
             )
         }
-        notifSlot.captured.comment shouldBe "Dock is full. Please place the bike next and lock the bike."
+        notifSlot.captured.comment shouldBe "Parking warning: please park the bike correctly and follow local rules."
 
-        // Assert transitioned to FINISH
+        // Assert: transitioned to FULL_STATION_MESSAGE (next step)
+        getEventMap()[LEG_ID]!!.type shouldBe ScheduledLegActionType.FULL_STATION_MESSAGE
+        getEventMap()[LEG_ID]!!.legEvent shouldBe LegEvent.Event.SET_IN_USE // unchanged by notification step (ok)
+    }
+
+    @Test
+    fun `nearStationFlow second run sends FULL_STATION_MESSAGE and schedules FINISH`() {
+        eventScheduler.addTakeBikeMessage(BOOKING_ID, LEG_ID, OPERATOR_ID)
+        eventScheduler.startNearStationFlow(LEG_ID)
+
+        val map = getEventMap()
+
+        // 1) PARKING_WARNING
+        map[LEG_ID] =
+            map[LEG_ID]!!.copy(
+                type = ScheduledLegActionType.PARKING_WARNING,
+                triggerTime = OffsetDateTime.now().minusSeconds(1),
+            )
+        eventScheduler.handleScheduledLegAction()
+
+        // 2) FULL_STATION_MESSAGE
+        map[LEG_ID] =
+            map[LEG_ID]!!.copy(
+                type = ScheduledLegActionType.FULL_STATION_MESSAGE,
+                triggerTime = OffsetDateTime.now().minusSeconds(1),
+            )
+        eventScheduler.handleScheduledLegAction()
+
+        val notifications = mutableListOf<Notification>()
+        verify(exactly = 2) {
+            sharedMobilityRouterClient.bookingsIdNotificationsPost160(
+                id = BOOKING_ID,
+                maasId = OPERATOR_ID,
+                addressedTo = ENTUR,
+                notification = capture(notifications),
+            )
+        }
+
+        notifications[1].comment shouldBe "Dock is full. Please place the bike next and lock the bike."
+
         getEventMap()[LEG_ID]!!.type shouldBe ScheduledLegActionType.FINISH
         getEventMap()[LEG_ID]!!.legEvent shouldBe LegEvent.Event.FINISH
     }

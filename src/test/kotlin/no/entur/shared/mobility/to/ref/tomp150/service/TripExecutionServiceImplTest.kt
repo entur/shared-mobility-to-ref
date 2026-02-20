@@ -27,7 +27,8 @@ class TripExecutionServiceImplTest {
             legEvent = LegEvent(time = now, event = LegEvent.Event.START_FINISHING),
         )
 
-        verify(exactly = 1) { scheduler.addFullStationMessage(legId) }
+
+        verify(exactly = 1) { scheduler.startNearStationFlow(legId) }
     }
 
     @Test

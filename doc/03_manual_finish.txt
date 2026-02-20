@@ -1,0 +1,21 @@
+title Manual finish (user completes trip)
+
+participant MaaS
+participant TO-Ref
+participant Scheduler
+
+MaaS->TO-Ref: START_FINISHING
+
+note over TO-Ref: Near-station flow started
+
+Scheduler->TO-Ref: PARKING_WARNING
+TO-Ref->MaaS: Parking warning
+
+MaaS->TO-Ref: FINISH
+
+note over TO-Ref: Cancel scheduled actions
+
+TO-Ref->MaaS: LegEvent FINISH
+
+note over TO-Ref: Trip completed immediately
+

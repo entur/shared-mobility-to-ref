@@ -81,10 +81,10 @@ class TripExecutionServiceImpl(
                 SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3, COLUMBI_BIKE, URBAN_BIKE, ALL_IMPLEMENTING_OPERATOR -> leg
                 else -> throw NotImplementedError()
             }
-
         if (addressedTo == COLUMBI_BIKE && legEvent?.event == LegEvent.Event.START_FINISHING) {
-            eventScheduler160.addFullStationMessage(id)
+            eventScheduler160.startNearStationFlow(id)
         }
+
 
         if (addressedTo == COLUMBI_BIKE && legEvent?.event == LegEvent.Event.FINISH) {
             throw IllegalStateException("Illegal event: COLUMBI_BIKE should not send FINISH. Leg $id.")

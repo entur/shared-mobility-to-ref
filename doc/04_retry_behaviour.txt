@@ -1,0 +1,23 @@
+title Retry behaviour on failure
+
+participant Scheduler
+participant TO-Ref
+participant Router
+
+Scheduler->TO-Ref: TAKE_MESSAGE
+
+TO-Ref->Router: bookingsIdNotificationsPost
+Router-->TO-Ref: ERROR
+
+note over TO-Ref: Failure detected
+
+note over TO-Ref: State NOT updated\n(TAKE_MESSAGE is kept)
+
+Scheduler->TO-Ref: TAKE_MESSAGE (next run)
+
+TO-Ref->Router: bookingsIdNotificationsPost
+Router-->TO-Ref: OK
+
+note over TO-Ref: State updated to SET_IN_USE
+
+

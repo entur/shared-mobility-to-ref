@@ -82,8 +82,9 @@ class TripExecutionServiceImpl(
                 else -> throw NotImplementedError()
             }
 
+        // Trigger "near station drop-off" workflow when START_FINISHING is received for COLUMBI_BIKE
         if (addressedTo == COLUMBI_BIKE && legEvent?.event == LegEvent.Event.START_FINISHING) {
-            eventScheduler150.addFullStationMessage(id)
+            eventScheduler150.startNearStationFlow(id)
         }
 
         if (addressedTo == COLUMBI_BIKE && legEvent?.event == LegEvent.Event.FINISH) {

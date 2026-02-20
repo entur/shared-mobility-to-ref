@@ -1,0 +1,33 @@
+title Near-station drop-off flow (parking warning + full station)
+
+participant MaaS
+participant TO-Ref
+participant Scheduler
+
+MaaS->TO-Ref: bookingsOneStopPost()
+
+note over TO-Ref: Booking created (NOT_STARTED)
+
+Scheduler->TO-Ref: TAKE_MESSAGE
+TO-Ref->MaaS: "You can now take the bike"
+
+Scheduler->TO-Ref: SET_IN_USE
+TO-Ref->MaaS: LegEvent SET_IN_USE
+
+MaaS->TO-Ref: START_FINISHING
+
+note over TO-Ref: Near-station flow selected (50%)
+
+Scheduler->TO-Ref: PARKING_WARNING
+TO-Ref->MaaS: "Parking warning: please park the bike correctly"
+
+Scheduler->TO-Ref: FULL_STATION_MESSAGE
+TO-Ref->MaaS: "Dock is full. Please place the bike next to the station"
+
+note over MaaS: User tries to park\nbut station is full
+
+Scheduler->TO-Ref: FINISH (after delay)
+TO-Ref->MaaS: LegEvent FINISH
+
+note over TO-Ref: Trip auto-finished if no FINISH from MaaS
+

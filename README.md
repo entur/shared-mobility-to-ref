@@ -500,144 +500,319 @@ This endpoint provides detailed information about bookings that match the specif
 
 
 
-### 🟢 Urban bikes – near station drop-off flow (TO-ref)
+---
+
+## 🟢 Urban bikes – near station drop-off flow (TO-ref)
 
 TO-ref simulates how a transport operator can support delivery of urban bikes when docking stations are full.
 
-#### Flow overview
+---
 
-1. **Trip start**
+## 🚲 Flow overview
 
-  * The booking is created with a single leg in `NOT_STARTED`
-  * TO-ref sends a notification: *“You can now take the bike”*
-  * The leg is transitioned to `IN_USE`
+### 1. Trip start
 
-2. **Start finishing**
+* The booking is created with a single leg in `NOT_STARTED`
 
-  * When MaaS sends `START_FINISHING` for a `COLUMBI_BIKE` leg:
+* TO-ref sends a notification:
 
-    * TO-ref schedules a *near-station drop-off workflow*
-    * A notification is sent to the end user via a scheduled job:
+  > “You can now take the bike.”
 
-      > “Dock is full. Please place the bike next to the station and end the trip in the app.”
-
-3. **Finishing window**
-
-  * The trip remains in `FINISHING` for a configurable time window
-  * During this window, MaaS is expected to send `FINISH`
-
-4. **Finish handling**
-
-  * If `FINISH` is received from MaaS:
-
-    * Any scheduled auto-finish is cancelled
-    * The trip is completed immediately
-  * If no `FINISH` is received:
-
-    * TO-ref auto-finishes the trip when the window expires
-
-#### Notes
-
-* TO-ref does **not** initiate manual finish itself
-* `FINISH` is always expected to come from MaaS / the client app
-* The scheduler acts as a fallback to avoid stuck trips
-* Notifications are sent asynchronously via scheduled jobs
-* If sending a notification fails, it will be retried on the next scheduler run
-* This behaviour is specific to `COLUMBI_BIKE`; other operators keep the old auto-finish behaviour
+* The leg is transitioned to `IN_USE`
 
 ---
 
-## ⏱️ Scheduler configuration (recommended values)
+### 2. Start finishing
 
-TO-ref uses Spring `@Scheduled` jobs to simulate transport operator background behaviour.
-The values below control **how quickly** the system reacts and **how long** it waits before applying fallback actions.
+When MaaS sends `START_FINISHING` for a `COLUMBI_BIKE` leg:
 
-> **Important note on time units**
-> The constant `SECONDS` used in the code actually represents **milliseconds** (`1000L`).
-> The name is historical and misleading, but kept as-is to minimise the change footprint.
+* TO-ref selects one of two flows:
 
-The recommendations below are chosen to balance:
+#### A) Normal flow (50%)
 
-* realistic end-user behaviour
-* predictable demo behaviour
-* low system load
+* No special handling
+* Trip will be auto-finished after a delay if MaaS does not send `FINISH`
 
----
+#### B) Near-station drop-off flow (50%)
 
-### 1) `setInUse()`
-
-**What it does**  
-Transitions a leg to `IN_USE` after the trip has started in the demo flow.  
-For non-`*_BIKE` operators, the leg is also scheduled for the legacy auto-finish behaviour.
-
-**Recommended**
-
-* `initialDelay`: **10s**
-* `fixedDelay`: **20s**
-
-**Why**
-
-* `initialDelay = 10s` allows the application to fully start before background processing begins
-* `fixedDelay = 20s` is responsive enough for demos and development without running continuously
+* TO-ref schedules a sequence of notifications to simulate real-world behaviour
 
 ---
 
-### 2) `notifyNearStationDropoff()`
+### 3. Near-station drop-off flow
 
-**What it does**  
-Sends a notification to the end user when the *near-station drop-off* workflow is triggered.
+The following sequence is executed:
 
-Example:
+1. **Parking warning**
 
-> “Dock is full. Please place the bike next to the station and end the trip in the app.”
+   > “Parking warning: please park the bike correctly and follow local rules.”
 
-Notifications are processed from an internal queue and sent asynchronously.
+2. **Full station message**
 
-**Important behaviour**
+   > “Dock is full. Please place the bike next and lock the bike.”
 
-* The job processes all queued notifications on each run
-* If sending fails, the entry remains in the queue and will be retried on the next run
-* There is **no artificial delay** between `START_FINISHING` and the notification
+3. **Finish**
 
-**Recommended**
-
-* `initialDelay`: **10s**
-* `fixedDelay`: **300 * SECONDS (~5 minutes)**
-
-**Why**
-
-* Keeps system load low in demo environments
-* Retry mechanism ensures eventual delivery without complex state handling
-
-> For faster feedback during development, the delay can be reduced (e.g. to **5s** or **1s**)
+  * The leg is automatically finished if MaaS has not already sent `FINISH`
 
 ---
 
-### 3) `setFinished()`
+### 4. Finish handling
 
-**What it does**  
-Automatically finishes trips when their `finishAt` timestamp has passed (fallback behaviour).
+* If MaaS sends `FINISH`:
 
-This is especially important for the `*_BIKE` near-station flow:
-if MaaS / the client app does **not** send `FINISH` within the allowed window,
-TO-ref completes the trip automatically to avoid stuck `FINISHING` states.
+  * Any scheduled actions are cancelled
+  * The trip is completed immediately
 
-**Recommended**
+* If no `FINISH` is received:
+
+  * TO-ref auto-finishes the trip after a delay
+
+---
+
+## ⚙️ Implementation details
+
+TO-ref uses a **single scheduled job** to simulate operator behaviour:
+
+```
+handleScheduledLegAction()
+```
+
+Each leg is tracked in an internal state machine:
+
+```
+TAKE_MESSAGE → SET_IN_USE → (PARKING_WARNING → FULL_STATION_MESSAGE) → FINISH
+```
+
+or
+
+```
+TAKE_MESSAGE → SET_IN_USE → FINISH (normal flow)
+```
+
+---
+
+### Scheduled states
+
+| State                  | Action                            |
+| ---------------------- | --------------------------------- |
+| `TAKE_MESSAGE`         | Sends “You can now take the bike” |
+| `SET_IN_USE`           | Sends `SET_IN_USE` event          |
+| `PARKING_WARNING`      | Sends parking warning             |
+| `FULL_STATION_MESSAGE` | Sends “dock is full” message      |
+| `FINISH`               | Sends `FINISH` event              |
+
+---
+
+### Retry behaviour
+
+* If a notification or event fails:
+
+  * The state is **not advanced**
+  * It is retried on the next scheduler run
+
+---
+
+## ⏱️ Scheduler configuration
+
+TO-ref uses a Spring `@Scheduled` job to process all pending actions.
+
+**Default configuration**
 
 * `initialDelay`: **10s**
 * `fixedDelay`: **1s**
-* `NEAR_STATION_MANUAL_FINISH_WINDOW_MINUTES`: **10 minutes**
-
-**Why**
-
-* `fixedDelay = 1s` ensures precise and predictable completion once the finish window expires
-* `10 minutes` gives enough time for manual finish without leaving trips stuck
-* `initialDelay = 10s` ensures stable startup behaviour
 
 ---
 
-### Summary of recommended timings
+### Timing constants
 
-* **setInUse**: start after **10s**, then every **20s**
-* **notifyNearStationDropoff**: start after **10s**, run every **~5 minutes**
-* **setFinished**: start after **10s**, check every **1s**, auto-finish after **10 minutes** if no `FINISH` is received
+| Constant                             | Purpose                                   |
+| ------------------------------------ | ----------------------------------------- |
+| `TAKE_MESSAGE_SECONDS`               | Delay before first message                |
+| `SET_IN_USE_SECONDS`                 | Delay before setting trip to `IN_USE`     |
+| `FULL_STATION_MESSAGE_DELAY_SECONDS` | Delay before full station message         |
+| `LOCK_BIKE_TO_FINISH_DELAY_SECONDS`  | Delay before finishing after full station |
+| `DEFAULT_AUTO_FINISH_SECONDS`        | Fallback auto-finish                      |
+
+---
+
+## 📝 Notes
+
+* TO-ref does **not** initiate manual finish itself
+* `FINISH` is expected to come from MaaS / the client app
+* The scheduler ensures that trips are eventually completed
+* Notifications are sent asynchronously
+* Behaviour is specific to `COLUMBI_BIKE`
+
+---
+
+
+---
+
+## 🚲 Bike flows (TO-ref)
+
+TO-ref simulates different transport operator behaviours for bike trips.
+The behaviour is controlled by the internal scheduler and is partly randomized to better mimic real-world scenarios.
+
+The following flows are implemented:
+
+---
+
+### 1) Normal bike flow (auto-finish)
+
+![Normal flow](./doc/01_normal_flow.png)
+
+**Description**
+
+This is the default behaviour for bike trips.
+
+**Flow**
+
+1. MaaS creates a booking (`NOT_STARTED`)
+2. Scheduler sends notification:
+
+   > "You can now take the bike"
+3. Scheduler sets leg to `IN_USE`
+4. MaaS sends `START_FINISHING`
+5. TO-ref randomly selects **normal flow (50%)**
+6. Scheduler triggers `FINISH` after a delay
+7. Trip is completed automatically
+
+**Key characteristics**
+
+* Fully automated flow
+* No user interaction required to finish
+* Used for non-bike operators and ~50% of bike trips
+
+---
+
+### 2) Near-station drop-off flow
+
+![Near-station flow](./doc/02_near_station_flow.png)
+
+**Description**
+
+Simulates a real-world situation where the user attempts to park near a station, but the station is full.
+
+**Flow**
+
+1. MaaS creates booking and trip starts as normal
+2. MaaS sends `START_FINISHING`
+3. TO-ref randomly selects **near-station flow (50%)**
+4. Scheduler triggers:
+
+  1. Parking warning:
+
+     > "Parking warning: please park the bike correctly and follow local rules."
+  2. Full station message:
+
+     > "Dock is full. Please place the bike next and lock the bike."
+5. Scheduler schedules `FINISH` after a delay
+6. If MaaS does not send `FINISH`, TO-ref auto-finishes
+
+**Key characteristics**
+
+* Simulates real-world parking friction
+* Two-step notification flow
+* Still auto-finishes as fallback
+
+---
+
+### 3) Manual finish (user completes trip)
+
+![Manual finish](./doc/03_manual_finish.png)
+
+**Description**
+
+Simulates the correct behaviour where the user completes the trip manually.
+
+**Flow**
+
+1. MaaS sends `START_FINISHING`
+2. Near-station flow may be started
+3. MaaS sends `FINISH`
+4. TO-ref:
+
+  * Cancels any scheduled actions
+  * Immediately completes the trip
+
+**Key characteristics**
+
+* Manual completion from MaaS
+* Scheduler is bypassed
+* No auto-finish is triggered
+
+---
+
+### 4) Retry behaviour on failure
+
+![Retry behaviour](./doc/04_retry_behaviour.png)
+
+**Description**
+
+Scheduler operations are resilient to failures.
+
+**Flow**
+
+1. Scheduler attempts to send a message or event
+2. If the call fails:
+
+  * The state is **not updated**
+  * The action remains in the queue
+3. On next scheduler run:
+
+  * The same action is retried
+4. Once successful:
+
+  * State transitions to next step
+
+**Key characteristics**
+
+* At-least-once delivery semantics
+* No data loss on transient failures
+* Simple retry mechanism without extra state
+
+---
+
+## 🎲 Flow selection
+
+For `COLUMBI_BIKE`, TO-ref randomly selects between:
+
+* **50% → Normal flow (auto-finish)**
+* **50% → Near-station drop-off flow**
+
+This is done when handling `START_FINISHING`.
+
+---
+
+## ⚙️ Scheduler model
+
+All flows are driven by a single scheduler using:
+
+* `ScheduledLegAction`
+* `ScheduledLegActionType`
+
+Each action has:
+
+* `triggerTime`
+* `type` (state machine step)
+* `legEvent` (if applicable)
+
+The scheduler:
+
+1. Iterates over all actions
+2. Executes those where `triggerTime <= now`
+3. Transitions to next state or removes entry
+
+---
+
+## 📌 Notes
+
+* Notifications and leg events are sent asynchronously
+* Failures are retried automatically (see retry flow)
+* Auto-finish ensures trips never get stuck
+* Manual `FINISH` from MaaS overrides scheduler
+
+---
+
+
