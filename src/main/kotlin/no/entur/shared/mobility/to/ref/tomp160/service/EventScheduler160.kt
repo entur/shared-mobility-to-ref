@@ -1,6 +1,7 @@
 package no.entur.shared.mobility.to.ref.tomp160.service
 
 import no.entur.shared.mobility.to.ref.client.SharedMobilityRouterClient
+import no.entur.shared.mobility.to.ref.tomp150.service.EventScheduler150.Companion.FULL_STATION_MESSAGE_DELAY_SECONDS
 import no.entur.shared.mobility.to.ref.tomp160.dto.LegEvent
 import no.entur.shared.mobility.to.ref.tomp160.dto.Notification
 import org.springframework.scheduling.annotation.Scheduled
@@ -18,7 +19,6 @@ class EventScheduler160(
     fun handleScheduledLegAction() {
         val now = OffsetDateTime.now()
 
-        // Iterate over a snapshot to avoid surprises if map is modified during handling
         eventMap.entries.toList().forEach { (_, scheduledLegAction) ->
             if (scheduledLegAction.triggerTime.isAfter(now)) return@forEach
 
@@ -48,18 +48,23 @@ class EventScheduler160(
             )
     }
 
-    /**
-     * Starts the "near station drop-off" flow for this leg:
-     * PARKING_WARNING -> FULL_STATION_MESSAGE -> FINISH
-     */
-    fun startNearStationFlow(legId: String) {
+    fun startFullStationFlow(legId: String) {
+        val scheduledLegAction = eventMap[legId] ?: return
+
+        eventMap[legId] =
+            scheduledLegAction.copy(
+                triggerTime = OffsetDateTime.now().plusSeconds(FULL_STATION_MESSAGE_DELAY_SECONDS),
+                type = ScheduledLegActionType.FULL_STATION_MESSAGE,
+            )
+    }
+
+    fun startParkingWarningFlow(legId: String) {
         val scheduledLegAction = eventMap[legId] ?: return
 
         eventMap[legId] =
             scheduledLegAction.copy(
                 triggerTime = OffsetDateTime.now().plusSeconds(PARKING_WARNING_DELAY_SECONDS),
                 type = ScheduledLegActionType.PARKING_WARNING,
-                // legEvent not used for notifications, but keep as-is
             )
     }
 
@@ -95,7 +100,6 @@ class EventScheduler160(
             scheduledLegAction.copy(
                 triggerTime = OffsetDateTime.now().plusSeconds(FULL_STATION_MESSAGE_AFTER_WARNING_DELAY_SECONDS),
                 type = ScheduledLegActionType.FULL_STATION_MESSAGE,
-                // legEvent not used for notifications
             )
     }
 
@@ -148,7 +152,7 @@ class EventScheduler160(
         const val TAKE_MESSAGE_SECONDS = 1L
         const val SET_IN_USE_SECONDS = 5L
 
-        // Near-station flow timing
+        const val FULL_STATION_MESSAGE_DELAY_SECONDS: Long = 1
         const val PARKING_WARNING_DELAY_SECONDS: Long = 3
         const val FULL_STATION_MESSAGE_AFTER_WARNING_DELAY_SECONDS: Long = 5
         const val LOCK_BIKE_TO_FINISH_DELAY_SECONDS: Long = 5L
@@ -159,7 +163,6 @@ enum class ScheduledLegActionType {
     TAKE_MESSAGE,
     SET_IN_USE,
 
-    // Near-station flow
     PARKING_WARNING,
     FULL_STATION_MESSAGE,
 
