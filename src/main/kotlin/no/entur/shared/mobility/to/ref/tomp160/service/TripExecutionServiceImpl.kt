@@ -85,7 +85,6 @@ class TripExecutionServiceImpl(
             eventScheduler160.startNearStationFlow(id)
         }
 
-
         if (addressedTo == COLUMBI_BIKE && legEvent?.event == LegEvent.Event.FINISH) {
             throw IllegalStateException("Illegal event: COLUMBI_BIKE should not send FINISH. Leg $id.")
         }

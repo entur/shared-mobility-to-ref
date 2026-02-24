@@ -64,8 +64,7 @@ class EventScheduler160(
     }
 
     private fun handleTakeBikeMessage(scheduledLegAction: ScheduledLegAction) {
-        val ok = postNotification(scheduledLegAction, "You can now take the bike.")
-        if (!ok) return // keep TAKE_MESSAGE for retry
+        postNotification(scheduledLegAction, "You can now take the bike.")
 
         eventMap[scheduledLegAction.legId] =
             scheduledLegAction.copy(
@@ -76,8 +75,7 @@ class EventScheduler160(
     }
 
     private fun handleSetInUse(scheduledLegAction: ScheduledLegAction) {
-        val ok = postLeg(scheduledLegAction)
-        if (!ok) return // keep SET_IN_USE for retry
+        postLeg(scheduledLegAction)
 
         eventMap[scheduledLegAction.legId] =
             scheduledLegAction.copy(
@@ -88,12 +86,10 @@ class EventScheduler160(
     }
 
     private fun handleParkingWarning(scheduledLegAction: ScheduledLegAction) {
-        val ok =
-            postNotification(
-                scheduledLegAction,
-                "Parking warning: please park the bike correctly and follow local rules.",
-            )
-        if (!ok) return // keep PARKING_WARNING for retry
+        postNotification(
+            scheduledLegAction,
+            "Parking warning: please park the bike correctly and follow local rules.",
+        )
 
         eventMap[scheduledLegAction.legId] =
             scheduledLegAction.copy(
@@ -104,8 +100,7 @@ class EventScheduler160(
     }
 
     private fun handleFullStationMessage(scheduledLegAction: ScheduledLegAction) {
-        val ok = postNotification(scheduledLegAction, "Dock is full. Please place the bike next and lock the bike.")
-        if (!ok) return // keep FULL_STATION_MESSAGE for retry
+        postNotification(scheduledLegAction, "Dock is full. Please place the bike next and lock the bike.")
 
         eventMap[scheduledLegAction.legId] =
             scheduledLegAction.copy(
@@ -116,39 +111,36 @@ class EventScheduler160(
     }
 
     private fun handleFinish(scheduledLegAction: ScheduledLegAction) {
-        val ok = postLeg(scheduledLegAction)
-        if (!ok) return // keep FINISH for retry
+        postLeg(scheduledLegAction)
 
         eventMap.remove(scheduledLegAction.legId)
     }
 
-    private fun postLeg(scheduledLegAction: ScheduledLegAction): Boolean =
-        runCatching {
-            sharedMobilityRouterClient.legsIdEventsPost160(
-                id = scheduledLegAction.legId,
-                maasId = scheduledLegAction.operatorId,
-                addressedTo = "Entur",
-                legEvent = LegEvent(OffsetDateTime.now(), scheduledLegAction.legEvent),
-            )
-        }.isSuccess
+    private fun postLeg(scheduledLegAction: ScheduledLegAction) {
+        sharedMobilityRouterClient.legsIdEventsPost160(
+            id = scheduledLegAction.legId,
+            maasId = scheduledLegAction.operatorId,
+            addressedTo = "Entur",
+            legEvent = LegEvent(OffsetDateTime.now(), scheduledLegAction.legEvent),
+        )
+    }
 
     private fun postNotification(
         scheduledLegAction: ScheduledLegAction,
         message: String,
-    ): Boolean =
-        runCatching {
-            sharedMobilityRouterClient.bookingsIdNotificationsPost160(
-                id = scheduledLegAction.bookingId,
-                maasId = scheduledLegAction.operatorId,
-                addressedTo = "Entur",
-                notification =
-                    Notification(
-                        legId = scheduledLegAction.legId,
-                        type = Notification.Type.MESSAGE_TO_END_USER,
-                        comment = message,
-                    ),
-            )
-        }.isSuccess
+    ) {
+        sharedMobilityRouterClient.bookingsIdNotificationsPost160(
+            id = scheduledLegAction.bookingId,
+            maasId = scheduledLegAction.operatorId,
+            addressedTo = "Entur",
+            notification =
+                Notification(
+                    legId = scheduledLegAction.legId,
+                    type = Notification.Type.MESSAGE_TO_END_USER,
+                    comment = message,
+                ),
+        )
+    }
 
     companion object {
         const val DEFAULT_AUTO_FINISH_SECONDS: Long = 120

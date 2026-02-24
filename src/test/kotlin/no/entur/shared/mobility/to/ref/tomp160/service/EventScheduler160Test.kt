@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp160.service
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.maps.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import io.mockk.every
@@ -57,7 +58,6 @@ class EventScheduler160Test {
 
     @Test
     fun `handleScheduledLegAction - TAKE_MESSAGE failure keeps entry for retry`() {
-        // Arrange
         eventScheduler.addTakeBikeMessage(BOOKING_ID, LEG_ID, OPERATOR_ID)
 
         val map = getEventMap()
@@ -72,10 +72,10 @@ class EventScheduler160Test {
             )
         } throws RuntimeException("boom")
 
-        // Act
-        eventScheduler.handleScheduledLegAction()
+        shouldThrow<RuntimeException> {
+            eventScheduler.handleScheduledLegAction()
+        }
 
-        // Assert: attempted, but entry remains and stays on same step
         verify(exactly = 1) {
             sharedMobilityRouterClient.bookingsIdNotificationsPost160(
                 id = BOOKING_ID,
@@ -125,7 +125,6 @@ class EventScheduler160Test {
 
     @Test
     fun `handleScheduledLegAction - SET_IN_USE failure keeps entry for retry`() {
-        // Arrange
         getEventMap()[LEG_ID] =
             ScheduledLegAction(
                 bookingId = BOOKING_ID,
@@ -145,10 +144,10 @@ class EventScheduler160Test {
             )
         } throws RuntimeException("boom")
 
-        // Act
-        eventScheduler.handleScheduledLegAction()
+        shouldThrow<RuntimeException> {
+            eventScheduler.handleScheduledLegAction()
+        }
 
-        // Assert
         verify(exactly = 1) {
             sharedMobilityRouterClient.legsIdEventsPost160(
                 id = LEG_ID,
@@ -157,6 +156,7 @@ class EventScheduler160Test {
                 legEvent = any(),
             )
         }
+
         getEventMap() shouldHaveSize 1
         getEventMap()[LEG_ID]!!.type shouldBe ScheduledLegActionType.SET_IN_USE
     }
