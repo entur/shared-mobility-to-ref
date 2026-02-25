@@ -1,20 +1,14 @@
 title Normal bike flow (auto-finish)
 
-participant MaaS
-participant TO-Ref
-participant Scheduler
-
 MaaS->TO-Ref: bookingsOneStopPost()
 
 note over TO-Ref: Booking created (NOT_STARTED)
 
 Scheduler->TO-Ref: TAKE_MESSAGE
-TO-Ref->MaaS: Notification "You can now take the bike"
+TO-Ref->MaaS: "You can now take the bike"
 
 Scheduler->TO-Ref: SET_IN_USE
 TO-Ref->MaaS: LegEvent SET_IN_USE
-
-MaaS->TO-Ref: START_FINISHING
 
 note over TO-Ref: Normal flow selected (50%)
 
@@ -22,4 +16,3 @@ Scheduler->TO-Ref: FINISH (after delay)
 TO-Ref->MaaS: LegEvent FINISH
 
 note over TO-Ref: Trip completed automatically
-

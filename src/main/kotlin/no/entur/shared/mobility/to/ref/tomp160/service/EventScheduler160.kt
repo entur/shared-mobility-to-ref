@@ -1,7 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp160.service
 
 import no.entur.shared.mobility.to.ref.client.SharedMobilityRouterClient
-import no.entur.shared.mobility.to.ref.tomp150.service.EventScheduler150.Companion.FULL_STATION_MESSAGE_DELAY_SECONDS
 import no.entur.shared.mobility.to.ref.tomp160.dto.LegEvent
 import no.entur.shared.mobility.to.ref.tomp160.dto.Notification
 import org.springframework.scheduling.annotation.Scheduled

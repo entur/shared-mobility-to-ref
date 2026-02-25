@@ -1,0 +1,12 @@
+title Full-station flow (demo)
+
+MaaS->TO-Ref: START_FINISHING (LegEvent)
+note over TO-Ref: Demo flow selection -> FULL_STATION
+
+Scheduler->TO-Ref: FULL_STATION_MESSAGE
+TO-Ref->MaaS: Notification "Dock is full. Please place the bike next and lock the bike."
+
+note over TO-Ref: If MaaS sends FINISH, scheduled actions are cancelled (no double finish)
+
+Scheduler->TO-Ref: FINISH (fallback after delay)
+TO-Ref->MaaS: FINISH (LegEvent)
