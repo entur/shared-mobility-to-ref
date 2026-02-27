@@ -1,0 +1,12 @@
+title Parking warning flow (demo)
+
+MaaS->TO-Ref: START_FINISHING (LegEvent)
+note over TO-Ref: Demo flow selection -> PARKING_WARNING
+
+Scheduler->TO-Ref: PARKING_WARNING
+TO-Ref->MaaS: Notification "Parking warning: please park the bike correctly and follow local rules."
+
+note over TO-Ref: If MaaS sends FINISH, scheduled actions are cancelled (no double finish)
+
+Scheduler->TO-Ref: FINISH (fallback after delay)
+TO-Ref->MaaS: FINISH (LegEvent)

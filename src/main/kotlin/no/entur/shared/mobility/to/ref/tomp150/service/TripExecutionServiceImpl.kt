@@ -19,6 +19,7 @@ import no.entur.shared.mobility.to.ref.tomp150.dto.LegProgress
 import no.entur.shared.mobility.to.ref.tomp150.dto.LegState
 import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
+import kotlin.random.Random
 
 @Service("TripExecutionServiceTomp150")
 class TripExecutionServiceImpl(
@@ -82,8 +83,13 @@ class TripExecutionServiceImpl(
                 else -> throw NotImplementedError()
             }
 
+        // Trigger randomized demo workflow when START_FINISHING is received for COLUMBI_BIKE
         if (addressedTo == COLUMBI_BIKE && legEvent?.event == LegEvent.Event.START_FINISHING) {
-            eventScheduler150.addFullStationMessage(id)
+            if (Random.nextBoolean()) {
+                eventScheduler150.startFullStationFlow(id)
+            } else {
+                eventScheduler150.startParkingWarningFlow(id)
+            }
         }
 
         if (addressedTo == COLUMBI_BIKE && legEvent?.event == LegEvent.Event.FINISH) {

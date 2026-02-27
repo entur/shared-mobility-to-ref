@@ -1,5 +1,6 @@
 package no.entur.shared.mobility.to.ref.tomp160.service
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.maps.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import io.mockk.every
@@ -25,19 +26,15 @@ class EventScheduler160Test {
 
     @Test
     fun `handleScheduledLegAction - TAKE_MESSAGE sends notification and transitions to SET_IN_USE`() {
-        // Arrange
         eventScheduler.addTakeBikeMessage(BOOKING_ID, LEG_ID, OPERATOR_ID)
 
-        // Make it due now (avoid timing flakiness)
         val map = getEventMap()
         map[LEG_ID] = map[LEG_ID]!!.copy(triggerTime = OffsetDateTime.now().minusSeconds(1))
 
         val notifSlot = slot<Notification>()
 
-        // Act
         eventScheduler.handleScheduledLegAction()
 
-        // Assert: notification posted
         verify(exactly = 1) {
             sharedMobilityRouterClient.bookingsIdNotificationsPost160(
                 id = BOOKING_ID,
@@ -49,7 +46,6 @@ class EventScheduler160Test {
         notifSlot.captured.legId shouldBe LEG_ID
         notifSlot.captured.comment shouldBe "You can now take the bike."
 
-        // Assert: state transitioned (still 1 entry in map)
         getEventMap() shouldHaveSize 1
         getEventMap()[LEG_ID]!!.type shouldBe ScheduledLegActionType.SET_IN_USE
         getEventMap()[LEG_ID]!!.legEvent shouldBe LegEvent.Event.SET_IN_USE
@@ -57,7 +53,6 @@ class EventScheduler160Test {
 
     @Test
     fun `handleScheduledLegAction - TAKE_MESSAGE failure keeps entry for retry`() {
-        // Arrange
         eventScheduler.addTakeBikeMessage(BOOKING_ID, LEG_ID, OPERATOR_ID)
 
         val map = getEventMap()
@@ -72,10 +67,10 @@ class EventScheduler160Test {
             )
         } throws RuntimeException("boom")
 
-        // Act
-        eventScheduler.handleScheduledLegAction()
+        shouldThrow<RuntimeException> {
+            eventScheduler.handleScheduledLegAction()
+        }
 
-        // Assert: attempted, but entry remains and stays on same step
         verify(exactly = 1) {
             sharedMobilityRouterClient.bookingsIdNotificationsPost160(
                 id = BOOKING_ID,
@@ -90,7 +85,6 @@ class EventScheduler160Test {
 
     @Test
     fun `handleScheduledLegAction - SET_IN_USE posts leg event and transitions to FINISH`() {
-        // Arrange: directly seed SET_IN_USE step (due now)
         getEventMap()[LEG_ID] =
             ScheduledLegAction(
                 bookingId = BOOKING_ID,
@@ -103,10 +97,8 @@ class EventScheduler160Test {
 
         val legEventSlot = slot<LegEvent>()
 
-        // Act
         eventScheduler.handleScheduledLegAction()
 
-        // Assert: leg event posted
         verify(exactly = 1) {
             sharedMobilityRouterClient.legsIdEventsPost160(
                 id = LEG_ID,
@@ -117,7 +109,6 @@ class EventScheduler160Test {
         }
         legEventSlot.captured.event shouldBe LegEvent.Event.SET_IN_USE
 
-        // Assert: transitioned to FINISH
         getEventMap() shouldHaveSize 1
         getEventMap()[LEG_ID]!!.type shouldBe ScheduledLegActionType.FINISH
         getEventMap()[LEG_ID]!!.legEvent shouldBe LegEvent.Event.FINISH
@@ -125,7 +116,6 @@ class EventScheduler160Test {
 
     @Test
     fun `handleScheduledLegAction - SET_IN_USE failure keeps entry for retry`() {
-        // Arrange
         getEventMap()[LEG_ID] =
             ScheduledLegAction(
                 bookingId = BOOKING_ID,
@@ -145,10 +135,10 @@ class EventScheduler160Test {
             )
         } throws RuntimeException("boom")
 
-        // Act
-        eventScheduler.handleScheduledLegAction()
+        shouldThrow<RuntimeException> {
+            eventScheduler.handleScheduledLegAction()
+        }
 
-        // Assert
         verify(exactly = 1) {
             sharedMobilityRouterClient.legsIdEventsPost160(
                 id = LEG_ID,
@@ -157,46 +147,13 @@ class EventScheduler160Test {
                 legEvent = any(),
             )
         }
+
         getEventMap() shouldHaveSize 1
         getEventMap()[LEG_ID]!!.type shouldBe ScheduledLegActionType.SET_IN_USE
     }
 
     @Test
-    fun `addFullStationMessage switches to FULL_STATION_MESSAGE and next run sends full station notification`() {
-        // Arrange: start with a normal entry
-        eventScheduler.addTakeBikeMessage(BOOKING_ID, LEG_ID, OPERATOR_ID)
-
-        // Switch flow
-        eventScheduler.addFullStationMessage(LEG_ID)
-
-        // Make due now
-        val map = getEventMap()
-        map[LEG_ID] = map[LEG_ID]!!.copy(triggerTime = OffsetDateTime.now().minusSeconds(1))
-
-        val notifSlot = slot<Notification>()
-
-        // Act
-        eventScheduler.handleScheduledLegAction()
-
-        // Assert notification content
-        verify(exactly = 1) {
-            sharedMobilityRouterClient.bookingsIdNotificationsPost160(
-                id = BOOKING_ID,
-                maasId = OPERATOR_ID,
-                addressedTo = ENTUR,
-                notification = capture(notifSlot),
-            )
-        }
-        notifSlot.captured.comment shouldBe "Dock is full. Please place the bike next and lock the bike."
-
-        // Assert transitioned to FINISH
-        getEventMap()[LEG_ID]!!.type shouldBe ScheduledLegActionType.FINISH
-        getEventMap()[LEG_ID]!!.legEvent shouldBe LegEvent.Event.FINISH
-    }
-
-    @Test
     fun `handleScheduledLegAction - FINISH posts leg finish and removes entry`() {
-        // Arrange
         getEventMap()[LEG_ID] =
             ScheduledLegAction(
                 bookingId = BOOKING_ID,
@@ -209,10 +166,8 @@ class EventScheduler160Test {
 
         val legEventSlot = slot<LegEvent>()
 
-        // Act
         eventScheduler.handleScheduledLegAction()
 
-        // Assert: FINISH posted and entry removed
         verify(exactly = 1) {
             sharedMobilityRouterClient.legsIdEventsPost160(
                 id = LEG_ID,

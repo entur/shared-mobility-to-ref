@@ -18,13 +18,13 @@ class EventScheduler160(
     fun handleScheduledLegAction() {
         val now = OffsetDateTime.now()
 
-        // Iterate over a snapshot to avoid surprises if map is modified during handling
         eventMap.entries.toList().forEach { (_, scheduledLegAction) ->
             if (scheduledLegAction.triggerTime.isAfter(now)) return@forEach
 
             when (scheduledLegAction.type) {
                 ScheduledLegActionType.TAKE_MESSAGE -> handleTakeBikeMessage(scheduledLegAction)
                 ScheduledLegActionType.SET_IN_USE -> handleSetInUse(scheduledLegAction)
+                ScheduledLegActionType.PARKING_WARNING -> handleParkingWarning(scheduledLegAction)
                 ScheduledLegActionType.FULL_STATION_MESSAGE -> handleFullStationMessage(scheduledLegAction)
                 ScheduledLegActionType.FINISH -> handleFinish(scheduledLegAction)
             }
@@ -47,20 +47,28 @@ class EventScheduler160(
             )
     }
 
-    fun addFullStationMessage(legId: String) {
+    fun startFullStationFlow(legId: String) {
         val scheduledLegAction = eventMap[legId] ?: return
 
-        eventMap[scheduledLegAction.legId] =
+        eventMap[legId] =
             scheduledLegAction.copy(
                 triggerTime = OffsetDateTime.now().plusSeconds(FULL_STATION_MESSAGE_DELAY_SECONDS),
                 type = ScheduledLegActionType.FULL_STATION_MESSAGE,
-                legEvent = LegEvent.Event.FINISH,
+            )
+    }
+
+    fun startParkingWarningFlow(legId: String) {
+        val scheduledLegAction = eventMap[legId] ?: return
+
+        eventMap[legId] =
+            scheduledLegAction.copy(
+                triggerTime = OffsetDateTime.now().plusSeconds(PARKING_WARNING_DELAY_SECONDS),
+                type = ScheduledLegActionType.PARKING_WARNING,
             )
     }
 
     private fun handleTakeBikeMessage(scheduledLegAction: ScheduledLegAction) {
-        val ok = postNotification(scheduledLegAction, "You can now take the bike.")
-        if (!ok) return // keep TAKE_MESSAGE for retry
+        postNotification(scheduledLegAction, "You can now take the bike.")
 
         eventMap[scheduledLegAction.legId] =
             scheduledLegAction.copy(
@@ -71,8 +79,7 @@ class EventScheduler160(
     }
 
     private fun handleSetInUse(scheduledLegAction: ScheduledLegAction) {
-        val ok = postLeg(scheduledLegAction)
-        if (!ok) return // keep SET_IN_USE for retry
+        postLeg(scheduledLegAction)
 
         eventMap[scheduledLegAction.legId] =
             scheduledLegAction.copy(
@@ -82,9 +89,21 @@ class EventScheduler160(
             )
     }
 
+    private fun handleParkingWarning(scheduledLegAction: ScheduledLegAction) {
+        postNotification(
+            scheduledLegAction,
+            "Parking warning: please park the bike correctly and follow local rules.",
+        )
+
+        eventMap[scheduledLegAction.legId] =
+            scheduledLegAction.copy(
+                triggerTime = OffsetDateTime.now().plusSeconds(FULL_STATION_MESSAGE_AFTER_WARNING_DELAY_SECONDS),
+                type = ScheduledLegActionType.FULL_STATION_MESSAGE,
+            )
+    }
+
     private fun handleFullStationMessage(scheduledLegAction: ScheduledLegAction) {
-        val ok = postNotification(scheduledLegAction, "Dock is full. Please place the bike next and lock the bike.")
-        if (!ok) return // keep FULL_STATION_MESSAGE for retry
+        postNotification(scheduledLegAction, "Dock is full. Please place the bike next and lock the bike.")
 
         eventMap[scheduledLegAction.legId] =
             scheduledLegAction.copy(
@@ -95,53 +114,57 @@ class EventScheduler160(
     }
 
     private fun handleFinish(scheduledLegAction: ScheduledLegAction) {
-        val ok = postLeg(scheduledLegAction)
-        if (!ok) return // keep FINISH for retry
+        postLeg(scheduledLegAction)
 
         eventMap.remove(scheduledLegAction.legId)
     }
 
-    private fun postLeg(scheduledLegAction: ScheduledLegAction): Boolean =
-        runCatching {
-            sharedMobilityRouterClient.legsIdEventsPost160(
-                id = scheduledLegAction.legId,
-                maasId = scheduledLegAction.operatorId,
-                addressedTo = "Entur",
-                legEvent = LegEvent(OffsetDateTime.now(), scheduledLegAction.legEvent),
-            )
-        }.isSuccess
+    private fun postLeg(scheduledLegAction: ScheduledLegAction) {
+        sharedMobilityRouterClient.legsIdEventsPost160(
+            id = scheduledLegAction.legId,
+            maasId = scheduledLegAction.operatorId,
+            addressedTo = "Entur",
+            legEvent = LegEvent(OffsetDateTime.now(), scheduledLegAction.legEvent),
+        )
+    }
 
     private fun postNotification(
         scheduledLegAction: ScheduledLegAction,
         message: String,
-    ): Boolean =
-        runCatching {
-            sharedMobilityRouterClient.bookingsIdNotificationsPost160(
-                id = scheduledLegAction.bookingId,
-                maasId = scheduledLegAction.operatorId,
-                addressedTo = "Entur",
-                notification =
-                    Notification(
-                        legId = scheduledLegAction.legId,
-                        type = Notification.Type.MESSAGE_TO_END_USER,
-                        comment = message,
-                    ),
-            )
-        }.isSuccess
+    ) {
+        sharedMobilityRouterClient.bookingsIdNotificationsPost160(
+            id = scheduledLegAction.bookingId,
+            maasId = scheduledLegAction.operatorId,
+            addressedTo = "Entur",
+            notification =
+                Notification(
+                    legId = scheduledLegAction.legId,
+                    type = Notification.Type.MESSAGE_TO_END_USER,
+                    comment = message,
+                ),
+        )
+    }
 
     companion object {
         const val DEFAULT_AUTO_FINISH_SECONDS: Long = 120
+
         const val TAKE_MESSAGE_SECONDS = 1L
         const val SET_IN_USE_SECONDS = 5L
-        const val LOCK_BIKE_TO_FINISH_DELAY_SECONDS = 5L
+
         const val FULL_STATION_MESSAGE_DELAY_SECONDS: Long = 1
+        const val PARKING_WARNING_DELAY_SECONDS: Long = 3
+        const val FULL_STATION_MESSAGE_AFTER_WARNING_DELAY_SECONDS: Long = 5
+        const val LOCK_BIKE_TO_FINISH_DELAY_SECONDS: Long = 5L
     }
 }
 
 enum class ScheduledLegActionType {
     TAKE_MESSAGE,
     SET_IN_USE,
+
+    PARKING_WARNING,
     FULL_STATION_MESSAGE,
+
     FINISH,
 }
 
