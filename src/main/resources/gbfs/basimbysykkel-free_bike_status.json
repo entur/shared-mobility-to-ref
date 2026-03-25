@@ -1,0 +1,35 @@
+{
+  "last_updated": 1730292990,
+  "ttl": 15,
+  "version": "2.3",
+  "data": {
+    "bikes": [
+      {
+        "bike_id": "YBA:Bike:109-1",
+        "is_reserved": false,
+        "is_disabled": false,
+        "vehicle_type_id": "YBA:VehicleType:bike",
+        "station_id": "YBA:Station:109",
+        "lat": 63.430470910132236,
+        "lon": 10.393931418657303
+      },
+      {
+        "bike_id": "YBA:Bike:109-2",
+        "is_reserved": false,
+        "is_disabled": false,
+        "vehicle_type_id": "YBA:VehicleType:bike",
+        "station_id": "YBA:Station:109",
+        "lat": 63.430470910132236,
+        "lon": 10.393931418657303
+      },
+      {
+        "bike_id": "YBA:Bike:109-free-1",
+        "is_reserved": false,
+        "is_disabled": false,
+        "vehicle_type_id": "YBA:VehicleType:bike",
+        "lat": 63.430470910132236,
+        "lon": 10.393931418657303
+      }
+    ]
+  }
+}
