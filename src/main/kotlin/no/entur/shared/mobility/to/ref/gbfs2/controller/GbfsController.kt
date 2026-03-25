@@ -121,6 +121,10 @@ class GbfsController {
     @Hidden
     fun basimbysykkelVehicleTypes(): String = getFile("basimbysykkel-vehicle_types.json")
 
+    @GetMapping("/v2/basimbysykkel/free_bike_status", produces = ["application/json"])
+    @Hidden
+    fun basimbysykkelFreeBikeStatus(): String = getFile("basimbysykkel-free_bike_status.json")
+
     @GetMapping("/v2/evietrondheim/free_bike_status", produces = ["application/json"])
     @Hidden
     fun evietrondheimFreeBikeStatus(): String = getFile("evietrondheim-free_bike_status.json")
