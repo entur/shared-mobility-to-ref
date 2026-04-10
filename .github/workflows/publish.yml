@@ -37,12 +37,6 @@ jobs:
     with:
       project: shared-mobility-to-ref
     secrets: inherit
-  openapi-publish:
-    needs: docker-push 
-    name: Publish API spec
-    uses: entur/gha-api/.github/workflows/publish.yml@v4
-    secrets: inherit
-
   notify-failure:
     name: "Notify Failure"
     needs: docker-push

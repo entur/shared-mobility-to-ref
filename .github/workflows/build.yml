@@ -16,12 +16,6 @@ jobs:
         environment: [dev, tst]
     with:
       environment: ${{ matrix.environment }}
-  Openapi-lint:
-    name: "OpenAPI Lint"
-    uses: entur/gha-api/.github/workflows/lint.yml@v3
-    secrets: inherit
-    with:
-      upload_to_bucket: false
   docker-lint:
     name: "Docker Lint"
     uses: entur/gha-docker/.github/workflows/lint.yml@v1
