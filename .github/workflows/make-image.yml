@@ -1,0 +1,35 @@
+name: "Subworkflow: Generate image name and version"
+
+on:
+  workflow_call:
+    outputs:
+      image_name:
+        value: ${{ jobs.generate.outputs.name }}
+      image_version:
+        value: ${{ jobs.generate.outputs.version }}
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Get commit info
+        id: commit_info
+        run: |
+          sha_short=$(git rev-parse --short HEAD)
+          timestamp=$(git log -1 --format='%cd' --date=format:'%Y%m%d%H%M%S') 
+          branch=${{ github.head_ref || github.ref_name }}
+          repository=${{ github.repository }}
+          image=${repository#*/}
+          echo "image_name=$image" >> $GITHUB_ENV
+          if [[ "$branch" != "main" ]]; then
+             echo "version=1.$timestamp.$sha_short-SNAPSHOT" >> $GITHUB_ENV
+          else 
+             echo "version=1.$timestamp.$sha_short" >> $GITHUB_ENV 
+          fi
+      - name: Use commit info
+        run: |
+          echo "version: ${{ env.version }}"
+          echo "Image name: ${{ env.image_name }}"
+    outputs:
+      version: ${{ env.version }}
+      name: ${{ env.image_name }}

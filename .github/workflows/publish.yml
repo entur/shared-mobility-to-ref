@@ -2,19 +2,45 @@ name: "Subworkflow: Docker Push, and Publish Documentation"
 
 on:
   workflow_call:
-
+    inputs:
+      version:
+        description: Version to tag the Docker image with
+        type: string
+        required: true
+    outputs:
+      image:
+        value: ${{ jobs.docker-push.outputs.image_and_tag }}
 jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ inputs.version }}
   docker-build:
     name: "Docker build"
     uses: entur/gha-docker/.github/workflows/build.yml@v1
     with:
       build_artifact_name: app
       build_artifact_path: build/libs/
-
+      build_args: APP_VERSION=${{ inputs.version }}
   docker-push:
     name: "Docker Push"
     needs: docker-build
     uses: entur/gha-docker/.github/workflows/push.yml@v1
+    secrets: inherit
+    with:
+      image_tag: ${{ inputs.version }}
+  publish-docs:
+    name: "Publishing Developer Documentation"
+    needs: docker-push
+    if: github.actor != 'dependabot[bot]' # Sjekk at Dependabot ikke trigger publisering
+    uses: entur/gha-docs/.github/workflows/publish.yml@v1
+    with:
+      project: shared-mobility-to-ref
+    secrets: inherit
+  openapi-publish:
+    needs: docker-push 
+    name: Publish API spec
+    uses: entur/gha-api/.github/workflows/publish.yml@v4
     secrets: inherit
 
   notify-failure:

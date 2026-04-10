@@ -7,8 +7,6 @@
 #   * Owner: Team Sikkerhet
 #   * Slack: #talk-sikkerhet
 #
-# TODO: This file comes from entur/.github/workflow-templates/codeql.yml
-#       Adopt to your needs, this file is yours now.
 #
 name: "Scheduled Job: CodeQL Scan"
 

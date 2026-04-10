@@ -2,16 +2,13 @@ name: "Pull Request"
 
 on:
   pull_request:
-
 jobs:
+  makeImageTag:
+    uses: ./.github/workflows/make-image.yml
   build:
     name: "Gradle build and test"
+    needs: makeImageTag
     uses: ./.github/workflows/build.yml
     secrets: inherit
-
-  scan:
-    name: "CodeQL Scan"
-    needs: build
-    uses: ./.github/workflows/scan.yml
-    secrets: inherit
-
+    with:
+      version: ${{ needs.makeImageTag.outputs.image_version }}

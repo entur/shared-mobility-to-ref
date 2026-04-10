@@ -3,29 +3,43 @@ name: "Subworkflow: Lint and Build"
 on:
   workflow_call:
     inputs:
-      inputbranch:
-        description: 'Branch to check out (optional)'
-        required: false
+      version:
+        description: version to deploy
         type: string
-
+        required: true
 jobs:
+  helm-lint:
+    name: "Helm Lint"
+    uses: entur/gha-helm/.github/workflows/lint.yml@v1
+    strategy:
+      matrix:
+        environment: [dev, tst]
+    with:
+      environment: ${{ matrix.environment }}
+  Openapi-lint:
+    name: "OpenAPI Lint"
+    uses: entur/gha-api/.github/workflows/lint.yml@v3
+    secrets: inherit
+    with:
+      upload_to_bucket: false
+  docker-lint:
+    name: "Docker Lint"
+    uses: entur/gha-docker/.github/workflows/lint.yml@v1
   gradle-build:
     name: "Build with gradle and run tests"
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     permissions:
       contents: write  # dependency-graph
     env: # Definerer globale miljøvariabler for jobben
       ARTIFACTORY_AUTH_USER: ${{ secrets.ARTIFACTORY_AUTH_USER }}
       ARTIFACTORY_AUTH_TOKEN: ${{ secrets.ARTIFACTORY_AUTH_TOKEN }}
       JVM_OPTS: -Xmx3200m
-      # Bruk `inputbranch` hvis den er spesifisert gjennom workflow-parameter
-      # Dette gjør at workflowen kan kjøre på en spesifikk branch hvis angitt
       # Bruker `head_ref` for PR-hendelser. Dette sikrer at vi får riktig PR-branch i stedet for en midlertidig merge-branch.
-      # Faller tilbake på `ref_name` fra eventet for andre tilfeller som push til main.
-      BRANCH_NAME: ${{ inputs.inputbranch || github.head_ref || github.ref_name }}
+      # Faller tilbake på `ref_name` fra eventet for andre tilfeller som push til main eller manuell bygg og publish.
+      BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+      GHA_BUILD_VERSION: ${{ inputs.version }}
       ENTUR_SONAR_PASSWORD: ${{ secrets.ENTUR_SONAR_PASSWORD }}
       SONAR_SCAN: ${{ inputs.runSonarScan }}
-
     steps:
       - name: "Checkout"
         uses: actions/checkout@v4
@@ -58,10 +72,9 @@ jobs:
         run: ./gradlew ktlintCheck
 
       - name: "Build with Gradle Wrapper"
-        run: ./gradlew build -x test
-
+        run: ./gradlew build -Pversion=${{ env.GHA_BUILD_VERSION }} -x test
       - name: "Run tests with detailed logging"
-        run: ./gradlew test
+        run: ./gradlew test --scan
 
       - name: "Upload test results"
         if: failure()
@@ -78,16 +91,5 @@ jobs:
           path: build/libs
           retention-days: 1
           overwrite: true
-
-  helm-lint:
-    name: "Helm Lint"
-    uses: entur/gha-helm/.github/workflows/lint.yml@v1
-    strategy:
-      matrix:
-        environment: [dev, tst]
-    with:
-      environment: ${{ matrix.environment }}
-
-  docker-lint:
-    name: "Docker Lint"
-    uses: entur/gha-docker/.github/workflows/lint.yml@v1
+    outputs:
+      version: ${{ env.GHA_BUILD_VERSION }}
