@@ -1,10 +1,10 @@
-name: "Merge to main"
+name: "Manual Build and Publish to staging"
+
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 jobs:
   build-and-deploy:
+    name: "Call Build and Deploy to staging"
     uses: ./.github/workflows/build-and-deploy.yml
     secrets: inherit
     with:

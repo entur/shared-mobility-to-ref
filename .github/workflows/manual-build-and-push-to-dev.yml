@@ -1,0 +1,11 @@
+name: "Manual Build and Publish to dev"
+
+on:
+  workflow_dispatch:
+jobs:
+  build-and-deploy:
+    name: "Call Build and Deploy to dev"
+    uses: ./.github/workflows/build-and-deploy.yml
+    secrets: inherit
+    with:
+      environment: dev
