@@ -4,7 +4,7 @@ WORKDIR /app
 
 ARG APP_VERSION
 # Copy the built application from the build phase to the run phase
-COPY build/libs/shared-mobility-router-$APP_VERSION.jar /app/application.jar
+COPY build/libs/shared-mobility-to-ref-$APP_VERSION.jar /app/application.jar
 
 # Metadata and maintenance information
 LABEL maintainer="Team Delingsmobilitet"
