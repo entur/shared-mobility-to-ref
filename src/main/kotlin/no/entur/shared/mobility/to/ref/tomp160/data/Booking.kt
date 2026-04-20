@@ -101,3 +101,29 @@ fun finalFare(amount: Float = 50.00F): Fare =
                 ),
             ),
     )
+
+fun finalFareWithFee(amount: Float = 25.00F): Fare =
+    Fare(
+        estimated = false,
+        parts =
+            listOf(
+                FarePart(
+                    amount = amount,
+                    amountExVat = amount * 0.8F,
+                    currencyCode = "NOK",
+                    vatRate = 25.00F,
+                    vatCountryCode = "NO",
+                    type = FarePart.Type.FIXED,
+                ),
+                FarePart(
+                    amount = 200.00F,
+                    amountExVat = 200.00F * 0.8F,
+                    currencyCode = "NOK",
+                    name = "Parkeringsgebyr",
+                    vatRate = 25.00F,
+                    vatCountryCode = "NO",
+                    type = FarePart.Type.FIXED,
+                    propertyClass = FarePart.PropertyClass.ANCILLARY,
+                ),
+            ),
+    )
