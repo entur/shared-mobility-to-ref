@@ -86,6 +86,7 @@ dependencyManagement {
 tasks.withType<KotlinCompile> {
     compilerOptions {
         freeCompilerArgs.add("-Xjsr305=strict")
+        freeCompilerArgs.add("-Xannotation-default-target=param-property")
         jvmTarget.set(JvmTarget.JVM_21)
     }
 }

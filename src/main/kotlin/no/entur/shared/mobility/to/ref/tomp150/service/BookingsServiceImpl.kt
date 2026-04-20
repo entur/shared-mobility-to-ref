@@ -13,6 +13,7 @@ import no.entur.shared.mobility.to.ref.tomp150.data.booking
 import no.entur.shared.mobility.to.ref.tomp150.data.bookingHigherDepositAmountThanTotalAmount
 import no.entur.shared.mobility.to.ref.tomp150.data.bookingWithoutDeposit
 import no.entur.shared.mobility.to.ref.tomp150.data.finalFare
+import no.entur.shared.mobility.to.ref.tomp150.data.finalFareWithFee
 import no.entur.shared.mobility.to.ref.tomp150.dto.Booking
 import no.entur.shared.mobility.to.ref.tomp150.dto.BookingOperation
 import no.entur.shared.mobility.to.ref.tomp150.dto.BookingRequest
@@ -47,7 +48,7 @@ class BookingsServiceImpl : BookingService {
     ): Booking {
         val booking: Booking =
             when (addressedTo) {
-                SCOOTER_OPERATOR_NO_DEPOSIT -> bookingWithoutDeposit
+                SCOOTER_OPERATOR_NO_DEPOSIT -> bookingWithoutDeposit.copy(pricing = finalFareWithFee(25.00F))
                 SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> bookingHigherDepositAmountThanTotalAmount
                 SCOOTER_OPERATOR -> booking.copy(pricing = finalFare(25.00F))
                 SCOOTER_OPERATOR_2 -> booking.copy(pricing = finalFare(5.00F))
