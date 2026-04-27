@@ -3,7 +3,7 @@ package no.entur.shared.mobility.to.ref.tomp150.service
 import io.mockk.mockk
 import io.mockk.verify
 import no.entur.shared.mobility.to.ref.config.TransportOperator.COLUMBI_BIKE
-import no.entur.shared.mobility.to.ref.config.TransportOperator.URBAN_BIKE
+import no.entur.shared.mobility.to.ref.config.bikeOperators
 import no.entur.shared.mobility.to.ref.config.operators
 import no.entur.shared.mobility.to.ref.tomp150.dto.Coordinates
 import no.entur.shared.mobility.to.ref.tomp150.dto.Customer
@@ -36,7 +36,7 @@ class PlanningServiceImplTest {
 
     @Test
     fun `bookingsOneStopPost should not call eventScheduler if the call doesn't come from a bike operator`() {
-        operators.filter { it !in setOf(COLUMBI_BIKE, URBAN_BIKE) }.forEach {
+        operators.filter { it !in bikeOperators }.forEach {
             planningServiceImpl.bookingsOneStopPost(
                 "",
                 "",

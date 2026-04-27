@@ -1,13 +1,12 @@
 package no.entur.shared.mobility.to.ref.tomp150.service
 
 import no.entur.shared.mobility.to.ref.config.TransportOperator.ALL_IMPLEMENTING_OPERATOR
+import no.entur.shared.mobility.to.ref.config.TransportOperator.ALTAIR_SCOOTERS
 import no.entur.shared.mobility.to.ref.config.TransportOperator.COLUMBI_BIKE
-import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR
-import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_2
-import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_3
-import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE
-import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_NO_DEPOSIT
-import no.entur.shared.mobility.to.ref.config.TransportOperator.URBAN_BIKE
+import no.entur.shared.mobility.to.ref.config.TransportOperator.EVIE_SCOOTERS_NO_DEPOSIT
+import no.entur.shared.mobility.to.ref.config.TransportOperator.EZIO_SCOOTERS_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE
+import no.entur.shared.mobility.to.ref.config.TransportOperator.KENWAY_SCOOTERS
+import no.entur.shared.mobility.to.ref.config.bikeOperators
 import no.entur.shared.mobility.to.ref.tomp150.controller.TripExecutionService
 import no.entur.shared.mobility.to.ref.tomp150.data.leg
 import no.entur.shared.mobility.to.ref.tomp150.data.legWithHighDepositAmount
@@ -77,9 +76,9 @@ class TripExecutionServiceImpl(
     ): Leg {
         val leg =
             when (addressedTo) {
-                SCOOTER_OPERATOR_NO_DEPOSIT -> legWithoutDeposit
-                SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> legWithHighDepositAmount
-                SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3, COLUMBI_BIKE, URBAN_BIKE, ALL_IMPLEMENTING_OPERATOR -> leg
+                EVIE_SCOOTERS_NO_DEPOSIT -> legWithoutDeposit
+                EZIO_SCOOTERS_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> legWithHighDepositAmount
+                ALTAIR_SCOOTERS, KENWAY_SCOOTERS, in bikeOperators, ALL_IMPLEMENTING_OPERATOR -> leg
                 else -> throw NotImplementedError()
             }
 
@@ -131,9 +130,9 @@ class TripExecutionServiceImpl(
     ): Leg {
         val leg: Leg =
             when (addressedTo) {
-                SCOOTER_OPERATOR_NO_DEPOSIT -> legWithoutDeposit
-                SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> legWithHighDepositAmount
-                SCOOTER_OPERATOR, SCOOTER_OPERATOR_2, SCOOTER_OPERATOR_3, COLUMBI_BIKE, URBAN_BIKE, ALL_IMPLEMENTING_OPERATOR -> leg
+                EVIE_SCOOTERS_NO_DEPOSIT -> legWithoutDeposit
+                EZIO_SCOOTERS_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> legWithHighDepositAmount
+                ALTAIR_SCOOTERS, KENWAY_SCOOTERS, in bikeOperators, ALL_IMPLEMENTING_OPERATOR -> leg
                 else -> throw NotImplementedError()
             }
         return leg.copy(id = id)

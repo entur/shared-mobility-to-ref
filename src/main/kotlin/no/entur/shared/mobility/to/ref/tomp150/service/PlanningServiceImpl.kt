@@ -1,13 +1,11 @@
 package no.entur.shared.mobility.to.ref.tomp150.service
 
 import no.entur.shared.mobility.to.ref.config.TransportOperator.ALL_IMPLEMENTING_OPERATOR
-import no.entur.shared.mobility.to.ref.config.TransportOperator.COLUMBI_BIKE
-import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR
-import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_2
-import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_3
-import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE
-import no.entur.shared.mobility.to.ref.config.TransportOperator.SCOOTER_OPERATOR_NO_DEPOSIT
-import no.entur.shared.mobility.to.ref.config.TransportOperator.URBAN_BIKE
+import no.entur.shared.mobility.to.ref.config.TransportOperator.ALTAIR_SCOOTERS
+import no.entur.shared.mobility.to.ref.config.TransportOperator.EVIE_SCOOTERS_NO_DEPOSIT
+import no.entur.shared.mobility.to.ref.config.TransportOperator.EZIO_SCOOTERS_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE
+import no.entur.shared.mobility.to.ref.config.TransportOperator.KENWAY_SCOOTERS
+import no.entur.shared.mobility.to.ref.config.bikeOperators
 import no.entur.shared.mobility.to.ref.tomp150.controller.PlanningService
 import no.entur.shared.mobility.to.ref.tomp150.data.asset
 import no.entur.shared.mobility.to.ref.tomp150.data.booking
@@ -56,13 +54,11 @@ class PlanningServiceImpl(
 
         val booking =
             when (addressedTo) {
-                SCOOTER_OPERATOR_NO_DEPOSIT -> bookingWithoutDeposit
-                SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> bookingHigherDepositAmountThanTotalAmount
-                SCOOTER_OPERATOR,
-                SCOOTER_OPERATOR_2,
-                SCOOTER_OPERATOR_3,
-                COLUMBI_BIKE,
-                URBAN_BIKE,
+                EVIE_SCOOTERS_NO_DEPOSIT -> bookingWithoutDeposit
+                EZIO_SCOOTERS_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> bookingHigherDepositAmountThanTotalAmount
+                ALTAIR_SCOOTERS,
+                KENWAY_SCOOTERS,
+                in bikeOperators,
                 ALL_IMPLEMENTING_OPERATOR,
                 -> booking
 
@@ -124,15 +120,14 @@ class PlanningServiceImpl(
     ): Booking {
         val booking =
             when (addressedTo) {
-                SCOOTER_OPERATOR_NO_DEPOSIT -> bookingWithoutDeposit
-                SCOOTER_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> bookingHigherDepositAmountThanTotalAmount
-                SCOOTER_OPERATOR -> booking.copy(pricing = finalFare(25.00F))
-                SCOOTER_OPERATOR_2 -> booking.copy(pricing = finalFare(5.00F))
-                SCOOTER_OPERATOR_3 -> booking.copy(pricing = finalFare(15.00F))
-                COLUMBI_BIKE, URBAN_BIKE -> {
+                EVIE_SCOOTERS_NO_DEPOSIT -> bookingWithoutDeposit
+                EZIO_SCOOTERS_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> bookingHigherDepositAmountThanTotalAmount
+                ALTAIR_SCOOTERS -> booking.copy(pricing = finalFare(25.00F))
+                KENWAY_SCOOTERS -> booking.copy(pricing = finalFare(5.00F))
+                in bikeOperators -> {
                     val notStartedLeg = leg.copy(state = LegState.NOT_STARTED)
                     val bikeBooking = booking.copy(legs = listOf(notStartedLeg))
-                    eventScheduler150.addTakeBikeMessage(bikeBooking.id!!, notStartedLeg.id!!, addressedTo)
+                    eventScheduler150.addTakeBikeMessage(bikeBooking.id!!, notStartedLeg.id!!, addressedTo!!)
                     bikeBooking
                 }
 
