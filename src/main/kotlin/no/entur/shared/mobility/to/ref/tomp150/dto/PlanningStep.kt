@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -63,7 +62,7 @@ data class PlanningStep(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'PlanningStep'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }
@@ -82,7 +81,7 @@ data class PlanningStep(
             @JsonCreator
             fun forValue(value: kotlin.String): Goal {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'PlanningStep'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Goal'")
             }
         }
     }
@@ -107,7 +106,7 @@ data class PlanningStep(
             @JsonCreator
             fun forValue(value: kotlin.String): ShowTime {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'PlanningStep'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ShowTime'")
             }
         }
     }
@@ -125,7 +124,7 @@ data class PlanningStep(
             @JsonCreator
             fun forValue(value: kotlin.String): Action {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'PlanningStep'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Action'")
             }
         }
     }

@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -56,7 +55,7 @@ data class Token(
             @JsonCreator
             fun forValue(value: kotlin.String): TokenType {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Token'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'TokenType'")
             }
         }
     }

@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -62,7 +61,7 @@ data class SystemHours(
             @JsonCreator
             fun forValue(value: kotlin.String): UserType {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'SystemHours'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'UserType'")
             }
         }
     }

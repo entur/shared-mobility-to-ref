@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import jakarta.validation.constraints.DecimalMax
@@ -22,15 +21,15 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class Coordinates(
 
-    @get:DecimalMin("0")
+    @get:DecimalMin(value="0")
     @Schema(example = "6.169639", required = true, description = "")
     @get:JsonProperty("lng", required = true) val lng: kotlin.Float,
 
-    @get:DecimalMin("0")
+    @get:DecimalMin(value="0")
     @Schema(example = "52.253279", required = true, description = "")
     @get:JsonProperty("lat", required = true) val lat: kotlin.Float,
 
-    @get:DecimalMin("0")
+    @get:DecimalMin(value="0")
     @Schema(example = "null", description = "altitude, in meters above sea level")
     @get:JsonProperty("alt") val alt: kotlin.Float? = null
 ) {

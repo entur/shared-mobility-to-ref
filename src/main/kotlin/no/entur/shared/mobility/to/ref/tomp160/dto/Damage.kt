@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -60,7 +59,7 @@ data class Damage(
             @JsonCreator
             fun forValue(value: kotlin.String): VehicleComponent {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Damage'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'VehicleComponent'")
             }
         }
     }

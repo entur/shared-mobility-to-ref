@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -20,6 +19,8 @@ import io.swagger.v3.oas.annotations.media.Schema
 /**
  * use this condition to specify the evidence you require as TO in the off-boarding process. It can be used in addition with the static process identifier 'OFF_BOARDING_REQUIRED'. The evidence should be delivered in the /legs/{id}/events object (legEvent), in the `url` array This construct is deprecated since v1.5. Please migrate it to conditionRequireOffboardingSteps
  * @param evidenceTypes 
+ * @param conditionType The specific subclass of condition, should match the schema name exactly
+ * @param id An identifier for this condition that can be used to refer to this condition
  */
 data class ConditionRequireEvidence(
 
@@ -48,7 +49,7 @@ data class ConditionRequireEvidence(
             @JsonCreator
             fun forValue(value: kotlin.String): EvidenceTypes {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ConditionRequireEvidence'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'EvidenceTypes'")
             }
         }
     }

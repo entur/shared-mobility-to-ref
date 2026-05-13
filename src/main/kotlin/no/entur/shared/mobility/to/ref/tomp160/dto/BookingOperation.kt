@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -50,7 +49,7 @@ data class BookingOperation(
             @JsonCreator
             fun forValue(value: kotlin.String): Operation {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'BookingOperation'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Operation'")
             }
         }
     }
@@ -70,7 +69,7 @@ data class BookingOperation(
             @JsonCreator
             fun forValue(value: kotlin.String): ExtendReason {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'BookingOperation'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ExtendReason'")
             }
         }
     }
@@ -91,7 +90,7 @@ data class BookingOperation(
             @JsonCreator
             fun forValue(value: kotlin.String): Origin {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'BookingOperation'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Origin'")
             }
         }
     }

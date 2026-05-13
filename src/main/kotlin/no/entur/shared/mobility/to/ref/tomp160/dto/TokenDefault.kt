@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import no.entur.shared.mobility.to.ref.tomp160.dto.TokenData
@@ -17,6 +16,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * Arbitrary data the TO may pass along the ticket to the client
+ * @param tokenType 
  * @param url download url for html/pdf
  */
 data class TokenDefault(

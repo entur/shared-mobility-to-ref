@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import no.entur.shared.mobility.to.ref.tomp150.dto.TokenData
@@ -18,6 +17,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 /**
  * QR information
  * @param base64 base 64 QR code
+ * @param tokenType 
  * @param version 
  */
 data class TokenQR(

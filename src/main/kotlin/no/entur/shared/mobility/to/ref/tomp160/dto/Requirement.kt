@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -44,7 +43,7 @@ data class Requirement(
     @Schema(example = "null", description = "extra field for detailed information, not standardized")
     @get:JsonProperty("memo") val memo: kotlin.String? = null,
 
-    @get:Min(0)
+    @get:Min(value=0)
     @Schema(example = "null", description = "in some requirements there is references to '[variable number]' e.g. of meters (like ZR06)")
     @get:JsonProperty("variable-number") val variableNumber: kotlin.Int? = null,
 
@@ -71,7 +70,7 @@ data class Requirement(
             @JsonCreator
             fun forValue(value: kotlin.String): ApplicableDays {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Requirement'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ApplicableDays'")
             }
         }
     }

@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -89,7 +88,7 @@ data class AssetProperties(
     @Schema(example = "null", description = "the maximum allowed speed for this asset (in km/h)")
     @get:JsonProperty("maxSpeed") val maxSpeed: kotlin.Int? = null,
 
-    @get:Min(0)
+    @get:Min(value=0)
     @Schema(example = "null", description = "the number of wheels")
     @get:JsonProperty("wheelCount") val wheelCount: kotlin.Int? = null,
 
@@ -116,7 +115,7 @@ data class AssetProperties(
     @Schema(example = "null", description = "see https://github.com/MobilityData/gbfs/blob/v2.3/gbfs.md")
     @get:JsonProperty("ecoLabel") val ecoLabel: kotlin.collections.List<AssetPropertiesEcoLabelInner>? = null,
 
-    @get:DecimalMin("0")
+    @get:DecimalMin(value="0")
     @Schema(example = "null", description = "")
     @get:JsonProperty("co2PerKm") val co2PerKm: kotlin.Float? = null,
 
@@ -150,7 +149,7 @@ data class AssetProperties(
     @Schema(example = "null", description = "cruise control available")
     @get:JsonProperty("cruiseControl") val cruiseControl: kotlin.Boolean? = null,
 
-    @get:Min(1)
+    @get:Min(value=1)
     @Schema(example = "null", description = "number of persons able to use the asset")
     @get:JsonProperty("persons") val persons: kotlin.Int? = null,
 
@@ -191,7 +190,7 @@ data class AssetProperties(
     @Schema(example = "null", description = "is a helmet required to operate this asset")
     @get:JsonProperty("helmetRequired") val helmetRequired: kotlin.Boolean? = false,
 
-    @get:Min(0)
+    @get:Min(value=0)
     @Schema(example = "null", description = "Maximum time in minutes that a vehicle can be reserved before a rental begins. When a vehicle is reserved by a user, the vehicle remains locked until the rental begins. During this time the vehicle is unavailable and cannot be reserved or rented by other users. The vehicle status in free_bike_status.json MUST be set to is_reserved = true. If the value of default_reserve_time elapses without a rental beginning, the vehicle status MUST change to is_reserved = false. If default_reserve_time is set to 0, the vehicle type cannot be reserved.")
     @get:JsonProperty("defaultReserveTime") val defaultReserveTime: kotlin.Int? = null,
 
@@ -227,7 +226,7 @@ data class AssetProperties(
             @JsonCreator
             fun forValue(value: kotlin.String): Fuel {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'AssetProperties'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Fuel'")
             }
         }
     }
@@ -251,7 +250,7 @@ data class AssetProperties(
             @JsonCreator
             fun forValue(value: kotlin.String): Propulsion {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'AssetProperties'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Propulsion'")
             }
         }
     }
@@ -273,7 +272,7 @@ data class AssetProperties(
             @JsonCreator
             fun forValue(value: kotlin.String): EnergyLabel {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'AssetProperties'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'EnergyLabel'")
             }
         }
     }
@@ -293,7 +292,7 @@ data class AssetProperties(
             @JsonCreator
             fun forValue(value: kotlin.String): Gearbox {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'AssetProperties'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Gearbox'")
             }
         }
     }
@@ -316,7 +315,7 @@ data class AssetProperties(
             @JsonCreator
             fun forValue(value: kotlin.String): EasyAccessibility {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'AssetProperties'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'EasyAccessibility'")
             }
         }
     }

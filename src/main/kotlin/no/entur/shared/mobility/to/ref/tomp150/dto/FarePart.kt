@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -39,11 +38,11 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class FarePart(
 
-    @get:DecimalMin("0")
+    @get:DecimalMin(value="0")
     @Schema(example = "9.95", required = true, description = "This should be in the base unit as defined by the ISO 4217 currency code with the appropriate number of decimal places and omitting the currency symbol. e.g. if the price is in US Dollars the price would be 9.95. This is inclusive VAT")
     @get:JsonProperty("amount", required = true) val amount: kotlin.Float,
 
-    @get:DecimalMin("0")
+    @get:DecimalMin(value="0")
     @Schema(example = "8.95", description = "")
     @get:JsonProperty("amountExVat") val amountExVat: kotlin.Float? = null,
 
@@ -51,7 +50,7 @@ data class FarePart(
     @Schema(example = "null", description = "ISO 4217 currency code")
     @get:JsonProperty("currencyCode") val currencyCode: kotlin.String? = null,
 
-    @get:DecimalMin("0")
+    @get:DecimalMin(value="0")
     @Schema(example = "21.0", description = "value added tax rate (percentage of amount)")
     @get:JsonProperty("vatRate") val vatRate: kotlin.Float? = null,
 
@@ -68,15 +67,15 @@ data class FarePart(
     @Schema(example = "null", description = "in case of 'FLEX' mandatory, otherwise not allowed. E.g. 0.5 EUR per HOUR")
     @get:JsonProperty("unitType") val unitType: FarePart.UnitType? = null,
 
-    @get:DecimalMin("0")
+    @get:DecimalMin(value="0")
     @Schema(example = "null", description = "the number of km, seconds etc. Mandatory when the type is 'FLEX', otherwise not allowed. In case of 0.5 EUR per 15 MINUTES, `units` should contain 15 and `unitType` MINUTES.")
     @get:JsonProperty("units") val units: kotlin.Float? = null,
 
-    @get:DecimalMin("0")
+    @get:DecimalMin(value="0")
     @Schema(example = "null", description = "in case of scaling, this is the bottom value (f.x. in the first hour 3 CAD, the `scaleFrom` should contain 0 and the `scaleType` HOUR). When `scaleTo` is used, but this field is missing, it should be assumed it is a 0.")
     @get:JsonProperty("scaleFrom") val scaleFrom: kotlin.Float? = null,
 
-    @get:DecimalMin("0")
+    @get:DecimalMin(value="0")
     @Schema(example = "null", description = "the upper value of the scale (f.x. 3 CAD in the first hour, this field should contain 1, `scaleFrom` 0 and `scaleType` HOUR)")
     @get:JsonProperty("scaleTo") val scaleTo: kotlin.Float? = null,
 
@@ -89,11 +88,11 @@ data class FarePart(
     @Schema(example = "null", description = "class of this fare part. Could be FARE or ANCILLARY")
     @get:JsonProperty("class") val propertyClass: FarePart.PropertyClass? = PropertyClass.FARE,
 
-    @get:DecimalMin("0")
+    @get:DecimalMin(value="0")
     @Schema(example = "9.0", description = "The minimum price, in the same currency as amount. Place in `amount` the most likely value.")
     @get:JsonProperty("minimumAmount") val minimumAmount: kotlin.Float? = null,
 
-    @get:DecimalMin("0")
+    @get:DecimalMin(value="0")
     @Schema(example = "11.0", description = "The minimum price, in the same currency as amount. Place in `amount` the most likely value.")
     @get:JsonProperty("maximumAmount") val maximumAmount: kotlin.Float? = null,
 
@@ -120,7 +119,7 @@ data class FarePart(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'FarePart'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }
@@ -140,7 +139,7 @@ data class FarePart(
             @JsonCreator
             fun forValue(value: kotlin.String): Kind {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'FarePart'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Kind'")
             }
         }
     }
@@ -163,7 +162,7 @@ data class FarePart(
             @JsonCreator
             fun forValue(value: kotlin.String): UnitType {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'FarePart'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'UnitType'")
             }
         }
     }
@@ -184,7 +183,7 @@ data class FarePart(
             @JsonCreator
             fun forValue(value: kotlin.String): ScaleType {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'FarePart'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ScaleType'")
             }
         }
     }
@@ -203,7 +202,7 @@ data class FarePart(
             @JsonCreator
             fun forValue(value: kotlin.String): PropertyClass {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'FarePart'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'PropertyClass'")
             }
         }
     }
@@ -222,7 +221,7 @@ data class FarePart(
             @JsonCreator
             fun forValue(value: kotlin.String): AssetState {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'FarePart'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'AssetState'")
             }
         }
     }

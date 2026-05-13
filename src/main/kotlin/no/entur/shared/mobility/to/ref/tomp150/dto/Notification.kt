@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -30,7 +29,7 @@ data class Notification(
     @Schema(example = "VEHICLE_NOT_AVAILABLE", required = true, description = "")
     @get:JsonProperty("type", required = true) val type: Notification.Type,
 
-    @get:Min(0)
+    @get:Min(value=0)
     @Schema(example = "null", description = "in case of ETA, the number of minutes until arrival at the pickup location")
     @get:JsonProperty("minutes") val minutes: kotlin.Int? = null,
 
@@ -64,7 +63,7 @@ data class Notification(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Notification'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

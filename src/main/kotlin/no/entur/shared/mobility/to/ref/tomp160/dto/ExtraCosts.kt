@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -34,7 +33,7 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class ExtraCosts(
 
-    @get:DecimalMin("0")
+    @get:DecimalMin(value="0")
     @Schema(example = "9.95", required = true, description = "This should be in the base unit as defined by the ISO 4217 currency code with the appropriate number of decimal places and omitting the currency symbol. e.g. if the price is in US Dollars the price would be 9.95. This is inclusive VAT")
     @get:JsonProperty("amount", required = true) val amount: kotlin.Float,
 
@@ -45,7 +44,7 @@ data class ExtraCosts(
     @Schema(example = "null", required = true, description = "free text to describe the extra costs. Mandatory in case of 'OTHER', should match Content-Language")
     @get:JsonProperty("description", required = true) val description: kotlin.String,
 
-    @get:DecimalMin("0")
+    @get:DecimalMin(value="0")
     @Schema(example = "8.95", description = "")
     @get:JsonProperty("amountExVat") val amountExVat: kotlin.Float? = null,
 
@@ -53,7 +52,7 @@ data class ExtraCosts(
     @Schema(example = "null", description = "ISO 4217 currency code")
     @get:JsonProperty("currencyCode") val currencyCode: kotlin.String? = null,
 
-    @get:DecimalMin("0")
+    @get:DecimalMin(value="0")
     @Schema(example = "21.0", description = "value added tax rate (percentage of amount)")
     @get:JsonProperty("vatRate") val vatRate: kotlin.Float? = null,
 
@@ -61,7 +60,7 @@ data class ExtraCosts(
     @Schema(example = "NL", description = "two-letter country codes according to ISO 3166-1")
     @get:JsonProperty("vatCountryCode") val vatCountryCode: kotlin.String? = null,
 
-    @get:DecimalMin("0")
+    @get:DecimalMin(value="0")
     @Schema(example = "null", description = "e.g. number of litres, number of kilowatthour, etc")
     @get:JsonProperty("number") val number: kotlin.Float? = null,
 
@@ -75,7 +74,7 @@ data class ExtraCosts(
     @field:Valid
     @Schema(example = "null", description = "Arbitrary metadata that a TO can add, like voucher codes")
     @get:JsonProperty("meta") val meta: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null
-) {
+) : JournalEntryAllOfDetails {
 
     /**
     * 
@@ -93,7 +92,7 @@ data class ExtraCosts(
             @JsonCreator
             fun forValue(value: kotlin.String): NumberType {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ExtraCosts'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'NumberType'")
             }
         }
     }
