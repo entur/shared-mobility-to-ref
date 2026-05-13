@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import no.entur.shared.mobility.to.ref.tomp150.dto.TokenData
@@ -17,6 +16,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * deeplink info
+ * @param tokenType 
  * @param url the base deeplink url for the MP app. Can be extended by the 'knownParamaters'. Including the scheme.
  * @param knownParameters 
  */

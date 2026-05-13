@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -45,7 +44,7 @@ data class Endpoint(
     @Schema(example = "null", description = "does this endpoint support paging? In that case this endpoint can be accessed using query parameters offset=x and limit=y. Only allowed at endpoints that have specified these query parameters.")
     @get:JsonProperty("supportsPaging") val supportsPaging: kotlin.Boolean? = false,
 
-    @get:Min(1)
+    @get:Min(value=1)
     @Schema(example = "null", description = "the maximum size of the pages (only valid when supportsPaging=true). If the limit-parameter of the request is above this amount, a http code 400 will be returned.")
     @get:JsonProperty("maxPageSize") val maxPageSize: kotlin.Int? = null,
 
@@ -76,7 +75,7 @@ data class Endpoint(
             @JsonCreator
             fun forValue(value: kotlin.String): Method {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Endpoint'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Method'")
             }
         }
     }
@@ -96,7 +95,7 @@ data class Endpoint(
             @JsonCreator
             fun forValue(value: kotlin.String): Status {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Endpoint'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Status'")
             }
         }
     }
@@ -125,7 +124,7 @@ data class Endpoint(
             @JsonCreator
             fun forValue(value: kotlin.String): EventType {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Endpoint'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'EventType'")
             }
         }
     }
@@ -149,7 +148,7 @@ data class Endpoint(
             @JsonCreator
             fun forValue(value: kotlin.String): ExternalType {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Endpoint'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ExternalType'")
             }
         }
     }

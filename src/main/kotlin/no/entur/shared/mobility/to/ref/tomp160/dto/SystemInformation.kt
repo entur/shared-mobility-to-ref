@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -132,7 +131,7 @@ data class SystemInformation(
             @JsonCreator
             fun forValue(value: kotlin.String): TypeOfSystem {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'SystemInformation'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'TypeOfSystem'")
             }
         }
     }
@@ -153,7 +152,7 @@ data class SystemInformation(
             @JsonCreator
             fun forValue(value: kotlin.String): ProductType {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'SystemInformation'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ProductType'")
             }
         }
     }

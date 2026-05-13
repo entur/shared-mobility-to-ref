@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -72,7 +71,7 @@ data class SystemRegion(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'SystemRegion'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }
@@ -91,7 +90,7 @@ data class SystemRegion(
             @JsonCreator
             fun forValue(value: kotlin.String): TypeUnit {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'SystemRegion'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'TypeUnit'")
             }
         }
     }

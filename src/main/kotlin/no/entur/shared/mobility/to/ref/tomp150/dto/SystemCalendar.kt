@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import jakarta.validation.constraints.DecimalMax
@@ -27,23 +26,23 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class SystemCalendar(
 
-    @get:Min(1)
-    @get:Max(12)
+    @get:Min(value=1)
+    @get:Max(value=12)
     @Schema(example = "1", required = true, description = "Starting month for the system operations (1-12)")
     @get:JsonProperty("startMonth", required = true) val startMonth: kotlin.Int,
 
-    @get:Min(1)
-    @get:Max(31)
+    @get:Min(value=1)
+    @get:Max(value=31)
     @Schema(example = "1", required = true, description = "Starting day for the system operations (1-31)")
     @get:JsonProperty("startDay", required = true) val startDay: kotlin.Int,
 
-    @get:Min(1)
-    @get:Max(12)
+    @get:Min(value=1)
+    @get:Max(value=12)
     @Schema(example = "12", required = true, description = "Ending month for the system operations (1-12)")
     @get:JsonProperty("endMonth", required = true) val endMonth: kotlin.Int,
 
-    @get:Min(1)
-    @get:Max(31)
+    @get:Min(value=1)
+    @get:Max(value=31)
     @Schema(example = "31", required = true, description = "Ending day for the system operations (1-31)")
     @get:JsonProperty("endDay", required = true) val endDay: kotlin.Int,
 

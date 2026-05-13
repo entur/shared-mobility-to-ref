@@ -4,6 +4,18 @@ Reference implementation of a backend that implements a [TOMP API](https://githu
 You can find the full Swagger Petstore documentation from the TOMP-team 
 [here](https://app.swaggerhub.com/apis-docs/TOMP-API-WG/transport-operator_maas_provider_api/1.5.0#/).
 
+### Dependency verification
+
+We use Gradle's dependency verification feature to ensure the integrity of our project dependencies. This helps protect against supply chain attacks by verifying that the dependencies used in our project have not been tampered with.
+See details here https://britter.dev/blog/2025/02/10/gradle-dependency-verification/
+
+When you add or update dependencies, you need to run the following command to update the verification file:
+
+```bash
+./gradlew --write-verification-metadata pgp,sha256 --export-keys
+```
+Make sure to commit the updated `gradle/verification-metadata.xml` file.
+
 ## Guide for transport operators on how to implement TOMP standard
 
 This guide covers all the endpoints needed for supporting the TOMP standard and how to implement them. 

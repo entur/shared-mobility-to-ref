@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import jakarta.validation.constraints.DecimalMax
@@ -39,7 +38,7 @@ data class Address(
     @Schema(example = "null", description = "street, consistent with streetAddress")
     @get:JsonProperty("street") val street: kotlin.String? = null,
 
-    @get:Min(0)
+    @get:Min(value=0)
     @Schema(example = "null", description = "house number, consistent with streetAddress")
     @get:JsonProperty("houseNumber") val houseNumber: kotlin.Int? = null,
 

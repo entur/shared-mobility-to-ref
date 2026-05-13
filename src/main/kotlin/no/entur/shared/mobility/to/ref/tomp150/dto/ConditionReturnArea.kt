@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import no.entur.shared.mobility.to.ref.tomp150.dto.Condition
@@ -19,10 +18,12 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * a return area. In the condition list there can be multiple return area's.
+ * @param conditionType The specific subclass of condition, should match the schema name exactly
  * @param stationId station to which the asset should be returned
  * @param returnArea geojson representation of a polygon. First and last point must be equal. See also https://geojson.org/geojson-spec.html#polygon and example https://geojson.org/geojson-spec.html#id4. The order should be lon, lat [[[lon1, lat1], [lon2,lat2], [lon3,lat3], [lon1,lat1]]], the first point should match the last point.
  * @param coordinates 
  * @param returnHours the return hours of the facility (if different from operating-hours)
+ * @param id An identifier for this condition that can be used to refer to this condition
  */
 data class ConditionReturnArea(
 

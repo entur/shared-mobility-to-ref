@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -45,11 +44,11 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class JournalEntry(
 
-    @get:DecimalMin("0")
+    @get:DecimalMin(value="0")
     @Schema(example = "9.95", description = "This should be in the base unit as defined by the ISO 4217 currency code with the appropriate number of decimal places and omitting the currency symbol. e.g. if the price is in US Dollars the price would be 9.95. This is inclusive VAT")
     @get:JsonProperty("amount") val amount: kotlin.Float? = null,
 
-    @get:DecimalMin("0")
+    @get:DecimalMin(value="0")
     @Schema(example = "8.95", description = "")
     @get:JsonProperty("amountExVat") val amountExVat: kotlin.Float? = null,
 
@@ -57,7 +56,7 @@ data class JournalEntry(
     @Schema(example = "null", description = "ISO 4217 currency code")
     @get:JsonProperty("currencyCode") val currencyCode: kotlin.String? = null,
 
-    @get:DecimalMin("0")
+    @get:DecimalMin(value="0")
     @Schema(example = "21.0", description = "value added tax rate (percentage of amount)")
     @get:JsonProperty("vatRate") val vatRate: kotlin.Float? = null,
 
@@ -91,18 +90,18 @@ data class JournalEntry(
     @Schema(example = "null", description = "")
     @get:JsonProperty("comment") val comment: kotlin.String? = null,
 
-    @get:DecimalMin("0")
+    @get:DecimalMin(value="0")
     @Schema(example = "null", description = "the travelled distance. Only if applicable.")
     @get:JsonProperty("distance") val distance: kotlin.Float? = null,
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("distanceType") val distanceType: JournalEntry.DistanceType? = null,
 
-    @get:Min(0)
+    @get:Min(value=0)
     @Schema(example = "null", description = "the time in seconds that the assed is used. Only if applicable.")
     @get:JsonProperty("usedTime") val usedTime: kotlin.Int? = null,
 
-    @get:DecimalMin("0")
+    @get:DecimalMin(value="0")
     @Schema(example = "null", description = "the mileage at the start of the rental. 'DistanceType' field is also applicable here")
     @get:JsonProperty("rentalStartMileage") val rentalStartMileage: kotlin.Float? = null,
 
@@ -132,7 +131,7 @@ data class JournalEntry(
             @JsonCreator
             fun forValue(value: kotlin.String): DistanceType {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'JournalEntry'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'DistanceType'")
             }
         }
     }

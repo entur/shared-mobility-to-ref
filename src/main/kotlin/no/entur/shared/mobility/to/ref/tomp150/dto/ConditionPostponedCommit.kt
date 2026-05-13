@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import no.entur.shared.mobility.to.ref.tomp150.dto.Condition
@@ -18,6 +17,8 @@ import io.swagger.v3.oas.annotations.media.Schema
 /**
  * 
  * @param ultimateResponseTime 
+ * @param conditionType The specific subclass of condition, should match the schema name exactly
+ * @param id An identifier for this condition that can be used to refer to this condition
  */
 data class ConditionPostponedCommit(
 

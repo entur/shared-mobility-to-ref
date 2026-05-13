@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import jakarta.validation.constraints.DecimalMax
@@ -24,11 +23,11 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class AmountOfMoney(
 
-    @get:DecimalMin("0")
+    @get:DecimalMin(value="0")
     @Schema(example = "9.95", description = "This should be in the base unit as defined by the ISO 4217 currency code with the appropriate number of decimal places and omitting the currency symbol. e.g. if the price is in US Dollars the price would be 9.95. This is inclusive VAT")
     @get:JsonProperty("amount") val amount: kotlin.Float? = null,
 
-    @get:DecimalMin("0")
+    @get:DecimalMin(value="0")
     @Schema(example = "8.95", description = "")
     @get:JsonProperty("amountExVat") val amountExVat: kotlin.Float? = null,
 
@@ -36,7 +35,7 @@ data class AmountOfMoney(
     @Schema(example = "null", description = "ISO 4217 currency code")
     @get:JsonProperty("currencyCode") val currencyCode: kotlin.String? = null,
 
-    @get:DecimalMin("0")
+    @get:DecimalMin(value="0")
     @Schema(example = "21.0", description = "value added tax rate (percentage of amount)")
     @get:JsonProperty("vatRate") val vatRate: kotlin.Float? = null,
 

@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import no.entur.shared.mobility.to.ref.tomp160.dto.Condition
@@ -17,22 +16,24 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * in case the TO demands a deposit before usage. Requesting and refunding should be done using the /payment/claim-extra-costs endpoint.
+ * @param conditionType The specific subclass of condition, should match the schema name exactly
  * @param amount This should be in the base unit as defined by the ISO 4217 currency code with the appropriate number of decimal places and omitting the currency symbol. e.g. if the price is in US Dollars the price would be 9.95. This is inclusive VAT
  * @param amountExVat 
  * @param currencyCode ISO 4217 currency code
  * @param vatRate value added tax rate (percentage of amount)
  * @param vatCountryCode two-letter country codes according to ISO 3166-1
+ * @param id An identifier for this condition that can be used to refer to this condition
  */
 data class ConditionDeposit(
 
     @Schema(example = "null", required = true, description = "The specific subclass of condition, should match the schema name exactly")
     @get:JsonProperty("conditionType", required = true) override val conditionType: kotlin.String,
 
-    @get:DecimalMin("0")
+    @get:DecimalMin(value="0")
     @Schema(example = "9.95", description = "This should be in the base unit as defined by the ISO 4217 currency code with the appropriate number of decimal places and omitting the currency symbol. e.g. if the price is in US Dollars the price would be 9.95. This is inclusive VAT")
     @get:JsonProperty("amount") val amount: kotlin.Float? = null,
 
-    @get:DecimalMin("0")
+    @get:DecimalMin(value="0")
     @Schema(example = "8.95", description = "")
     @get:JsonProperty("amountExVat") val amountExVat: kotlin.Float? = null,
 
@@ -40,7 +41,7 @@ data class ConditionDeposit(
     @Schema(example = "null", description = "ISO 4217 currency code")
     @get:JsonProperty("currencyCode") val currencyCode: kotlin.String? = null,
 
-    @get:DecimalMin("0")
+    @get:DecimalMin(value="0")
     @Schema(example = "21.0", description = "value added tax rate (percentage of amount)")
     @get:JsonProperty("vatRate") val vatRate: kotlin.Float? = null,
 

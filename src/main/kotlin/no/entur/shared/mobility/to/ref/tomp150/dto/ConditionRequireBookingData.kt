@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -20,7 +19,9 @@ import io.swagger.v3.oas.annotations.media.Schema
 /**
  * 
  * @param requiredFields 
+ * @param conditionType The specific subclass of condition, should match the schema name exactly
  * @param claims when in the 'requiredFields' array 'BLOCKCHAIN_CLAIMS' is specified, in this array claims can be specified. On the WIKI page, the known ones are enlisted, but this list isn't finalized yet. https://github.com/TOMP-WG/TOMP-API/wiki/Blockchain---Verifiable-credentials
+ * @param id An identifier for this condition that can be used to refer to this condition
  */
 data class ConditionRequireBookingData(
 
@@ -64,7 +65,7 @@ data class ConditionRequireBookingData(
             @JsonCreator
             fun forValue(value: kotlin.String): RequiredFields {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ConditionRequireBookingData'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'RequiredFields'")
             }
         }
     }

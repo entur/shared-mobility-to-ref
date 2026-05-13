@@ -1,7 +1,9 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
-import java.util.Locale
 import java.util.Objects
+import com.fasterxml.jackson.annotation.JsonSubTypes
+import com.fasterxml.jackson.annotation.JsonTypeInfo
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import jakarta.validation.constraints.DecimalMax
 import jakarta.validation.constraints.DecimalMin
 import jakarta.validation.constraints.Email
@@ -16,9 +18,6 @@ import io.swagger.v3.oas.annotations.media.Schema
 /**
  * 
  */
-class GeojsonGeometryCoordinates(
-
-) {
-
+sealed interface GeojsonGeometryCoordinates {
 }
 

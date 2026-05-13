@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import no.entur.shared.mobility.to.ref.tomp160.dto.GeojsonGeometry
@@ -17,6 +16,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * An array of WGS84 coordinate pairs
+ * @param type 
  * @param coordinates Geojson Coordinate
  */
 data class GeojsonLine(

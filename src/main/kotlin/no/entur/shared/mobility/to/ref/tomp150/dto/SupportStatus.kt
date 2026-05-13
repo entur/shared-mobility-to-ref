@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -18,34 +17,21 @@ import jakarta.validation.Valid
 import io.swagger.v3.oas.annotations.media.Schema
 
 /**
- * the current status of support
- * @param status 
- * @param timeToResolution time in minutes to expected resolution of support request
- * @param order the sequence number of status of the support issue
- * @param comment free text to send to the end user.
+ * 
  * @param id the booking id
  * @param supportType 
  * @param location 
  * @param time 
  * @param priority the priority of the support request.
  * @param contactInformationEndUser contact information of the end user in case of direct response requests, like phone number
+ * @param comment free text to send to the end user.
  * @param requestedResponseTime time to respond in minutes.
  * @param urls urls to clarify the support request e.g. pictures showing damage
+ * @param status 
+ * @param timeToResolution time in minutes to expected resolution of support request
+ * @param order the sequence number of status of the support issue
  */
 data class SupportStatus(
-
-    @Schema(example = "PROCESSING", description = "")
-    @get:JsonProperty("status") val status: SupportStatus.Status? = null,
-
-    @Schema(example = "9", description = "time in minutes to expected resolution of support request")
-    @get:JsonProperty("timeToResolution") val timeToResolution: kotlin.Int? = null,
-
-    @get:Min(0)
-    @Schema(example = "null", description = "the sequence number of status of the support issue")
-    @get:JsonProperty("order") val order: kotlin.Int? = null,
-
-    @Schema(example = "null", description = "free text to send to the end user.")
-    @get:JsonProperty("comment") val comment: kotlin.String? = null,
 
     @Schema(example = "null", description = "the booking id")
     @get:JsonProperty("id") val id: kotlin.String? = null,
@@ -66,34 +52,26 @@ data class SupportStatus(
     @Schema(example = "null", description = "contact information of the end user in case of direct response requests, like phone number")
     @get:JsonProperty("contactInformationEndUser") val contactInformationEndUser: kotlin.String? = null,
 
-    @get:DecimalMin("0")
+    @Schema(example = "null", description = "free text to send to the end user.")
+    @get:JsonProperty("comment") val comment: kotlin.String? = null,
+
+    @get:DecimalMin(value="0")
     @Schema(example = "null", description = "time to respond in minutes.")
     @get:JsonProperty("requestedResponseTime") val requestedResponseTime: kotlin.Double? = null,
 
     @Schema(example = "null", description = "urls to clarify the support request e.g. pictures showing damage")
-    @get:JsonProperty("urls") val urls: kotlin.collections.List<kotlin.String>? = null
+    @get:JsonProperty("urls") val urls: kotlin.collections.List<kotlin.String>? = null,
+
+    @Schema(example = "PROCESSING", description = "")
+    @get:JsonProperty("status") val status: SupportStatus.Status? = null,
+
+    @Schema(example = "9", description = "time in minutes to expected resolution of support request")
+    @get:JsonProperty("timeToResolution") val timeToResolution: kotlin.Int? = null,
+
+    @get:Min(value=0)
+    @Schema(example = "null", description = "the sequence number of status of the support issue")
+    @get:JsonProperty("order") val order: kotlin.Int? = null
 ) {
-
-    /**
-    * 
-    * Values: PROCESSING,UPDATE_REQUESTED,RESOLVED,CANCELLED
-    */
-    enum class Status(@get:JsonValue val value: kotlin.String) {
-
-        PROCESSING("PROCESSING"),
-        UPDATE_REQUESTED("UPDATE_REQUESTED"),
-        RESOLVED("RESOLVED"),
-        CANCELLED("CANCELLED");
-
-        companion object {
-            @JvmStatic
-            @JsonCreator
-            fun forValue(value: kotlin.String): Status {
-                return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'SupportStatus'")
-            }
-        }
-    }
 
     /**
     * 
@@ -118,7 +96,7 @@ data class SupportStatus(
             @JsonCreator
             fun forValue(value: kotlin.String): SupportType {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'SupportStatus'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'SupportType'")
             }
         }
     }
@@ -140,7 +118,28 @@ data class SupportStatus(
             @JsonCreator
             fun forValue(value: kotlin.String): Priority {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'SupportStatus'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Priority'")
+            }
+        }
+    }
+
+    /**
+    * 
+    * Values: PROCESSING,UPDATE_REQUESTED,RESOLVED,CANCELLED
+    */
+    enum class Status(@get:JsonValue val value: kotlin.String) {
+
+        PROCESSING("PROCESSING"),
+        UPDATE_REQUESTED("UPDATE_REQUESTED"),
+        RESOLVED("RESOLVED"),
+        CANCELLED("CANCELLED");
+
+        companion object {
+            @JvmStatic
+            @JsonCreator
+            fun forValue(value: kotlin.String): Status {
+                return values().firstOrNull{it -> it.value == value}
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Status'")
             }
         }
     }

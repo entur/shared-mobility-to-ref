@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -108,17 +107,17 @@ data class Leg(
     @Schema(example = "null", description = "")
     @get:JsonProperty("state") val state: LegState? = null,
 
-    @get:Min(0)
-    @get:Max(2147483647)
+    @get:Min(value=0)
+    @get:Max(value=2147483647)
     @Schema(example = "11112", description = "A duration of some time (relative to a time) in milliseconds")
     @get:JsonProperty("departureDelay") val departureDelay: kotlin.Int? = null,
 
-    @get:Min(0)
-    @get:Max(2147483647)
+    @get:Min(value=0)
+    @get:Max(value=2147483647)
     @Schema(example = "11112", description = "A duration of some time (relative to a time) in milliseconds")
     @get:JsonProperty("arrivalDelay") val arrivalDelay: kotlin.Int? = null,
 
-    @get:Min(0)
+    @get:Min(value=0)
     @Schema(example = "7250", description = "The estimated distance travelled in the leg (in meters)")
     @get:JsonProperty("distance") val distance: kotlin.Int? = null,
 

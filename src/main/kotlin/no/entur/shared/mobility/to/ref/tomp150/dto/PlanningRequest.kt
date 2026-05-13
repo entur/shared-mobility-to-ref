@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import no.entur.shared.mobility.to.ref.tomp150.dto.ConnectedLegInfo
@@ -43,7 +42,7 @@ data class PlanningRequest(
     @Schema(example = "null", description = "")
     @get:JsonProperty("previousLegInfo") val previousLegInfo: ConnectedLegInfo? = null,
 
-    @get:Min(0)
+    @get:Min(value=0)
     @Schema(example = "null", description = "Maximum distance in meters a user wants to travel to reach the travel option")
     @get:JsonProperty("radius") val radius: kotlin.Int? = null,
 
@@ -51,7 +50,7 @@ data class PlanningRequest(
     @Schema(example = "null", description = "")
     @get:JsonProperty("to") val to: Place? = null,
 
-    @get:Min(0)
+    @get:Min(value=0)
     @Schema(example = "null", description = "instead of using the from/to construct, it is also possible to give an indication of the distance to travel. The process identifier 'USE_ESTIMATED_DISTANCE' is used to indicate this scenario. Also in meters")
     @get:JsonProperty("estimatedDistance") val estimatedDistance: kotlin.Int? = null,
 
@@ -61,7 +60,7 @@ data class PlanningRequest(
     @Schema(example = "null", description = "The intended arrival time, at the `to place`. If not set, the time the user intends to stop using the asset (implicit request for arrival guarantee).")
     @get:JsonProperty("arrivalTime") val arrivalTime: java.time.OffsetDateTime? = null,
 
-    @get:Min(1)
+    @get:Min(value=1)
     @Schema(example = "null", description = "The number of people that intend to travel, including the customer.")
     @get:JsonProperty("nrOfTravelers") val nrOfTravelers: kotlin.Int? = null,
 

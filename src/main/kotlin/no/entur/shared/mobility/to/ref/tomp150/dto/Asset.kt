@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import no.entur.shared.mobility.to.ref.tomp150.dto.AssetProperties
@@ -68,17 +67,17 @@ data class Asset(
     @Deprecated(message = "")
     @get:JsonProperty("rentalUrlIOS") val rentalUrlIOS: kotlin.String? = null,
 
-    @get:DecimalMin("0")
+    @get:DecimalMin(value="0")
     @Schema(example = "null", description = "the current mileage of the asset")
     @get:JsonProperty("mileage") val mileage: kotlin.Float? = null,
 
-    @get:Min(0)
-    @get:Max(100)
+    @get:Min(value=0)
+    @get:Max(value=100)
     @Schema(example = "null", description = "percentage of charge available")
     @get:JsonProperty("stateOfCharge") val stateOfCharge: kotlin.Int? = null,
 
-    @get:Min(0)
-    @get:Max(100)
+    @get:Min(value=0)
+    @get:Max(value=100)
     @Schema(example = "null", description = "maximum range in meters")
     @get:JsonProperty("maxRange") val maxRange: kotlin.Int? = null,
 

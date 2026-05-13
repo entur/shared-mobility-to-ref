@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -56,7 +55,7 @@ data class SupportRequest(
     @Schema(example = "null", description = "")
     @get:JsonProperty("comment") val comment: kotlin.String? = null,
 
-    @get:DecimalMin("0")
+    @get:DecimalMin(value="0")
     @Schema(example = "null", description = "time to respond in minutes.")
     @get:JsonProperty("requestedResponseTime") val requestedResponseTime: kotlin.Double? = null,
 
@@ -94,7 +93,7 @@ data class SupportRequest(
             @JsonCreator
             fun forValue(value: kotlin.String): SupportType {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'SupportRequest'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'SupportType'")
             }
         }
     }
@@ -116,7 +115,7 @@ data class SupportRequest(
             @JsonCreator
             fun forValue(value: kotlin.String): Priority {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'SupportRequest'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Priority'")
             }
         }
     }
