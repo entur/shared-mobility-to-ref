@@ -3,12 +3,12 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     idea
-    id("org.springframework.boot") version "3.5.7"
+    id("org.springframework.boot") version "4.0.6"
     id("io.spring.dependency-management") version "1.1.7"
     kotlin("jvm") version "2.3.21"
     kotlin("plugin.spring") version "2.3.21"
     id("org.openapi.generator") version "7.22.0"
-    id("org.jlleitschuh.gradle.ktlint") version "13.1.0"
+    id("org.jlleitschuh.gradle.ktlint") version "14.2.0"
 }
 
 group = "no.entur"
@@ -46,7 +46,7 @@ dependencies {
     implementation("jakarta.validation:jakarta.validation-api:3.1.1")
     implementation("io.swagger.core.v3:swagger-annotations:2.2.50")
     implementation("io.swagger.core.v3:swagger-models:2.2.50")
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.13")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.0.3")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.flywaydb:flyway-core")
     implementation("io.github.openfeign:feign-httpclient:13.12")
@@ -72,12 +72,12 @@ dependencies {
     testImplementation("io.kotest:kotest-property:6.1.11")
     testImplementation("io.kotest:kotest-assertions-core:6.1.11")
     testImplementation("io.mockk:mockk:1.14.9")
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.13")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.0.3")
 }
 
 dependencyManagement {
     imports {
-        mavenBom("com.google.cloud:spring-cloud-gcp-dependencies:7.4.0")
+        mavenBom("com.google.cloud:spring-cloud-gcp-dependencies:8.0.2")
         mavenBom("org.springframework.cloud:spring-cloud-dependencies:2025.0.1")
     }
 }
