@@ -63,6 +63,10 @@ val place
                     lng = 6.169639F,
                     lat = 52.25327F,
                 ),
+            extraInfo =
+                mapOf(
+                    "stationSlotName" to "42",
+                ),
         )
 
 val fare
