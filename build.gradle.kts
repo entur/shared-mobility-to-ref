@@ -71,14 +71,14 @@ dependencies {
     testImplementation("org.springframework.security:spring-security-test")
     testImplementation("io.kotest:kotest-property:6.1.11")
     testImplementation("io.kotest:kotest-assertions-core:6.1.11")
-    testImplementation("io.mockk:mockk:1.14.9")
+    testImplementation("io.mockk:mockk:1.14.11")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.13")
 }
 
 dependencyManagement {
     imports {
         mavenBom("com.google.cloud:spring-cloud-gcp-dependencies:7.4.0")
-        mavenBom("org.springframework.cloud:spring-cloud-dependencies:2025.0.1")
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:2025.1.1")
     }
 }
 
