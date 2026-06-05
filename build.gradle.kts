@@ -3,18 +3,18 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     idea
-    id("org.springframework.boot") version "3.5.7"
+    id("org.springframework.boot") version "4.0.6"
     id("io.spring.dependency-management") version "1.1.7"
     kotlin("jvm") version "2.3.21"
     kotlin("plugin.spring") version "2.3.21"
     id("org.openapi.generator") version "7.22.0"
-    id("org.jlleitschuh.gradle.ktlint") version "13.1.0"
+    id("org.jlleitschuh.gradle.ktlint") version "14.2.0"
 }
 
 group = "no.entur"
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_21
+    sourceCompatibility = JavaVersion.VERSION_25
 }
 
 repositories {
@@ -41,44 +41,36 @@ repositories {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
-    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-webmvc")
+    implementation("org.springframework.boot:spring-boot-starter-webservices")
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
-    implementation("jakarta.validation:jakarta.validation-api:3.1.1")
-    implementation("io.swagger.core.v3:swagger-annotations:2.2.50")
-    implementation("io.swagger.core.v3:swagger-models:2.2.50")
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.13")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.flywaydb:flyway-core")
     implementation("io.github.openfeign:feign-httpclient:13.12")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.0.3")
+    implementation("com.fasterxml.jackson.core:jackson-annotations:2.22")
     // Override versions with vulnerabilities
     implementation("commons-fileupload:commons-fileupload") {
         version {
             strictly("1.6.0")
         }
     }
-    implementation("org.apache.commons:commons-lang3") {
-        version {
-            strictly("3.19.0")
-        }
-    }
     // override end
 
     // Security
-    implementation("org.entur.auth:oidc-auth-client-spring-boot-starter:4.6.0")
+    implementation("org.entur.auth.client:oidc-client-spring-boot:3.0.1")
     runtimeOnly("io.micrometer:micrometer-registry-prometheus")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
     testImplementation("io.kotest:kotest-property:6.1.11")
     testImplementation("io.kotest:kotest-assertions-core:6.1.11")
     testImplementation("io.mockk:mockk:1.14.9")
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.13")
 }
 
 dependencyManagement {
     imports {
-        mavenBom("com.google.cloud:spring-cloud-gcp-dependencies:7.4.0")
-        mavenBom("org.springframework.cloud:spring-cloud-dependencies:2025.0.1")
+        mavenBom("com.google.cloud:spring-cloud-gcp-dependencies:8.0.3")
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:2025.1.1")
     }
 }
 
@@ -86,7 +78,7 @@ tasks.withType<KotlinCompile> {
     compilerOptions {
         freeCompilerArgs.add("-Xjsr305=strict")
         freeCompilerArgs.add("-Xannotation-default-target=param-property")
-        jvmTarget.set(JvmTarget.JVM_21)
+        jvmTarget.set(JvmTarget.JVM_25)
     }
 }
 
