@@ -1,5 +1,5 @@
 # Run with Distroless Java
-FROM gcr.io/distroless/java21-debian12:nonroot
+FROM gcr.io/distroless/java25-debian13:nonroot
 WORKDIR /app
 
 ARG APP_VERSION
