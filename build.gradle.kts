@@ -3,11 +3,11 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     idea
-    id("org.springframework.boot") version "4.0.6"
+    id("org.springframework.boot") version "4.1.0"
     id("io.spring.dependency-management") version "1.1.7"
     kotlin("jvm") version "2.4.0"
     kotlin("plugin.spring") version "2.4.0"
-    id("org.openapi.generator") version "7.22.0"
+    id("org.openapi.generator") version "7.23.0"
     id("org.jlleitschuh.gradle.ktlint") version "14.2.0"
 }
 
@@ -45,7 +45,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-webservices")
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("io.github.openfeign:feign-httpclient:13.12")
+    implementation("io.github.openfeign:feign-httpclient:13.13")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.0.3")
     implementation("com.fasterxml.jackson.core:jackson-annotations:2.22")
@@ -62,15 +62,15 @@ dependencies {
     runtimeOnly("io.micrometer:micrometer-registry-prometheus")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
-    testImplementation("io.kotest:kotest-property:6.1.11")
-    testImplementation("io.kotest:kotest-assertions-core:6.1.11")
+    testImplementation("io.kotest:kotest-property:6.2.0")
+    testImplementation("io.kotest:kotest-assertions-core:6.2.0")
     testImplementation("io.mockk:mockk:1.14.11")
 }
 
 dependencyManagement {
     imports {
         mavenBom("com.google.cloud:spring-cloud-gcp-dependencies:8.0.4")
-        mavenBom("org.springframework.cloud:spring-cloud-dependencies:2025.1.1")
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:2025.1.2")
     }
 }
 
