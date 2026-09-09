@@ -50,9 +50,14 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.1.0")
     implementation("com.fasterxml.jackson.core:jackson-annotations:2.22")
     // Override versions with vulnerabilities
-    implementation("commons-fileupload:commons-fileupload") {
+    implementation("org.apache.tomcat.embed:tomcat-embed-core") {
         version {
-            strictly("1.6.0")
+            strictly("11.0.25")
+        }
+    }
+    implementation("com.fasterxml.jackson.core:jackson-databind") {
+        version {
+            strictly("2.21.5")
         }
     }
     // override end
