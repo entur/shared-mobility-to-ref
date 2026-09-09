@@ -2,11 +2,8 @@ package no.entur.shared.mobility.to.ref.tomp160.dto
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
-import com.fasterxml.jackson.annotation.Nulls
 import no.entur.shared.mobility.to.ref.tomp160.dto.Day
 import jakarta.validation.constraints.DecimalMax
 import jakarta.validation.constraints.DecimalMin
@@ -31,33 +28,27 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class SystemHours(
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("startTime")
+    @param:JsonProperty("startTime", required = true)
     @get:JsonProperty("startTime", required = true) val startTime: kotlin.String,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("endTime")
+    @param:JsonProperty("endTime", required = true)
     @get:JsonProperty("endTime", required = true) val endTime: kotlin.String,
 
     @field:Valid
     @Schema(required = true, description = "An array of abbreviations (first 3 letters) of English names of the days of the week that this hour object applies to (i.e. [\"mon\", \"tue\"]). Each day can only appear once within all of the hours objects in this feed.")
-    @param:JsonProperty("days")
+    @param:JsonProperty("days", required = true)
     @get:JsonProperty("days", required = true) val days: kotlin.collections.List<Day>,
 
     @Schema(example = "MEMBER", description = "This indicates that this set of rental hours applies to either members or non-members only.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("userType")
     @get:JsonProperty("userType") val userType: SystemHours.UserType? = null,
 
     @Schema(description = "If this parameter is present, it means that startTime and endTime correspond to the opening and closing hours of the station. (GET /operator/stations)")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("stationId")
     @get:JsonProperty("stationId") val stationId: kotlin.String? = null,
 
     @Schema(description = "If this parameter is present, it means that startTime and endTime correspond to the opening and closing hours for the region. (GET /operator/regions)")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("regionId")
     @get:JsonProperty("regionId") val regionId: kotlin.String? = null
 ) {

@@ -26,16 +26,16 @@ data class TokenEKey(
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("ekey")
+    @param:JsonProperty("ekey", required = true)
     @get:JsonProperty("ekey", required = true) val ekey: TokenEKeyAllOfEkey,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("lock")
+    @param:JsonProperty("lock", required = true)
     @get:JsonProperty("lock", required = true) val lock: TokenEKeyAllOfLock,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("tokenType")
+    @param:JsonProperty("tokenType", required = true)
     @get:JsonProperty("tokenType", required = true) override val tokenType: kotlin.String
 ) : TokenData {
 

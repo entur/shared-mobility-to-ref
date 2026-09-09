@@ -1,10 +1,7 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
 import java.util.Objects
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
-import com.fasterxml.jackson.annotation.Nulls
 import no.entur.shared.mobility.to.ref.tomp150.dto.AssetProperties
 import no.entur.shared.mobility.to.ref.tomp150.dto.Damage
 import jakarta.validation.constraints.DecimalMax
@@ -41,112 +38,80 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class Asset(
 
     @Schema(required = true, description = "Identifier of an asset. Whenever used in Operator Information changed after every trip (GDPR).")
-    @param:JsonProperty("id")
+    @param:JsonProperty("id", required = true)
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
     @Schema(description = "true indicates the bike is currently reserved for someone else")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("isReserved")
     @get:JsonProperty("isReserved") val isReserved: kotlin.Boolean? = null,
 
     @Schema(description = "optional addition to determine if an asset is reserved in the future")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("isReservedFrom")
     @get:JsonProperty("isReservedFrom") val isReservedFrom: java.time.OffsetDateTime? = null,
 
     @Schema(description = "optional addition to determine when asset is available in the future")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("isReservedTo")
     @get:JsonProperty("isReservedTo") val isReservedTo: java.time.OffsetDateTime? = null,
 
     @Schema(description = "true indicates the asset is currently disabled (broken)")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("isDisabled")
     @get:JsonProperty("isDisabled") val isDisabled: kotlin.Boolean? = null,
 
     @Schema(description = "The date and time when any rental of the vehicle must be completed. The vehicle must be returned and made available for the next user by this time. If this field is empty, it indicates that the vehicle is available indefinitely. This field SHOULD be published by carsharing or other mobility systems where vehicles can be booked in advance for future travel.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("availableUntil")
     @get:JsonProperty("availableUntil") val availableUntil: java.time.OffsetDateTime? = null,
 
     @Schema(example = "https://www.rentmyfreebike.com/app?sid=1234567890", description = "deep-linking option from GBFS+. Only added to be consistent with GBFS 2.0")
     @Deprecated(message = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("rentalUrl")
     @get:JsonProperty("rentalUrl") val rentalUrl: kotlin.String? = null,
 
     @Schema(example = "https://www.rentmyfreebike.com/app?sid=1234567890&platform=android", description = "deep-linking option from GBFS 2.0. Only added to be consistent with GBFS 2.0")
     @Deprecated(message = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("rentalUrlAndroid")
     @get:JsonProperty("rentalUrlAndroid") val rentalUrlAndroid: kotlin.String? = null,
 
     @Schema(example = "https://www.rentmyfreebike.com/app?sid=1234567890&platform=ios", description = "deep-linking option from GBFS 2.0. Only added to be consistent with GBFS 2.0")
     @Deprecated(message = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("rentalUrlIOS")
     @get:JsonProperty("rentalUrlIOS") val rentalUrlIOS: kotlin.String? = null,
 
     @get:DecimalMin(value="0")
     @Schema(description = "the current mileage of the asset")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("mileage")
     @get:JsonProperty("mileage") val mileage: kotlin.Float? = null,
 
     @get:Min(value=0)
     @get:Max(value=100)
     @Schema(description = "percentage of charge available")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("stateOfCharge")
     @get:JsonProperty("stateOfCharge") val stateOfCharge: kotlin.Int? = null,
 
     @get:Min(value=0)
     @get:Max(value=100)
     @Schema(description = "maximum range in meters")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("maxRange")
     @get:JsonProperty("maxRange") val maxRange: kotlin.Int? = null,
 
     @Schema(description = "the usage of this field requires a secure environment. When assets are published in available-assets, this field can be used to track assets. Be aware of this.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("licensePlate")
     @get:JsonProperty("licensePlate") val licensePlate: kotlin.String? = null,
 
     @Schema(description = "reference to station_id in /operator/stations, station where it is located")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("stationId")
     @get:JsonProperty("stationId") val stationId: kotlin.String? = null,
 
     @Schema(description = "reference to station_id in /operator/stations, station where it is assigned to")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("homeStationId")
     @get:JsonProperty("homeStationId") val homeStationId: kotlin.String? = null,
 
     @field:Valid
     @Schema(description = "List of known vehicle damages.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("damages")
     @get:JsonProperty("damages") val damages: kotlin.collections.List<Damage>? = null,
 
     @field:Valid
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("overriddenProperties")
     @get:JsonProperty("overriddenProperties") val overriddenProperties: AssetProperties? = null
 ) {

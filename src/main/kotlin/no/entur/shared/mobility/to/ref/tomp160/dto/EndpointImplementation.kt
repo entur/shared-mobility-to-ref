@@ -1,10 +1,7 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
 import java.util.Objects
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
-import com.fasterxml.jackson.annotation.Nulls
 import no.entur.shared.mobility.to.ref.tomp160.dto.Endpoint
 import no.entur.shared.mobility.to.ref.tomp160.dto.EndpointImplementationSteps
 import no.entur.shared.mobility.to.ref.tomp160.dto.ProcessIdentifiers
@@ -32,32 +29,30 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class EndpointImplementation(
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("version")
+    @param:JsonProperty("version", required = true)
     @get:JsonProperty("version", required = true) val version: kotlin.String,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("baseUrl")
+    @param:JsonProperty("baseUrl", required = true)
     @get:JsonProperty("baseUrl", required = true) val baseUrl: kotlin.String,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("endpoints")
+    @param:JsonProperty("endpoints", required = true)
     @get:JsonProperty("endpoints", required = true) val endpoints: kotlin.collections.List<Endpoint>,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("scenarios")
+    @param:JsonProperty("scenarios", required = true)
     @get:JsonProperty("scenarios", required = true) val scenarios: kotlin.collections.List<Scenario>,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("processIdentifiers")
+    @param:JsonProperty("processIdentifiers", required = true)
     @get:JsonProperty("processIdentifiers", required = true) val processIdentifiers: ProcessIdentifiers,
 
     @field:Valid
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("steps")
     @get:JsonProperty("steps") val steps: EndpointImplementationSteps? = null
 ) {

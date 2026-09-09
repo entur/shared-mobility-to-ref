@@ -2,11 +2,8 @@ package no.entur.shared.mobility.to.ref.tomp150.dto
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
-import com.fasterxml.jackson.annotation.Nulls
 import no.entur.shared.mobility.to.ref.tomp150.dto.AssetClass
 import jakarta.validation.constraints.DecimalMax
 import jakarta.validation.constraints.DecimalMin
@@ -29,25 +26,19 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class CardType(
 
     @Schema(required = true, description = "The broad category of card")
-    @param:JsonProperty("type")
+    @param:JsonProperty("type", required = true)
     @get:JsonProperty("type", required = true) val type: CardType.Type,
 
     @Schema(description = "For use in case of OTHER. Can be used in bilateral agreements.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("subType")
     @get:JsonProperty("subType") val subType: kotlin.String? = null,
 
     @field:Valid
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("assetClass")
     @get:JsonProperty("assetClass") val assetClass: AssetClass? = null,
 
     @Schema(description = "references to accepting parties, only if applicable")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("acceptors")
     @get:JsonProperty("acceptors") val acceptors: kotlin.collections.List<kotlin.String>? = null
 ) {

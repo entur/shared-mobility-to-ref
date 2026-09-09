@@ -1,10 +1,7 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
 import java.util.Objects
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
-import com.fasterxml.jackson.annotation.Nulls
 import no.entur.shared.mobility.to.ref.tomp160.dto.Asset
 import no.entur.shared.mobility.to.ref.tomp160.dto.Coordinates
 import jakarta.validation.constraints.DecimalMax
@@ -29,28 +26,22 @@ data class LegProgress(
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("coordinates")
+    @param:JsonProperty("coordinates", required = true)
     @get:JsonProperty("coordinates", required = true) val coordinates: Coordinates,
 
     @get:Min(value=0)
     @get:Max(value=2147483647)
     @Schema(example = "11112", description = "A duration of some time (relative to a time) in milliseconds")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("duration")
     @get:JsonProperty("duration") val duration: kotlin.Int? = null,
 
     @get:Min(value=0)
     @Schema(example = "7250", description = "The estimated distance travelled in the leg (in meters)")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("distance")
     @get:JsonProperty("distance") val distance: kotlin.Int? = null,
 
     @field:Valid
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("asset")
     @get:JsonProperty("asset") val asset: Asset? = null
 ) {

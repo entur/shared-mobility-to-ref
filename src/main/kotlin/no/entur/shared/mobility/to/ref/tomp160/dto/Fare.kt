@@ -1,10 +1,7 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
 import java.util.Objects
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
-import com.fasterxml.jackson.annotation.Nulls
 import no.entur.shared.mobility.to.ref.tomp160.dto.FarePart
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonValue
@@ -29,23 +26,19 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class Fare(
 
     @Schema(required = true, description = "is this fare an estimation?")
-    @param:JsonProperty("estimated")
+    @param:JsonProperty("estimated", required = true)
     @get:JsonProperty("estimated", required = true) val estimated: kotlin.Boolean,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("parts")
+    @param:JsonProperty("parts", required = true)
     @get:JsonProperty("parts", required = true) val parts: kotlin.collections.List<FarePart>,
 
     @Schema(description = "user friendly description of the fare (e.g. 'full fare'), should match Content-Language")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("description")
     @get:JsonProperty("description") val description: kotlin.String? = null,
 
     @Schema(description = "in the future we'll set up an enumeration of possible \"fare classes\". For now it's free format.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("class")
     @get:JsonProperty("class") val propertyClass: kotlin.String? = null
 ) : JournalEntryAllOfDetails {

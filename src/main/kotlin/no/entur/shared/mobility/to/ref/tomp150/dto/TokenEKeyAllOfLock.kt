@@ -1,10 +1,7 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
 import java.util.Objects
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
-import com.fasterxml.jackson.annotation.Nulls
 import jakarta.validation.constraints.DecimalMax
 import jakarta.validation.constraints.DecimalMin
 import jakarta.validation.constraints.Email
@@ -24,14 +21,10 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class TokenEKeyAllOfLock(
 
     @Schema(description = "physical address")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("bdAddress")
     @get:JsonProperty("bdAddress") val bdAddress: kotlin.String? = null,
 
     @Schema(description = "how it advertises itself")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("deviceName")
     @get:JsonProperty("deviceName") val deviceName: kotlin.String? = null
 ) {

@@ -24,16 +24,16 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class StopReference(
 
     @Schema(required = true, description = "type of external reference (GTFS, CHB).")
-    @param:JsonProperty("type")
+    @param:JsonProperty("type", required = true)
     @get:JsonProperty("type", required = true) val type: StopReference.Type,
 
     @Schema(required = true, description = "this field should contain the complete ID. E.g. NL:S:13121110 or BE:S:79640040")
-    @param:JsonProperty("id")
+    @param:JsonProperty("id", required = true)
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
     @get:Size(min=2,max=2)
     @Schema(example = "NL", required = true, description = "two-letter country codes according to ISO 3166-1")
-    @param:JsonProperty("country")
+    @param:JsonProperty("country", required = true)
     @get:JsonProperty("country", required = true) val country: kotlin.String
 ) {
 

@@ -2,11 +2,8 @@ package no.entur.shared.mobility.to.ref.tomp160.dto
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
-import com.fasterxml.jackson.annotation.Nulls
 import jakarta.validation.constraints.DecimalMax
 import jakarta.validation.constraints.DecimalMin
 import jakarta.validation.constraints.Email
@@ -31,42 +28,32 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class Requirement(
 
     @Schema(required = true, description = "references to the first column of the specification initial values [ HR, AV, HV, AB, AER, K, ZR, RR ]")
-    @param:JsonProperty("category")
+    @param:JsonProperty("category", required = true)
     @get:JsonProperty("category", required = true) val category: kotlin.String,
 
     @get:Size(min=2,max=2)
     @Schema(required = true, description = "references to the second column of the specification")
-    @param:JsonProperty("number")
+    @param:JsonProperty("number", required = true)
     @get:JsonProperty("number", required = true) val number: kotlin.String,
 
     @Schema(description = "if obsolete, it is referencing the travelers' dictionary (https://github.com/TOMP-WG/TOMP-API/blob/master/documents/CROW%20passenger%20characteristics.xlsx)")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("source")
     @get:JsonProperty("source") val source: kotlin.String? = null,
 
     @Schema(description = "conditionally extra information, referencing to the 3th column")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("type")
     @get:JsonProperty("type") val type: kotlin.String? = null,
 
     @Schema(description = "extra field for detailed information, not standardized")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("memo")
     @get:JsonProperty("memo") val memo: kotlin.String? = null,
 
     @get:Min(value=0)
     @Schema(description = "in some requirements there is references to '[variable number]' e.g. of meters (like ZR06)")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("variable-number")
     @get:JsonProperty("variable-number") val variableNumber: kotlin.Int? = null,
 
     @Schema(description = "days of week that are applicable")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("applicable-days")
     @get:JsonProperty("applicable-days") val applicableDays: kotlin.collections.List<Requirement.ApplicableDays>? = null
 ) {
