@@ -1,10 +1,7 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
 import java.util.Objects
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
-import com.fasterxml.jackson.annotation.Nulls
 import no.entur.shared.mobility.to.ref.tomp160.dto.Error
 import jakarta.validation.constraints.DecimalMax
 import jakarta.validation.constraints.DecimalMin
@@ -26,8 +23,6 @@ data class CustomersPostDefaultResponse(
     @field:Valid
     @get:Size(max=10)
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("errors")
     @get:JsonProperty("errors") val errors: kotlin.collections.List<Error>? = null
 ) {

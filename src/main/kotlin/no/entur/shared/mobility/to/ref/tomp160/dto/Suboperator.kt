@@ -1,10 +1,7 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
 import java.util.Objects
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
-import com.fasterxml.jackson.annotation.Nulls
 import jakarta.validation.constraints.DecimalMax
 import jakarta.validation.constraints.DecimalMin
 import jakarta.validation.constraints.Email
@@ -26,24 +23,18 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class Suboperator(
 
     @Schema(required = true, description = "Name of the operator, could match Content-Language")
-    @param:JsonProperty("name")
+    @param:JsonProperty("name", required = true)
     @get:JsonProperty("name", required = true) val name: kotlin.String,
 
     @Schema(description = "the maasId from the operator")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("maasId")
     @get:JsonProperty("maasId") val maasId: kotlin.String? = null,
 
     @Schema(description = "short description of the operator, should match Content-Language")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("description")
     @get:JsonProperty("description") val description: kotlin.String? = null,
 
     @Schema(description = "contact information, should match Content-Language")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("contact")
     @get:JsonProperty("contact") val contact: kotlin.String? = null
 ) {

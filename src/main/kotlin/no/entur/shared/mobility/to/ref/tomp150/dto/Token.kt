@@ -2,11 +2,8 @@ package no.entur.shared.mobility.to.ref.tomp150.dto
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
-import com.fasterxml.jackson.annotation.Nulls
 import no.entur.shared.mobility.to.ref.tomp150.dto.TokenData
 import jakarta.validation.constraints.DecimalMax
 import jakarta.validation.constraints.DecimalMin
@@ -29,21 +26,19 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class Token(
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("validFrom")
+    @param:JsonProperty("validFrom", required = true)
     @get:JsonProperty("validFrom", required = true) val validFrom: java.time.OffsetDateTime,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("validUntil")
+    @param:JsonProperty("validUntil", required = true)
     @get:JsonProperty("validUntil", required = true) val validUntil: java.time.OffsetDateTime,
 
     @Schema(required = true, description = "The type of data held in this token, will later be an enum")
-    @param:JsonProperty("tokenType")
+    @param:JsonProperty("tokenType", required = true)
     @get:JsonProperty("tokenType", required = true) val tokenType: Token.TokenType,
 
     @field:Valid
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("tokenData")
     @get:JsonProperty("tokenData") val tokenData: TokenData? = null
 ) {

@@ -1,10 +1,7 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
 import java.util.Objects
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
-import com.fasterxml.jackson.annotation.Nulls
 import jakarta.validation.constraints.DecimalMax
 import jakarta.validation.constraints.DecimalMin
 import jakarta.validation.constraints.Email
@@ -24,14 +21,10 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class TokenEKeyAllOfEkey(
 
     @Schema(description = "certificate")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("key")
     @get:JsonProperty("key") val key: kotlin.String? = null,
 
     @Schema(description = "one time pass key")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("passkey")
     @get:JsonProperty("passkey") val passkey: kotlin.String? = null
 ) {

@@ -26,31 +26,31 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class ProcessIdentifiers(
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("operatorInformation")
+    @param:JsonProperty("operatorInformation", required = true)
     @get:JsonProperty("operatorInformation", required = true) val operatorInformation: kotlin.collections.List<kotlin.String>,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("planning")
+    @param:JsonProperty("planning", required = true)
     @get:JsonProperty("planning", required = true) val planning: kotlin.collections.List<kotlin.String>,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("booking")
+    @param:JsonProperty("booking", required = true)
     @get:JsonProperty("booking", required = true) val booking: kotlin.collections.List<kotlin.String>,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("tripExecution")
+    @param:JsonProperty("tripExecution", required = true)
     @get:JsonProperty("tripExecution", required = true) val tripExecution: kotlin.collections.List<kotlin.String>,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("support")
+    @param:JsonProperty("support", required = true)
     @get:JsonProperty("support", required = true) val support: kotlin.collections.List<kotlin.String>,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("payment")
+    @param:JsonProperty("payment", required = true)
     @get:JsonProperty("payment", required = true) val payment: kotlin.collections.List<kotlin.String>,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("general")
+    @param:JsonProperty("general", required = true)
     @get:JsonProperty("general", required = true) val general: kotlin.collections.List<kotlin.String>
 ) {
 

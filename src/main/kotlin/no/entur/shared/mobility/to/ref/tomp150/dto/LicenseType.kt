@@ -2,11 +2,8 @@ package no.entur.shared.mobility.to.ref.tomp150.dto
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
-import com.fasterxml.jackson.annotation.Nulls
 import no.entur.shared.mobility.to.ref.tomp150.dto.AssetClass
 import jakarta.validation.constraints.DecimalMax
 import jakarta.validation.constraints.DecimalMin
@@ -28,13 +25,11 @@ data class LicenseType(
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("assetClass")
+    @param:JsonProperty("assetClass", required = true)
     @get:JsonProperty("assetClass", required = true) val assetClass: AssetClass,
 
     @get:Size(min=2,max=2)
     @Schema(example = "NL", description = "two-letter country codes according to ISO 3166-1")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("issuingCountry")
     @get:JsonProperty("issuingCountry") val issuingCountry: kotlin.String? = null
 ) {

@@ -1,10 +1,7 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
 import java.util.Objects
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
-import com.fasterxml.jackson.annotation.Nulls
 import no.entur.shared.mobility.to.ref.tomp150.dto.ConnectedLegInfo
 import no.entur.shared.mobility.to.ref.tomp150.dto.Place
 import no.entur.shared.mobility.to.ref.tomp150.dto.Traveler
@@ -39,85 +36,61 @@ data class PlanningRequest(
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("from")
+    @param:JsonProperty("from", required = true)
     @get:JsonProperty("from", required = true) val from: Place,
 
     @field:Valid
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("previousLegInfo")
     @get:JsonProperty("previousLegInfo") val previousLegInfo: ConnectedLegInfo? = null,
 
     @get:Min(value=0)
     @Schema(description = "Maximum distance in meters a user wants to travel to reach the travel option")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("radius")
     @get:JsonProperty("radius") val radius: kotlin.Int? = null,
 
     @field:Valid
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("to")
     @get:JsonProperty("to") val to: Place? = null,
 
     @get:Min(value=0)
     @Schema(description = "instead of using the from/to construct, it is also possible to give an indication of the distance to travel. The process identifier 'USE_ESTIMATED_DISTANCE' is used to indicate this scenario. Also in meters")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("estimatedDistance")
     @get:JsonProperty("estimatedDistance") val estimatedDistance: kotlin.Int? = null,
 
     @Schema(description = "The intended departure time. If left out and no arrivalTime is set, the current time should be assumed. If only the arrival time is specified, this is an implicit request for a guaranteed arrival at that time.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("departureTime")
     @get:JsonProperty("departureTime") val departureTime: java.time.OffsetDateTime? = null,
 
     @Schema(description = "The intended arrival time, at the `to place`. If not set, the time the user intends to stop using the asset (implicit request for arrival guarantee).")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("arrivalTime")
     @get:JsonProperty("arrivalTime") val arrivalTime: java.time.OffsetDateTime? = null,
 
     @get:Min(value=1)
     @Schema(description = "The number of people that intend to travel, including the customer.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("nrOfTravelers")
     @get:JsonProperty("nrOfTravelers") val nrOfTravelers: kotlin.Int? = null,
 
     @field:Valid
     @Schema(description = "Extra information about the people that intend to travel if relevant, length must be less than or equal to nrOftravelers.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("travelers")
     @get:JsonProperty("travelers") val travelers: kotlin.collections.List<Traveler>? = null,
 
     @Schema(description = "The specific asset(s) the user wishes to receive leg options for")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("useAssets")
     @get:JsonProperty("useAssets") val useAssets: kotlin.collections.List<kotlin.String>? = null,
 
     @Schema(description = "Id(s) of user groups that the user belongs to. This provides access to exclusive assets that are hidden to the public. Id's are agreed upon by TO and MP.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("userGroups")
     @get:JsonProperty("userGroups") val userGroups: kotlin.collections.List<kotlin.String>? = null,
 
     @Schema(description = "The specific asset type(s) the user wishes to receive leg options for")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("useAssetTypes")
     @get:JsonProperty("useAssetTypes") val useAssetTypes: kotlin.collections.List<kotlin.String>? = null,
 
     @field:Valid
     @Schema(description = "dictionary for extra fields (bilatural agreements)")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("extraInfo")
     @get:JsonProperty("extraInfo") val extraInfo: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null
 ) {

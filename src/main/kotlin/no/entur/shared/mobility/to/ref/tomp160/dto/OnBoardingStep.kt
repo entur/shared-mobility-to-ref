@@ -2,11 +2,8 @@ package no.entur.shared.mobility.to.ref.tomp160.dto
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
-import com.fasterxml.jackson.annotation.Nulls
 import jakarta.validation.constraints.DecimalMax
 import jakarta.validation.constraints.DecimalMin
 import jakarta.validation.constraints.Email
@@ -30,39 +27,27 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class OnBoardingStep(
 
     @Schema(description = "the type of the information provided")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("type")
     @get:JsonProperty("type") val type: OnBoardingStep.Type? = null,
 
     @Schema(description = "the internet location of the information, used in case or type `URL` or `IMAGE`")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("url")
     @get:JsonProperty("url") val url: kotlin.String? = null,
 
     @Schema(description = "the purpose of the information")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("goal")
     @get:JsonProperty("goal") val goal: OnBoardingStep.Goal? = null,
 
     @Schema(description = "free format text or HTML, depending on the type. Not to use in combination with `URL` or `IMAGE`")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("text")
     @get:JsonProperty("text") val text: kotlin.String? = null,
 
     @Schema(description = "the moment when the information must be displayed")
     @Deprecated(message = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("showTime")
     @get:JsonProperty("showTime") val showTime: OnBoardingStep.ShowTime? = null,
 
     @Schema(description = "The possible steps are described here<br> `SEND_PREPARE` - indicate the leg is going to start <br> `UNLOCK_LOCKER` - user action - optionally triggered by the PREPARE event<br> `DISCONNECT_CHARGER` - requested user action <br> `SHOW_DAMAGES` - show known damages to end user <br> `UNLOCK_ASSET` - requested user action or triggered by SET_IN_USE event <br> `START_ASSET` - requested user action <br> `SEND_OPEN_TRUNK` - request TO to open trunk/helmet case remotely<br> `UNLOCK_TRUNK` - requested user action <br> `TAKE_HELMET` - requested user action <br> `SEND_SET_IN_USE` - request to start leg <br> `SEND_ASSIGN_ASSET` - request to assign the specified asset to the leg <br> `LOCK_LOCKER` - requested user action")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("action")
     @get:JsonProperty("action") val action: OnBoardingStep.Action? = null
 ) {

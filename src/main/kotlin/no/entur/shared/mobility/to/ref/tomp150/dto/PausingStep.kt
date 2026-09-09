@@ -2,11 +2,8 @@ package no.entur.shared.mobility.to.ref.tomp150.dto
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
-import com.fasterxml.jackson.annotation.Nulls
 import jakarta.validation.constraints.DecimalMax
 import jakarta.validation.constraints.DecimalMin
 import jakarta.validation.constraints.Email
@@ -30,39 +27,27 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class PausingStep(
 
     @Schema(description = "the type of the information provided")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("type")
     @get:JsonProperty("type") val type: PausingStep.Type? = null,
 
     @Schema(description = "the internet location of the information, used in case or type `URL` or `IMAGE`")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("url")
     @get:JsonProperty("url") val url: kotlin.String? = null,
 
     @Schema(description = "the purpose of the information")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("goal")
     @get:JsonProperty("goal") val goal: PausingStep.Goal? = null,
 
     @Schema(description = "free format text or HTML, depending on the type. Not to use in combination with `URL` or `IMAGE`")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("text")
     @get:JsonProperty("text") val text: kotlin.String? = null,
 
     @Schema(description = "the moment when the information must be displayed")
     @Deprecated(message = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("showTime")
     @get:JsonProperty("showTime") val showTime: PausingStep.ShowTime? = null,
 
     @Schema(description = "allowed actions<br> `SEND_PAUSE` - send leg event PAUSE to inform the TO<br> `PARK_ASSIST` - user action, the end user can be informed how and where to park<br> `LOCK_ASSET` - user action, can be triggered by the PAUSE event<br> `SEND_OPEN_TRUNK` - request TO to open the trunk remotely<br> `UNLOCK_TRUNK` - user action<br> `STOW_HELMET` - user action<br> `LOCK_TRUNK` - user action")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("action")
     @get:JsonProperty("action") val action: PausingStep.Action? = null
 ) {

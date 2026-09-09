@@ -1,10 +1,7 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
 import java.util.Objects
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
-import com.fasterxml.jackson.annotation.Nulls
 import no.entur.shared.mobility.to.ref.tomp160.dto.CardType
 import no.entur.shared.mobility.to.ref.tomp160.dto.LicenseType
 import no.entur.shared.mobility.to.ref.tomp160.dto.Requirements
@@ -33,53 +30,37 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class Traveler(
 
     @Schema(description = "Whether this traveler's identity and properties have been verified by the MaaS provider")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("isValidated")
     @get:JsonProperty("isValidated") val isValidated: kotlin.Boolean? = null,
 
     @Schema(description = "Age of the traveler, may be approximate")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("age")
     @get:JsonProperty("age") val age: kotlin.Int? = null,
 
     @Schema(description = "reference number of the traveler. This number could be used to refer to in the planning result.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("referenceNumber")
     @get:JsonProperty("referenceNumber") val referenceNumber: kotlin.String? = null,
 
     @field:Valid
     @Schema(description = "The kind of cards this traveler possesses")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("cardTypes")
     @get:JsonProperty("cardTypes") val cardTypes: kotlin.collections.List<CardType>? = null,
 
     @field:Valid
     @Schema(description = "The kind of licenses this traveler possesses")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("licenseTypes")
     @get:JsonProperty("licenseTypes") val licenseTypes: kotlin.collections.List<LicenseType>? = null,
 
     @field:Valid
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("requirements")
     @get:JsonProperty("requirements") val requirements: Requirements? = null,
 
     @Schema(description = "identifier for this traveler in the personal data store. This identifier can be used to get personal information from the provider specified in the \"knownIdentifierProvider\"")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("knownIdentifier")
     @get:JsonProperty("knownIdentifier") val knownIdentifier: kotlin.String? = null,
 
     @Schema(description = "provider for personal information. Can be a URI or identifier.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("knownIdentifierProvider")
     @get:JsonProperty("knownIdentifierProvider") val knownIdentifierProvider: kotlin.String? = null
 ) {

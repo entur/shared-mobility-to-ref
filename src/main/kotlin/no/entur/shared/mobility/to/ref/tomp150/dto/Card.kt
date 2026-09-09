@@ -2,11 +2,8 @@ package no.entur.shared.mobility.to.ref.tomp150.dto
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
-import com.fasterxml.jackson.annotation.Nulls
 import no.entur.shared.mobility.to.ref.tomp150.dto.AssetClass
 import jakarta.validation.constraints.DecimalMax
 import jakarta.validation.constraints.DecimalMin
@@ -34,53 +31,41 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class Card(
 
     @Schema(required = true, description = "The broad category of card")
-    @param:JsonProperty("type")
+    @param:JsonProperty("type", required = true)
     @get:JsonProperty("type", required = true) val type: Card.Type,
 
     @Schema(required = true, description = "number of the card, like ID number, credit card or bank account number")
-    @param:JsonProperty("cardNumber")
+    @param:JsonProperty("cardNumber", required = true)
     @get:JsonProperty("cardNumber", required = true) val cardNumber: kotlin.String,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("validUntil")
+    @param:JsonProperty("validUntil", required = true)
     @get:JsonProperty("validUntil", required = true) val validUntil: java.time.LocalDate,
 
     @Schema(description = "For use in case of OTHER. Can be used in bilateral agreements.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("subType")
     @get:JsonProperty("subType") val subType: kotlin.String? = null,
 
     @field:Valid
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("assetClass")
     @get:JsonProperty("assetClass") val assetClass: AssetClass? = null,
 
     @Schema(description = "references to accepting parties, only if applicable")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("acceptors")
     @get:JsonProperty("acceptors") val acceptors: kotlin.collections.List<kotlin.String>? = null,
 
     @Schema(description = "description of the card")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("cardDescription")
     @get:JsonProperty("cardDescription") val cardDescription: kotlin.String? = null,
 
     @Schema(description = "additional number, like CVC code or IBAN code")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("cardAdditionalNumber")
     @get:JsonProperty("cardAdditionalNumber") val cardAdditionalNumber: kotlin.String? = null,
 
     @get:Size(min=2,max=2)
     @Schema(example = "NL", description = "two-letter country codes according to ISO 3166-1")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("country")
     @get:JsonProperty("country") val country: kotlin.String? = null
 ) {
