@@ -2,8 +2,11 @@ package no.entur.shared.mobility.to.ref.tomp150.dto
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.Nulls
 import no.entur.shared.mobility.to.ref.tomp150.dto.AssetClass
 import jakarta.validation.constraints.DecimalMax
 import jakarta.validation.constraints.DecimalMin
@@ -30,34 +33,55 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class Card(
 
-    @Schema(example = "null", required = true, description = "The broad category of card")
+    @Schema(required = true, description = "The broad category of card")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: Card.Type,
 
-    @Schema(example = "null", required = true, description = "number of the card, like ID number, credit card or bank account number")
+    @Schema(required = true, description = "number of the card, like ID number, credit card or bank account number")
+    @param:JsonProperty("cardNumber")
     @get:JsonProperty("cardNumber", required = true) val cardNumber: kotlin.String,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("validUntil")
     @get:JsonProperty("validUntil", required = true) val validUntil: java.time.LocalDate,
 
-    @Schema(example = "null", description = "For use in case of OTHER. Can be used in bilateral agreements.")
+    @Schema(description = "For use in case of OTHER. Can be used in bilateral agreements.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("subType")
     @get:JsonProperty("subType") val subType: kotlin.String? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("assetClass")
     @get:JsonProperty("assetClass") val assetClass: AssetClass? = null,
 
-    @Schema(example = "null", description = "references to accepting parties, only if applicable")
+    @Schema(description = "references to accepting parties, only if applicable")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("acceptors")
     @get:JsonProperty("acceptors") val acceptors: kotlin.collections.List<kotlin.String>? = null,
 
-    @Schema(example = "null", description = "description of the card")
+    @Schema(description = "description of the card")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("cardDescription")
     @get:JsonProperty("cardDescription") val cardDescription: kotlin.String? = null,
 
-    @Schema(example = "null", description = "additional number, like CVC code or IBAN code")
+    @Schema(description = "additional number, like CVC code or IBAN code")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("cardAdditionalNumber")
     @get:JsonProperty("cardAdditionalNumber") val cardAdditionalNumber: kotlin.String? = null,
 
     @get:Size(min=2,max=2)
     @Schema(example = "NL", description = "two-letter country codes according to ISO 3166-1")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("country")
     @get:JsonProperty("country") val country: kotlin.String? = null
 ) {
 

@@ -21,11 +21,13 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class Planning(
 
-    @Schema(example = "null", required = true, description = "The time until which the presented options are (likely) available")
+    @Schema(required = true, description = "The time until which the presented options are (likely) available")
+    @param:JsonProperty("validUntil")
     @get:JsonProperty("validUntil", required = true) val validUntil: java.time.OffsetDateTime,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("options")
     @get:JsonProperty("options", required = true) val options: kotlin.collections.List<Booking>
 ) {
 

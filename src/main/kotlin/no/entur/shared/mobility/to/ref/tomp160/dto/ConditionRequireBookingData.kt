@@ -2,8 +2,11 @@ package no.entur.shared.mobility.to.ref.tomp160.dto
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.Nulls
 import no.entur.shared.mobility.to.ref.tomp160.dto.Condition
 import jakarta.validation.constraints.DecimalMax
 import jakarta.validation.constraints.DecimalMin
@@ -25,16 +28,24 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class ConditionRequireBookingData(
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("requiredFields")
     @get:JsonProperty("requiredFields", required = true) val requiredFields: kotlin.collections.List<ConditionRequireBookingData.RequiredFields>,
 
-    @Schema(example = "null", required = true, description = "The specific subclass of condition, should match the schema name exactly")
+    @Schema(required = true, description = "The specific subclass of condition, should match the schema name exactly")
+    @param:JsonProperty("conditionType")
     @get:JsonProperty("conditionType", required = true) override val conditionType: kotlin.String,
 
-    @Schema(example = "null", description = "when in the 'requiredFields' array 'BLOCKCHAIN_CLAIMS' is specified, in this array claims can be specified. On the WIKI page, the known ones are enlisted, but this list isn't finalized yet. https://github.com/TOMP-WG/TOMP-API/wiki/Blockchain---Verifiable-credentials")
+    @Schema(description = "when in the 'requiredFields' array 'BLOCKCHAIN_CLAIMS' is specified, in this array claims can be specified. On the WIKI page, the known ones are enlisted, but this list isn't finalized yet. https://github.com/TOMP-WG/TOMP-API/wiki/Blockchain---Verifiable-credentials")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("claims")
     @get:JsonProperty("claims") val claims: kotlin.collections.List<kotlin.String>? = null,
 
     @Schema(example = "deposit50eu", description = "An identifier for this condition that can be used to refer to this condition")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("id")
     @get:JsonProperty("id") override val id: kotlin.String? = null
 ) : Condition {
 

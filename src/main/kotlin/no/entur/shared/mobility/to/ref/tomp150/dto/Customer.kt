@@ -1,7 +1,10 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
 import java.util.Objects
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
+import com.fasterxml.jackson.annotation.Nulls
 import no.entur.shared.mobility.to.ref.tomp150.dto.Address
 import no.entur.shared.mobility.to.ref.tomp150.dto.Card
 import no.entur.shared.mobility.to.ref.tomp150.dto.CardType
@@ -50,84 +53,154 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class Customer(
 
     @Schema(example = "A0-123456", required = true, description = "The identifier MaaS uses to identify the customer")
+    @param:JsonProperty("id")
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
-    @Schema(example = "null", description = "Whether this traveler's identity and properties have been verified by the MaaS provider")
+    @Schema(description = "Whether this traveler's identity and properties have been verified by the MaaS provider")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("isValidated")
     @get:JsonProperty("isValidated") val isValidated: kotlin.Boolean? = null,
 
-    @Schema(example = "null", description = "Age of the traveler, may be approximate")
+    @Schema(description = "Age of the traveler, may be approximate")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("age")
     @get:JsonProperty("age") val age: kotlin.Int? = null,
 
-    @Schema(example = "null", description = "reference number of the traveler. This number could be used to refer to in the planning result.")
+    @Schema(description = "reference number of the traveler. This number could be used to refer to in the planning result.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("referenceNumber")
     @get:JsonProperty("referenceNumber") val referenceNumber: kotlin.String? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "The kind of cards this traveler possesses")
+    @Schema(description = "The kind of cards this traveler possesses")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("cardTypes")
     @get:JsonProperty("cardTypes") val cardTypes: kotlin.collections.List<CardType>? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "The kind of licenses this traveler possesses")
+    @Schema(description = "The kind of licenses this traveler possesses")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("licenseTypes")
     @get:JsonProperty("licenseTypes") val licenseTypes: kotlin.collections.List<LicenseType>? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("requirements")
     @get:JsonProperty("requirements") val requirements: Requirements? = null,
 
-    @Schema(example = "null", description = "identifier for this traveler in the personal data store. This identifier can be used to get personal information from the provider specified in the \"knownIdentifierProvider\"")
+    @Schema(description = "identifier for this traveler in the personal data store. This identifier can be used to get personal information from the provider specified in the \"knownIdentifierProvider\"")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("knownIdentifier")
     @get:JsonProperty("knownIdentifier") val knownIdentifier: kotlin.String? = null,
 
-    @Schema(example = "null", description = "provider for personal information. Can be a URI or identifier.")
+    @Schema(description = "provider for personal information. Can be a URI or identifier.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("knownIdentifierProvider")
     @get:JsonProperty("knownIdentifierProvider") val knownIdentifierProvider: kotlin.String? = null,
 
-    @Schema(example = "null", description = "optional reference field to the travelers in the planning request.")
+    @Schema(description = "optional reference field to the travelers in the planning request.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("travelerReference")
     @get:JsonProperty("travelerReference") val travelerReference: kotlin.String? = null,
 
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("initials")
     @get:JsonProperty("initials") val initials: kotlin.String? = null,
 
     @Schema(example = "John", description = "First name of the customer")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("firstName")
     @get:JsonProperty("firstName") val firstName: kotlin.String? = null,
 
     @Schema(example = "Doe", description = "Last name of the customer")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("lastName")
     @get:JsonProperty("lastName") val lastName: kotlin.String? = null,
 
     @Schema(example = "von", description = "Middle name of the customer")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("middleName")
     @get:JsonProperty("middleName") val middleName: kotlin.String? = null,
 
-    @Schema(example = "null", description = "prefix of the customer, like titles")
+    @Schema(description = "prefix of the customer, like titles")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("prefix")
     @get:JsonProperty("prefix") val prefix: kotlin.String? = null,
 
-    @Schema(example = "null", description = "postfix of the customer, like titles")
+    @Schema(description = "postfix of the customer, like titles")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("postfix")
     @get:JsonProperty("postfix") val postfix: kotlin.String? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("phones")
     @get:JsonProperty("phones") val phones: kotlin.collections.List<Phone>? = null,
 
-    @Schema(example = "null", description = "the email address of the customer")
+    @Schema(description = "the email address of the customer")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("email")
     @get:JsonProperty("email") val email: kotlin.String? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("birthDate")
     @get:JsonProperty("birthDate") val birthDate: java.time.LocalDate? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("address")
     @get:JsonProperty("address") val address: Address? = null,
 
-    @Schema(example = "null", description = "base64 encoded")
+    @Schema(description = "base64 encoded")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("photo")
     @get:JsonProperty("photo") val photo: kotlin.ByteArray? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("cards")
     @get:JsonProperty("cards") val cards: kotlin.collections.List<Card>? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("licenses")
     @get:JsonProperty("licenses") val licenses: kotlin.collections.List<License>? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "dictionary for extra fields (bilatural agreements)")
+    @Schema(description = "dictionary for extra fields (bilatural agreements)")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("extraInfo")
     @get:JsonProperty("extraInfo") val extraInfo: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null
 ) {
 

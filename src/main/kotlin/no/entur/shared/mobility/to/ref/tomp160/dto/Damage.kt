@@ -2,8 +2,11 @@ package no.entur.shared.mobility.to.ref.tomp160.dto
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.Nulls
 import jakarta.validation.constraints.DecimalMax
 import jakarta.validation.constraints.DecimalMin
 import jakarta.validation.constraints.Email
@@ -24,16 +27,24 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class Damage(
 
-    @Schema(example = "null", required = true, description = "Part/Component of the vehicle affected. If OTHER is specified the description needs to provide more detail as to what part/component is affected.")
+    @Schema(required = true, description = "Part/Component of the vehicle affected. If OTHER is specified the description needs to provide more detail as to what part/component is affected.")
+    @param:JsonProperty("vehicleComponent")
     @get:JsonProperty("vehicleComponent", required = true) val vehicleComponent: Damage.VehicleComponent,
 
-    @Schema(example = "null", required = true, description = "Description of the damage.")
+    @Schema(required = true, description = "Description of the damage.")
+    @param:JsonProperty("description")
     @get:JsonProperty("description", required = true) val description: kotlin.String,
 
-    @Schema(example = "null", description = "a short term to describe the damaged part")
+    @Schema(description = "a short term to describe the damaged part")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("vehicleComponentName")
     @get:JsonProperty("vehicleComponentName") val vehicleComponentName: kotlin.String? = null,
 
-    @Schema(example = "null", description = "URL where pictures of the damage can be accessed. Any special characters in the URL must be correctly escaped.")
+    @Schema(description = "URL where pictures of the damage can be accessed. Any special characters in the URL must be correctly escaped.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("pictures")
     @get:JsonProperty("pictures") val pictures: kotlin.collections.List<kotlin.String>? = null
 ) {
 

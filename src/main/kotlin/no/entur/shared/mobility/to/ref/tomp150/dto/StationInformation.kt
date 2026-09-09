@@ -2,8 +2,11 @@ package no.entur.shared.mobility.to.ref.tomp150.dto
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.Nulls
 import no.entur.shared.mobility.to.ref.tomp150.dto.Address
 import no.entur.shared.mobility.to.ref.tomp150.dto.Coordinates
 import no.entur.shared.mobility.to.ref.tomp150.dto.GeojsonGeometry
@@ -51,93 +54,168 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class StationInformation(
 
     @Schema(example = "XX:Y:12345678", required = true, description = "unique identifier of a station")
+    @param:JsonProperty("stationId")
     @get:JsonProperty("stationId", required = true) val stationId: kotlin.String,
 
     @Schema(example = "Island Central", required = true, description = "public name of the station, could match Content-Language")
+    @param:JsonProperty("name")
     @get:JsonProperty("name", required = true) val name: kotlin.String,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("coordinates")
     @get:JsonProperty("coordinates", required = true) val coordinates: Coordinates,
 
-    @Schema(example = "null", description = "Contact phone of the station")
+    @Schema(description = "Contact phone of the station")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("contactPhone")
     @get:JsonProperty("contactPhone") val contactPhone: kotlin.String? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("physicalAddress")
     @get:JsonProperty("physicalAddress") val physicalAddress: Address? = null,
 
     @Schema(example = "on the corner with Secondary Road", description = "Cross street of where the station is located. This field is intended to be a descriptive field for human consumption. In cities, this would be a cross street, but could also be a description of a location in a park, etc, should match Content-Language")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("crossStreet")
     @get:JsonProperty("crossStreet") val crossStreet: kotlin.String? = null,
 
-    @Schema(example = "null", description = "ID of the region where the station operates (see \"systemRegions\")")
+    @Schema(description = "ID of the region where the station operates (see \"systemRegions\")")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("regionId")
     @get:JsonProperty("regionId") val regionId: kotlin.String? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("stationArea")
     @get:JsonProperty("stationArea") val stationArea: GeojsonGeometry? = null,
 
-    @Schema(example = "null", description = "parking_lot (Off-street parking lot) street_parking (Curbside parking) underground_parking (Parking that is below street level, station may be non-communicating) sidewalk_parking (Park vehicle on sidewalk, out of the pedestrian right of way) other")
+    @Schema(description = "parking_lot (Off-street parking lot) street_parking (Curbside parking) underground_parking (Parking that is below street level, station may be non-communicating) sidewalk_parking (Park vehicle on sidewalk, out of the pedestrian right of way) other")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("parkingType")
     @get:JsonProperty("parkingType") val parkingType: StationInformation.ParkingType? = null,
 
-    @Schema(example = "null", description = "Is this station a location with or without smart dock technology? true - The station is a location without smart docking infrastructure. the station may be defined by a point (lat/lon) and/or station_area (below). false - The station consists of smart docking infrastructure (docks). This field SHOULD be published by mobility systems that have station locations without standard, internet connected physical docking infrastructure. These may be racks or geofenced areas designated for rental and/or return of vehicles. Locations that fit within this description SHOULD have the is_virtual_station boolean set to true.")
+    @Schema(description = "Is this station a location with or without smart dock technology? true - The station is a location without smart docking infrastructure. the station may be defined by a point (lat/lon) and/or station_area (below). false - The station consists of smart docking infrastructure (docks). This field SHOULD be published by mobility systems that have station locations without standard, internet connected physical docking infrastructure. These may be racks or geofenced areas designated for rental and/or return of vehicles. Locations that fit within this description SHOULD have the is_virtual_station boolean set to true.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("isVirtual")
     @get:JsonProperty("isVirtual") val isVirtual: kotlin.Boolean? = null,
 
-    @Schema(example = "null", description = "Are valet services provided at this station? Valet service is defined as providing unlimited capacity at a station.")
+    @Schema(description = "Are valet services provided at this station? Valet service is defined as providing unlimited capacity at a station.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("isValetStation")
     @get:JsonProperty("isValetStation") val isValetStation: kotlin.Boolean? = null,
 
-    @Schema(example = "null", description = "Does the station support charging of electric vehicles?")
+    @Schema(description = "Does the station support charging of electric vehicles?")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("isChargingStation")
     @get:JsonProperty("isChargingStation") val isChargingStation: kotlin.Boolean? = null,
 
-    @Schema(example = "null", description = "Parking hoops are lockable devices that are used to secure a parking space to prevent parking of unauthorized vehicles.")
+    @Schema(description = "Parking hoops are lockable devices that are used to secure a parking space to prevent parking of unauthorized vehicles.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("parkingHoop")
     @get:JsonProperty("parkingHoop") val parkingHoop: kotlin.Boolean? = null,
 
-    @Schema(example = "null", description = "Is the station currently on the street?")
+    @Schema(description = "Is the station currently on the street?")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("isInstalled")
     @get:JsonProperty("isInstalled") val isInstalled: kotlin.Boolean? = null,
 
-    @Schema(example = "null", description = "Is the station currently renting vehicles?")
+    @Schema(description = "Is the station currently renting vehicles?")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("isRenting")
     @get:JsonProperty("isRenting") val isRenting: kotlin.Boolean? = null,
 
-    @Schema(example = "null", description = "Is the station accepting vehicle returns?")
+    @Schema(description = "Is the station accepting vehicle returns?")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("isReturning")
     @get:JsonProperty("isReturning") val isReturning: kotlin.Boolean? = null,
 
-    @Schema(example = "null", description = "the total capacity of this station")
+    @Schema(description = "the total capacity of this station")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("capacity")
     @get:JsonProperty("capacity") val capacity: kotlin.Int? = null,
 
     @field:Valid
     @Schema(example = "{\"child-bike-01\":3,\"general-bike\":18}", description = "An object used to describe the docking capacity of a station where each key is a reference to the ID of the assetType, and the value is a number representing the total docking points installed at this station, both available and unavailable for the specified vehicle type.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("assetTypeCapacity")
     @get:JsonProperty("assetTypeCapacity") val assetTypeCapacity: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null,
 
-    @Schema(example = "null", description = "the number of available assets in this station (total)")
+    @Schema(description = "the number of available assets in this station (total)")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("assetsAvailable")
     @get:JsonProperty("assetsAvailable") val assetsAvailable: kotlin.Int? = null,
 
     @field:Valid
     @Schema(example = "{\"child-bike-01\":1,\"general-bike\":3}", description = "An object used to describe the available assets of a station where each key is a reference to the ID of the assetType, and the value is a number representing the total available asset of this type at this station.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("assetTypesAvailable")
     @get:JsonProperty("assetTypesAvailable") val assetTypesAvailable: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null,
 
-    @Schema(example = "null", description = "the number of free docks")
+    @Schema(description = "the number of free docks")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("docksAvailable")
     @get:JsonProperty("docksAvailable") val docksAvailable: kotlin.Int? = null,
 
     @field:Valid
     @Schema(example = "{\"child-bike-01\":1,\"general-bike\":3}", description = "An object used to describe the free slots of a station where each key is a reference to the ID of the assetType, and the value is a number representing the total free docks for this assetType at this station.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("assetDocksAvailable")
     @get:JsonProperty("assetDocksAvailable") val assetDocksAvailable: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null,
 
     @Schema(example = "[\"CREDITCARD\",\"PAYPASS\",\"APPLEPAY\"]", description = "Array of enumerables containing the payment methods accepted at this station.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("rentalMethods")
     @get:JsonProperty("rentalMethods") val rentalMethods: kotlin.collections.List<StationInformation.RentalMethods>? = null,
 
     @Schema(example = "iDEAL", description = "whenever `OTHER` is specified in the field 'rentalMethods', this field contains a free-format definition.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("rentalMethodOther")
     @get:JsonProperty("rentalMethodOther") val rentalMethodOther: kotlin.String? = null,
 
     @Schema(example = "https://www.rentmyfreebike.com", description = "web uri for renting assets at this station. Only added to be consistent with GBFS 2.0.")
     @Deprecated(message = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("rentalUrl")
     @get:JsonProperty("rentalUrl") val rentalUrl: kotlin.String? = null,
 
     @Schema(example = "https://www.rentmyfreebikecom/app?sid=1234567890&platform=android", description = "android uri for renting assets at this station. Only added to be consistent with GBFS 2.0.")
     @Deprecated(message = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("rentalUrlAndroid")
     @get:JsonProperty("rentalUrlAndroid") val rentalUrlAndroid: kotlin.String? = null,
 
     @Schema(example = "https://www.rentmyfreebike.com/app?sid=1234567890&platform=ios", description = "ios uri for renting assets at this station. Only added to be consistent with GBFS 2.0.")
     @Deprecated(message = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("rentalUrlIOS")
     @get:JsonProperty("rentalUrlIOS") val rentalUrlIOS: kotlin.String? = null
 ) {
 

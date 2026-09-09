@@ -3,10 +3,13 @@ package no.entur.shared.mobility.to.ref.tomp150.dto
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonSubTypes
 import com.fasterxml.jackson.annotation.JsonTypeInfo
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.Nulls
 import no.entur.shared.mobility.to.ref.tomp150.dto.GeojsonGeometryCoordinates
 import jakarta.validation.constraints.DecimalMax
 import jakarta.validation.constraints.DecimalMin
@@ -33,10 +36,10 @@ import io.swagger.v3.oas.annotations.media.Schema
 )
 
 interface GeojsonGeometry {
-                @get:Schema(example = "null", requiredMode = Schema.RequiredMode.REQUIRED, description = "")
+                @get:Schema(requiredMode = Schema.RequiredMode.REQUIRED, description = "")
         val type: GeojsonGeometry.Type
 
-                @get:Schema(example = "null", description = "")
+                @get:Schema(description = "")
         val coordinates: GeojsonGeometryCoordinates? 
 
 

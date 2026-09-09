@@ -2,8 +2,11 @@ package no.entur.shared.mobility.to.ref.tomp150.dto
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.Nulls
 import jakarta.validation.constraints.DecimalMax
 import jakarta.validation.constraints.DecimalMin
 import jakarta.validation.constraints.Email
@@ -29,32 +32,53 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class Endpoint(
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("method")
     @get:JsonProperty("method", required = true) val method: Endpoint.Method,
 
     @Schema(example = "/plannings/", required = true, description = "the exact path of the endpoint, starting after the base URL")
+    @param:JsonProperty("path")
     @get:JsonProperty("path", required = true) val path: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("status")
     @get:JsonProperty("status", required = true) val status: Endpoint.Status,
 
-    @Schema(example = "null", description = "in case the path is ending in /events, the event type/operator enum should be added here.")
+    @Schema(description = "in case the path is ending in /events, the event type/operator enum should be added here.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("eventType")
     @get:JsonProperty("eventType") val eventType: Endpoint.EventType? = null,
 
-    @Schema(example = "null", description = "does this endpoint support paging? In that case this endpoint can be accessed using query parameters offset=x and limit=y. Only allowed at endpoints that have specified these query parameters.")
+    @Schema(description = "does this endpoint support paging? In that case this endpoint can be accessed using query parameters offset=x and limit=y. Only allowed at endpoints that have specified these query parameters.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("supportsPaging")
     @get:JsonProperty("supportsPaging") val supportsPaging: kotlin.Boolean? = false,
 
     @get:Min(value=1)
-    @Schema(example = "null", description = "the maximum size of the pages (only valid when supportsPaging=true). If the limit-parameter of the request is above this amount, a http code 400 will be returned.")
+    @Schema(description = "the maximum size of the pages (only valid when supportsPaging=true). If the limit-parameter of the request is above this amount, a http code 400 will be returned.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("maxPageSize")
     @get:JsonProperty("maxPageSize") val maxPageSize: kotlin.Int? = null,
 
-    @Schema(example = "null", description = "this field must be used when adressing other standards for exchanging 'static' data (Level 1 MaaS)")
+    @Schema(description = "this field must be used when adressing other standards for exchanging 'static' data (Level 1 MaaS)")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("externalType")
     @get:JsonProperty("externalType") val externalType: Endpoint.ExternalType? = null,
 
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("useAssetTypes")
     @get:JsonProperty("useAssetTypes") val useAssetTypes: kotlin.collections.List<kotlin.String>? = null,
 
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("useAssets")
     @get:JsonProperty("useAssets") val useAssets: kotlin.collections.List<kotlin.String>? = null
 ) {
 

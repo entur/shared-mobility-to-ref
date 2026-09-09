@@ -1,7 +1,10 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
 import java.util.Objects
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
+import com.fasterxml.jackson.annotation.Nulls
 import no.entur.shared.mobility.to.ref.tomp160.dto.Address
 import no.entur.shared.mobility.to.ref.tomp160.dto.Coordinates
 import no.entur.shared.mobility.to.ref.tomp160.dto.StopReference
@@ -28,25 +31,41 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class Place(
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("coordinates")
     @get:JsonProperty("coordinates", required = true) val coordinates: Coordinates,
 
-    @Schema(example = "null", description = "Human readable name of the place, could match Content-Language")
+    @Schema(description = "Human readable name of the place, could match Content-Language")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("name")
     @get:JsonProperty("name") val name: kotlin.String? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("stopReference")
     @get:JsonProperty("stopReference") val stopReference: kotlin.collections.List<StopReference>? = null,
 
-    @Schema(example = "null", description = "reference to /operator/stations")
+    @Schema(description = "reference to /operator/stations")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("stationId")
     @get:JsonProperty("stationId") val stationId: kotlin.String? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("physicalAddress")
     @get:JsonProperty("physicalAddress") val physicalAddress: Address? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("extraInfo")
     @get:JsonProperty("extraInfo") val extraInfo: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null
 ) {
 

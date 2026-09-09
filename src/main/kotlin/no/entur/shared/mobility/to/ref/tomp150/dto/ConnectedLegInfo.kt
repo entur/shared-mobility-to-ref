@@ -1,7 +1,10 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
 import java.util.Objects
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
+import com.fasterxml.jackson.annotation.Nulls
 import jakarta.validation.constraints.DecimalMax
 import jakarta.validation.constraints.DecimalMin
 import jakarta.validation.constraints.Email
@@ -21,13 +24,22 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class ConnectedLegInfo(
 
-    @Schema(example = "null", description = "the provider of the previous leg (usually a Transport Operator reference)")
+    @Schema(description = "the provider of the previous leg (usually a Transport Operator reference)")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("provider")
     @get:JsonProperty("provider") val provider: kotlin.String? = null,
 
-    @Schema(example = "null", description = "the identification of the previous asset, like a flight number. This field (in case of a specific asset) or assetTypeReference must be filled.")
+    @Schema(description = "the identification of the previous asset, like a flight number. This field (in case of a specific asset) or assetTypeReference must be filled.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("assetReference")
     @get:JsonProperty("assetReference") val assetReference: kotlin.String? = null,
 
-    @Schema(example = "null", description = "the identification of the previous asset type, like a discount combi. This field (in case of a specific asset type) or asset reference must be filled.")
+    @Schema(description = "the identification of the previous asset type, like a discount combi. This field (in case of a specific asset type) or asset reference must be filled.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("assetTypeReference")
     @get:JsonProperty("assetTypeReference") val assetTypeReference: kotlin.String? = null
 ) {
 
