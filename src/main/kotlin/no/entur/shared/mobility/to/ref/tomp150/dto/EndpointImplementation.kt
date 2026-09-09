@@ -1,7 +1,10 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
 import java.util.Objects
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
+import com.fasterxml.jackson.annotation.Nulls
 import no.entur.shared.mobility.to.ref.tomp150.dto.Endpoint
 import no.entur.shared.mobility.to.ref.tomp150.dto.EndpointImplementationSteps
 import no.entur.shared.mobility.to.ref.tomp150.dto.ProcessIdentifiers
@@ -28,26 +31,34 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class EndpointImplementation(
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("version")
     @get:JsonProperty("version", required = true) val version: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("baseUrl")
     @get:JsonProperty("baseUrl", required = true) val baseUrl: kotlin.String,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("endpoints")
     @get:JsonProperty("endpoints", required = true) val endpoints: kotlin.collections.List<Endpoint>,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("scenarios")
     @get:JsonProperty("scenarios", required = true) val scenarios: kotlin.collections.List<Scenario>,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("processIdentifiers")
     @get:JsonProperty("processIdentifiers", required = true) val processIdentifiers: ProcessIdentifiers,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("steps")
     @get:JsonProperty("steps") val steps: EndpointImplementationSteps? = null
 ) {
 

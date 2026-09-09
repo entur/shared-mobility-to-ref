@@ -2,9 +2,12 @@ package no.entur.shared.mobility.to.ref.tomp150.dto
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonSubTypes
 import com.fasterxml.jackson.annotation.JsonTypeInfo
+import com.fasterxml.jackson.annotation.Nulls
 import jakarta.validation.constraints.DecimalMax
 import jakarta.validation.constraints.DecimalMin
 import jakarta.validation.constraints.Email
@@ -41,7 +44,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 )
 
 interface Condition {
-                @get:Schema(example = "null", requiredMode = Schema.RequiredMode.REQUIRED, description = "The specific subclass of condition, should match the schema name exactly")
+                @get:Schema(requiredMode = Schema.RequiredMode.REQUIRED, description = "The specific subclass of condition, should match the schema name exactly")
         val conditionType: kotlin.String
 
                 @get:Schema(example = "deposit50eu", description = "An identifier for this condition that can be used to refer to this condition")

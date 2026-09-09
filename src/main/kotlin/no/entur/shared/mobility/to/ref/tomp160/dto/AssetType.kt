@@ -2,8 +2,11 @@ package no.entur.shared.mobility.to.ref.tomp160.dto
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.Nulls
 import no.entur.shared.mobility.to.ref.tomp160.dto.Asset
 import no.entur.shared.mobility.to.ref.tomp160.dto.AssetClass
 import no.entur.shared.mobility.to.ref.tomp160.dto.AssetProperties
@@ -35,40 +38,68 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class AssetType(
 
-    @Schema(example = "null", required = true, description = "Unique identifier of an asset type,")
+    @Schema(required = true, description = "Unique identifier of an asset type,")
+    @param:JsonProperty("id")
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
-    @Schema(example = "null", description = "If stationId is present, the nrAvailable is expected to find the availability at that particular station")
+    @Schema(description = "If stationId is present, the nrAvailable is expected to find the availability at that particular station")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("stationId")
     @get:JsonProperty("stationId") val stationId: kotlin.String? = null,
 
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("nrAvailable")
     @get:JsonProperty("nrAvailable") val nrAvailable: kotlin.Int? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "use this field only in the map-oriented scenario or in the committed bookings. Don't use it in public data (to prevent GDPR issues).")
+    @Schema(description = "use this field only in the map-oriented scenario or in the committed bookings. Don't use it in public data (to prevent GDPR issues).")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("assets")
     @get:JsonProperty("assets") val assets: kotlin.collections.List<Asset>? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("assetClass")
     @get:JsonProperty("assetClass") val assetClass: AssetClass? = null,
 
-    @Schema(example = "null", description = "a more precise classification of the asset, like 'cargo bike', 'public bus', 'coach bus', 'office bus', 'water taxi',  'segway'. This is mandatory when using 'OTHER' as class.")
+    @Schema(description = "a more precise classification of the asset, like 'cargo bike', 'public bus', 'coach bus', 'office bus', 'water taxi',  'segway'. This is mandatory when using 'OTHER' as class.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("assetSubClass")
     @get:JsonProperty("assetSubClass") val assetSubClass: kotlin.String? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("sharedProperties")
     @get:JsonProperty("sharedProperties") val sharedProperties: AssetProperties? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "pricing plans that can be applicable for this assetType. Business logic to determine the final pricing plan is not exposed. Just call the plannings endpoint (v1.2) or the inquiries endpoint (v.1.3)")
+    @Schema(description = "pricing plans that can be applicable for this assetType. Business logic to determine the final pricing plan is not exposed. Just call the plannings endpoint (v1.2) or the inquiries endpoint (v.1.3)")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("applicablePricings")
     @get:JsonProperty("applicablePricings") val applicablePricings: kotlin.collections.List<SystemPricingPlan>? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("defaultPricingPlan")
     @get:JsonProperty("defaultPricingPlan") val defaultPricingPlan: SystemPricingPlan? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "extra information about the asset type, making it possible to f.x. specifying that booking this car requires a driver license.")
+    @Schema(description = "extra information about the asset type, making it possible to f.x. specifying that booking this car requires a driver license.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("conditions")
     @get:JsonProperty("conditions") val conditions: kotlin.collections.List<Condition>? = null
 ) {
 

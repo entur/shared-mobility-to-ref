@@ -2,8 +2,11 @@ package no.entur.shared.mobility.to.ref.tomp150.dto
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.Nulls
 import no.entur.shared.mobility.to.ref.tomp150.dto.BankAccount
 import no.entur.shared.mobility.to.ref.tomp150.dto.JournalCategory
 import jakarta.validation.constraints.DecimalMax
@@ -35,44 +38,71 @@ data class ExtraCosts(
 
     @get:DecimalMin(value="0")
     @Schema(example = "9.95", required = true, description = "This should be in the base unit as defined by the ISO 4217 currency code with the appropriate number of decimal places and omitting the currency symbol. e.g. if the price is in US Dollars the price would be 9.95. This is inclusive VAT")
+    @param:JsonProperty("amount")
     @get:JsonProperty("amount", required = true) val amount: kotlin.Float,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("category")
     @get:JsonProperty("category", required = true) val category: JournalCategory,
 
-    @Schema(example = "null", required = true, description = "free text to describe the extra costs. Mandatory in case of 'OTHER', should match Content-Language")
+    @Schema(required = true, description = "free text to describe the extra costs. Mandatory in case of 'OTHER', should match Content-Language")
+    @param:JsonProperty("description")
     @get:JsonProperty("description", required = true) val description: kotlin.String,
 
     @get:DecimalMin(value="0")
     @Schema(example = "8.95", description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("amountExVat")
     @get:JsonProperty("amountExVat") val amountExVat: kotlin.Float? = null,
 
     @get:Size(min=3,max=3)
-    @Schema(example = "null", description = "ISO 4217 currency code")
+    @Schema(description = "ISO 4217 currency code")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("currencyCode")
     @get:JsonProperty("currencyCode") val currencyCode: kotlin.String? = null,
 
     @get:DecimalMin(value="0")
     @Schema(example = "21.0", description = "value added tax rate (percentage of amount)")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("vatRate")
     @get:JsonProperty("vatRate") val vatRate: kotlin.Float? = null,
 
     @get:Size(min=2,max=2)
     @Schema(example = "NL", description = "two-letter country codes according to ISO 3166-1")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("vatCountryCode")
     @get:JsonProperty("vatCountryCode") val vatCountryCode: kotlin.String? = null,
 
     @get:DecimalMin(value="0")
-    @Schema(example = "null", description = "e.g. number of litres, number of kilowatthour, etc")
+    @Schema(description = "e.g. number of litres, number of kilowatthour, etc")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("number")
     @get:JsonProperty("number") val number: kotlin.Float? = null,
 
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("numberType")
     @get:JsonProperty("numberType") val numberType: ExtraCosts.NumberType? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("account")
     @get:JsonProperty("account") val account: BankAccount? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "Arbitrary metadata that a TO can add, like voucher codes")
+    @Schema(description = "Arbitrary metadata that a TO can add, like voucher codes")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("meta")
     @get:JsonProperty("meta") val meta: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null
 ) : JournalEntryAllOfDetails {
 

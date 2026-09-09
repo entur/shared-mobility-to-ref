@@ -2,8 +2,11 @@ package no.entur.shared.mobility.to.ref.tomp160.dto
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.Nulls
 import no.entur.shared.mobility.to.ref.tomp160.dto.AssetClass
 import jakarta.validation.constraints.DecimalMax
 import jakarta.validation.constraints.DecimalMin
@@ -27,21 +30,34 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class License(
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("assetClass")
     @get:JsonProperty("assetClass", required = true) val assetClass: AssetClass,
 
     @get:Size(min=2,max=2)
     @Schema(example = "NL", description = "two-letter country codes according to ISO 3166-1")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("issuingCountry")
     @get:JsonProperty("issuingCountry") val issuingCountry: kotlin.String? = null,
 
     @Schema(example = "1287948792", description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("number")
     @get:JsonProperty("number") val number: kotlin.String? = null,
 
     @Schema(example = "D4", description = "in most countries a driver license has also a code. As TO you can exactly verify, based on this code if the license allows to operate it's assets, if the assetType too generic.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("licenseCode")
     @get:JsonProperty("licenseCode") val licenseCode: kotlin.String? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("validUntil")
     @get:JsonProperty("validUntil") val validUntil: java.time.LocalDate? = null
 ) {
 

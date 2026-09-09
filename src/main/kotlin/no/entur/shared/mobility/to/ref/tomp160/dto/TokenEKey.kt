@@ -25,14 +25,17 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class TokenEKey(
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("ekey")
     @get:JsonProperty("ekey", required = true) val ekey: TokenEKeyAllOfEkey,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("lock")
     @get:JsonProperty("lock", required = true) val lock: TokenEKeyAllOfLock,
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("tokenType")
     @get:JsonProperty("tokenType", required = true) override val tokenType: kotlin.String
 ) : TokenData {
 

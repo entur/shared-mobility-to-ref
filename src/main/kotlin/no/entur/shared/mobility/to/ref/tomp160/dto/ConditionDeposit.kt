@@ -1,7 +1,10 @@
 package no.entur.shared.mobility.to.ref.tomp160.dto
 
 import java.util.Objects
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
+import com.fasterxml.jackson.annotation.Nulls
 import no.entur.shared.mobility.to.ref.tomp160.dto.Condition
 import jakarta.validation.constraints.DecimalMax
 import jakarta.validation.constraints.DecimalMin
@@ -26,30 +29,49 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class ConditionDeposit(
 
-    @Schema(example = "null", required = true, description = "The specific subclass of condition, should match the schema name exactly")
+    @Schema(required = true, description = "The specific subclass of condition, should match the schema name exactly")
+    @param:JsonProperty("conditionType")
     @get:JsonProperty("conditionType", required = true) override val conditionType: kotlin.String,
 
     @get:DecimalMin(value="0")
     @Schema(example = "9.95", description = "This should be in the base unit as defined by the ISO 4217 currency code with the appropriate number of decimal places and omitting the currency symbol. e.g. if the price is in US Dollars the price would be 9.95. This is inclusive VAT")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("amount")
     @get:JsonProperty("amount") val amount: kotlin.Float? = null,
 
     @get:DecimalMin(value="0")
     @Schema(example = "8.95", description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("amountExVat")
     @get:JsonProperty("amountExVat") val amountExVat: kotlin.Float? = null,
 
     @get:Size(min=3,max=3)
-    @Schema(example = "null", description = "ISO 4217 currency code")
+    @Schema(description = "ISO 4217 currency code")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("currencyCode")
     @get:JsonProperty("currencyCode") val currencyCode: kotlin.String? = null,
 
     @get:DecimalMin(value="0")
     @Schema(example = "21.0", description = "value added tax rate (percentage of amount)")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("vatRate")
     @get:JsonProperty("vatRate") val vatRate: kotlin.Float? = null,
 
     @get:Size(min=2,max=2)
     @Schema(example = "NL", description = "two-letter country codes according to ISO 3166-1")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("vatCountryCode")
     @get:JsonProperty("vatCountryCode") val vatCountryCode: kotlin.String? = null,
 
     @Schema(example = "deposit50eu", description = "An identifier for this condition that can be used to refer to this condition")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("id")
     @get:JsonProperty("id") override val id: kotlin.String? = null
 ) : Condition {
 

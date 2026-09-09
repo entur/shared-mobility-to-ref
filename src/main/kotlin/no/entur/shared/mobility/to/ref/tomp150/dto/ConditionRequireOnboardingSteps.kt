@@ -1,7 +1,10 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
 import java.util.Objects
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
+import com.fasterxml.jackson.annotation.Nulls
 import no.entur.shared.mobility.to.ref.tomp150.dto.Condition
 import no.entur.shared.mobility.to.ref.tomp150.dto.OnBoardingStep
 import jakarta.validation.constraints.DecimalMax
@@ -24,13 +27,18 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class ConditionRequireOnboardingSteps(
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("steps")
     @get:JsonProperty("steps", required = true) val steps: kotlin.collections.List<OnBoardingStep>,
 
-    @Schema(example = "null", required = true, description = "The specific subclass of condition, should match the schema name exactly")
+    @Schema(required = true, description = "The specific subclass of condition, should match the schema name exactly")
+    @param:JsonProperty("conditionType")
     @get:JsonProperty("conditionType", required = true) override val conditionType: kotlin.String,
 
     @Schema(example = "deposit50eu", description = "An identifier for this condition that can be used to refer to this condition")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("id")
     @get:JsonProperty("id") override val id: kotlin.String? = null
 ) : Condition {
 

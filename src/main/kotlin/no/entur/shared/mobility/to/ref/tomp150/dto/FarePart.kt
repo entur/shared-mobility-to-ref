@@ -2,8 +2,11 @@ package no.entur.shared.mobility.to.ref.tomp150.dto
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.Nulls
 import jakarta.validation.constraints.DecimalMax
 import jakarta.validation.constraints.DecimalMin
 import jakarta.validation.constraints.Email
@@ -40,67 +43,119 @@ data class FarePart(
 
     @get:DecimalMin(value="0")
     @Schema(example = "9.95", required = true, description = "This should be in the base unit as defined by the ISO 4217 currency code with the appropriate number of decimal places and omitting the currency symbol. e.g. if the price is in US Dollars the price would be 9.95. This is inclusive VAT")
+    @param:JsonProperty("amount")
     @get:JsonProperty("amount", required = true) val amount: kotlin.Float,
 
     @get:DecimalMin(value="0")
     @Schema(example = "8.95", description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("amountExVat")
     @get:JsonProperty("amountExVat") val amountExVat: kotlin.Float? = null,
 
     @get:Size(min=3,max=3)
-    @Schema(example = "null", description = "ISO 4217 currency code")
+    @Schema(description = "ISO 4217 currency code")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("currencyCode")
     @get:JsonProperty("currencyCode") val currencyCode: kotlin.String? = null,
 
     @get:DecimalMin(value="0")
     @Schema(example = "21.0", description = "value added tax rate (percentage of amount)")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("vatRate")
     @get:JsonProperty("vatRate") val vatRate: kotlin.Float? = null,
 
     @get:Size(min=2,max=2)
     @Schema(example = "NL", description = "two-letter country codes according to ISO 3166-1")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("vatCountryCode")
     @get:JsonProperty("vatCountryCode") val vatCountryCode: kotlin.String? = null,
 
-    @Schema(example = "null", description = "type of fare part. If there is only one farepart and this field is missing, it should be assumed it is 'FIXED'. In all other situations this field is mandatory.")
+    @Schema(description = "type of fare part. If there is only one farepart and this field is missing, it should be assumed it is 'FIXED'. In all other situations this field is mandatory.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("type")
     @get:JsonProperty("type") val type: FarePart.Type? = null,
 
-    @Schema(example = "null", description = "is this the default price or is this an additional part (discount, price surge). In case of a DISCOUNT, the amount must always be negative and in case of SURGE it must be positive. This also means, that when you're working with discounts or surges, you have to deliver 2 fareparts, one for the default price and one for the discount/surge. This can be used in combination with as well the fixed price parts as with the flex price parts.")
+    @Schema(description = "is this the default price or is this an additional part (discount, price surge). In case of a DISCOUNT, the amount must always be negative and in case of SURGE it must be positive. This also means, that when you're working with discounts or surges, you have to deliver 2 fareparts, one for the default price and one for the discount/surge. This can be used in combination with as well the fixed price parts as with the flex price parts.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("kind")
     @get:JsonProperty("kind") val kind: FarePart.Kind? = null,
 
-    @Schema(example = "null", description = "in case of 'FLEX' mandatory, otherwise not allowed. E.g. 0.5 EUR per HOUR")
+    @Schema(description = "in case of 'FLEX' mandatory, otherwise not allowed. E.g. 0.5 EUR per HOUR")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("unitType")
     @get:JsonProperty("unitType") val unitType: FarePart.UnitType? = null,
 
     @get:DecimalMin(value="0")
-    @Schema(example = "null", description = "the number of km, seconds etc. Mandatory when the type is 'FLEX', otherwise not allowed. In case of 0.5 EUR per 15 MINUTES, `units` should contain 15 and `unitType` MINUTES.")
+    @Schema(description = "the number of km, seconds etc. Mandatory when the type is 'FLEX', otherwise not allowed. In case of 0.5 EUR per 15 MINUTES, `units` should contain 15 and `unitType` MINUTES.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("units")
     @get:JsonProperty("units") val units: kotlin.Float? = null,
 
     @get:DecimalMin(value="0")
-    @Schema(example = "null", description = "in case of scaling, this is the bottom value (f.x. in the first hour 3 CAD, the `scaleFrom` should contain 0 and the `scaleType` HOUR). When `scaleTo` is used, but this field is missing, it should be assumed it is a 0.")
+    @Schema(description = "in case of scaling, this is the bottom value (f.x. in the first hour 3 CAD, the `scaleFrom` should contain 0 and the `scaleType` HOUR). When `scaleTo` is used, but this field is missing, it should be assumed it is a 0.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("scaleFrom")
     @get:JsonProperty("scaleFrom") val scaleFrom: kotlin.Float? = null,
 
     @get:DecimalMin(value="0")
-    @Schema(example = "null", description = "the upper value of the scale (f.x. 3 CAD in the first hour, this field should contain 1, `scaleFrom` 0 and `scaleType` HOUR)")
+    @Schema(description = "the upper value of the scale (f.x. 3 CAD in the first hour, this field should contain 1, `scaleFrom` 0 and `scaleType` HOUR)")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("scaleTo")
     @get:JsonProperty("scaleTo") val scaleTo: kotlin.Float? = null,
 
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("scaleType")
     @get:JsonProperty("scaleType") val scaleType: FarePart.ScaleType? = null,
 
-    @Schema(example = "null", description = "an optional description of this fare part.")
+    @Schema(description = "an optional description of this fare part.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("name")
     @get:JsonProperty("name") val name: kotlin.String? = null,
 
-    @Schema(example = "null", description = "class of this fare part. Could be FARE or ANCILLARY")
+    @Schema(description = "class of this fare part. Could be FARE or ANCILLARY")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("class")
     @get:JsonProperty("class") val propertyClass: FarePart.PropertyClass? = PropertyClass.FARE,
 
     @get:DecimalMin(value="0")
     @Schema(example = "9.0", description = "The minimum price, in the same currency as amount. Place in `amount` the most likely value.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("minimumAmount")
     @get:JsonProperty("minimumAmount") val minimumAmount: kotlin.Float? = null,
 
     @get:DecimalMin(value="0")
     @Schema(example = "11.0", description = "The minimum price, in the same currency as amount. Place in `amount` the most likely value.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("maximumAmount")
     @get:JsonProperty("maximumAmount") val maximumAmount: kotlin.Float? = null,
 
-    @Schema(example = "null", description = "in case the fare is dependent on being in use or being paused, this field must be used. Default IN_USE")
+    @Schema(description = "in case the fare is dependent on being in use or being paused, this field must be used. Default IN_USE")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("assetState")
     @get:JsonProperty("assetState") val assetState: FarePart.AssetState? = AssetState.IN_USE,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("meta")
     @get:JsonProperty("meta") val meta: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null
 ) {
 

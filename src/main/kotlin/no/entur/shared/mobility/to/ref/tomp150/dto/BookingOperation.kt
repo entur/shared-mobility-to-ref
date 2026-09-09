@@ -2,8 +2,11 @@ package no.entur.shared.mobility.to.ref.tomp150.dto
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.Nulls
 import jakarta.validation.constraints.DecimalMax
 import jakarta.validation.constraints.DecimalMin
 import jakarta.validation.constraints.Email
@@ -23,13 +26,20 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class BookingOperation(
 
-    @Schema(example = "null", required = true, description = "the operation that is requested. When extra time is needed to complete the initial booking, EXTEND_EXPIRY_TIME can be used. In the response there is the 'Expiry' header field to supply the new expiry timestamp.")
+    @Schema(required = true, description = "the operation that is requested. When extra time is needed to complete the initial booking, EXTEND_EXPIRY_TIME can be used. In the response there is the 'Expiry' header field to supply the new expiry timestamp.")
+    @param:JsonProperty("operation")
     @get:JsonProperty("operation", required = true) val operation: BookingOperation.Operation,
 
-    @Schema(example = "null", description = "in case `operation` is EXTEND_EXPIRY_TIME, the reason for extension must be supplied here.")
+    @Schema(description = "in case `operation` is EXTEND_EXPIRY_TIME, the reason for extension must be supplied here.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("extendReason")
     @get:JsonProperty("extendReason") val extendReason: BookingOperation.ExtendReason? = null,
 
-    @Schema(example = "null", description = "This operation can be done on behalf of another party. The MP can act on behalf of the END_USER (cancel this booking for me); to override the default origin. In case this field is missing, it must be assumed that the events the MP is sending, this field should contain \"MP\". And in case the TO is sending, \"TO\".")
+    @Schema(description = "This operation can be done on behalf of another party. The MP can act on behalf of the END_USER (cancel this booking for me); to override the default origin. In case this field is missing, it must be assumed that the events the MP is sending, this field should contain \"MP\". And in case the TO is sending, \"TO\".")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("origin")
     @get:JsonProperty("origin") val origin: BookingOperation.Origin? = null
 ) {
 

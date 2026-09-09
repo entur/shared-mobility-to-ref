@@ -1,7 +1,10 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
 import java.util.Objects
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
+import com.fasterxml.jackson.annotation.Nulls
 import jakarta.validation.constraints.DecimalMax
 import jakarta.validation.constraints.DecimalMin
 import jakarta.validation.constraints.Email
@@ -29,33 +32,49 @@ data class SystemCalendar(
     @get:Min(value=1)
     @get:Max(value=12)
     @Schema(example = "1", required = true, description = "Starting month for the system operations (1-12)")
+    @param:JsonProperty("startMonth")
     @get:JsonProperty("startMonth", required = true) val startMonth: kotlin.Int,
 
     @get:Min(value=1)
     @get:Max(value=31)
     @Schema(example = "1", required = true, description = "Starting day for the system operations (1-31)")
+    @param:JsonProperty("startDay")
     @get:JsonProperty("startDay", required = true) val startDay: kotlin.Int,
 
     @get:Min(value=1)
     @get:Max(value=12)
     @Schema(example = "12", required = true, description = "Ending month for the system operations (1-12)")
+    @param:JsonProperty("endMonth")
     @get:JsonProperty("endMonth", required = true) val endMonth: kotlin.Int,
 
     @get:Min(value=1)
     @get:Max(value=31)
     @Schema(example = "31", required = true, description = "Ending day for the system operations (1-31)")
+    @param:JsonProperty("endDay")
     @get:JsonProperty("endDay", required = true) val endDay: kotlin.Int,
 
-    @Schema(example = "null", description = "If this parameter is present, it means that start and end prameters correspond to the opening and closing days of the station. (GET /operator/stations)")
+    @Schema(description = "If this parameter is present, it means that start and end prameters correspond to the opening and closing days of the station. (GET /operator/stations)")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("stationId")
     @get:JsonProperty("stationId") val stationId: kotlin.String? = null,
 
-    @Schema(example = "null", description = "If this parameter is present, it means that start and end prameters correspond to the opening and closing days for the region. (GET /operator/regions)")
+    @Schema(description = "If this parameter is present, it means that start and end prameters correspond to the opening and closing days for the region. (GET /operator/regions)")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("regionId")
     @get:JsonProperty("regionId") val regionId: kotlin.String? = null,
 
     @Schema(example = "2019", description = "Starting year for the system operations")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("startYear")
     @get:JsonProperty("startYear") val startYear: kotlin.Int? = null,
 
     @Schema(example = "2099", description = "Ending year for the system operations")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("endYear")
     @get:JsonProperty("endYear") val endYear: kotlin.Int? = null
 ) {
 

@@ -2,8 +2,11 @@ package no.entur.shared.mobility.to.ref.tomp150.dto
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.Nulls
 import no.entur.shared.mobility.to.ref.tomp150.dto.Place
 import jakarta.validation.constraints.DecimalMax
 import jakarta.validation.constraints.DecimalMin
@@ -30,33 +33,60 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class SupportRequest(
 
-    @Schema(example = "null", description = "the booking id")
+    @Schema(description = "the booking id")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("id")
     @get:JsonProperty("id") val id: kotlin.String? = null,
 
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("supportType")
     @get:JsonProperty("supportType") val supportType: SupportRequest.SupportType? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("location")
     @get:JsonProperty("location") val location: Place? = null,
 
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("time")
     @get:JsonProperty("time") val time: java.time.OffsetDateTime? = null,
 
-    @Schema(example = "null", description = "the priority of the support request.")
+    @Schema(description = "the priority of the support request.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("priority")
     @get:JsonProperty("priority") val priority: SupportRequest.Priority? = null,
 
-    @Schema(example = "null", description = "contact information of the end user in case of direct response requests, like phone number")
+    @Schema(description = "contact information of the end user in case of direct response requests, like phone number")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("contactInformationEndUser")
     @get:JsonProperty("contactInformationEndUser") val contactInformationEndUser: kotlin.String? = null,
 
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("comment")
     @get:JsonProperty("comment") val comment: kotlin.String? = null,
 
     @get:DecimalMin(value="0")
-    @Schema(example = "null", description = "time to respond in minutes.")
+    @Schema(description = "time to respond in minutes.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("requestedResponseTime")
     @get:JsonProperty("requestedResponseTime") val requestedResponseTime: kotlin.Double? = null,
 
-    @Schema(example = "null", description = "urls to clarify the support request e.g. pictures showing damage")
+    @Schema(description = "urls to clarify the support request e.g. pictures showing damage")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("urls")
     @get:JsonProperty("urls") val urls: kotlin.collections.List<kotlin.String>? = null
 ) {
 

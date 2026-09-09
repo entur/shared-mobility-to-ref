@@ -33,7 +33,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 )
 
 interface GeojsonGeometry {
-                @get:Schema(example = "null", requiredMode = Schema.RequiredMode.REQUIRED, description = "")
+                @get:Schema(requiredMode = Schema.RequiredMode.REQUIRED, description = "")
         val type: kotlin.String
 
 

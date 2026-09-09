@@ -1,7 +1,10 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
 import java.util.Objects
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
+import com.fasterxml.jackson.annotation.Nulls
 import no.entur.shared.mobility.to.ref.tomp150.dto.Condition
 import no.entur.shared.mobility.to.ref.tomp150.dto.Coordinates
 import no.entur.shared.mobility.to.ref.tomp150.dto.SystemHours
@@ -27,24 +30,40 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class ConditionReturnArea(
 
-    @Schema(example = "null", required = true, description = "The specific subclass of condition, should match the schema name exactly")
+    @Schema(required = true, description = "The specific subclass of condition, should match the schema name exactly")
+    @param:JsonProperty("conditionType")
     @get:JsonProperty("conditionType", required = true) override val conditionType: kotlin.String,
 
-    @Schema(example = "null", description = "station to which the asset should be returned")
+    @Schema(description = "station to which the asset should be returned")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("stationId")
     @get:JsonProperty("stationId") val stationId: kotlin.String? = null,
 
     @Schema(example = "[[[1.0,1.0],[0.0,1.0],[0.0,0.0],[1.0,0.0],[1.0,1.0]]]", description = "geojson representation of a polygon. First and last point must be equal. See also https://geojson.org/geojson-spec.html#polygon and example https://geojson.org/geojson-spec.html#id4. The order should be lon, lat [[[lon1, lat1], [lon2,lat2], [lon3,lat3], [lon1,lat1]]], the first point should match the last point.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("returnArea")
     @get:JsonProperty("returnArea") val returnArea: kotlin.collections.List<kotlin.collections.List<kotlin.collections.List<kotlin.Float>>>? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("coordinates")
     @get:JsonProperty("coordinates") val coordinates: Coordinates? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "the return hours of the facility (if different from operating-hours)")
+    @Schema(description = "the return hours of the facility (if different from operating-hours)")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("returnHours")
     @get:JsonProperty("returnHours") val returnHours: kotlin.collections.List<SystemHours>? = null,
 
     @Schema(example = "deposit50eu", description = "An identifier for this condition that can be used to refer to this condition")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("id")
     @get:JsonProperty("id") override val id: kotlin.String? = null
 ) : Condition {
 

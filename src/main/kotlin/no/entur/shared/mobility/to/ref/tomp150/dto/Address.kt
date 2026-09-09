@@ -1,7 +1,10 @@
 package no.entur.shared.mobility.to.ref.tomp150.dto
 
 import java.util.Objects
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
+import com.fasterxml.jackson.annotation.Nulls
 import jakarta.validation.constraints.DecimalMax
 import jakarta.validation.constraints.DecimalMin
 import jakarta.validation.constraints.Email
@@ -30,38 +33,67 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class Address(
 
     @Schema(example = "example street 18, 2nd floor, 18-B33", required = true, description = "")
+    @param:JsonProperty("streetAddress")
     @get:JsonProperty("streetAddress", required = true) val streetAddress: kotlin.String,
 
     @Schema(example = "Smallcity, Pinetree county", required = true, description = "city or town, principal subdivision such as province, state or county, could match Content-Language")
+    @param:JsonProperty("areaReference")
     @get:JsonProperty("areaReference", required = true) val areaReference: kotlin.String,
 
-    @Schema(example = "null", description = "street, consistent with streetAddress")
+    @Schema(description = "street, consistent with streetAddress")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("street")
     @get:JsonProperty("street") val street: kotlin.String? = null,
 
     @get:Min(value=0)
-    @Schema(example = "null", description = "house number, consistent with streetAddress")
+    @Schema(description = "house number, consistent with streetAddress")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("houseNumber")
     @get:JsonProperty("houseNumber") val houseNumber: kotlin.Int? = null,
 
-    @Schema(example = "null", description = "the additional part of the house number (f.x. 13bis, where 'bis' is the additional part), consistent with streetAddress")
+    @Schema(description = "the additional part of the house number (f.x. 13bis, where 'bis' is the additional part), consistent with streetAddress")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("houseNumberAddition")
     @get:JsonProperty("houseNumberAddition") val houseNumberAddition: kotlin.String? = null,
 
-    @Schema(example = "null", description = "additional information to find the address (f.x. just around the corner)")
+    @Schema(description = "additional information to find the address (f.x. just around the corner)")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("addressAdditionalInfo")
     @get:JsonProperty("addressAdditionalInfo") val addressAdditionalInfo: kotlin.String? = null,
 
-    @Schema(example = "null", description = "specified city or town, consistent with areaReference")
+    @Schema(description = "specified city or town, consistent with areaReference")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("city")
     @get:JsonProperty("city") val city: kotlin.String? = null,
 
-    @Schema(example = "null", description = "province or region, consistent with areaReference")
+    @Schema(description = "province or region, consistent with areaReference")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("province")
     @get:JsonProperty("province") val province: kotlin.String? = null,
 
-    @Schema(example = "null", description = "state, consistent with areaReference")
+    @Schema(description = "state, consistent with areaReference")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("state")
     @get:JsonProperty("state") val state: kotlin.String? = null,
 
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("postalCode")
     @get:JsonProperty("postalCode") val postalCode: kotlin.String? = null,
 
     @get:Size(min=2,max=2)
     @Schema(example = "NL", description = "two-letter country codes according to ISO 3166-1")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("country")
     @get:JsonProperty("country") val country: kotlin.String? = null
 ) {
 

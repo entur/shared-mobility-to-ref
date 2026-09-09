@@ -2,8 +2,11 @@ package no.entur.shared.mobility.to.ref.tomp150.dto
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.Nulls
 import jakarta.validation.constraints.DecimalMax
 import jakarta.validation.constraints.DecimalMin
 import jakarta.validation.constraints.Email
@@ -26,23 +29,41 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class OffBoardingStep(
 
-    @Schema(example = "null", description = "the type of the information provided")
+    @Schema(description = "the type of the information provided")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("type")
     @get:JsonProperty("type") val type: OffBoardingStep.Type? = null,
 
-    @Schema(example = "null", description = "the internet location of the information, used in case or type `URL` or `IMAGE`")
+    @Schema(description = "the internet location of the information, used in case or type `URL` or `IMAGE`")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("url")
     @get:JsonProperty("url") val url: kotlin.String? = null,
 
-    @Schema(example = "null", description = "the purpose of the information")
+    @Schema(description = "the purpose of the information")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("goal")
     @get:JsonProperty("goal") val goal: OffBoardingStep.Goal? = null,
 
-    @Schema(example = "null", description = "free format text or HTML, depending on the type. Not to use in combination with `URL` or `IMAGE`")
+    @Schema(description = "free format text or HTML, depending on the type. Not to use in combination with `URL` or `IMAGE`")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("text")
     @get:JsonProperty("text") val text: kotlin.String? = null,
 
-    @Schema(example = "null", description = "the moment when the information must be displayed")
+    @Schema(description = "the moment when the information must be displayed")
     @Deprecated(message = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("showTime")
     @get:JsonProperty("showTime") val showTime: OffBoardingStep.ShowTime? = null,
 
-    @Schema(example = "null", description = "these actions are available<br> `SEND_START_FINISHING` - the TO needs to be informed the leg is about to finish<br> `PARK_ASSIST` - user action to park (stop) using the asset<br> `UNLOCK_LOCKER` - user action, could be triggered by the START_FINISH event<br> `CONNECT_CHARGER` - user action<br> `LOCK_ASSET` - user action, could be triggered by the FINISH event<br> `SEND_OPEN_TRUNK` - the TO opens the trunk remotely <br> `UNLOCK_TRUNK` - user action <br> `STOW_HELMET` - user action <br> `LOCK_TRUNK` - user action <br> `LOCK_LOCKER` - user action <br> `SEND_FINISH` - the TO wants to be informed about the end of the leg<br> `SEND_EVIDENCE_PARKED` - the TO requires parking evidence<br> `SEND_EVIDENCE_HELMET` - the TO requires evidence of storing the helmet<br> `SEND_EVIDENCE_CHARGER` - the TO requires evidence of correct usage of the charger")
+    @Schema(description = "these actions are available<br> `SEND_START_FINISHING` - the TO needs to be informed the leg is about to finish<br> `PARK_ASSIST` - user action to park (stop) using the asset<br> `UNLOCK_LOCKER` - user action, could be triggered by the START_FINISH event<br> `CONNECT_CHARGER` - user action<br> `LOCK_ASSET` - user action, could be triggered by the FINISH event<br> `SEND_OPEN_TRUNK` - the TO opens the trunk remotely <br> `UNLOCK_TRUNK` - user action <br> `STOW_HELMET` - user action <br> `LOCK_TRUNK` - user action <br> `LOCK_LOCKER` - user action <br> `SEND_FINISH` - the TO wants to be informed about the end of the leg<br> `SEND_EVIDENCE_PARKED` - the TO requires parking evidence<br> `SEND_EVIDENCE_HELMET` - the TO requires evidence of storing the helmet<br> `SEND_EVIDENCE_CHARGER` - the TO requires evidence of correct usage of the charger")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("action")
     @get:JsonProperty("action") val action: OffBoardingStep.Action? = null
 ) {
 
