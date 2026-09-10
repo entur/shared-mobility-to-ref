@@ -134,7 +134,10 @@
          <trusted-key id="A5BD02B93E7A40482EB1D66A5F69AD087600B22C" group="org.ow2.asm" name="asm"/>
          <trusted-key id="A7892505CF1A58076453E52D7999BEFBA1039E8B" group="net.bytebuddy"/>
          <trusted-key id="A9C4B4277E23538F118DC2CED8E6762C6CB29F64" group="com.auth0" name="auth0" version="2.26.0"/>
-         <trusted-key id="A9C5DF4D22E99998D9875A5110C01C5A2F6059E7" group="org.apache.tomcat.embed"/>
+         <trusted-key id="A9C5DF4D22E99998D9875A5110C01C5A2F6059E7">
+            <trusting group="org.apache.tomcat" name="tomcat-annotations-api" version="11.0.24"/>
+            <trusting group="org.apache.tomcat.embed"/>
+         </trusted-key>
          <trusted-key id="AA70C7C433D501636392EC02153E7A3C2B4E5118" group="org.eclipse.ee4j" name="project"/>
          <trusted-key id="AC3F8C3B82B7990EE0EB32C009C6FCE6AACD67E3" group="com.auth0" name="auth0"/>
          <trusted-key id="ADBC987D1A7B91DB6B0AAA81995EFBF4A3D20BEB" group="com.pinterest.ktlint"/>
