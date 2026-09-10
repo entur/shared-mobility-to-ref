@@ -47,7 +47,7 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("io.github.openfeign:feign-httpclient:13.14")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.1.0")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.1.1")
     implementation("com.fasterxml.jackson.core:jackson-annotations:2.22")
     // Override versions with vulnerabilities
     implementation("org.apache.tomcat.embed:tomcat-embed-core") {
