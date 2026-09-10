@@ -131,7 +131,11 @@
          <trusted-key id="890A711ECEFC9F46E7DC9A004083A52B1E69FF28" group="com.github.mifmif" name="generex"/>
          <trusted-key id="90493B3B543CB717F9DD6EEE10C81B79DBFF09EA" group="com.github.curious-odd-man" name="rgxgen"/>
          <trusted-key id="A41A5960555F8CBBC7D8B2D7787F3A057B828D36" group="org.springdoc"/>
-         <trusted-key id="A5BD02B93E7A40482EB1D66A5F69AD087600B22C" group="org.ow2.asm" name="asm"/>
+         <trusted-key id="A59A3A16F87A0AE92F080DBFC25EC7B4882FAE47" group="org.openjdk.nashorn" name="nashorn-core" version="15.4"/>
+         <trusted-key id="A5BD02B93E7A40482EB1D66A5F69AD087600B22C">
+            <trusting group="org.ow2.asm"/>
+            <trusting group="org.ow2.asm" name="asm"/>
+         </trusted-key>
          <trusted-key id="A7892505CF1A58076453E52D7999BEFBA1039E8B" group="net.bytebuddy"/>
          <trusted-key id="A9C4B4277E23538F118DC2CED8E6762C6CB29F64" group="com.auth0" name="auth0" version="2.26.0"/>
          <trusted-key id="A9C5DF4D22E99998D9875A5110C01C5A2F6059E7">

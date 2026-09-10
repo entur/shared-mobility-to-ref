@@ -60,6 +60,11 @@ dependencies {
             strictly("2.21.5")
         }
     }
+    implementation("com.github.jknack:handlebars") {
+        version {
+            strictly("4.5.2")
+        }
+    }
     // override end
 
     // Security
