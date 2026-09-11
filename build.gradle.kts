@@ -5,8 +5,8 @@ plugins {
     idea
     id("org.springframework.boot") version "4.1.1"
     id("io.spring.dependency-management") version "1.1.7"
-    kotlin("jvm") version "2.4.10"
-    kotlin("plugin.spring") version "2.4.10"
+    kotlin("jvm") version "2.4.20"
+    kotlin("plugin.spring") version "2.4.20"
     id("org.openapi.generator") version "7.25.0"
     id("org.jlleitschuh.gradle.ktlint") version "14.2.0"
 }
@@ -47,7 +47,7 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("io.github.openfeign:feign-httpclient:13.14")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.1.0")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.1.1")
     implementation("com.fasterxml.jackson.core:jackson-annotations:2.22")
     // Override versions with vulnerabilities
     implementation("org.apache.tomcat.embed:tomcat-embed-core") {
