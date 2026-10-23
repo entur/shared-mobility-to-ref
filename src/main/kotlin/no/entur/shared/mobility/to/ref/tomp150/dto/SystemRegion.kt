@@ -73,12 +73,12 @@ data class SystemRegion(
         PARKING("PARKING"),
         DISCOUNT("DISCOUNT"),
         SPEEDLIMIT("SPEEDLIMIT");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
@@ -92,12 +92,12 @@ data class SystemRegion(
 
         KMPH("KMPH"),
         MPH("MPH");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): TypeUnit {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'TypeUnit'")
             }
         }

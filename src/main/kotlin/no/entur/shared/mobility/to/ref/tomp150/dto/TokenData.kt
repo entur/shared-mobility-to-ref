@@ -32,7 +32,7 @@ import io.swagger.v3.oas.annotations.media.Schema
       JsonSubTypes.Type(value = TokenQR::class, name = "TokenQR")
 )
 
-interface TokenData {
+sealed interface TokenData {
                 @get:Schema(requiredMode = Schema.RequiredMode.REQUIRED, description = "")
         val tokenType: kotlin.String
 

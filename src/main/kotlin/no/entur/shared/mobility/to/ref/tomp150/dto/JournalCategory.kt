@@ -16,9 +16,9 @@ import jakarta.validation.Valid
 import io.swagger.v3.oas.annotations.media.Schema
 
 /**
-* They are there for filtering purposes in the journal entry endpoint.
-* Values: ALL,DAMAGE,LOSS,STOLEN,EXTRA_USAGE,REFUND,FINE,OTHER_ASSET_USED,CREDIT,VOUCHER,DEPOSIT,OTHER,FARE
-*/
+ * They are there for filtering purposes in the journal entry endpoint.
+ * Values: ALL,DAMAGE,LOSS,STOLEN,EXTRA_USAGE,REFUND,FINE,OTHER_ASSET_USED,CREDIT,VOUCHER,DEPOSIT,OTHER,FARE
+ */
 enum class JournalCategory(@get:JsonValue val value: kotlin.String) {
 
     ALL("ALL"),
@@ -39,9 +39,8 @@ enum class JournalCategory(@get:JsonValue val value: kotlin.String) {
         @JvmStatic
         @JsonCreator
         fun forValue(value: kotlin.String): JournalCategory {
-                return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'JournalCategory'")
+            return values().firstOrNull{ it.value == value }
+                ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'JournalCategory'")
         }
     }
 }
-

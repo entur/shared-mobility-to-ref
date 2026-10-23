@@ -16,9 +16,9 @@ import jakarta.validation.Valid
 import io.swagger.v3.oas.annotations.media.Schema
 
 /**
-* 
-* Values: POSTPONED_COMMIT,DEPOSIT,PAY_WHEN_FINISHED,REQUIRE_BOOKING_DATA,RETURN_AREA,UPFRONT_PAYMENT
-*/
+ * 
+ * Values: POSTPONED_COMMIT,DEPOSIT,PAY_WHEN_FINISHED,REQUIRE_BOOKING_DATA,RETURN_AREA,UPFRONT_PAYMENT
+ */
 enum class Scenario(@get:JsonValue val value: kotlin.String) {
 
     POSTPONED_COMMIT("POSTPONED_COMMIT"),
@@ -32,9 +32,8 @@ enum class Scenario(@get:JsonValue val value: kotlin.String) {
         @JvmStatic
         @JsonCreator
         fun forValue(value: kotlin.String): Scenario {
-                return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Scenario'")
+            return values().firstOrNull{ it.value == value }
+                ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Scenario'")
         }
     }
 }
-

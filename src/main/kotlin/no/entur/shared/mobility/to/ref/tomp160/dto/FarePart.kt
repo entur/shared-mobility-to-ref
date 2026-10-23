@@ -131,12 +131,12 @@ data class FarePart(
         FIXED("FIXED"),
         FLEX("FLEX"),
         MAX("MAX");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
@@ -151,12 +151,12 @@ data class FarePart(
         DEFAULT("DEFAULT"),
         DISCOUNT("DISCOUNT"),
         SURGE("SURGE");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Kind {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Kind'")
             }
         }
@@ -174,12 +174,12 @@ data class FarePart(
         HOUR("HOUR"),
         MILE("MILE"),
         PERCENTAGE("PERCENTAGE");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): UnitType {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'UnitType'")
             }
         }
@@ -195,12 +195,12 @@ data class FarePart(
         MILE("MILE"),
         HOUR("HOUR"),
         MINUTE("MINUTE");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): ScaleType {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ScaleType'")
             }
         }
@@ -214,12 +214,12 @@ data class FarePart(
 
         FARE("FARE"),
         ANCILLARY("ANCILLARY");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): PropertyClass {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'PropertyClass'")
             }
         }
@@ -233,12 +233,12 @@ data class FarePart(
 
         IN_USE("IN_USE"),
         PAUSED("PAUSED");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): AssetState {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'AssetState'")
             }
         }

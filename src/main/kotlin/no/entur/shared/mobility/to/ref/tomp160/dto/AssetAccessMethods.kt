@@ -16,9 +16,9 @@ import jakarta.validation.Valid
 import io.swagger.v3.oas.annotations.media.Schema
 
 /**
-* 
-* Values: DEEPLINK,QR,AZTEC,TOMP_API,AXA_EKEY_OTP,PHYSICAL_KEY,BARCODE,PDF,HTML,OVC,EMV,NONE
-*/
+ * 
+ * Values: DEEPLINK,QR,AZTEC,TOMP_API,AXA_EKEY_OTP,PHYSICAL_KEY,BARCODE,PDF,HTML,OVC,EMV,NONE
+ */
 enum class AssetAccessMethods(@get:JsonValue val value: kotlin.String) {
 
     DEEPLINK("DEEPLINK"),
@@ -38,9 +38,8 @@ enum class AssetAccessMethods(@get:JsonValue val value: kotlin.String) {
         @JvmStatic
         @JsonCreator
         fun forValue(value: kotlin.String): AssetAccessMethods {
-                return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'AssetAccessMethods'")
+            return values().firstOrNull{ it.value == value }
+                ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'AssetAccessMethods'")
         }
     }
 }
-

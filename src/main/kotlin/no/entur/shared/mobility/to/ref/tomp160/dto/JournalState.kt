@@ -16,9 +16,9 @@ import jakarta.validation.Valid
 import io.swagger.v3.oas.annotations.media.Schema
 
 /**
-* 
-* Values: TO_INVOICE,INVOICED
-*/
+ * 
+ * Values: TO_INVOICE,INVOICED
+ */
 enum class JournalState(@get:JsonValue val value: kotlin.String) {
 
     TO_INVOICE("TO_INVOICE"),
@@ -28,9 +28,8 @@ enum class JournalState(@get:JsonValue val value: kotlin.String) {
         @JvmStatic
         @JsonCreator
         fun forValue(value: kotlin.String): JournalState {
-                return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'JournalState'")
+            return values().firstOrNull{ it.value == value }
+                ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'JournalState'")
         }
     }
 }
-

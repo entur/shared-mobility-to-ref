@@ -62,12 +62,12 @@ data class Notification(
         MESSAGE_TO_END_USER("MESSAGE_TO_END_USER"),
         USER_OUT_OF_LIMITS("USER_OUT_OF_LIMITS"),
         OTHER("OTHER");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }

@@ -57,12 +57,12 @@ data class Information(
         IMAGE("IMAGE"),
         PLAIN_TEXT("PLAIN_TEXT"),
         HTML("HTML");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
@@ -77,12 +77,12 @@ data class Information(
         INSTRUCTIONS("INSTRUCTIONS"),
         SALES("SALES"),
         TERMS_CONDITIONS("TERMS_CONDITIONS");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Goal {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Goal'")
             }
         }
@@ -102,12 +102,12 @@ data class Information(
         OPEN_TRUNK("OPEN_TRUNK"),
         START_FINISHING("START_FINISHING"),
         FINISH("FINISH");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): ShowTime {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ShowTime'")
             }
         }

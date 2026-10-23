@@ -8,7 +8,6 @@ plugins {
     kotlin("jvm") version "2.4.21"
     kotlin("plugin.spring") version "2.4.21"
     id("org.openapi.generator") version "7.26.0"
-    id("org.jlleitschuh.gradle.ktlint") version "14.2.0"
 }
 
 group = "no.entur"
@@ -102,25 +101,6 @@ val modelPackageTomp160 = "no.entur.shared.mobility.to.ref.tomp160.dto"
 val apiPackageTomp160 = "no.entur.shared.mobility.to.ref.tomp160.controller"
 val modelPathTomp160 = file("$projectDir/src/main/kotlin/no/entur/shared/mobility/to/ref/tomp160/dto")
 val apiPathTomp160 = file("$projectDir/src/main/kotlin/no/entur/shared/mobility/to/ref/tomp160/controller")
-ktlint {
-    version = "1.5.0"
-    debug = true
-    verbose = true
-    filter {
-        exclude {
-            it.file.path.contains(modelPathTomp150.path)
-        }
-        exclude {
-            it.file.path.contains(apiPathTomp150.path)
-        }
-        exclude {
-            it.file.path.contains(modelPathTomp160.path)
-        }
-        exclude {
-            it.file.path.contains(apiPathTomp160.path)
-        }
-    }
-}
 
 val configOptionsTomp =
     mapOf(
@@ -177,17 +157,6 @@ tasks.withType<Test> {
 tasks.named("compileKotlin") {
     dependsOn(":buildTomp150")
     dependsOn(":buildTomp160")
-}
-tasks.named("runKtlintFormatOverMainSourceSet") {
-    dependsOn(":buildTomp150")
-    dependsOn(":buildTomp160")
-}
-
-tasks.named("runKtlintCheckOverMainSourceSet") {
-    dependsOn("runKtlintFormatOverMainSourceSet")
-}
-tasks.named("runKtlintCheckOverTestSourceSet") {
-    dependsOn("runKtlintFormatOverTestSourceSet")
 }
 
 tasks.register("fetchSecrets") {

@@ -32,7 +32,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 @JsonSubTypes(
 )
 
-interface GeojsonGeometry {
+sealed interface GeojsonGeometry {
                 @get:Schema(requiredMode = Schema.RequiredMode.REQUIRED, description = "")
         val type: GeojsonGeometry.Type
 
@@ -50,12 +50,12 @@ interface GeojsonGeometry {
         LINE_STRING("LineString"),
         POLYGON("Polygon"),
         MULTI_POLYGON("MultiPolygon");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }

@@ -102,12 +102,12 @@ data class SupportStatus(
         API_FUNCTIONAL("API_FUNCTIONAL"),
         ACCIDENT("ACCIDENT"),
         OTHER("OTHER");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): SupportType {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'SupportType'")
             }
         }
@@ -124,12 +124,12 @@ data class SupportStatus(
         DISTURBING_ISSUE("DISTURBING_ISSUE"),
         QUESTION("QUESTION"),
         OTHER("OTHER");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Priority {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Priority'")
             }
         }
@@ -145,12 +145,12 @@ data class SupportStatus(
         UPDATE_REQUESTED("UPDATE_REQUESTED"),
         RESOLVED("RESOLVED"),
         CANCELLED("CANCELLED");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Status {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Status'")
             }
         }

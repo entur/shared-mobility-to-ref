@@ -40,7 +40,7 @@ import io.swagger.v3.oas.annotations.media.Schema
       JsonSubTypes.Type(value = ConditionUpfrontPayment::class, name = "ConditionUpfrontPayment")
 )
 
-interface Condition {
+sealed interface Condition {
                 @get:Schema(requiredMode = Schema.RequiredMode.REQUIRED, description = "The specific subclass of condition, should match the schema name exactly")
         val conditionType: kotlin.String
 

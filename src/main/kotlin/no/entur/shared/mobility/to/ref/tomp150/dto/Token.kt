@@ -53,12 +53,12 @@ data class Token(
         TOKEN_DEEPLINK("tokenDeeplink"),
         TOKEN_E_KEY("tokenEKey"),
         TOKEN_QR("tokenQR");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): TokenType {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'TokenType'")
             }
         }

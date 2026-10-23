@@ -62,12 +62,12 @@ data class PausingStep(
         IMAGE("IMAGE"),
         PLAIN_TEXT("PLAIN_TEXT"),
         HTML("HTML");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
@@ -82,12 +82,12 @@ data class PausingStep(
         INSTRUCTIONS("INSTRUCTIONS"),
         SALES("SALES"),
         TERMS_CONDITIONS("TERMS_CONDITIONS");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Goal {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Goal'")
             }
         }
@@ -107,12 +107,12 @@ data class PausingStep(
         OPEN_TRUNK("OPEN_TRUNK"),
         START_FINISHING("START_FINISHING"),
         FINISH("FINISH");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): ShowTime {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ShowTime'")
             }
         }
@@ -131,12 +131,12 @@ data class PausingStep(
         UNLOCK_TRUNK("UNLOCK_TRUNK"),
         STOW_HELMET("STOW_HELMET"),
         LOCK_TRUNK("LOCK_TRUNK");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Action {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Action'")
             }
         }

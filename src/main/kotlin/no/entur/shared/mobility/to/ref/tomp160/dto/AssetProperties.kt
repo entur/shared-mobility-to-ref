@@ -262,12 +262,12 @@ data class AssetProperties(
         BIO_MASS("BIO_MASS"),
         KEROSINE("KEROSINE"),
         OTHER("OTHER");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Fuel {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Fuel'")
             }
         }
@@ -286,12 +286,12 @@ data class AssetProperties(
         HYBRID("HYBRID"),
         LPG("LPG"),
         HYDROGEN("HYDROGEN");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Propulsion {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Propulsion'")
             }
         }
@@ -308,12 +308,12 @@ data class AssetProperties(
         C("C"),
         D("D"),
         E("E");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): EnergyLabel {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'EnergyLabel'")
             }
         }
@@ -328,12 +328,12 @@ data class AssetProperties(
         MANUAL("MANUAL"),
         AUTOMATIC("AUTOMATIC"),
         SEMIAUTOMATIC("SEMIAUTOMATIC");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Gearbox {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Gearbox'")
             }
         }
@@ -351,12 +351,12 @@ data class AssetProperties(
         SIGHTIMPAIRMENT("SIGHTIMPAIRMENT"),
         HEARINGIMPAIRMENT("HEARINGIMPAIRMENT"),
         WHEELCHAIR("WHEELCHAIR");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): EasyAccessibility {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'EasyAccessibility'")
             }
         }

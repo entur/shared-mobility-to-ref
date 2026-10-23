@@ -179,12 +179,12 @@ data class StationInformation(
         UNDERGROUND_PARKING("UNDERGROUND_PARKING"),
         SIDEWALK_PARKING("SIDEWALK_PARKING"),
         OTHER("OTHER");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): ParkingType {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ParkingType'")
             }
         }
@@ -207,12 +207,12 @@ data class StationInformation(
         ACCOUNTNUMBER("ACCOUNTNUMBER"),
         PHONE("PHONE"),
         OTHER("OTHER");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): RentalMethods {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'RentalMethods'")
             }
         }
