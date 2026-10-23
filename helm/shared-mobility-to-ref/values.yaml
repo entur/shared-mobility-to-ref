@@ -1,6 +1,6 @@
 common:
   app: shared-mobility-to-ref
-  shortname: shmotoref
+  appId: shmotoref
   team: delingsmobilitet
   ingress:
     enabled: true
@@ -11,7 +11,7 @@ common:
     prometheus:
       enabled: true
       path: "/actuator/prometheus"
-    replicas: 2
+
   container:
     image: <+artifacts.primary.image>
     cpu: 0.3
