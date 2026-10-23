@@ -78,12 +78,12 @@ data class Endpoint(
         GET("GET"),
         DELETE("DELETE"),
         PATCH("PATCH");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Method {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Method'")
             }
         }
@@ -98,12 +98,12 @@ data class Endpoint(
         NOT_IMPLEMENTED("NOT_IMPLEMENTED"),
         DIALECT("DIALECT"),
         IMPLEMENTED("IMPLEMENTED");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Status {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Status'")
             }
         }
@@ -127,12 +127,12 @@ data class Endpoint(
         EXPIRE("EXPIRE"),
         DENY("DENY"),
         COMMIT("COMMIT");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): EventType {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'EventType'")
             }
         }
@@ -150,12 +150,12 @@ data class Endpoint(
         OSDM_OFFLINE("OSDM_Offline"),
         IXSI5("IXSI5"),
         APDS("APDS");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): ExternalType {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ExternalType'")
             }
         }

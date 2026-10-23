@@ -32,7 +32,7 @@ import io.swagger.v3.oas.annotations.media.Schema
       JsonSubTypes.Type(value = GeojsonPolygon::class, name = "Polygon")
 )
 
-interface GeojsonGeometry {
+sealed interface GeojsonGeometry {
                 @get:Schema(requiredMode = Schema.RequiredMode.REQUIRED, description = "")
         val type: kotlin.String
 

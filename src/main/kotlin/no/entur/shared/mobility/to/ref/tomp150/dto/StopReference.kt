@@ -49,12 +49,12 @@ data class StopReference(
         CHB_STOP_PLACE_CODE("CHB_STOP_PLACE_CODE"),
         CHB_QUAY_CODE("CHB_QUAY_CODE"),
         NS_CODE("NS_CODE");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }

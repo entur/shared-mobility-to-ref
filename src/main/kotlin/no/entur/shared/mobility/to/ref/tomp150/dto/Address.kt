@@ -27,7 +27,8 @@ import io.swagger.v3.oas.annotations.media.Schema
  * @param postalCode 
  * @param country two-letter country codes according to ISO 3166-1
  */
-data class Address(
+data class
+Address(
 
     @Schema(example = "example street 18, 2nd floor, 18-B33", required = true, description = "")
     @param:JsonProperty("streetAddress", required = true)

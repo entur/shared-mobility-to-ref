@@ -46,12 +46,12 @@ data class BookingOperation(
         DENY("DENY"),
         COMMIT("COMMIT"),
         EXTEND_EXPIRY_TIME("EXTEND_EXPIRY_TIME");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Operation {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Operation'")
             }
         }
@@ -66,12 +66,12 @@ data class BookingOperation(
         BOOKING_PENDING("BOOKING_PENDING"),
         PAYMENT_PENDING("PAYMENT_PENDING"),
         OTHER("OTHER");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): ExtendReason {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ExtendReason'")
             }
         }
@@ -87,12 +87,12 @@ data class BookingOperation(
         MP("MP"),
         END_USER("END_USER"),
         OTHER("OTHER");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Origin {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Origin'")
             }
         }

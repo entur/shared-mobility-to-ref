@@ -16,9 +16,9 @@ import jakarta.validation.Valid
 import io.swagger.v3.oas.annotations.media.Schema
 
 /**
-* status of a leg
-* Values: NOT_STARTED,PREPARING,IN_USE,PAUSED,FINISHING,FINISHED,ISSUE_REPORTED,CANCELLED
-*/
+ * status of a leg
+ * Values: NOT_STARTED,PREPARING,IN_USE,PAUSED,FINISHING,FINISHED,ISSUE_REPORTED,CANCELLED
+ */
 enum class LegState(@get:JsonValue val value: kotlin.String) {
 
     NOT_STARTED("NOT_STARTED"),
@@ -34,9 +34,8 @@ enum class LegState(@get:JsonValue val value: kotlin.String) {
         @JvmStatic
         @JsonCreator
         fun forValue(value: kotlin.String): LegState {
-                return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'LegState'")
+            return values().firstOrNull{ it.value == value }
+                ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'LegState'")
         }
     }
 }
-

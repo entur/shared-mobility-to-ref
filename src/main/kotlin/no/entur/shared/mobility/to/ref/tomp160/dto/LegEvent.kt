@@ -71,12 +71,12 @@ data class LegEvent(
         TIME_EXTEND("TIME_EXTEND"),
         TIME_POSTPONE("TIME_POSTPONE"),
         CANCEL("CANCEL");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Event {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Event'")
             }
         }

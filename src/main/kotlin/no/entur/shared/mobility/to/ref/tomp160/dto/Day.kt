@@ -16,9 +16,9 @@ import jakarta.validation.Valid
 import io.swagger.v3.oas.annotations.media.Schema
 
 /**
-* 
-* Values: MON,TUE,WED,THU,FRI,SAT,SUN
-*/
+ * 
+ * Values: MON,TUE,WED,THU,FRI,SAT,SUN
+ */
 enum class Day(@get:JsonValue val value: kotlin.String) {
 
     MON("MON"),
@@ -33,9 +33,8 @@ enum class Day(@get:JsonValue val value: kotlin.String) {
         @JvmStatic
         @JsonCreator
         fun forValue(value: kotlin.String): Day {
-                return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Day'")
+            return values().firstOrNull{ it.value == value }
+                ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Day'")
         }
     }
 }
-

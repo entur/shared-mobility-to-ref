@@ -50,12 +50,12 @@ data class Phone(
 
         LANDLINE("LANDLINE"),
         MOBILE("MOBILE");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Kind {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Kind'")
             }
         }
@@ -70,12 +70,12 @@ data class Phone(
         PRIVATE("PRIVATE"),
         BUSINESS("BUSINESS"),
         OTHER("OTHER");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }

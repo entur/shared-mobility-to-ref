@@ -76,12 +76,12 @@ data class SystemAlert(
         STATION_CLOSURE("STATION_CLOSURE"),
         STATION_MOVE("STATION_MOVE"),
         OTHER("OTHER");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): AlertType {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'AlertType'")
             }
         }

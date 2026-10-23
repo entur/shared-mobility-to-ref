@@ -16,9 +16,9 @@ import jakarta.validation.Valid
 import io.swagger.v3.oas.annotations.media.Schema
 
 /**
-* The life-cycle state of the booking (from NEW to FINISHED)
-* Values: NEW,PENDING,REJECTED,RELEASED,EXPIRED,CONDITIONAL_CONFIRMED,CONFIRMED,CANCELLED,STARTED,FINISHED
-*/
+ * The life-cycle state of the booking (from NEW to FINISHED)
+ * Values: NEW,PENDING,REJECTED,RELEASED,EXPIRED,CONDITIONAL_CONFIRMED,CONFIRMED,CANCELLED,STARTED,FINISHED
+ */
 enum class BookingState(@get:JsonValue val value: kotlin.String) {
 
     NEW("NEW"),
@@ -36,9 +36,8 @@ enum class BookingState(@get:JsonValue val value: kotlin.String) {
         @JvmStatic
         @JsonCreator
         fun forValue(value: kotlin.String): BookingState {
-                return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'BookingState'")
+            return values().firstOrNull{ it.value == value }
+                ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'BookingState'")
         }
     }
 }
-

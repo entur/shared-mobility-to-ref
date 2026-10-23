@@ -25,7 +25,7 @@ import io.swagger.v3.oas.annotations.media.Schema
  * @param timezone The time zone where the system is located. Time zone names never contain the space character but may contain an underscore. Please refer to the \"TZ\" value in https://en.wikipedia.org/wiki/List_of_tz_database_time_zones for a list of valid values
  * @param typeOfSystem Describes the type of system
  * @param shortName Optional abbreviation for a system
- * @param &#x60;operator&#x60; Name of the operator of the system, could match Content-Language
+ * @param `operator` Name of the operator of the system, could match Content-Language
  * @param url The URL of the transport operator. The value must be a fully qualified URL that includes http:// or https://, and any special characters in the URL must be correctly escaped.
  * @param purchaseUrl A fully qualified URL where a customer can purchase a membership or learn more about purchasing memberships
  * @param discoveryUriAndroid Uri to detect if the app is available at the mobile.
@@ -147,12 +147,12 @@ data class SystemInformation(
         FREE_FLOATING("FREE_FLOATING"),
         STATION_BASED("STATION_BASED"),
         VIRTUAL_STATION_BASED("VIRTUAL_STATION_BASED");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): TypeOfSystem {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'TypeOfSystem'")
             }
         }
@@ -168,12 +168,12 @@ data class SystemInformation(
         SHARING("SHARING"),
         PARKING("PARKING"),
         CHARGING("CHARGING");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): ProductType {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ProductType'")
             }
         }

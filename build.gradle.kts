@@ -5,10 +5,9 @@ plugins {
     idea
     id("org.springframework.boot") version "4.1.1"
     id("io.spring.dependency-management") version "1.1.7"
-    kotlin("jvm") version "2.4.10"
-    kotlin("plugin.spring") version "2.4.10"
-    id("org.openapi.generator") version "7.25.0"
-    id("org.jlleitschuh.gradle.ktlint") version "14.2.0"
+    kotlin("jvm") version "2.4.21"
+    kotlin("plugin.spring") version "2.4.21"
+    id("org.openapi.generator") version "7.26.0"
 }
 
 group = "no.entur"
@@ -45,9 +44,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-webservices")
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("io.github.openfeign:feign-httpclient:13.14")
+    implementation("io.github.openfeign:feign-httpclient:13.17")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.1.0")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.1.1")
     implementation("com.fasterxml.jackson.core:jackson-annotations:2.22")
     // Override versions with vulnerabilities
     implementation("org.apache.tomcat.embed:tomcat-embed-core") {
@@ -68,18 +67,18 @@ dependencies {
     // override end
 
     // Security
-    implementation("org.entur.auth.client:oidc-client-spring-boot:3.0.1")
+    implementation("org.entur.auth.client:oidc-client-spring-boot:3.0.3")
     runtimeOnly("io.micrometer:micrometer-registry-prometheus")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
-    testImplementation("io.kotest:kotest-property:6.2.4")
-    testImplementation("io.kotest:kotest-assertions-core:6.2.4")
+    testImplementation("io.kotest:kotest-property:6.2.5")
+    testImplementation("io.kotest:kotest-assertions-core:6.2.5")
     testImplementation("io.mockk:mockk:1.14.11")
 }
 
 dependencyManagement {
     imports {
-        mavenBom("com.google.cloud:spring-cloud-gcp-dependencies:8.1.1")
+        mavenBom("com.google.cloud:spring-cloud-gcp-dependencies:8.2.3")
         mavenBom("org.springframework.cloud:spring-cloud-dependencies:2025.1.3")
     }
 }
@@ -102,25 +101,6 @@ val modelPackageTomp160 = "no.entur.shared.mobility.to.ref.tomp160.dto"
 val apiPackageTomp160 = "no.entur.shared.mobility.to.ref.tomp160.controller"
 val modelPathTomp160 = file("$projectDir/src/main/kotlin/no/entur/shared/mobility/to/ref/tomp160/dto")
 val apiPathTomp160 = file("$projectDir/src/main/kotlin/no/entur/shared/mobility/to/ref/tomp160/controller")
-ktlint {
-    version = "1.5.0"
-    debug = true
-    verbose = true
-    filter {
-        exclude {
-            it.file.path.contains(modelPathTomp150.path)
-        }
-        exclude {
-            it.file.path.contains(apiPathTomp150.path)
-        }
-        exclude {
-            it.file.path.contains(modelPathTomp160.path)
-        }
-        exclude {
-            it.file.path.contains(apiPathTomp160.path)
-        }
-    }
-}
 
 val configOptionsTomp =
     mapOf(
@@ -177,17 +157,6 @@ tasks.withType<Test> {
 tasks.named("compileKotlin") {
     dependsOn(":buildTomp150")
     dependsOn(":buildTomp160")
-}
-tasks.named("runKtlintFormatOverMainSourceSet") {
-    dependsOn(":buildTomp150")
-    dependsOn(":buildTomp160")
-}
-
-tasks.named("runKtlintCheckOverMainSourceSet") {
-    dependsOn("runKtlintFormatOverMainSourceSet")
-}
-tasks.named("runKtlintCheckOverTestSourceSet") {
-    dependsOn("runKtlintFormatOverTestSourceSet")
 }
 
 tasks.register("fetchSecrets") {

@@ -46,12 +46,12 @@ data class ConditionRequireEvidence(
         PARKED("PARKED"),
         HELMET_IN_BASKET("HELMET_IN_BASKET"),
         CHARGING("CHARGING");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): EvidenceTypes {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'EvidenceTypes'")
             }
         }

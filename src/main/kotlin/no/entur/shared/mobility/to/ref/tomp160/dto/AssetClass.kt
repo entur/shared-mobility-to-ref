@@ -16,9 +16,9 @@ import jakarta.validation.Valid
 import io.swagger.v3.oas.annotations.media.Schema
 
 /**
-* These classes are taken from the NeTeX standard, but ALL and UNKNOWN are removed. On the other hand OTHER and PARKING are added.
-* Values: AIR,BUS,TROLLEYBUS,TRAM,COACH,RAIL,INTERCITYRAIL,URBANRAIL,METRO,WATER,CABLEWAY,FUNICULAR,TAXI,SELFDRIVE,FOOT,BICYCLE,MOTORCYCLE,CAR,SHUTTLE,OTHER,PARKING,MOPED,STEP,FERRY
-*/
+ * These classes are taken from the NeTeX standard, but ALL and UNKNOWN are removed. On the other hand OTHER and PARKING are added.
+ * Values: AIR,BUS,TROLLEYBUS,TRAM,COACH,RAIL,INTERCITYRAIL,URBANRAIL,METRO,WATER,CABLEWAY,FUNICULAR,TAXI,SELFDRIVE,FOOT,BICYCLE,MOTORCYCLE,CAR,SHUTTLE,OTHER,PARKING,MOPED,STEP,FERRY
+ */
 enum class AssetClass(@get:JsonValue val value: kotlin.String) {
 
     AIR("AIR"),
@@ -50,9 +50,8 @@ enum class AssetClass(@get:JsonValue val value: kotlin.String) {
         @JvmStatic
         @JsonCreator
         fun forValue(value: kotlin.String): AssetClass {
-                return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'AssetClass'")
+            return values().firstOrNull{ it.value == value }
+                ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'AssetClass'")
         }
     }
 }
-

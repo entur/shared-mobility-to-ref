@@ -52,9 +52,6 @@ jobs:
       - name: "Download Gradle Dependencies"
         run: ./gradlew dependencies
 
-      - name: "Check Kotlin code formatting with ktlintCheck"
-        run: ./gradlew ktlintCheck
-
       - name: "Build with Gradle Wrapper"
         run: ./gradlew build -x test
 

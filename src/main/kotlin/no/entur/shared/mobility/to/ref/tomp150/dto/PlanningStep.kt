@@ -62,12 +62,12 @@ data class PlanningStep(
         IMAGE("IMAGE"),
         PLAIN_TEXT("PLAIN_TEXT"),
         HTML("HTML");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
@@ -81,12 +81,12 @@ data class PlanningStep(
 
         INSTRUCTIONS("INSTRUCTIONS"),
         SALES("SALES");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Goal {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Goal'")
             }
         }
@@ -106,12 +106,12 @@ data class PlanningStep(
         OPEN_TRUNK("OPEN_TRUNK"),
         START_FINISHING("START_FINISHING"),
         FINISH("FINISH");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): ShowTime {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ShowTime'")
             }
         }
@@ -124,12 +124,12 @@ data class PlanningStep(
     enum class Action(@get:JsonValue val value: kotlin.String) {
 
         RESULT_SHOWN("RESULT_SHOWN");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Action {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Action'")
             }
         }
