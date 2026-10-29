@@ -1,4 +1,4 @@
-package no.entur.shared.mobility.to.ref.tomp150.controller.optional
+package no.entur.shared.mobility.to.ref.tomp150.controller.unused
 
 import io.swagger.v3.oas.annotations.Hidden
 import io.swagger.v3.oas.annotations.Operation
@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
-@RestController("no.entur.shared.mobility.to.ref.tomp150.controller.optional.PlanningController")
+@RestController("no.entur.shared.mobility.to.ref.tomp150.controller.unused.PlanningController")
 @Validated
 @RequestMapping("\${api.base-path:}")
 class PlanningController(@Autowired(required = true) val service: PlanningService) {
