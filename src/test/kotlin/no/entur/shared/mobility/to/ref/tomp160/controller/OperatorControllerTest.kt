@@ -6,15 +6,11 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import no.entur.shared.mobility.to.ref.tomp160.controller.optional.OperatorInformationController as OptionalOperatorController
 import no.entur.shared.mobility.to.ref.tomp160.controller.required.OperatorInformationController as RequiredOperatorController
 import no.entur.shared.mobility.to.ref.tomp160.controller.unused.OperatorInformationController as UnusedOperatorController
 
 @SpringBootTest(classes = [Application::class], webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class OperatorControllerTest {
-    @Autowired
-    private lateinit var optionalOperatorController: OptionalOperatorController
-
     @Autowired
     private lateinit var requiredOperatorController: RequiredOperatorController
 
@@ -40,7 +36,7 @@ class OperatorControllerTest {
 
     @Test
     fun operatorAvailableAssetsGet() {
-        optionalOperatorController.operatorAvailableAssetsGet(
+        unusedOperatorController.operatorAvailableAssetsGet(
             acceptLanguage = "NOB",
             api = "TOMP",
             apiVersion = "1.5.0",
@@ -56,7 +52,7 @@ class OperatorControllerTest {
 
     @Test
     fun operatorInformationGet() {
-        optionalOperatorController.operatorInformationGet(
+        unusedOperatorController.operatorInformationGet(
             acceptLanguage = "NOB",
             api = "TOMP",
             apiVersion = "1.5.0",
@@ -106,7 +102,7 @@ class OperatorControllerTest {
 
     @Test
     fun operatorPingGet() {
-        optionalOperatorController.operatorPingGet(
+        unusedOperatorController.operatorPingGet(
             acceptLanguage = "",
         )
     }

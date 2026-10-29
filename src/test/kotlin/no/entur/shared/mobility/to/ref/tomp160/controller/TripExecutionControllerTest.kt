@@ -9,15 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import java.time.OffsetDateTime
 import java.util.UUID
-import no.entur.shared.mobility.to.ref.tomp160.controller.optional.TripExecutionController as OptionalTripExecutionController
 import no.entur.shared.mobility.to.ref.tomp160.controller.required.TripExecutionController as RequiredTripExecutionController
 import no.entur.shared.mobility.to.ref.tomp160.controller.unused.TripExecutionController as UnusedTripExecutionController
 
 @SpringBootTest(classes = [Application::class], webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class TripExecutionControllerTest {
-    @Autowired
-    private lateinit var optionalLegsController: OptionalTripExecutionController
-
     @Autowired
     private lateinit var requiredLegsController: RequiredTripExecutionController
 
