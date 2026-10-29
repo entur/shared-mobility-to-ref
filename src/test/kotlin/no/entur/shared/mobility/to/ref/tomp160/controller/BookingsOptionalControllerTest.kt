@@ -8,15 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import java.time.OffsetDateTime
 import java.util.UUID
+import no.entur.shared.mobility.to.ref.tomp160.controller.optional.BookingOptionalController as OptionalBookingOptionalController
 
 @SpringBootTest(classes = [Application::class], webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class BookingsOptionalControllerTest {
     @Autowired
-    private lateinit var bookingOptionalController: BookingOptionalController
+    private lateinit var optionalBookingOptionalController: OptionalBookingOptionalController
 
     @Test
     fun bookingsGet() {
-        bookingOptionalController.bookingsGet(
+        optionalBookingOptionalController.bookingsGet(
             acceptLanguage = "NOB",
             api = "TOMP",
             apiVersion = "1.5.0",
@@ -33,7 +34,7 @@ class BookingsOptionalControllerTest {
 
     @Test
     fun bookingsIdPut() {
-        bookingOptionalController.bookingsIdPut(
+        optionalBookingOptionalController.bookingsIdPut(
             acceptLanguage = "NOB",
             api = "TOMP",
             apiVersion = "1.5.0",
@@ -46,7 +47,7 @@ class BookingsOptionalControllerTest {
 
     @Test
     fun bookingsIdSubscriptionDelete() {
-        bookingOptionalController.bookingsIdSubscriptionDelete(
+        optionalBookingOptionalController.bookingsIdSubscriptionDelete(
             acceptLanguage = "NOB",
             api = "TOMP",
             apiVersion = "1.5.0",
@@ -58,7 +59,7 @@ class BookingsOptionalControllerTest {
 
     @Test
     fun bookingsIdSubscriptionPost() {
-        bookingOptionalController.bookingsIdSubscriptionPost(
+        optionalBookingOptionalController.bookingsIdSubscriptionPost(
             acceptLanguage = "NOB",
             api = "TOMP",
             apiVersion = "1.5.0",

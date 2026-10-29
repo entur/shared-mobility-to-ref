@@ -7,15 +7,20 @@ import no.entur.shared.mobility.to.ref.tomp160.dto.OneStopBookingRequest
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import no.entur.shared.mobility.to.ref.tomp160.controller.optional.PlanningController as OptionalPlanningController
+import no.entur.shared.mobility.to.ref.tomp160.controller.required.PlanningController as RequiredPlanningController
 
 @SpringBootTest(classes = [Application::class], webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class PlanningControllerTest {
     @Autowired
-    private lateinit var planningController: PlanningController
+    private lateinit var optionalPlanningController: OptionalPlanningController
+
+    @Autowired
+    private lateinit var requiredPlanningController: RequiredPlanningController
 
     @Test
     fun bookingsOneStopPost() {
-        planningController.bookingsOneStopPost(
+        requiredPlanningController.bookingsOneStopPost(
             acceptLanguage = "NOB",
             api = "TOMP",
             apiVersion = "1.5.0",
@@ -27,7 +32,7 @@ class PlanningControllerTest {
 
     @Test
     fun planningInquiriesPost() {
-        planningController.planningInquiriesPost(
+        optionalPlanningController.planningInquiriesPost(
             acceptLanguage = "NOB",
             api = "TOMP",
             apiVersion = "1.5.0",
@@ -39,7 +44,7 @@ class PlanningControllerTest {
 
     @Test
     fun planningOffersPost() {
-        planningController.planningOffersPost(
+        requiredPlanningController.planningOffersPost(
             acceptLanguage = "NOB",
             api = "TOMP",
             apiVersion = "1.5.0",

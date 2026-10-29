@@ -1,4 +1,4 @@
-package no.entur.shared.mobility.to.ref.tomp160.controller
+package no.entur.shared.mobility.to.ref.tomp160.controller.unused
 
 import io.swagger.v3.oas.annotations.Hidden
 import io.swagger.v3.oas.annotations.Operation
@@ -10,205 +10,38 @@ import io.swagger.v3.oas.annotations.media.Schema
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.security.SecurityRequirement
 import jakarta.validation.Valid
-import no.entur.shared.mobility.to.ref.tomp160.dto.Booking
-import no.entur.shared.mobility.to.ref.tomp160.dto.BookingState
+import jakarta.validation.constraints.Min
+import no.entur.shared.mobility.to.ref.tomp160.controller.TripExecutionService
+import no.entur.shared.mobility.to.ref.tomp160.dto.Asset
 import no.entur.shared.mobility.to.ref.tomp160.dto.Error
+import no.entur.shared.mobility.to.ref.tomp160.dto.Leg
+import no.entur.shared.mobility.to.ref.tomp160.dto.LegProgress
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestHeader
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
-@RestController("no.entur.shared.mobility.to.ref.tomp160.controller.BookingOptionalController")
+@RestController("no.entur.shared.mobility.to.ref.tomp160.controller.unused.TripExecutionController")
 @Validated
 @RequestMapping("\${api.base-path:/tomp160}")
-class BookingOptionalController(@Autowired(required = true) val service: BookingOptionalService) {
+class TripExecutionController(@Autowired(required = true) val service: TripExecutionService) {
 
     @Operation(
         summary = "",
-        operationId = "bookingsGet",
-        description = """Optional - Returns bookings that has been created earlier, selected on state.""",
+        operationId = "legsIdAncillariesCategoryNumberDelete",
+        description = """an ancillary (or amount) is removed to the leg.""",
         responses = [
             ApiResponse(
                 responseCode = "200",
-                description = "The bookings matching the query",
-                content = [Content(array = ArraySchema(schema = Schema(implementation = Booking::class)))]
+                description = "operation successful",
+                content = [Content(schema = Schema(implementation = Leg::class))]
             ),
-            ApiResponse(
-                responseCode = "400",
-                description = "Bad request. See https://github.com/TOMP-WG/TOMP-API/wiki/Error-handling-in-TOMP for further explanation of error code.",
-                content = [Content(schema = Schema(implementation = Error::class))]
-            ),
-            ApiResponse(
-                responseCode = "401",
-                description = "Although the HTTP standard specifies \"unauthorized\", semantically this response means \"unauthenticated\". That is, the client must authenticate itself to get the requested response.",
-                content = [Content(schema = Schema(implementation = Error::class))]
-            )],
-        security = [SecurityRequirement(name = "BasicAuth"), SecurityRequirement(name = "ApiKeyAuth"), SecurityRequirement(name = "OpenId"), SecurityRequirement(
-            name = "BearerAuth"
-        ), SecurityRequirement(name = "OAuth", scopes = [])]
-    )
-    @RequestMapping(
-        method = [RequestMethod.GET],
-        value = ["/bookings"],
-        produces = ["application/json"]
-    )
-    @Hidden
-    fun bookingsGet(
-        @Parameter(
-            description = "A list of the languages/localizations the user would like to see the results in. For user privacy and ease of use on the TO side, this list should be kept as short as possible, ideally just one language tag from the list in operator/information",
-            `in` = ParameterIn.HEADER,
-            required = true
-        ) @RequestHeader(value = "Accept-Language", required = true) acceptLanguage: String,
-        @Parameter(
-            description = "API description, can be TOMP or maybe other (specific/derived) API definitions",
-            `in` = ParameterIn.HEADER,
-            required = true
-        ) @RequestHeader(value = "Api", required = true) api: String,
-        @Parameter(description = "Version of the API.", `in` = ParameterIn.HEADER, required = true) @RequestHeader(
-            value = "Api-Version",
-            required = true
-        ) apiVersion: String,
-        @Parameter(
-            description = "The ID of the sending maas operator",
-            `in` = ParameterIn.HEADER,
-            required = true
-        ) @RequestHeader(value = "maas-id", required = true) maasId: String,
-        @Parameter(description = "The ID of the maas operator that has to receive this message", `in` = ParameterIn.HEADER) @RequestHeader(
-            value = "addressed-to",
-            required = false
-        ) addressedTo: String?,
-        @Parameter(
-            description = "",
-            schema = Schema(allowableValues = ["NEW", "PENDING", "REJECTED", "RELEASED", "EXPIRED", "CONDITIONAL_CONFIRMED", "CONFIRMED", "CANCELLED", "STARTED", "FINISHED"])
-        ) @Valid @RequestParam(value = "state", required = false) state: BookingState?,
-        @Parameter(description = "start time of the time window of all bookings (partially) overlapping with this time window") @Valid @RequestParam(
-            value = "min-time",
-            required = false
-        ) @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME) minTime: java.time.OffsetDateTime?,
-        @Parameter(description = "end time of the time window of all bookings (partially) overlapping with this time window") @Valid @RequestParam(
-            value = "max-time",
-            required = false
-        ) @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME) maxTime: java.time.OffsetDateTime?,
-        @Parameter(description = "minimum search price, for the whole trip") @Valid @RequestParam(
-            value = "min-price",
-            required = false
-        ) minPrice: Float?,
-        @Parameter(description = "maximum search price, for the whole trip") @Valid @RequestParam(
-            value = "max-price",
-            required = false
-        ) maxPrice: Float?,
-        @Parameter(description = "filter the bookings on the ID of the asset type. Should return all complete bookings containing a leg executed with this asset type.") @Valid @RequestParam(
-            value = "contains-asset-type",
-            required = false
-        ) containsAssetType: String?
-    ): ResponseEntity<List<Booking>> {
-        return ResponseEntity(
-            service.bookingsGet(
-                acceptLanguage,
-                api,
-                apiVersion,
-                maasId,
-                addressedTo,
-                state,
-                minTime,
-                maxTime,
-                minPrice,
-                maxPrice,
-                containsAssetType
-            ), HttpStatus.valueOf(200)
-        )
-    }
-
-    @Operation(
-        summary = "",
-        operationId = "bookingsIdPut",
-        description = """Optional - This endpoint should be used to adjust the parameters of the booking. Changes not acceptable to the TO should return 400. If a booking is started and can no longer be adjusted the TO should return 403. The state of the booking should **never** be adjusted using this method. Use /bookings/{id}/events for that. See also (7.2) in the flow diagram - booking.""",
-        responses = [
-            ApiResponse(
-                responseCode = "200",
-                description = "The booking was modified",
-                content = [Content(schema = Schema(implementation = Booking::class))]
-            ),
-            ApiResponse(
-                responseCode = "400",
-                description = "Bad request. See https://github.com/TOMP-WG/TOMP-API/wiki/Error-handling-in-TOMP for further explanation of error code.",
-                content = [Content(schema = Schema(implementation = Error::class))]
-            ),
-            ApiResponse(
-                responseCode = "401",
-                description = "Although the HTTP standard specifies \"unauthorized\", semantically this response means \"unauthenticated\". That is, the client must authenticate itself to get the requested response.",
-                content = [Content(schema = Schema(implementation = Error::class))]
-            ),
-            ApiResponse(
-                responseCode = "403",
-                description = "The client does not have access rights to the content, i.e. they are unauthorized, so server is rejecting to give proper response. Unlike 401, the client's identity is known to the server.",
-                content = [Content(schema = Schema(implementation = Error::class))]
-            ),
-            ApiResponse(
-                responseCode = "404",
-                description = "The requested resources does not exist or the requester is not authorized to see it or know it exists."
-            ),
-            ApiResponse(
-                responseCode = "409",
-                description = "The request will not be fulfilled. The request itself is legal, but the content conflicts with the server and might be stale. The user might try again after looking up the current state of the resource."
-            ),
-            ApiResponse(responseCode = "410", description = "The requested resource is no longer available. This is permanent.")],
-        security = [SecurityRequirement(name = "BasicAuth"), SecurityRequirement(name = "ApiKeyAuth"), SecurityRequirement(name = "OpenId"), SecurityRequirement(
-            name = "BearerAuth"
-        ), SecurityRequirement(name = "OAuth", scopes = [])]
-    )
-    @RequestMapping(
-        method = [RequestMethod.PUT],
-        value = ["/bookings/{id}"],
-        produces = ["application/json"],
-        consumes = ["application/json"]
-    )
-    @Hidden
-    fun bookingsIdPut(
-        @Parameter(
-            description = "A list of the languages/localizations the user would like to see the results in. For user privacy and ease of use on the TO side, this list should be kept as short as possible, ideally just one language tag from the list in operator/information",
-            `in` = ParameterIn.HEADER,
-            required = true
-        ) @RequestHeader(value = "Accept-Language", required = true) acceptLanguage: String,
-        @Parameter(
-            description = "API description, can be TOMP or maybe other (specific/derived) API definitions",
-            `in` = ParameterIn.HEADER,
-            required = true
-        ) @RequestHeader(value = "Api", required = true) api: String,
-        @Parameter(description = "Version of the API.", `in` = ParameterIn.HEADER, required = true) @RequestHeader(
-            value = "Api-Version",
-            required = true
-        ) apiVersion: String,
-        @Parameter(
-            description = "The ID of the sending maas operator",
-            `in` = ParameterIn.HEADER,
-            required = true
-        ) @RequestHeader(value = "maas-id", required = true) maasId: String,
-        @Parameter(description = "Booking identifier", required = true) @PathVariable("id") id: String,
-        @Parameter(description = "changed booking", required = true) @Valid @RequestBody booking: Booking,
-        @Parameter(description = "The ID of the maas operator that has to receive this message", `in` = ParameterIn.HEADER) @RequestHeader(
-            value = "addressed-to",
-            required = false
-        ) addressedTo: String?
-    ): ResponseEntity<Booking> {
-        return ResponseEntity(
-            service.bookingsIdPut(acceptLanguage, api, apiVersion, maasId, id, booking, addressedTo),
-            HttpStatus.valueOf(200)
-        )
-    }
-
-    @Operation(
-        summary = "",
-        operationId = "bookingsIdSubscriptionDelete",
-        description = """Optional - subscribe to a specific booking (=leg & (type of) asset). This is an optional endpoint""",
-        responses = [
             ApiResponse(responseCode = "204", description = "Request was successful, no content to return."),
             ApiResponse(
                 responseCode = "400",
@@ -228,12 +61,6 @@ class BookingOptionalController(@Autowired(required = true) val service: Booking
             ApiResponse(
                 responseCode = "404",
                 description = "The requested resources does not exist or the requester is not authorized to see it or know it exists."
-            ),
-            ApiResponse(responseCode = "410", description = "The requested resource is no longer available. This is permanent."),
-            ApiResponse(
-                responseCode = "200",
-                description = "Unexpected error",
-                content = [Content(schema = Schema(implementation = Error::class))]
             )],
         security = [SecurityRequirement(name = "BasicAuth"), SecurityRequirement(name = "ApiKeyAuth"), SecurityRequirement(name = "OpenId"), SecurityRequirement(
             name = "BearerAuth"
@@ -241,11 +68,11 @@ class BookingOptionalController(@Autowired(required = true) val service: Booking
     )
     @RequestMapping(
         method = [RequestMethod.DELETE],
-        value = ["/bookings/{id}/subscription"],
+        value = ["/legs/{id}/ancillaries/{category}/{number}"],
         produces = ["application/json"]
     )
     @Hidden
-    fun bookingsIdSubscriptionDelete(
+    fun legsIdAncillariesCategoryNumberDelete(
         @Parameter(
             description = "A list of the languages/localizations the user would like to see the results in. For user privacy and ease of use on the TO side, this list should be kept as short as possible, ideally just one language tag from the list in operator/information",
             `in` = ParameterIn.HEADER,
@@ -265,23 +92,38 @@ class BookingOptionalController(@Autowired(required = true) val service: Booking
             `in` = ParameterIn.HEADER,
             required = true
         ) @RequestHeader(value = "maas-id", required = true) maasId: String,
-        @Parameter(description = "Booking identifier", required = true) @PathVariable("id") id: String,
+        @Parameter(description = "Leg identifier", required = true) @PathVariable("id") id: String,
+        @Parameter(description = "ancillary category", required = true) @PathVariable("category") category: String,
+        @Parameter(description = "ancillary number", required = true) @PathVariable("number") number: String,
         @Parameter(description = "The ID of the maas operator that has to receive this message", `in` = ParameterIn.HEADER) @RequestHeader(
             value = "addressed-to",
             required = false
         ) addressedTo: String?
-    ): ResponseEntity<Unit> {
+    ): ResponseEntity<Leg> {
         return ResponseEntity(
-            service.bookingsIdSubscriptionDelete(acceptLanguage, api, apiVersion, maasId, id, addressedTo),
-            HttpStatus.valueOf(204)
+            service.legsIdAncillariesCategoryNumberDelete(
+                acceptLanguage,
+                api,
+                apiVersion,
+                maasId,
+                id,
+                category,
+                number,
+                addressedTo
+            ), HttpStatus.valueOf(200)
         )
     }
 
     @Operation(
         summary = "",
-        operationId = "bookingsIdSubscriptionPost",
-        description = """Optional - subscribe to a specific booking (=leg & (type of) asset). This is an optional endpoint. This endpoint facilitates notifications in all the phases. (see (7.1) in the flow chart - execution)""",
+        operationId = "legsIdAncillariesCategoryNumberPost",
+        description = """a new ancillary is added to the leg.""",
         responses = [
+            ApiResponse(
+                responseCode = "200",
+                description = "operation successful",
+                content = [Content(schema = Schema(implementation = Leg::class))]
+            ),
             ApiResponse(responseCode = "204", description = "Request was successful, no content to return."),
             ApiResponse(
                 responseCode = "400",
@@ -301,19 +143,18 @@ class BookingOptionalController(@Autowired(required = true) val service: Booking
             ApiResponse(
                 responseCode = "404",
                 description = "The requested resources does not exist or the requester is not authorized to see it or know it exists."
-            ),
-            ApiResponse(responseCode = "410", description = "The requested resource is no longer available. This is permanent.")],
+            )],
         security = [SecurityRequirement(name = "BasicAuth"), SecurityRequirement(name = "ApiKeyAuth"), SecurityRequirement(name = "OpenId"), SecurityRequirement(
             name = "BearerAuth"
         ), SecurityRequirement(name = "OAuth", scopes = [])]
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = ["/bookings/{id}/subscription"],
+        value = ["/legs/{id}/ancillaries/{category}/{number}"],
         produces = ["application/json"]
     )
     @Hidden
-    fun bookingsIdSubscriptionPost(
+    fun legsIdAncillariesCategoryNumberPost(
         @Parameter(
             description = "A list of the languages/localizations the user would like to see the results in. For user privacy and ease of use on the TO side, this list should be kept as short as possible, ideally just one language tag from the list in operator/information",
             `in` = ParameterIn.HEADER,
@@ -333,15 +174,169 @@ class BookingOptionalController(@Autowired(required = true) val service: Booking
             `in` = ParameterIn.HEADER,
             required = true
         ) @RequestHeader(value = "maas-id", required = true) maasId: String,
-        @Parameter(description = "Booking identifier", required = true) @PathVariable("id") id: String,
+        @Parameter(description = "Leg identifier", required = true) @PathVariable("id") id: String,
+        @Parameter(description = "ancillary category", required = true) @PathVariable("category") category: String,
+        @Parameter(description = "ancillary number", required = true) @PathVariable("number") number: String,
         @Parameter(description = "The ID of the maas operator that has to receive this message", `in` = ParameterIn.HEADER) @RequestHeader(
             value = "addressed-to",
             required = false
         ) addressedTo: String?
-    ): ResponseEntity<Unit> {
+    ): ResponseEntity<Leg> {
         return ResponseEntity(
-            service.bookingsIdSubscriptionPost(acceptLanguage, api, apiVersion, maasId, id, addressedTo),
-            HttpStatus.valueOf(204)
+            service.legsIdAncillariesCategoryNumberPost(
+                acceptLanguage,
+                api,
+                apiVersion,
+                maasId,
+                id,
+                category,
+                number,
+                addressedTo
+            ), HttpStatus.valueOf(200)
+        )
+    }
+
+    @Operation(
+        summary = "",
+        operationId = "legsIdAvailableAssetsGet",
+        description = """Returns a list of available assets for the given leg. These assets can be used to POST to /legs/{id}/asset if no specific asset is assigned by the TO. If picking an asset is not allowed for this booking, or one already has been, 403 should be returned. If the booking is unknown, 404 should be returned. See (4.7) in the process flow. - trip execution""",
+        responses = [
+            ApiResponse(
+                responseCode = "200",
+                description = "Available assets for the leg. If no suitable assets are found an empty array is to be returned.",
+                content = [Content(array = ArraySchema(schema = Schema(implementation = Asset::class)))]
+            ),
+            ApiResponse(
+                responseCode = "400",
+                description = "Bad request. See https://github.com/TOMP-WG/TOMP-API/wiki/Error-handling-in-TOMP for further explanation of error code.",
+                content = [Content(schema = Schema(implementation = Error::class))]
+            ),
+            ApiResponse(
+                responseCode = "401",
+                description = "Although the HTTP standard specifies \"unauthorized\", semantically this response means \"unauthenticated\". That is, the client must authenticate itself to get the requested response.",
+                content = [Content(schema = Schema(implementation = Error::class))]
+            ),
+            ApiResponse(
+                responseCode = "403",
+                description = "The client does not have access rights to the content, i.e. they are unauthorized, so server is rejecting to give proper response. Unlike 401, the client's identity is known to the server.",
+                content = [Content(schema = Schema(implementation = Error::class))]
+            ),
+            ApiResponse(
+                responseCode = "404",
+                description = "The requested resources does not exist or the requester is not authorized to see it or know it exists."
+            )],
+        security = [SecurityRequirement(name = "BasicAuth"), SecurityRequirement(name = "ApiKeyAuth"), SecurityRequirement(name = "OpenId"), SecurityRequirement(
+            name = "BearerAuth"
+        ), SecurityRequirement(name = "OAuth", scopes = [])]
+    )
+    @RequestMapping(
+        method = [RequestMethod.GET],
+        value = ["/legs/{id}/available-assets"],
+        produces = ["application/json"]
+    )
+    @Hidden
+    fun legsIdAvailableAssetsGet(
+        @Parameter(
+            description = "A list of the languages/localizations the user would like to see the results in. For user privacy and ease of use on the TO side, this list should be kept as short as possible, ideally just one language tag from the list in operator/information",
+            `in` = ParameterIn.HEADER,
+            required = true
+        ) @RequestHeader(value = "Accept-Language", required = true) acceptLanguage: String,
+        @Parameter(
+            description = "API description, can be TOMP or maybe other (specific/derived) API definitions",
+            `in` = ParameterIn.HEADER,
+            required = true
+        ) @RequestHeader(value = "Api", required = true) api: String,
+        @Parameter(description = "Version of the API.", `in` = ParameterIn.HEADER, required = true) @RequestHeader(
+            value = "Api-Version",
+            required = true
+        ) apiVersion: String,
+        @Parameter(
+            description = "The ID of the sending maas operator",
+            `in` = ParameterIn.HEADER,
+            required = true
+        ) @RequestHeader(value = "maas-id", required = true) maasId: String,
+        @Parameter(description = "Leg identifier", required = true) @PathVariable("id") id: String,
+        @Parameter(description = "The ID of the maas operator that has to receive this message", `in` = ParameterIn.HEADER) @RequestHeader(
+            value = "addressed-to",
+            required = false
+        ) addressedTo: String?,
+        @Min(0) @Parameter(
+            description = "start of the selection",
+            schema = Schema(defaultValue = "0")
+        ) @Valid @RequestParam(value = "offset", required = false, defaultValue = "0") offset: Int,
+        @Min(0) @Parameter(description = "count of the selection") @Valid @RequestParam(
+            value = "limit",
+            required = false
+        ) limit: Int?
+    ): ResponseEntity<List<Asset>> {
+        return ResponseEntity(
+            service.legsIdAvailableAssetsGet(acceptLanguage, api, apiVersion, maasId, id, addressedTo, offset, limit),
+            HttpStatus.valueOf(200)
+        )
+    }
+
+    @Operation(
+        summary = "",
+        operationId = "legsIdProgressGet",
+        description = """Monitors the current location of the asset and duration & distance of the leg (see (4.7) in process flow)""",
+        responses = [
+            ApiResponse(
+                responseCode = "200",
+                description = "operation successful",
+                content = [Content(schema = Schema(implementation = LegProgress::class))]
+            ),
+            ApiResponse(
+                responseCode = "401",
+                description = "Although the HTTP standard specifies \"unauthorized\", semantically this response means \"unauthenticated\". That is, the client must authenticate itself to get the requested response.",
+                content = [Content(schema = Schema(implementation = Error::class))]
+            ),
+            ApiResponse(
+                responseCode = "404",
+                description = "The requested resources does not exist or the requester is not authorized to see it or know it exists."
+            )],
+        security = [SecurityRequirement(name = "BasicAuth"), SecurityRequirement(name = "ApiKeyAuth"), SecurityRequirement(name = "OpenId"), SecurityRequirement(
+            name = "BearerAuth"
+        ), SecurityRequirement(name = "OAuth", scopes = [])]
+    )
+    @RequestMapping(
+        method = [RequestMethod.GET],
+        value = ["/legs/{id}/progress"],
+        produces = ["application/json"]
+    )
+    @Hidden
+    fun legsIdProgressGet(
+        @Parameter(
+            description = "A list of the languages/localizations the user would like to see the results in. For user privacy and ease of use on the TO side, this list should be kept as short as possible, ideally just one language tag from the list in operator/information",
+            `in` = ParameterIn.HEADER,
+            required = true
+        ) @RequestHeader(value = "Accept-Language", required = true) acceptLanguage: String,
+        @Parameter(
+            description = "API description, can be TOMP or maybe other (specific/derived) API definitions",
+            `in` = ParameterIn.HEADER,
+            required = true
+        ) @RequestHeader(value = "Api", required = true) api: String,
+        @Parameter(description = "Version of the API.", `in` = ParameterIn.HEADER, required = true) @RequestHeader(
+            value = "Api-Version",
+            required = true
+        ) apiVersion: String,
+        @Parameter(
+            description = "The ID of the sending maas operator",
+            `in` = ParameterIn.HEADER,
+            required = true
+        ) @RequestHeader(value = "maas-id", required = true) maasId: String,
+        @Parameter(description = "Leg identifier", required = true) @PathVariable("id") id: String,
+        @Parameter(description = "The ID of the maas operator that has to receive this message", `in` = ParameterIn.HEADER) @RequestHeader(
+            value = "addressed-to",
+            required = false
+        ) addressedTo: String?,
+        @Parameter(
+            description = "Specifies if only the location should be returned",
+            schema = Schema(defaultValue = "false")
+        ) @Valid @RequestParam(value = "location-only", required = false, defaultValue = "false") locationOnly: Boolean
+    ): ResponseEntity<LegProgress> {
+        return ResponseEntity(
+            service.legsIdProgressGet(acceptLanguage, api, apiVersion, maasId, id, addressedTo, locationOnly),
+            HttpStatus.valueOf(200)
         )
     }
 }

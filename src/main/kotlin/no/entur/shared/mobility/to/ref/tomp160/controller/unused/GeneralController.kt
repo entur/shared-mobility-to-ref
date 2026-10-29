@@ -1,4 +1,4 @@
-package no.entur.shared.mobility.to.ref.tomp160.controller
+package no.entur.shared.mobility.to.ref.tomp160.controller.unused
 
 import io.swagger.v3.oas.annotations.Hidden
 import io.swagger.v3.oas.annotations.Operation
@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.security.SecurityRequirement
 import jakarta.validation.Valid
+import no.entur.shared.mobility.to.ref.tomp160.controller.GeneralService
 import no.entur.shared.mobility.to.ref.tomp160.dto.Error
 import no.entur.shared.mobility.to.ref.tomp160.dto.Notification
 import org.springframework.beans.factory.annotation.Autowired
@@ -23,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RestController
 
-@RestController("no.entur.shared.mobility.to.ref.tomp160.controller.GeneralController")
+@RestController("no.entur.shared.mobility.to.ref.tomp160.controller.unused.GeneralController")
 @Validated
 @RequestMapping("\${api.base-path:/tomp160}")
 class GeneralController(@Autowired(required = true) val service: GeneralService) {

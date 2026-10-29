@@ -2,6 +2,7 @@ package no.entur.shared.mobility.to.ref.tomp160.controller
 
 import no.entur.shared.mobility.to.ref.Application
 import no.entur.shared.mobility.to.ref.config.TransportOperator
+import no.entur.shared.mobility.to.ref.tomp160.controller.required.SupportController
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.springframework.beans.factory.annotation.Autowired

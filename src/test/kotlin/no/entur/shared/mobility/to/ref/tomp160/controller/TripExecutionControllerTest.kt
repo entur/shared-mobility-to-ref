@@ -9,16 +9,25 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import java.time.OffsetDateTime
 import java.util.UUID
+import no.entur.shared.mobility.to.ref.tomp160.controller.optional.TripExecutionController as OptionalTripExecutionController
+import no.entur.shared.mobility.to.ref.tomp160.controller.required.TripExecutionController as RequiredTripExecutionController
+import no.entur.shared.mobility.to.ref.tomp160.controller.unused.TripExecutionController as UnusedTripExecutionController
 
 @SpringBootTest(classes = [Application::class], webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class TripExecutionControllerTest {
     @Autowired
-    private lateinit var legsController: TripExecutionController
+    private lateinit var optionalLegsController: OptionalTripExecutionController
+
+    @Autowired
+    private lateinit var requiredLegsController: RequiredTripExecutionController
+
+    @Autowired
+    private lateinit var unusedLegsController: UnusedTripExecutionController
 
     @Test
     fun legsIdAncillariesCategoryNumberDelete() {
         assertThrows<NotImplementedError> {
-            legsController.legsIdAncillariesCategoryNumberDelete(
+            unusedLegsController.legsIdAncillariesCategoryNumberDelete(
                 acceptLanguage = "NOB",
                 api = "TOMP",
                 apiVersion = "1.5.0",
@@ -34,7 +43,7 @@ class TripExecutionControllerTest {
     @Test
     fun legsIdAncillariesCategoryNumberPost() {
         assertThrows<NotImplementedError> {
-            legsController.legsIdAncillariesCategoryNumberPost(
+            unusedLegsController.legsIdAncillariesCategoryNumberPost(
                 acceptLanguage = "NOB",
                 api = "TOMP",
                 apiVersion = "1.5.0",
@@ -50,7 +59,7 @@ class TripExecutionControllerTest {
     @Test
     fun legsIdAvailableAssetsGet() {
         assertThrows<NotImplementedError> {
-            legsController.legsIdAvailableAssetsGet(
+            unusedLegsController.legsIdAvailableAssetsGet(
                 acceptLanguage = "NOB",
                 api = "TOMP",
                 apiVersion = "1.5.0",
@@ -65,7 +74,7 @@ class TripExecutionControllerTest {
 
     @Test
     fun legsIdEventsPost() {
-        legsController.legsIdEventsPost(
+        requiredLegsController.legsIdEventsPost(
             acceptLanguage = "NOB",
             api = "TOMP",
             apiVersion = "1.5.0",
@@ -78,7 +87,7 @@ class TripExecutionControllerTest {
 
     @Test
     fun legsIdGet() {
-        legsController.legsIdGet(
+        requiredLegsController.legsIdGet(
             acceptLanguage = "NOB",
             api = "TOMP",
             apiVersion = "1.5.0",
@@ -91,7 +100,7 @@ class TripExecutionControllerTest {
     @Test
     fun legsIdProgressGet() {
         assertThrows<NotImplementedError> {
-            legsController.legsIdProgressGet(
+            unusedLegsController.legsIdProgressGet(
                 acceptLanguage = "NOB",
                 api = "TOMP",
                 apiVersion = "1.5.0",
