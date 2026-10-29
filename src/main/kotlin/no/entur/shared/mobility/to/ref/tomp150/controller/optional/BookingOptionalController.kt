@@ -1,4 +1,4 @@
-package no.entur.shared.mobility.to.ref.tomp150.controller
+package no.entur.shared.mobility.to.ref.tomp150.controller.optional
 
 import io.swagger.v3.oas.annotations.Hidden
 import io.swagger.v3.oas.annotations.Operation
@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.security.SecurityRequirement
 import jakarta.validation.Valid
+import no.entur.shared.mobility.to.ref.tomp150.controller.BookingOptionalService
 import no.entur.shared.mobility.to.ref.tomp150.dto.Booking
 import no.entur.shared.mobility.to.ref.tomp150.dto.BookingState
 import no.entur.shared.mobility.to.ref.tomp150.dto.Error
@@ -25,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
-@RestController("no.entur.shared.mobility.to.ref.tomp150.controller.BookingOptionalController")
+@RestController("no.entur.shared.mobility.to.ref.tomp150.controller.optional.BookingOptionalController")
 @Validated
 @RequestMapping("\${api.base-path:}")
 class BookingOptionalController(@Autowired(required = true) val service: BookingOptionalService) {

@@ -1,0 +1,87 @@
+package no.entur.shared.mobility.to.ref.tomp150.controller.required
+
+import io.swagger.v3.oas.annotations.Hidden
+import io.swagger.v3.oas.annotations.Operation
+import io.swagger.v3.oas.annotations.Parameter
+import io.swagger.v3.oas.annotations.enums.ParameterIn
+import io.swagger.v3.oas.annotations.media.Content
+import io.swagger.v3.oas.annotations.media.Schema
+import io.swagger.v3.oas.annotations.responses.ApiResponse
+import io.swagger.v3.oas.annotations.security.SecurityRequirement
+import no.entur.shared.mobility.to.ref.tomp150.controller.BookingService
+import no.entur.shared.mobility.to.ref.tomp150.dto.Booking
+import no.entur.shared.mobility.to.ref.tomp150.dto.Error
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
+import org.springframework.validation.annotation.Validated
+import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.RequestHeader
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestMethod
+import org.springframework.web.bind.annotation.RestController
+
+@RestController("no.entur.shared.mobility.to.ref.tomp150.controller.required.BookingController")
+@Validated
+@RequestMapping("\${api.base-path:}")
+class BookingController(@Autowired(required = true) val service: BookingService) {
+
+    @Operation(
+        summary = "",
+        operationId = "bookingsIdGet",
+        description = """Returns the booking. See (3.5.2) in the process flow - booking. In the 'meta'-field the digital tickes can be returned (see (3.3) in the process flow - booking)""",
+        responses = [
+            ApiResponse(
+                responseCode = "200",
+                description = "The booking was found",
+                content = [Content(schema = Schema(implementation = Booking::class))]
+            ),
+            ApiResponse(
+                responseCode = "401",
+                description = "Although the HTTP standard specifies \"unauthorized\", semantically this response means \"unauthenticated\". That is, the client must authenticate itself to get the requested response.",
+                content = [Content(schema = Schema(implementation = Error::class))]
+            ),
+            ApiResponse(
+                responseCode = "404",
+                description = "The requested resources does not exist or the requester is not authorized to see it or know it exists."
+            ),
+            ApiResponse(responseCode = "410", description = "The requested resource is no longer available. This is permanent.")],
+        security = [SecurityRequirement(name = "BasicAuth"), SecurityRequirement(name = "ApiKeyAuth"), SecurityRequirement(name = "OpenId"), SecurityRequirement(
+            name = "BearerAuth"
+        ), SecurityRequirement(name = "OAuth", scopes = [])]
+    )
+    @RequestMapping(
+        method = [RequestMethod.GET],
+        value = ["/bookings/{id}"],
+        produces = ["application/json"]
+    )
+    @Hidden
+    fun bookingsIdGet(
+        @Parameter(
+            description = "A list of the languages/localizations the user would like to see the results in. For user privacy and ease of use on the TO side, this list should be kept as short as possible, ideally just one language tag from the list in operator/information",
+            `in` = ParameterIn.HEADER,
+            required = true
+        ) @RequestHeader(value = "Accept-Language", required = true) acceptLanguage: String,
+        @Parameter(
+            description = "API description, can be TOMP or maybe other (specific/derived) API definitions",
+            `in` = ParameterIn.HEADER,
+            required = true
+        ) @RequestHeader(value = "Api", required = true) api: String,
+        @Parameter(description = "Version of the API.", `in` = ParameterIn.HEADER, required = true) @RequestHeader(
+            value = "Api-Version",
+            required = true
+        ) apiVersion: String,
+        @Parameter(
+            description = "The ID of the sending maas operator",
+            `in` = ParameterIn.HEADER,
+            required = true
+        ) @RequestHeader(value = "maas-id", required = true) maasId: String,
+        @Parameter(description = "Booking identifier", required = true) @PathVariable("id") id: String,
+        @Parameter(description = "The ID of the maas operator that has to receive this message", `in` = ParameterIn.HEADER) @RequestHeader(
+            value = "addressed-to",
+            required = false
+        ) addressedTo: String?
+    ): ResponseEntity<Booking> {
+        return ResponseEntity(service.bookingsIdGet(acceptLanguage, api, apiVersion, maasId, id, addressedTo), HttpStatus.valueOf(200))
+    }
+}
