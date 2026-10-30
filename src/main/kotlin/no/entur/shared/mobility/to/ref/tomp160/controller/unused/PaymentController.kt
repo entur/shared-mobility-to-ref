@@ -1,4 +1,4 @@
-package no.entur.shared.mobility.to.ref.tomp150.controller
+package no.entur.shared.mobility.to.ref.tomp160.controller.unused
 
 import io.swagger.v3.oas.annotations.Hidden
 import io.swagger.v3.oas.annotations.Operation
@@ -11,11 +11,12 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.security.SecurityRequirement
 import jakarta.validation.Valid
 import jakarta.validation.constraints.Min
-import no.entur.shared.mobility.to.ref.tomp150.dto.Error
-import no.entur.shared.mobility.to.ref.tomp150.dto.ExtraCosts
-import no.entur.shared.mobility.to.ref.tomp150.dto.JournalCategory
-import no.entur.shared.mobility.to.ref.tomp150.dto.JournalEntry
-import no.entur.shared.mobility.to.ref.tomp150.dto.JournalState
+import no.entur.shared.mobility.to.ref.tomp160.controller.PaymentService
+import no.entur.shared.mobility.to.ref.tomp160.dto.Error
+import no.entur.shared.mobility.to.ref.tomp160.dto.ExtraCosts
+import no.entur.shared.mobility.to.ref.tomp160.dto.JournalCategory
+import no.entur.shared.mobility.to.ref.tomp160.dto.JournalEntry
+import no.entur.shared.mobility.to.ref.tomp160.dto.JournalState
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -28,9 +29,9 @@ import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
-@RestController("no.entur.shared.mobility.to.ref.tomp150.controller.PaymentController")
+@RestController("no.entur.shared.mobility.to.ref.tomp160.controller.unused.PaymentController")
 @Validated
-@RequestMapping("\${api.base-path:}")
+@RequestMapping("\${api.base-path:/tomp160}")
 class PaymentController(@Autowired(required = true) val service: PaymentService) {
 
     @Operation(

@@ -8,15 +8,20 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import java.time.OffsetDateTime
 import java.util.UUID
+import no.entur.shared.mobility.to.ref.tomp150.controller.required.BookingOptionalController as RequiredBookingOptionalController
+import no.entur.shared.mobility.to.ref.tomp150.controller.unused.BookingOptionalController as UnusedBookingOptionalController
 
 @SpringBootTest(classes = [Application::class], webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class BookingsOptionalControllerTest {
     @Autowired
-    private lateinit var bookingOptionalController: BookingOptionalController
+    private lateinit var requiredBookingOptionalController: RequiredBookingOptionalController
+
+    @Autowired
+    private lateinit var unusedBookingOptionalController: UnusedBookingOptionalController
 
     @Test
     fun bookingsGet() {
-        bookingOptionalController.bookingsGet(
+        requiredBookingOptionalController.bookingsGet(
             acceptLanguage = "NOB",
             api = "TOMP",
             apiVersion = "1.5.0",
@@ -33,7 +38,7 @@ class BookingsOptionalControllerTest {
 
     @Test
     fun bookingsIdPut() {
-        bookingOptionalController.bookingsIdPut(
+        unusedBookingOptionalController.bookingsIdPut(
             acceptLanguage = "NOB",
             api = "TOMP",
             apiVersion = "1.5.0",
@@ -46,7 +51,7 @@ class BookingsOptionalControllerTest {
 
     @Test
     fun bookingsIdSubscriptionDelete() {
-        bookingOptionalController.bookingsIdSubscriptionDelete(
+        unusedBookingOptionalController.bookingsIdSubscriptionDelete(
             acceptLanguage = "NOB",
             api = "TOMP",
             apiVersion = "1.5.0",
@@ -58,7 +63,7 @@ class BookingsOptionalControllerTest {
 
     @Test
     fun bookingsIdSubscriptionPost() {
-        bookingOptionalController.bookingsIdSubscriptionPost(
+        unusedBookingOptionalController.bookingsIdSubscriptionPost(
             acceptLanguage = "NOB",
             api = "TOMP",
             apiVersion = "1.5.0",

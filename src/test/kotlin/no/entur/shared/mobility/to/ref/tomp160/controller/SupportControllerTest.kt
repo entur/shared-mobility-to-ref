@@ -7,16 +7,21 @@ import org.junit.jupiter.api.assertThrows
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import java.util.UUID
+import no.entur.shared.mobility.to.ref.tomp160.controller.optional.SupportController as OptionalSupportController
+import no.entur.shared.mobility.to.ref.tomp160.controller.required.SupportController as RequiredSupportController
 
 @SpringBootTest(classes = [Application::class], webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class SupportControllerTest {
     @Autowired
-    private lateinit var supportController: SupportController
+    private lateinit var requiredSupportController: RequiredSupportController
+
+    @Autowired
+    private lateinit var optionalSupportController: OptionalSupportController
 
     @Test
     fun supportIdStatusGet() {
         assertThrows<NotImplementedError> {
-            supportController.supportIdStatusGet(
+            optionalSupportController.supportIdStatusGet(
                 acceptLanguage = "NOB",
                 api = "TOMP",
                 apiVersion = "1.5.0",
@@ -29,7 +34,7 @@ class SupportControllerTest {
 
     @Test
     fun supportPost() {
-        supportController.supportPost(
+        requiredSupportController.supportPost(
             acceptLanguage = "NOB",
             api = "TOMP",
             apiVersion = "1.5.0",

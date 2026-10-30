@@ -1,4 +1,4 @@
-package no.entur.shared.mobility.to.ref.tomp160.controller
+package no.entur.shared.mobility.to.ref.tomp150.controller.unused
 
 import io.swagger.v3.oas.annotations.Hidden
 import io.swagger.v3.oas.annotations.Operation
@@ -12,17 +12,16 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement
 import jakarta.validation.Valid
 import jakarta.validation.constraints.DecimalMin
 import jakarta.validation.constraints.Min
-import jakarta.validation.constraints.Size
-import no.entur.shared.mobility.to.ref.tomp160.dto.AssetType
-import no.entur.shared.mobility.to.ref.tomp160.dto.EndpointImplementation
-import no.entur.shared.mobility.to.ref.tomp160.dto.Error
-import no.entur.shared.mobility.to.ref.tomp160.dto.StationInformation
-import no.entur.shared.mobility.to.ref.tomp160.dto.SystemAlert
-import no.entur.shared.mobility.to.ref.tomp160.dto.SystemCalendar
-import no.entur.shared.mobility.to.ref.tomp160.dto.SystemHours
-import no.entur.shared.mobility.to.ref.tomp160.dto.SystemInformation
-import no.entur.shared.mobility.to.ref.tomp160.dto.SystemPricingPlan
-import no.entur.shared.mobility.to.ref.tomp160.dto.SystemRegion
+import no.entur.shared.mobility.to.ref.tomp150.controller.OperatorInformationService
+import no.entur.shared.mobility.to.ref.tomp150.dto.AssetType
+import no.entur.shared.mobility.to.ref.tomp150.dto.Error
+import no.entur.shared.mobility.to.ref.tomp150.dto.StationInformation
+import no.entur.shared.mobility.to.ref.tomp150.dto.SystemAlert
+import no.entur.shared.mobility.to.ref.tomp150.dto.SystemCalendar
+import no.entur.shared.mobility.to.ref.tomp150.dto.SystemHours
+import no.entur.shared.mobility.to.ref.tomp150.dto.SystemInformation
+import no.entur.shared.mobility.to.ref.tomp150.dto.SystemPricingPlan
+import no.entur.shared.mobility.to.ref.tomp150.dto.SystemRegion
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -32,11 +31,10 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
-import java.math.BigDecimal
 
-@RestController("no.entur.shared.mobility.to.ref.tomp160.controller.OperatorInformationController")
+@RestController("no.entur.shared.mobility.to.ref.tomp150.controller.unused.OperatorInformationController")
 @Validated
-@RequestMapping("\${api.base-path:/tomp160}")
+@RequestMapping("\${api.base-path:}")
 class OperatorInformationController(@Autowired(required = true) val service: OperatorInformationService) {
 
     @Operation(
@@ -203,14 +201,7 @@ class OperatorInformationController(@Autowired(required = true) val service: Ope
         @Parameter(description = "optional id of the station to use in the filter (/operator/stations)") @Valid @RequestParam(
             value = "stationId",
             required = false
-        ) stationId: String?,
-        @Size(
-            min = 4,
-            max = 4
-        ) @Parameter(description = "an optional filtering bounding box, using the Nomatim definition: south Latitude, north Latitude, west Longitude, east Longitude") @Valid @RequestParam(
-            value = "boundingbox",
-            required = false
-        ) boundingbox: List<BigDecimal>?
+        ) stationId: String?
     ): ResponseEntity<List<AssetType>> {
         return ResponseEntity(
             service.operatorAvailableAssetsGet(
@@ -222,8 +213,7 @@ class OperatorInformationController(@Autowired(required = true) val service: Ope
                 offset,
                 limit,
                 regionId,
-                stationId,
-                boundingbox
+                stationId
             ), HttpStatus.valueOf(200)
         )
     }
@@ -286,43 +276,6 @@ class OperatorInformationController(@Autowired(required = true) val service: Ope
         return ResponseEntity(service.operatorInformationGet(acceptLanguage, api, apiVersion, maasId, addressedTo), HttpStatus.valueOf(200))
     }
 
-    @Operation(
-        summary = "describes the running implementations",
-        operationId = "operatorMetaGet",
-        description = """all versions that are implemented on this url, are described in the result of this endpoint. In contains all versions and per version the endpoints, their status and the supported scenarios.""",
-        responses = [
-            ApiResponse(
-                responseCode = "200",
-                description = "successful operation",
-                content = [Content(array = ArraySchema(schema = Schema(implementation = EndpointImplementation::class)))]
-            )],
-        security = [SecurityRequirement(name = "BasicAuth"), SecurityRequirement(name = "ApiKeyAuth"), SecurityRequirement(name = "OpenId"), SecurityRequirement(
-            name = "BearerAuth"
-        ), SecurityRequirement(name = "OAuth", scopes = [])]
-    )
-    @RequestMapping(
-        method = [RequestMethod.GET],
-        value = ["/operator/meta"],
-        produces = ["application/json"]
-    )
-    fun operatorMetaGet(
-        @Parameter(
-            description = "A list of the languages/localizations the user would like to see the results in. For user privacy and ease of use on the TO side, this list should be kept as short as possible, ideally just one language tag from the list in operator/information",
-            `in` = ParameterIn.HEADER,
-            required = true
-        ) @RequestHeader(value = "Accept-Language", required = true) acceptLanguage: String,
-        @Parameter(
-            description = "The ID of the sending maas operator",
-            `in` = ParameterIn.HEADER,
-            required = true
-        ) @RequestHeader(value = "maas-id", required = true) maasId: String,
-        @Parameter(
-            description = "The ID of the maas operator that has to receive this message",
-            `in` = ParameterIn.HEADER
-        ) @RequestHeader(value = "addressed-to", required = false) addressedTo: String?
-    ): ResponseEntity<List<EndpointImplementation>> {
-        return ResponseEntity(service.operatorMetaGet(acceptLanguage, maasId, addressedTo), HttpStatus.valueOf(200))
-    }
 
     @Operation(
         summary = "describes the operating calendar for a system. An array of year objects defined as follows (if start/end year are omitted, then assume the start and end months do not change from year to year). [from GFBS]",

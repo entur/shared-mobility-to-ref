@@ -7,15 +7,20 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import java.util.UUID
+import no.entur.shared.mobility.to.ref.tomp160.controller.required.BookingController as RequiredBookingController
+import no.entur.shared.mobility.to.ref.tomp160.controller.unused.BookingController as UnusedBookingController
 
 @SpringBootTest(classes = [Application::class], webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class BookingsControllerTest {
     @Autowired
-    private lateinit var bookingsController: BookingController
+    private lateinit var unusedBookingsController: UnusedBookingController
+
+    @Autowired
+    private lateinit var requiredBookingsController: RequiredBookingController
 
     @Test
     fun bookingsIdEventsPost() {
-        bookingsController.bookingsIdEventsPost(
+        unusedBookingsController.bookingsIdEventsPost(
             id = UUID.randomUUID().toString(),
             acceptLanguage = "NOB",
             api = "TOMP",
@@ -28,7 +33,7 @@ class BookingsControllerTest {
 
     @Test
     fun bookingsIdGet() {
-        bookingsController.bookingsIdGet(
+        requiredBookingsController.bookingsIdGet(
             acceptLanguage = "NOB",
             api = "TOMP",
             apiVersion = "1.5.0",
@@ -40,7 +45,7 @@ class BookingsControllerTest {
 
     @Test
     fun bookingsPost() {
-        bookingsController.bookingsPost(
+        unusedBookingsController.bookingsPost(
             acceptLanguage = "NOB",
             api = "TOMP",
             apiVersion = "1.5.0",

@@ -1,21 +1,18 @@
-package no.entur.shared.mobility.to.ref.tomp160.controller
+package no.entur.shared.mobility.to.ref.tomp150.controller.required
 
 import io.swagger.v3.oas.annotations.Hidden
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.enums.ParameterIn
-import io.swagger.v3.oas.annotations.media.ArraySchema
 import io.swagger.v3.oas.annotations.media.Content
 import io.swagger.v3.oas.annotations.media.Schema
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.security.SecurityRequirement
 import jakarta.validation.Valid
-import jakarta.validation.constraints.Min
-import no.entur.shared.mobility.to.ref.tomp160.dto.Error
-import no.entur.shared.mobility.to.ref.tomp160.dto.ExtraCosts
-import no.entur.shared.mobility.to.ref.tomp160.dto.JournalCategory
-import no.entur.shared.mobility.to.ref.tomp160.dto.JournalEntry
-import no.entur.shared.mobility.to.ref.tomp160.dto.JournalState
+import no.entur.shared.mobility.to.ref.tomp150.controller.TripExecutionService
+import no.entur.shared.mobility.to.ref.tomp150.dto.Error
+import no.entur.shared.mobility.to.ref.tomp150.dto.Leg
+import no.entur.shared.mobility.to.ref.tomp150.dto.LegEvent
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -25,24 +22,24 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestHeader
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
-import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
-@RestController("no.entur.shared.mobility.to.ref.tomp160.controller.PaymentController")
+@RestController("no.entur.shared.mobility.to.ref.tomp150.controller.required.TripExecutionController")
 @Validated
-@RequestMapping("\${api.base-path:/tomp160}")
-class PaymentController(@Autowired(required = true) val service: PaymentService) {
+@RequestMapping("\${api.base-path:}")
+class TripExecutionController(@Autowired(required = true) val service: TripExecutionService) {
 
     @Operation(
         summary = "",
-        operationId = "paymentIdClaimExtraCostsPost",
-        description = """extra costs that the TO has to charge to the MP or vice versa.""",
+        operationId = "legsIdEventsPost",
+        description = """This endpoint must be used to alter the state of a leg.<br> Operations:<br> `PREPARE` the TO can send a message telling the MP that he is preparing the booked leg [To be implemented by the MP] (see (7.2) in the process flow - trip execution),<br> `ASSIGN_ASSET` can assign an asset to a leg. Can be to assign an asset in case there is still an asset type assigned [Optionally implementable by the MP]. See (4.7) in the process flow - trip execution<br> `SET_IN_USE` will activate the leg or resume the leg [TO and MP] (see (4.6) in process flow),<br> `TIME_EXTEND` will be used to request an extension in time; the end user wants to use the asset longer, the `time` field contains the new end time,<br> `TIME_POSTPONE` will be used to request a delay in the departure time, the end user wants to depart later, the `time` field contains the new departure time,<br> `PAUSE` will pause the leg [TO and MP] (see (4.6) in process flow),<br> `OPEN_TRUNK` request the TO to open up the trunk (of the scooter), e.g. to store the helmet<br> `START_FINISHING` will start the end-of-leg [Optionally implementable by TO and MP],<br> `FINISH` will end this leg (see (4.6) in process flow) [TO and MP]""",
         responses = [
             ApiResponse(
                 responseCode = "200",
-                description = "journal entry received, will be processed (state = INVOICED)",
-                content = [Content(schema = Schema(implementation = JournalEntry::class))]
+                description = "operation successful",
+                content = [Content(schema = Schema(implementation = Leg::class))]
             ),
+            ApiResponse(responseCode = "204", description = "Request was successful, no content to return."),
             ApiResponse(
                 responseCode = "400",
                 description = "Bad request. See https://github.com/TOMP-WG/TOMP-API/wiki/Error-handling-in-TOMP for further explanation of error code.",
@@ -57,6 +54,14 @@ class PaymentController(@Autowired(required = true) val service: PaymentService)
                 responseCode = "403",
                 description = "The client does not have access rights to the content, i.e. they are unauthorized, so server is rejecting to give proper response. Unlike 401, the client's identity is known to the server.",
                 content = [Content(schema = Schema(implementation = Error::class))]
+            ),
+            ApiResponse(
+                responseCode = "404",
+                description = "The requested resources does not exist or the requester is not authorized to see it or know it exists."
+            ),
+            ApiResponse(
+                responseCode = "503",
+                description = "In case of temporary malfunctioning, this response can be send (e.g. bluetooth lock jammed). See also https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Retry-After"
             )],
         security = [SecurityRequirement(name = "BasicAuth"), SecurityRequirement(name = "ApiKeyAuth"), SecurityRequirement(name = "OpenId"), SecurityRequirement(
             name = "BearerAuth"
@@ -64,12 +69,12 @@ class PaymentController(@Autowired(required = true) val service: PaymentService)
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = ["/payment/{id}/claim-extra-costs"],
+        value = ["/legs/{id}/events"],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
     @Hidden
-    fun paymentIdClaimExtraCostsPost(
+    fun legsIdEventsPost(
         @Parameter(
             description = "A list of the languages/localizations the user would like to see the results in. For user privacy and ease of use on the TO side, this list should be kept as short as possible, ideally just one language tag from the list in operator/information",
             `in` = ParameterIn.HEADER,
@@ -89,33 +94,28 @@ class PaymentController(@Autowired(required = true) val service: PaymentService)
             `in` = ParameterIn.HEADER,
             required = true
         ) @RequestHeader(value = "maas-id", required = true) maasId: String,
-        @Parameter(description = "Booking identifier", required = true) @PathVariable("id") id: String,
+        @Parameter(description = "Leg identifier", required = true) @PathVariable("id") id: String,
         @Parameter(description = "The ID of the maas operator that has to receive this message", `in` = ParameterIn.HEADER) @RequestHeader(
             value = "addressed-to",
             required = false
         ) addressedTo: String?,
-        @Parameter(description = "") @Valid @RequestBody(required = false) extraCosts: ExtraCosts?
-    ): ResponseEntity<JournalEntry> {
+        @Parameter(description = "") @Valid @RequestBody(required = false) legEvent: LegEvent?
+    ): ResponseEntity<Leg> {
         return ResponseEntity(
-            service.paymentIdClaimExtraCostsPost(acceptLanguage, api, apiVersion, maasId, id, addressedTo, extraCosts),
+            service.legsIdEventsPost(acceptLanguage, api, apiVersion, maasId, id, addressedTo, legEvent),
             HttpStatus.valueOf(200)
         )
     }
 
     @Operation(
         summary = "",
-        operationId = "paymentJournalEntryGet",
-        description = """Returns all the journal entries that should be paid per leg""",
+        operationId = "legsIdGet",
+        description = """Retrieves the latest summary of the leg, being the execution of a portion of a journey travelled using one asset (vehicle). Every leg belongs to one booking, every booking has at least one leg. Where the booking describes the agreement between user/MP and TO, the leg describes the journey as it occured. See (4.3) in the flow chart - trip execution""",
         responses = [
             ApiResponse(
                 responseCode = "200",
-                description = "journal entries",
-                content = [Content(array = ArraySchema(schema = Schema(implementation = JournalEntry::class)))]
-            ),
-            ApiResponse(
-                responseCode = "400",
-                description = "Bad request. See https://github.com/TOMP-WG/TOMP-API/wiki/Error-handling-in-TOMP for further explanation of error code.",
-                content = [Content(schema = Schema(implementation = Error::class))]
+                description = "operation successful",
+                content = [Content(schema = Schema(implementation = Leg::class))]
             ),
             ApiResponse(
                 responseCode = "401",
@@ -126,6 +126,10 @@ class PaymentController(@Autowired(required = true) val service: PaymentService)
                 responseCode = "403",
                 description = "The client does not have access rights to the content, i.e. they are unauthorized, so server is rejecting to give proper response. Unlike 401, the client's identity is known to the server.",
                 content = [Content(schema = Schema(implementation = Error::class))]
+            ),
+            ApiResponse(
+                responseCode = "404",
+                description = "The requested resources does not exist or the requester is not authorized to see it or know it exists."
             )],
         security = [SecurityRequirement(name = "BasicAuth"), SecurityRequirement(name = "ApiKeyAuth"), SecurityRequirement(name = "OpenId"), SecurityRequirement(
             name = "BearerAuth"
@@ -133,11 +137,11 @@ class PaymentController(@Autowired(required = true) val service: PaymentService)
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/payment/journal-entry"],
+        value = ["/legs/{id}"],
         produces = ["application/json"]
     )
     @Hidden
-    fun paymentJournalEntryGet(
+    fun legsIdGet(
         @Parameter(
             description = "A list of the languages/localizations the user would like to see the results in. For user privacy and ease of use on the TO side, this list should be kept as short as possible, ideally just one language tag from the list in operator/information",
             `in` = ParameterIn.HEADER,
@@ -157,51 +161,12 @@ class PaymentController(@Autowired(required = true) val service: PaymentService)
             `in` = ParameterIn.HEADER,
             required = true
         ) @RequestHeader(value = "maas-id", required = true) maasId: String,
+        @Parameter(description = "Leg identifier", required = true) @PathVariable("id") id: String,
         @Parameter(description = "The ID of the maas operator that has to receive this message", `in` = ParameterIn.HEADER) @RequestHeader(
             value = "addressed-to",
             required = false
-        ) addressedTo: String?,
-        @Parameter(description = "start of the selection") @Valid @RequestParam(
-            value = "from",
-            required = false
-        ) @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME) from: java.time.OffsetDateTime?,
-        @Parameter(description = "end of the selection") @Valid @RequestParam(
-            value = "to",
-            required = false
-        ) @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME) to: java.time.OffsetDateTime?,
-        @Parameter(description = "", schema = Schema(allowableValues = ["TO_INVOICE", "INVOICED"])) @Valid @RequestParam(
-            value = "state",
-            required = false
-        ) state: JournalState?,
-        @Parameter(description = "") @Valid @RequestParam(value = "id", required = false) id: String?,
-        @Parameter(
-            description = "type of booking line (e.g. fare, addition costs, fines, ...)",
-            schema = Schema(allowableValues = ["ALL", "DAMAGE", "LOSS", "STOLEN", "EXTRA_USAGE", "REFUND", "FINE", "OTHER_ASSET_USED", "CREDIT", "VOUCHER", "DEPOSIT", "OTHER", "FARE"])
-        ) @Valid @RequestParam(value = "category", required = false) category: JournalCategory?,
-        @Min(0) @Parameter(
-            description = "start of the selection",
-            schema = Schema(defaultValue = "0")
-        ) @Valid @RequestParam(value = "offset", required = false, defaultValue = "0") offset: Int,
-        @Min(0) @Parameter(description = "count of the selection") @Valid @RequestParam(
-            value = "limit",
-            required = false
-        ) limit: Int?
-    ): ResponseEntity<List<JournalEntry>> {
-        return ResponseEntity(
-            service.paymentJournalEntryGet(
-                acceptLanguage,
-                api,
-                apiVersion,
-                maasId,
-                addressedTo,
-                from,
-                to,
-                state,
-                id,
-                category,
-                offset,
-                limit
-            ), HttpStatus.valueOf(200)
-        )
+        ) addressedTo: String?
+    ): ResponseEntity<Leg> {
+        return ResponseEntity(service.legsIdGet(acceptLanguage, api, apiVersion, maasId, id, addressedTo), HttpStatus.valueOf(200))
     }
 }

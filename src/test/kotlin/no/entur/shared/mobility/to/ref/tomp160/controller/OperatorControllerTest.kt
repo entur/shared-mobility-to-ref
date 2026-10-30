@@ -6,16 +6,21 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import no.entur.shared.mobility.to.ref.tomp160.controller.required.OperatorInformationController as RequiredOperatorController
+import no.entur.shared.mobility.to.ref.tomp160.controller.unused.OperatorInformationController as UnusedOperatorController
 
 @SpringBootTest(classes = [Application::class], webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class OperatorControllerTest {
     @Autowired
-    private lateinit var operatorController: OperatorInformationController
+    private lateinit var requiredOperatorController: RequiredOperatorController
+
+    @Autowired
+    private lateinit var unusedOperatorController: UnusedOperatorController
 
     @Test
     fun operatorAlertsGet() {
         assertThrows<NotImplementedError> {
-            operatorController.operatorAlertsGet(
+            unusedOperatorController.operatorAlertsGet(
                 acceptLanguage = "NOB",
                 api = "TOMP",
                 apiVersion = "1.5.0",
@@ -31,7 +36,7 @@ class OperatorControllerTest {
 
     @Test
     fun operatorAvailableAssetsGet() {
-        operatorController.operatorAvailableAssetsGet(
+        unusedOperatorController.operatorAvailableAssetsGet(
             acceptLanguage = "NOB",
             api = "TOMP",
             apiVersion = "1.5.0",
@@ -47,7 +52,7 @@ class OperatorControllerTest {
 
     @Test
     fun operatorInformationGet() {
-        operatorController.operatorInformationGet(
+        unusedOperatorController.operatorInformationGet(
             acceptLanguage = "NOB",
             api = "TOMP",
             apiVersion = "1.5.0",
@@ -58,7 +63,7 @@ class OperatorControllerTest {
 
     @Test
     fun operatorMetaGet() {
-        operatorController.operatorMetaGet(
+        requiredOperatorController.operatorMetaGet(
             acceptLanguage = "NOB",
             maasId = "entur:maas:shared-mobility",
             addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
@@ -68,7 +73,7 @@ class OperatorControllerTest {
     @Test
     fun operatorOperatingCalendarGet() {
         assertThrows<NotImplementedError> {
-            operatorController.operatorOperatingCalendarGet(
+            unusedOperatorController.operatorOperatingCalendarGet(
                 acceptLanguage = "NOB",
                 api = "TOMP",
                 apiVersion = "1.5.0",
@@ -83,7 +88,7 @@ class OperatorControllerTest {
     @Test
     fun operatorOperatingHoursGet() {
         assertThrows<NotImplementedError> {
-            operatorController.operatorOperatingHoursGet(
+            unusedOperatorController.operatorOperatingHoursGet(
                 acceptLanguage = "NOB",
                 api = "TOMP",
                 apiVersion = "1.5.0",
@@ -97,7 +102,7 @@ class OperatorControllerTest {
 
     @Test
     fun operatorPingGet() {
-        operatorController.operatorPingGet(
+        unusedOperatorController.operatorPingGet(
             acceptLanguage = "",
         )
     }
@@ -105,7 +110,7 @@ class OperatorControllerTest {
     @Test
     fun operatorPricingPlansGet() {
         assertThrows<NotImplementedError> {
-            operatorController.operatorPricingPlansGet(
+            unusedOperatorController.operatorPricingPlansGet(
                 acceptLanguage = "NOB",
                 api = "TOMP",
                 apiVersion = "1.5.0",
@@ -120,7 +125,7 @@ class OperatorControllerTest {
     @Test
     fun operatorRegionsGet() {
         assertThrows<NotImplementedError> {
-            operatorController.operatorRegionsGet(
+            unusedOperatorController.operatorRegionsGet(
                 acceptLanguage = "NOB",
                 api = "TOMP",
                 apiVersion = "1.5.0",
@@ -135,7 +140,7 @@ class OperatorControllerTest {
     @Test
     fun operatorStationsGet() {
         assertThrows<NotImplementedError> {
-            operatorController.operatorStationsGet(
+            unusedOperatorController.operatorStationsGet(
                 acceptLanguage = "NOB",
                 api = "TOMP",
                 apiVersion = "1.5.0",
