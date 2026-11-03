@@ -1,9 +1,22 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+buildscript {
+    configurations.classpath {
+        resolutionStrategy.eachDependency {
+            if (requested.group == "com.fasterxml.jackson.core" && requested.name in setOf("jackson-core", "jackson-databind")) {
+                useVersion("2.22.4")
+            }
+            if (requested.group == "com.github.jknack" && requested.name == "handlebars") {
+                useVersion("4.5.7")
+            }
+        }
+    }
+}
+
 plugins {
     idea
-    id("org.springframework.boot") version "4.1.1"
+    id("org.springframework.boot") version "4.1.2"
     id("io.spring.dependency-management") version "1.1.7"
     kotlin("jvm") version "2.4.21"
     kotlin("plugin.spring") version "2.4.21"
@@ -18,23 +31,35 @@ java {
 
 repositories {
     val artifactoryUser =
-        project.properties["entur_artifactory_user"]
-            ?: System.getenv("ARTIFACTORY_USER")
-            ?: System.getenv("ARTIFACTORY_AUTH_USER")
+        providers.gradleProperty("entur_artifactory_user").getOrElse(
+            System.getenv("ARTIFACTORY") ?: System.getenv("ARTIFACTORY_AUTH_USER"),
+        )
     val artifactoryPassword =
-        project.properties["entur_artifactory_password"]
-            ?: System.getenv("ARTIFACTORY_PASSWORD")
-            ?: System.getenv("ARTIFACTORY_AUTH_TOKEN")
-    println("Artifactory user: ${artifactoryUser ?: "NOT SET"}")
+        providers.gradleProperty("entur_artifactory_password").getOrElse(
+            System.getenv("ARTIFACTORY_PASSWORD") ?: System.getenv("ARTIFACTORY_AUTH_TOKEN"),
+        )
+    println("Artifactory user: $artifactoryUser")
 
     mavenCentral()
     // Entur Artifactory internal release
     maven {
         url = uri("https://entur2.jfrog.io/entur2/entur-release-standard")
         credentials {
-            username = "$artifactoryUser"
-            password = "$artifactoryPassword"
+            username = artifactoryUser
+            password = artifactoryPassword
         }
+    }
+}
+
+dependencyManagement {
+    imports {
+        mavenBom("com.google.cloud:spring-cloud-gcp-dependencies:8.3.0")
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:2025.1.4")
+    }
+    dependencies {
+        dependency("com.fasterxml.jackson.core:jackson-core:2.22.4")
+        dependency("com.fasterxml.jackson.core:jackson-databind:2.22.4")
+        dependency("com.github.jknack:handlebars:4.5.7")
     }
 }
 
@@ -46,41 +71,16 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("io.github.openfeign:feign-httpclient:13.17")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.1.1")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.2.0")
     implementation("com.fasterxml.jackson.core:jackson-annotations:2.22")
-    // Override versions with vulnerabilities
-    implementation("org.apache.tomcat.embed:tomcat-embed-core") {
-        version {
-            strictly("11.0.25")
-        }
-    }
-    implementation("com.fasterxml.jackson.core:jackson-databind") {
-        version {
-            strictly("2.21.5")
-        }
-    }
-    implementation("com.github.jknack:handlebars") {
-        version {
-            strictly("4.5.2")
-        }
-    }
-    // override end
-
     // Security
-    implementation("org.entur.auth.client:oidc-client-spring-boot:3.0.3")
+    implementation("org.entur.auth.client:oidc-client-spring-boot:3.0.4")
     runtimeOnly("io.micrometer:micrometer-registry-prometheus")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
-    testImplementation("io.kotest:kotest-property:6.2.5")
-    testImplementation("io.kotest:kotest-assertions-core:6.2.5")
+    testImplementation("io.kotest:kotest-property:6.2.6")
+    testImplementation("io.kotest:kotest-assertions-core:6.2.6")
     testImplementation("io.mockk:mockk:1.14.11")
-}
-
-dependencyManagement {
-    imports {
-        mavenBom("com.google.cloud:spring-cloud-gcp-dependencies:8.2.3")
-        mavenBom("org.springframework.cloud:spring-cloud-dependencies:2025.1.3")
-    }
 }
 
 tasks.withType<KotlinCompile> {
