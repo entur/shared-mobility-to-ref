@@ -59,7 +59,7 @@ dependencyManagement {
     dependencies {
         dependency("com.fasterxml.jackson.core:jackson-core:2.22.4")
         dependency("com.fasterxml.jackson.core:jackson-databind:2.22.4")
-        dependency("com.github.jknack:handlebars:4.5.7")
+        dependency("com.github.jknack:handlebars:4.5.8")
     }
 }
 
