@@ -8,7 +8,10 @@ buildscript {
                 useVersion("2.22.4")
             }
             if (requested.group == "com.github.jknack" && requested.name == "handlebars") {
-                useVersion("4.5.7")
+                useVersion("4.5.8")
+            }
+            if (requested.group == "com.google.guava" && requested.name == "guava") {
+                useVersion("33.7.2-jre")
             }
         }
     }
@@ -60,6 +63,7 @@ dependencyManagement {
         dependency("com.fasterxml.jackson.core:jackson-core:2.22.4")
         dependency("com.fasterxml.jackson.core:jackson-databind:2.22.4")
         dependency("com.github.jknack:handlebars:4.5.8")
+        dependency("com.google.guava:guava:33.7.2-jre")
     }
 }
 
