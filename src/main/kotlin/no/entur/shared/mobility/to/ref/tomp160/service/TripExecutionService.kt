@@ -1,4 +1,4 @@
-package no.entur.shared.mobility.to.ref.tomp150.service
+package no.entur.shared.mobility.to.ref.tomp160.service
 
 import no.entur.shared.mobility.to.ref.config.TransportOperator.ALL_IMPLEMENTING_OPERATOR
 import no.entur.shared.mobility.to.ref.config.TransportOperator.ALTAIR_SCOOTERS
@@ -7,65 +7,21 @@ import no.entur.shared.mobility.to.ref.config.TransportOperator.EVIE_SCOOTERS_NO
 import no.entur.shared.mobility.to.ref.config.TransportOperator.EZIO_SCOOTERS_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE
 import no.entur.shared.mobility.to.ref.config.TransportOperator.KENWAY_SCOOTERS
 import no.entur.shared.mobility.to.ref.config.bikeOperators
-import no.entur.shared.mobility.to.ref.tomp150.controller.TripExecutionService
-import no.entur.shared.mobility.to.ref.tomp150.data.leg
-import no.entur.shared.mobility.to.ref.tomp150.data.legWithHighDepositAmount
-import no.entur.shared.mobility.to.ref.tomp150.data.legWithoutDeposit
-import no.entur.shared.mobility.to.ref.tomp150.dto.ConfirmationRequest
-import no.entur.shared.mobility.to.ref.tomp150.dto.Leg
-import no.entur.shared.mobility.to.ref.tomp150.dto.LegEvent
-import no.entur.shared.mobility.to.ref.tomp150.dto.LegProgress
-import no.entur.shared.mobility.to.ref.tomp150.dto.LegState
+import no.entur.shared.mobility.to.ref.tomp160.data.leg
+import no.entur.shared.mobility.to.ref.tomp160.data.legWithHighDepositAmount
+import no.entur.shared.mobility.to.ref.tomp160.data.legWithoutDeposit
+import no.entur.shared.mobility.to.ref.tomp160.dto.Leg
+import no.entur.shared.mobility.to.ref.tomp160.dto.LegEvent
+import no.entur.shared.mobility.to.ref.tomp160.dto.LegState
 import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
 import kotlin.random.Random
 
-@Service("TripExecutionServiceTomp150")
-class TripExecutionServiceImpl(
-    private val eventScheduler150: EventScheduler150,
-) : TripExecutionService {
-    override fun legsIdAncillariesCategoryNumberDelete(
-        acceptLanguage: String,
-        api: String,
-        apiVersion: String,
-        maasId: String,
-        id: String,
-        category: String,
-        number: String,
-        addressedTo: String?,
-    ): Leg = throw NotImplementedError()
-
-    override fun legsIdAncillariesCategoryNumberPost(
-        acceptLanguage: String,
-        api: String,
-        apiVersion: String,
-        maasId: String,
-        id: String,
-        category: String,
-        number: String,
-        addressedTo: String?,
-    ): Leg = throw NotImplementedError()
-
-    override fun legsIdAvailableAssetsGet(
-        acceptLanguage: String,
-        api: String,
-        apiVersion: String,
-        maasId: String,
-        id: String,
-        addressedTo: String?,
-        offset: Int,
-        limit: Int?,
-    ): List<no.entur.shared.mobility.to.ref.tomp150.dto.Asset> = throw NotImplementedError()
-
-    override fun legsIdConfirmationPost(
-        acceptLanguage: String,
-        api: String,
-        apiVersion: String,
-        id: String,
-        confirmationRequest: ConfirmationRequest?,
-    ): Boolean = true
-
-    override fun legsIdEventsPost(
+@Service("TripExecutionServiceTomp160")
+class TripExecutionService(
+    private val eventScheduler160: EventScheduler160,
+) {
+    fun legsIdEventsPost(
         acceptLanguage: String,
         api: String,
         apiVersion: String,
@@ -81,13 +37,12 @@ class TripExecutionServiceImpl(
                 ALTAIR_SCOOTERS, KENWAY_SCOOTERS, in bikeOperators, ALL_IMPLEMENTING_OPERATOR -> leg
                 else -> throw NotImplementedError()
             }
-
         // Trigger randomized demo workflow when START_FINISHING is received for COLUMBI_BIKE
         if (addressedTo == COLUMBI_BIKE && legEvent?.event == LegEvent.Event.START_FINISHING) {
             if (Random.nextBoolean()) {
-                eventScheduler150.startFullStationFlow(id)
+                eventScheduler160.startFullStationFlow(id)
             } else {
-                eventScheduler150.startParkingWarningFlow(id)
+                eventScheduler160.startParkingWarningFlow(id)
             }
         }
 
@@ -120,7 +75,7 @@ class TripExecutionServiceImpl(
         )
     }
 
-    override fun legsIdGet(
+    fun legsIdGet(
         acceptLanguage: String,
         api: String,
         apiVersion: String,
@@ -136,43 +91,5 @@ class TripExecutionServiceImpl(
                 else -> throw NotImplementedError()
             }
         return leg.copy(id = id)
-    }
-
-    override fun legsIdProgressGet(
-        acceptLanguage: String,
-        api: String,
-        apiVersion: String,
-        maasId: String,
-        id: String,
-        addressedTo: String?,
-        locationOnly: Boolean,
-    ): LegProgress = throw NotImplementedError()
-
-    override fun legsIdProgressPost(
-        acceptLanguage: String,
-        api: String,
-        apiVersion: String,
-        maasId: String,
-        id: String,
-        addressedTo: String?,
-        legProgress: LegProgress?,
-    ) {
-        if (addressedTo != ALL_IMPLEMENTING_OPERATOR) {
-            throw NotImplementedError()
-        }
-    }
-
-    override fun legsIdPut(
-        acceptLanguage: String,
-        api: String,
-        apiVersion: String,
-        maasId: String,
-        id: String,
-        leg: Leg,
-        addressedTo: String?,
-    ) {
-        if (addressedTo != ALL_IMPLEMENTING_OPERATOR) {
-            throw NotImplementedError()
-        }
     }
 }

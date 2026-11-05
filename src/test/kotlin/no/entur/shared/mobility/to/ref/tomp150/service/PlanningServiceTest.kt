@@ -11,14 +11,14 @@ import no.entur.shared.mobility.to.ref.tomp150.dto.OneStopBookingRequest
 import no.entur.shared.mobility.to.ref.tomp150.dto.Place
 import org.junit.jupiter.api.Test
 
-class PlanningServiceImplTest {
+class PlanningServiceTest {
     private val eventScheduler150: EventScheduler150 = mockk(relaxed = true)
 
-    private val planningServiceImpl = PlanningServiceImpl(eventScheduler150)
+    private val planningService = PlanningService(eventScheduler150)
 
     @Test
     fun `bookingsOneStopPost should call eventScheduler if the call comes from a bike operator`() {
-        planningServiceImpl.bookingsOneStopPost(
+        planningService.bookingsOneStopPost(
             "",
             "",
             "",
@@ -37,7 +37,7 @@ class PlanningServiceImplTest {
     @Test
     fun `bookingsOneStopPost should not call eventScheduler if the call doesn't come from a bike operator`() {
         operators.filter { it !in bikeOperators }.forEach {
-            planningServiceImpl.bookingsOneStopPost(
+            planningService.bookingsOneStopPost(
                 "",
                 "",
                 "",

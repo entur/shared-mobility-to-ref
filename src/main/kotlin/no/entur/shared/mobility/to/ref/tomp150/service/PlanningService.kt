@@ -1,4 +1,4 @@
-package no.entur.shared.mobility.to.ref.tomp160.service
+package no.entur.shared.mobility.to.ref.tomp150.service
 
 import no.entur.shared.mobility.to.ref.config.TransportOperator.ALL_IMPLEMENTING_OPERATOR
 import no.entur.shared.mobility.to.ref.config.TransportOperator.ALTAIR_SCOOTERS
@@ -6,42 +6,27 @@ import no.entur.shared.mobility.to.ref.config.TransportOperator.EVIE_SCOOTERS_NO
 import no.entur.shared.mobility.to.ref.config.TransportOperator.EZIO_SCOOTERS_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE
 import no.entur.shared.mobility.to.ref.config.TransportOperator.KENWAY_SCOOTERS
 import no.entur.shared.mobility.to.ref.config.bikeOperators
-import no.entur.shared.mobility.to.ref.tomp160.controller.PlanningService
-import no.entur.shared.mobility.to.ref.tomp160.data.asset
-import no.entur.shared.mobility.to.ref.tomp160.data.booking
-import no.entur.shared.mobility.to.ref.tomp160.data.bookingHigherDepositAmountThanTotalAmount
-import no.entur.shared.mobility.to.ref.tomp160.data.bookingWithoutDeposit
-import no.entur.shared.mobility.to.ref.tomp160.data.finalFare
-import no.entur.shared.mobility.to.ref.tomp160.data.leg
-import no.entur.shared.mobility.to.ref.tomp160.data.planning
-import no.entur.shared.mobility.to.ref.tomp160.dto.AssetProperties
-import no.entur.shared.mobility.to.ref.tomp160.dto.Booking
-import no.entur.shared.mobility.to.ref.tomp160.dto.LegState
-import no.entur.shared.mobility.to.ref.tomp160.dto.OneStopBookingRequest
-import no.entur.shared.mobility.to.ref.tomp160.dto.Planning
-import no.entur.shared.mobility.to.ref.tomp160.dto.PlanningRequest
+import no.entur.shared.mobility.to.ref.tomp150.data.asset
+import no.entur.shared.mobility.to.ref.tomp150.data.booking
+import no.entur.shared.mobility.to.ref.tomp150.data.bookingHigherDepositAmountThanTotalAmount
+import no.entur.shared.mobility.to.ref.tomp150.data.bookingWithoutDeposit
+import no.entur.shared.mobility.to.ref.tomp150.data.finalFare
+import no.entur.shared.mobility.to.ref.tomp150.data.leg
+import no.entur.shared.mobility.to.ref.tomp150.dto.AssetProperties
+import no.entur.shared.mobility.to.ref.tomp150.dto.Booking
+import no.entur.shared.mobility.to.ref.tomp150.dto.LegState
+import no.entur.shared.mobility.to.ref.tomp150.dto.OneStopBookingRequest
+import no.entur.shared.mobility.to.ref.tomp150.dto.Planning
+import no.entur.shared.mobility.to.ref.tomp150.dto.PlanningRequest
 import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
 import java.util.UUID
 
-@Service("PlanningServiceTomp160")
-class PlanningServiceImpl(
-    private val eventScheduler160: EventScheduler160,
-) : PlanningService {
-    override fun planningInquiriesPost(
-        acceptLanguage: String,
-        api: String,
-        apiVersion: String,
-        maasId: String,
-        addressedTo: String?,
-        planningRequest: PlanningRequest?,
-    ): Planning =
-        when (addressedTo) {
-            ALL_IMPLEMENTING_OPERATOR -> planning
-            else -> throw NotImplementedError()
-        }
-
-    override fun planningOffersPost(
+@Service("PlanningServiceTomp150")
+class PlanningService(
+    private val eventScheduler150: EventScheduler150,
+) {
+    fun planningOffersPost(
         acceptLanguage: String,
         api: String,
         apiVersion: String,
@@ -78,7 +63,7 @@ class PlanningServiceImpl(
                                         AssetProperties(
                                             meta = extraInfo,
                                         ),
-                                ) ?: no.entur.shared.mobility.to.ref.tomp160.dto.Asset(
+                                ) ?: no.entur.shared.mobility.to.ref.tomp150.dto.Asset(
                                     id = "1234",
                                     stateOfCharge = 50,
                                     overriddenProperties =
@@ -96,21 +81,7 @@ class PlanningServiceImpl(
         )
     }
 
-    override fun planningsPost(
-        acceptLanguage: String,
-        api: String,
-        apiVersion: String,
-        maasId: String,
-        addressedTo: String?,
-        bookingIntent: Boolean,
-        planningRequest: PlanningRequest?,
-    ): Planning =
-        when (addressedTo) {
-            ALL_IMPLEMENTING_OPERATOR -> planning
-            else -> throw NotImplementedError()
-        }
-
-    override fun bookingsOneStopPost(
+    fun bookingsOneStopPost(
         acceptLanguage: String,
         api: String,
         apiVersion: String,
@@ -127,7 +98,7 @@ class PlanningServiceImpl(
                 in bikeOperators -> {
                     val notStartedLeg = leg.copy(state = LegState.NOT_STARTED)
                     val bikeBooking = booking.copy(legs = listOf(notStartedLeg))
-                    eventScheduler160.addTakeBikeMessage(bikeBooking.id!!, notStartedLeg.id!!, addressedTo!!)
+                    eventScheduler150.addTakeBikeMessage(bikeBooking.id!!, notStartedLeg.id!!, addressedTo!!)
                     bikeBooking
                 }
 

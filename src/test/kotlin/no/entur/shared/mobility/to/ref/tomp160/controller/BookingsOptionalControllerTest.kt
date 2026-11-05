@@ -2,12 +2,10 @@ package no.entur.shared.mobility.to.ref.tomp160.controller
 
 import no.entur.shared.mobility.to.ref.Application
 import no.entur.shared.mobility.to.ref.config.TransportOperator
-import no.entur.shared.mobility.to.ref.tomp160.dto.Booking
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import java.time.OffsetDateTime
-import java.util.UUID
 
 @SpringBootTest(classes = [Application::class], webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class BookingsOptionalControllerTest {
@@ -28,43 +26,6 @@ class BookingsOptionalControllerTest {
             minPrice = null,
             maxPrice = null,
             containsAssetType = "AssetType:487",
-        )
-    }
-
-    @Test
-    fun bookingsIdPut() {
-        bookingOptionalController.bookingsIdPut(
-            acceptLanguage = "NOB",
-            api = "TOMP",
-            apiVersion = "1.5.0",
-            maasId = "entur:maas:shared-mobility",
-            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
-            id = UUID.randomUUID().toString(),
-            booking = Booking(),
-        )
-    }
-
-    @Test
-    fun bookingsIdSubscriptionDelete() {
-        bookingOptionalController.bookingsIdSubscriptionDelete(
-            acceptLanguage = "NOB",
-            api = "TOMP",
-            apiVersion = "1.5.0",
-            maasId = "entur:maas:shared-mobility",
-            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
-            id = UUID.randomUUID().toString(),
-        )
-    }
-
-    @Test
-    fun bookingsIdSubscriptionPost() {
-        bookingOptionalController.bookingsIdSubscriptionPost(
-            acceptLanguage = "NOB",
-            api = "TOMP",
-            apiVersion = "1.5.0",
-            maasId = "entur:maas:shared-mobility",
-            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
-            id = UUID.randomUUID().toString(),
         )
     }
 }
