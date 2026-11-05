@@ -30,8 +30,8 @@ class ApplicationTests {
 
     @Test
     fun `endpoints not overridden should return 501`() {
-        get("/tomp160/bookings/1/notifications") shouldBe 501
-        get("/bookings/1/notifications") shouldBe 501
+        get("/tomp160/legs/1/progress") shouldBe 501
+        get("/legs/1/progress") shouldBe 501
     }
 
     private fun get(path: String): Int =
