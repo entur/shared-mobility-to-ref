@@ -26,18 +26,6 @@ class PlanningControllerTest {
     }
 
     @Test
-    fun planningInquiriesPost() {
-        planningController.planningInquiriesPost(
-            acceptLanguage = "NOB",
-            api = "TOMP",
-            apiVersion = "1.5.0",
-            maasId = "entur:maas:shared-mobility",
-            TransportOperator.ALL_IMPLEMENTING_OPERATOR,
-            null,
-        )
-    }
-
-    @Test
     fun planningOffersPost() {
         planningController.planningOffersPost(
             acceptLanguage = "NOB",

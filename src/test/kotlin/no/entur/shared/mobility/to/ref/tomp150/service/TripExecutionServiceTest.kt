@@ -7,9 +7,9 @@ import no.entur.shared.mobility.to.ref.tomp150.dto.LegEvent
 import org.junit.jupiter.api.Test
 import java.time.OffsetDateTime
 
-class TripExecutionServiceImplTest {
+class TripExecutionServiceTest {
     private val scheduler: EventScheduler150 = mockk(relaxed = true)
-    private val service = TripExecutionServiceImpl(eventScheduler150 = scheduler)
+    private val service = TripExecutionService(eventScheduler150 = scheduler)
 
     @Test
     fun `FINISH for COLUMBI_BIKE is rejected`() {

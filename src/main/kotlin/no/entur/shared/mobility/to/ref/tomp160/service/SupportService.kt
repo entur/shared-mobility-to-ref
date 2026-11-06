@@ -1,14 +1,13 @@
 package no.entur.shared.mobility.to.ref.tomp160.service
 
-import no.entur.shared.mobility.to.ref.tomp160.controller.SupportService
 import no.entur.shared.mobility.to.ref.tomp160.dto.SupportRequest
 import no.entur.shared.mobility.to.ref.tomp160.dto.SupportStatus
 import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
 
 @Service("SupportServiceTomp160")
-class SupportServiceImpl : SupportService {
-    override fun supportIdStatusGet(
+class SupportService {
+    fun supportIdStatusGet(
         acceptLanguage: String,
         api: String,
         apiVersion: String,
@@ -17,7 +16,7 @@ class SupportServiceImpl : SupportService {
         addressedTo: String?,
     ): List<SupportStatus> = throw NotImplementedError()
 
-    override fun supportPost(
+    fun supportPost(
         acceptLanguage: String,
         api: String,
         apiVersion: String,

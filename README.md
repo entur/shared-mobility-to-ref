@@ -31,7 +31,6 @@ You can find the Swagger Petstore documentation for this app [here](https://pets
 | [POST /legs/{id}/events](#tomp-api-implementation-guide-post-legsidevents)      | Alters the state of a leg                             |
 | [GET /bookings/{id}](#tomp-api-implementation-guide-get-bookingsid)             | Returns a booking given id                            |
 | [GET /legs/{id}](#tomp-api-implementation-guide-get-legsid)                     | Retrieves the latest summary of a leg                 |
-| [GET /bookings](#tomp-api-implementation-guide-get-bookings)                    | Retrieves a list of bookings based on various filters |
 
 ### Request Headers
 The request headers are equal for all endpoints:
@@ -56,9 +55,9 @@ The request headers are equal for all endpoints:
 
 This guide outlines how transport operator's can implement the `GET "/operator/meta"` endpoint, 
 which is used to retrieve information about how the transport operator's API works and which endpoints that are supported. 
-The controller code can be found [here](src/main/kotlin/no/entur/shared/mobility/to/ref/controller/OperatorController.kt).
+The controller code can be found [here](src/main/kotlin/no/entur/shared/mobility/to/ref/tomp160/controller/OperatorInformationController.kt).
 
-Response model can be found [here](src/main/kotlin/no/entur/shared/mobility/to/ref/data/MetaProvider.kt). 
+Response model can be found [here](src/main/kotlin/no/entur/shared/mobility/to/ref/tomp160/data/MetaProvider.kt). 
 Note that the response is a list of EndpointImplementation. 
 Required variables in the response:
 
@@ -67,7 +66,7 @@ Required variables in the response:
 - **endpoints**: A list of supported endpoints in the transport operator's implementation of the TOMP API.
   - **method**: [ POST, PUT, GET, DELETE, PATCH ]
   - **status**: [ NOT_IMPLEMENTED, DIALECT, IMPLEMENTED ]
-  - **paths**: Should be one of the types listed [here](src/main/kotlin/no/entur/shared/mobility/to/ref/data/EndpointType.kt).
+  - **paths**: Should be one of the types listed [here](src/main/kotlin/no/entur/shared/mobility/to/ref/config/EndpointType.kt).
 - The rest of the "required" variables can be set as an empty list since it's not supported in Entur's implementation yet.
 
 ### TOMP API Implementation Guide: POST "/planning/offers" 
@@ -121,54 +120,52 @@ Example for how to get from the vehicleCode "157103" to the assetId/vehicleId/bi
 ### TOMP API Implementation Guide: POST "/bookings/one-stop"
 This guide outlines how transport operator's can implement the `POST "/bookings/one-stop"` endpoint,
 which is used to create a one-stop booking. This is for travels without a specified final destination.
-The controller code can be found [here](src/main/kotlin/no/entur/shared/mobility/to/ref/controller/BookingsController.kt).
+The controller code can be found [here](src/main/kotlin/no/entur/shared/mobility/to/ref/tomp160/controller/PlanningController.kt).
 
 The first id in the request.useAssets list will always be the mobility the user wants to book for a trip. 
 This id is from the [public GBFS data](https://developer.entur.org/pages-mobility-docs-mobility-v2).
 
-Response model can be found [here](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Booking.kt).
+Response model can be found [here](src/main/kotlin/no/entur/shared/mobility/to/ref/tomp160/dto/Booking.kt).
 The model has many optional variables because it is designed to support booking of many different modalities, 
 but because Entur currently only supports booking of micromobility, only these variables are required:
 - **id**: Unique identifier. Should be the same as "leg.id" for one-stop booking.
-- **from**: Where the customer is traveling from. Model: [Place](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Place.kt)
+- **from**: Where the customer is traveling from. Model: [Place](src/main/kotlin/no/entur/shared/mobility/to/ref/tomp160/dto/Place.kt)
   - **name**: Name of the place.
-  - **coordinates**: Coordinates of the place. Model: [Coordinates](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Coordinates.kt)
-- **customer**: Information about the traveling customer. Model: [Customer](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Customer.kt)
+  - **coordinates**: Coordinates of the place. Model: [Coordinates](src/main/kotlin/no/entur/shared/mobility/to/ref/tomp160/dto/Coordinates.kt)
+- **customer**: Information about the traveling customer. Model: [Customer](src/main/kotlin/no/entur/shared/mobility/to/ref/tomp160/dto/Customer.kt)
   - **id**: The identifier Entur uses to identify the customer.
-- **state**: The state of the booking. Model: [BookingState](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/BookingState.kt)
-- **pricing** The pricing of the booking. Model: [Fare](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Fare.kt)
+- **state**: The state of the booking. Model: [BookingState](src/main/kotlin/no/entur/shared/mobility/to/ref/tomp160/dto/BookingState.kt)
+- **pricing** The pricing of the booking. Model: [Fare](src/main/kotlin/no/entur/shared/mobility/to/ref/tomp160/dto/Fare.kt)
   - **estimated**: Is this fare an estimation?
-  - **parts**: Should contain one part per leg with the total per leg. All the priced parts. Model: List of [FarePart]
-    (src/main/kotlin/no/entur/shared/mobility/to/ref/dto/FarePart.kt).
+  - **parts**: Should contain one part per leg with the total per leg. All the priced parts. Model: List of [FarePart](src/main/kotlin/no/entur/shared/mobility/to/ref/tomp160/dto/FarePart.kt).
     Pricing should be kept up to date during trip execution.
 - **legs**: A list of all legs in the booking. Since this is a one-stop booking this list should only include one leg. 
-    Model: List of [Leg](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Leg.kt)
+    Model: List of [Leg](src/main/kotlin/no/entur/shared/mobility/to/ref/tomp160/dto/Leg.kt)
   - **id**: Unique identifier. Should be the same as "booking.id" for one-stop booking.
   - **from**: Where the customer is traveling from. For one-stop booking this variable should be identical as the "booking.from" variable.
-    Model: [Place](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Place.kt)
+    Model: [Place](src/main/kotlin/no/entur/shared/mobility/to/ref/tomp160/dto/Place.kt)
   - **arrivalTime**: The intended arrival time at the to place. Or, in case of a parking, the end of the usage.
   - **actualArrivalTime**: the 'arrivalTime' can be used as 'plannedArrivalTime' whenever the leg has ended. Use this field to ease 
     searching for discrepancies between planned and actual arrival times.
   - **departureTime**: The departure time of this leg. Or, in case of a parking, the start of the usage.
   - **actualDepartureTime**: the 'departureTime' can be used as 'plannedDepartureTime' whenever the leg has started. Use this field to ease
     searching for discrepancies between planned and actual departure times.
-  - **assetType**: Type of asset. Model: [AssetType](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/AssetType.kt)
+  - **assetType**: Type of asset. Model: [AssetType](src/main/kotlin/no/entur/shared/mobility/to/ref/tomp160/dto/AssetType.kt)
     - **id** Unique identifier. 
-  - **asset**: The booked asset for the trip. Model: [Asset](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Asset.kt)
+  - **asset**: The booked asset for the trip. Model: [Asset](src/main/kotlin/no/entur/shared/mobility/to/ref/tomp160/dto/Asset.kt)
     - **id** Unique identifier. Should be the same id as given from the useAssets request variable.
     - **stateOfCharge** The current charge of the vehicle. Integer 0-100. This should be kept up to date during trip execution
     - **overriddenProperties.meta.vehicleCode** If you have your own vehicleCode for the modality, this field should always be set
-  - **pricing**: Price plan for the leg witt a fixed part for start cost and one ore more flexible parts where applicable Model: [Fare]
-    (src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Fare.kt)
+  - **pricing**: Price plan for the leg witt a fixed part for start cost and one ore more flexible parts where applicable Model: [Fare](src/main/kotlin/no/entur/shared/mobility/to/ref/tomp160/dto/Fare.kt)
   - **conditions**: The conditions that apply to this leg. 
-    Model: List of [AssetTypeConditionsInner](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/AssetTypeConditionsInner.kt)
+    Model: List of [Condition](src/main/kotlin/no/entur/shared/mobility/to/ref/tomp160/dto/Condition.kt)
     - **ConditionDeposit::class**: Gives us information about the preferred deposit amount. 
-      Model: [ConditionDeposit](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/ConditionDeposit.kt)
+      Model: [ConditionDeposit](src/main/kotlin/no/entur/shared/mobility/to/ref/tomp160/dto/ConditionDeposit.kt)
     - **ConditionRequireOffboardingSteps::class**: Used if the transport operator wants a parking picture of the bike/scooter.
-      Model: [ConditionRequireOffboardingSteps](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/ConditionRequireOffboardingSteps.kt)
-  - **state**: The state of the leg. When creating a one-stop booking this state should be set to ASSIGN_ASSET. Model: [LegState](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/LegState.kt)
+      Model: [ConditionRequireOffboardingSteps](src/main/kotlin/no/entur/shared/mobility/to/ref/tomp160/dto/ConditionRequireOffboardingSteps.kt)
+  - **state**: The state of the leg. When creating a one-stop booking this state should be set to ASSIGN_ASSET. Model: [LegState](src/main/kotlin/no/entur/shared/mobility/to/ref/tomp160/dto/LegState.kt)
 departureTime, arrivalTime, actualDepartureTime and actualArrivalTime on the Booking is optional 
-since Entur only use the variables from the [Leg](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Leg.kt).
+since Entur only use the variables from the [Leg](src/main/kotlin/no/entur/shared/mobility/to/ref/tomp160/dto/Leg.kt).
 
 #### Example request
 ```json
@@ -253,9 +250,9 @@ since Entur only use the variables from the [Leg](src/main/kotlin/no/entur/share
 ### TOMP API Implementation Guide: POST "/legs/{id}/events"
 
 This guide outlines how transport operator's can implement the `POST "/legs/{id}/events"` endpoint, which is used to alter the state of a leg. 
-The controller code can be found [here](src/main/kotlin/no/entur/shared/mobility/to/ref/controller/LegsController.kt).
+The controller code can be found [here](src/main/kotlin/no/entur/shared/mobility/to/ref/tomp160/controller/TripExecutionController.kt).
 
-Response model can be found [here](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Leg.kt).
+Response model can be found [here](src/main/kotlin/no/entur/shared/mobility/to/ref/tomp160/dto/Leg.kt).
 
 Required fields are described in the [POST /bookings/one-stop](#tomp-api-implementation-guide-post-bookingsone-stop) guide above.
 
@@ -305,7 +302,7 @@ Required fields are described in the [POST /bookings/one-stop](#tomp-api-impleme
 ```
 
 ### TOMP API Implementation Guide: GET "/bookings/{id}"
-This guide outlines how transport operators can implement the `GET "/bookings/{id}"` endpoint, which is used to retrieve booking details by booking ID. The controller code can be found [here](src/main/kotlin/no/entur/shared/mobility/to/ref/controller/BookingsController.kt).
+This guide outlines how transport operators can implement the `GET "/bookings/{id}"` endpoint, which is used to retrieve booking details by booking ID. The controller code can be found [here](src/main/kotlin/no/entur/shared/mobility/to/ref/tomp160/controller/BookingController.kt).
 
 #### Path Variables:
 ```
@@ -325,7 +322,7 @@ addressed-to: receiver-maas-id
 ```
 
 #### Response Model:
-The response will be a `Booking` object. The model can be found [here](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Booking.kt). The model has many optional variables because it is designed to support booking of many different modalities, but because Entur currently only supports booking of micro mobility, only these variables are required:
+The response will be a `Booking` object. The model can be found [here](src/main/kotlin/no/entur/shared/mobility/to/ref/tomp160/dto/Booking.kt). The model has many optional variables because it is designed to support booking of many different modalities, but because Entur currently only supports booking of micro mobility, only these variables are required:
 
 Required fields are the same as described in the POST /bookings/one-stop guide above.
 
@@ -354,13 +351,13 @@ This guide outlines how transport operators can implement the `GET "/legs/{id}"`
 
 - **200**: Operation successful.
   - **Content**: `application/json`
-  - **Schema**: [Leg](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Leg.kt)
+  - **Schema**: [Leg](src/main/kotlin/no/entur/shared/mobility/to/ref/tomp160/dto/Leg.kt)
 - **401**: Unauthorized - The client must authenticate itself to get the requested response.
   - **Content**: `application/json`
-  - **Schema**: [Error](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Error.kt)
+  - **Schema**: [Error](src/main/kotlin/no/entur/shared/mobility/to/ref/tomp160/dto/Error.kt)
 - **403**: Forbidden - The client does not have access rights to the content, i.e., they are unauthorized, so the server is rejecting to give a proper response. Unlike 401, the client's identity is known to the server.
   - **Content**: `application/json`
-  - **Schema**: [Error](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Error.kt)
+  - **Schema**: [Error](src/main/kotlin/no/entur/shared/mobility/to/ref/tomp160/dto/Error.kt)
 - **404**: Not Found - The requested resources do not exist, or the requester is not authorized to see it or know it exists.
 
 #### Example Request
@@ -405,110 +402,9 @@ addressed-to: toOperator456
 
 ### Response Model: Leg
 
-The response model can be found in the [Leg](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Leg.kt) class.
+The response model can be found in the [Leg](src/main/kotlin/no/entur/shared/mobility/to/ref/tomp160/dto/Leg.kt) class.
 
 This endpoint provides detailed information about the specified leg, including the start and end locations, times, and asset details. This is crucial for tracking the journey segment and understanding the trip execution.
-
-
-### TOMP API Implementation Guide: GET "/bookings"
-
-This guide outlines how transport operators can implement the `GET "/bookings"` endpoint, which retrieves a list of bookings based on various filters such as state, time window, price range, and asset type. This endpoint helps users and operators to manage and track bookings efficiently.
-
-#### Endpoint Summary
-
-- **Operation ID**: bookingsGet
-- **Summary**: Retrieves a list of bookings.
-- **Description**: Retrieves a list of bookings based on various filters such as state, time window, price range, and asset type. This endpoint helps users and operators to manage and track bookings efficiently.
-
-#### Request
-
-- **HTTP Method**: GET
-- **Path**: `/bookings`
-- **Produces**: `application/json`
-
-#### Query Parameters
-```
-- **state**: (Optional) Filter bookings by their state.
-  - **Allowable Values**: NEW, PENDING, REJECTED, RELEASED, EXPIRED, CONDITIONAL_CONFIRMED, CONFIRMED, CANCELLED, STARTED, FINISHED
-- **min-time**: (Optional) Start time of the time window of all bookings (partially) overlapping with this time window.
-  - **Format**: ISO 8601 date-time
-- **max-time**: (Optional) End time of the time window of all bookings (partially) overlapping with this time window.
-  - **Format**: ISO 8601 date-time
-- **min-price**: (Optional) Minimum search price, for the whole trip.
-- **max-price**: (Optional) Maximum search price, for the whole trip.
-- **contains-asset-type**: (Optional) Filter the bookings on the ID of the asset type. Should return all complete bookings containing a leg executed with this asset type.
-```
-
-#### Responses
-- **200**: Operation successful.
-  - **Content**: `application/json`
-  - **Schema**: List of [Booking](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Booking.kt)
-- **401**: Unauthorized - The client must authenticate itself to get the requested response.
-  - **Content**: `application/json`
-  - **Schema**: [Error](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Error.kt)
-- **403**: Forbidden - The client does not have access rights to the content, i.e., they are unauthorized, so the server is rejecting to give a proper response.
-  - **Content**: `application/json`
-  - **Schema**: [Error](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Error.kt)
-- **404**: Not Found - The requested resources do not exist, or the requester is not authorized to see it or know it exists.
-
-#### Example Request
-```http
-GET /bookings?state=CONFIRMED&min-time=2024-06-25T10:00:00Z&max-time=2024-06-25T12:00:00Z HTTP/1.1
-Host: api.shared-mobility.com
-Accept-Language: en
-Api: TOMP
-Api-Version: 1.0
-maas-id: maasOperator123
-addressed-to: toOperator456
-```
-
-#### Example Response
-```json
-[
-  {
-    "id": "booking123",
-    "state": "CONFIRMED",
-    "from": {
-      "name": "Start Location",
-      "coordinates": {
-        "latitude": 59.911491,
-        "longitude": 10.757933
-      }
-    },
-    "to": {
-      "name": "End Location",
-      "coordinates": {
-        "latitude": 59.912491,
-        "longitude": 10.758933
-      }
-    },
-    "startTime": "2024-06-25T10:00:00Z",
-    "endTime": "2024-06-25T11:00:00Z",
-    "assetType": {
-      "id": "assetType123",
-      "name": "Electric Scooter"
-    },
-    "pricing": {
-      "estimated": false,
-      "parts": [
-        {
-          "amount": 120,
-          "currencyCode": "NOK",
-          "type": "FIXED"
-        }
-      ],
-      "description": "Standard fare for a one-hour ride"
-    }
-  }
-
-]
-```
-
-### Response Model: Booking
-
-The response model can be found in the [Booking](src/main/kotlin/no/entur/shared/mobility/to/ref/dto/Booking.kt) class.
-
-This endpoint provides detailed information about bookings that match the specified filters, including the booking ID, state, start and end locations, times, asset type, and price. This is crucial for managing and tracking bookings efficiently.
 
 ---
 
