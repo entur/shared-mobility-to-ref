@@ -23,7 +23,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.7"
     kotlin("jvm") version "2.4.21"
     kotlin("plugin.spring") version "2.4.21"
-    id("org.openapi.generator") version "7.26.0"
+    id("org.openapi.generator") version "7.27.0"
 }
 
 group = "no.entur"
@@ -56,14 +56,14 @@ repositories {
 
 dependencyManagement {
     imports {
-        mavenBom("com.google.cloud:spring-cloud-gcp-dependencies:8.3.0")
+        mavenBom("com.google.cloud:spring-cloud-gcp-dependencies:8.3.1")
         mavenBom("org.springframework.cloud:spring-cloud-dependencies:2025.1.4")
     }
     dependencies {
         dependency("com.fasterxml.jackson.core:jackson-core:2.22.4")
         dependency("com.fasterxml.jackson.core:jackson-databind:2.22.4")
         dependency("com.github.jknack:handlebars:4.5.8")
-        dependency("com.google.guava:guava:33.7.2-jre")
+        dependency("com.google.guava:guava:33.8.0-jre")
     }
 }
 
