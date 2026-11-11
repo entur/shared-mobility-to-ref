@@ -23,7 +23,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.7"
     kotlin("jvm") version "2.4.21"
     kotlin("plugin.spring") version "2.4.21"
-    id("org.openapi.generator") version "7.26.0"
+    id("org.openapi.generator") version "7.27.0"
 }
 
 group = "no.entur"
@@ -56,14 +56,14 @@ repositories {
 
 dependencyManagement {
     imports {
-        mavenBom("com.google.cloud:spring-cloud-gcp-dependencies:8.3.0")
+        mavenBom("com.google.cloud:spring-cloud-gcp-dependencies:8.3.1")
         mavenBom("org.springframework.cloud:spring-cloud-dependencies:2025.1.4")
     }
     dependencies {
-        dependency("com.fasterxml.jackson.core:jackson-core:2.22.4")
-        dependency("com.fasterxml.jackson.core:jackson-databind:2.22.4")
+        dependency("com.fasterxml.jackson.core:jackson-core:2.23.0")
+        dependency("com.fasterxml.jackson.core:jackson-databind:2.23.0")
         dependency("com.github.jknack:handlebars:4.5.8")
-        dependency("com.google.guava:guava:33.7.2-jre")
+        dependency("com.google.guava:guava:33.8.0-jre")
     }
 }
 
@@ -76,7 +76,7 @@ dependencies {
     implementation("io.github.openfeign:feign-httpclient:13.17")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.2.0")
-    implementation("com.fasterxml.jackson.core:jackson-annotations:2.22")
+    implementation("com.fasterxml.jackson.core:jackson-annotations:2.23")
     // Security
     implementation("org.entur.auth.client:oidc-client-spring-boot:3.0.4")
     runtimeOnly("io.micrometer:micrometer-registry-prometheus")
@@ -84,7 +84,7 @@ dependencies {
     testImplementation("org.springframework.security:spring-security-test")
     testImplementation("io.kotest:kotest-property:6.2.6")
     testImplementation("io.kotest:kotest-assertions-core:6.2.6")
-    testImplementation("io.mockk:mockk:1.14.11")
+    testImplementation("io.mockk:mockk:1.14.12")
 }
 
 tasks.withType<KotlinCompile> {
