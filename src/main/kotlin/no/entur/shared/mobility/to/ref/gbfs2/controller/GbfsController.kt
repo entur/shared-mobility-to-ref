@@ -17,30 +17,6 @@ class GbfsController {
     @Hidden
     fun gbfs(): String = getFile("gbfs.json").replace("BASE_URL", baseUrl)
 
-    @GetMapping("/v2/kenwaybysykkel/gbfs", produces = ["application/json"])
-    @Hidden
-    fun kenwaybysykkelGbfs(): String = getFile("kenwaybysykkel-gbfs.json").replace("BASE_URL", baseUrl)
-
-    @GetMapping("/v2/kenwaybysykkel/station_information", produces = ["application/json"])
-    @Hidden
-    fun kenwaybysykkelStationInformation(): String = getFile("kenwaybysykkel-station_information.json")
-
-    @GetMapping("/v2/kenwaybysykkel/station_status", produces = ["application/json"])
-    @Hidden
-    fun kenwaybysykkelStationStatus(): String = getFile("kenwaybysykkel-station_status.json")
-
-    @GetMapping("/v2/kenwaybysykkel/system_information", produces = ["application/json"])
-    @Hidden
-    fun kenwaybysykkelSystemInformation(): String = getFile("kenwaybysykkel-system_information.json")
-
-    @GetMapping("/v2/kenwaybysykkel/system_pricing_plans", produces = ["application/json"])
-    @Hidden
-    fun kenwaybysykkelSystemPricingPlans(): String = getFile("kenwaybysykkel-system_pricing_plans.json")
-
-    @GetMapping("/v2/kenwaybysykkel/vehicle_types", produces = ["application/json"])
-    @Hidden
-    fun kenwaybysykkelVehicleTypes(): String = getFile("kenwaybysykkel-vehicle_types.json")
-
     @GetMapping("/v2/eziotrondheim/free_bike_status", produces = ["application/json"])
     @Hidden
     fun eziotrondheimFreeBikeStatus(): String = getFile("eziotrondheim-free_bike_status.json")
@@ -72,30 +48,6 @@ class GbfsController {
     @GetMapping("/v2/eziotrondheim/vehicle_types", produces = ["application/json"])
     @Hidden
     fun eziotrondheimVehicleTypes(): String = getFile("eziotrondheim-vehicle_types.json")
-
-    @GetMapping("/v2/altairtrondheim/free_bike_status", produces = ["application/json"])
-    @Hidden
-    fun altairtrondheimFreeBikeStatus(): String = getFile("altairtrondheim-free_bike_status.json")
-
-    @GetMapping("/v2/altairtrondheim/gbfs", produces = ["application/json"])
-    @Hidden
-    fun altairtrondheimGbfs(): String = getFile("altairtrondheim-gbfs.json").replace("BASE_URL", baseUrl)
-
-    @GetMapping("/v2/altairtrondheim/geofencing_zones", produces = ["application/json"])
-    @Hidden
-    fun altairtrondheimGeofencingZones(): String = getFile("altairtrondheim-geofencing_zones.json")
-
-    @GetMapping("/v2/altairtrondheim/system_information", produces = ["application/json"])
-    @Hidden
-    fun altairtrondheimSystemInformation(): String = getFile("altairtrondheim-system_information.json")
-
-    @GetMapping("/v2/altairtrondheim/system_pricing_plans", produces = ["application/json"])
-    @Hidden
-    fun altairtrondheimSystemPricingPlans(): String = getFile("altairtrondheim-system_pricing_plans.json")
-
-    @GetMapping("/v2/altairtrondheim/vehicle_types", produces = ["application/json"])
-    @Hidden
-    fun altairtrondheimVehicleTypes(): String = getFile("altairtrondheim-vehicle_types.json")
 
     @GetMapping("/v2/basimbysykkel/gbfs", produces = ["application/json"])
     @Hidden

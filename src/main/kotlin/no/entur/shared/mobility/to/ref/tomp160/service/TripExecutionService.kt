@@ -1,11 +1,9 @@
 package no.entur.shared.mobility.to.ref.tomp160.service
 
 import no.entur.shared.mobility.to.ref.config.TransportOperator.ALL_IMPLEMENTING_OPERATOR
-import no.entur.shared.mobility.to.ref.config.TransportOperator.ALTAIR_SCOOTERS
 import no.entur.shared.mobility.to.ref.config.TransportOperator.COLUMBI_BIKE
 import no.entur.shared.mobility.to.ref.config.TransportOperator.EVIE_SCOOTERS_NO_DEPOSIT
 import no.entur.shared.mobility.to.ref.config.TransportOperator.EZIO_SCOOTERS_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE
-import no.entur.shared.mobility.to.ref.config.TransportOperator.KENWAY_SCOOTERS
 import no.entur.shared.mobility.to.ref.config.bikeOperators
 import no.entur.shared.mobility.to.ref.tomp160.data.leg
 import no.entur.shared.mobility.to.ref.tomp160.data.legWithHighDepositAmount
@@ -34,7 +32,7 @@ class TripExecutionService(
             when (addressedTo) {
                 EVIE_SCOOTERS_NO_DEPOSIT -> legWithoutDeposit
                 EZIO_SCOOTERS_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> legWithHighDepositAmount
-                ALTAIR_SCOOTERS, KENWAY_SCOOTERS, in bikeOperators, ALL_IMPLEMENTING_OPERATOR -> leg
+                in bikeOperators, ALL_IMPLEMENTING_OPERATOR -> leg
                 else -> throw NotImplementedError()
             }
         // Trigger randomized demo workflow when START_FINISHING is received for COLUMBI_BIKE
@@ -87,7 +85,7 @@ class TripExecutionService(
             when (addressedTo) {
                 EVIE_SCOOTERS_NO_DEPOSIT -> legWithoutDeposit
                 EZIO_SCOOTERS_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> legWithHighDepositAmount
-                ALTAIR_SCOOTERS, KENWAY_SCOOTERS, in bikeOperators, ALL_IMPLEMENTING_OPERATOR -> leg
+                in bikeOperators, ALL_IMPLEMENTING_OPERATOR -> leg
                 else -> throw NotImplementedError()
             }
         return leg.copy(id = id)
