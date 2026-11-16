@@ -1,7 +1,7 @@
 package no.entur.shared.mobility.to.ref.tomp160.service
 
 import no.entur.shared.mobility.to.ref.config.TransportOperator.ALL_IMPLEMENTING_OPERATOR
-import no.entur.shared.mobility.to.ref.config.TransportOperator.COLUMBI_BIKE
+import no.entur.shared.mobility.to.ref.config.TransportOperator.BASIM_BIKE
 import no.entur.shared.mobility.to.ref.config.TransportOperator.EVIE_SCOOTERS_NO_DEPOSIT
 import no.entur.shared.mobility.to.ref.config.TransportOperator.EZIO_SCOOTERS_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE
 import no.entur.shared.mobility.to.ref.config.bikeOperators
@@ -35,8 +35,8 @@ class TripExecutionService(
                 in bikeOperators, ALL_IMPLEMENTING_OPERATOR -> leg
                 else -> throw NotImplementedError()
             }
-        // Trigger randomized demo workflow when START_FINISHING is received for COLUMBI_BIKE
-        if (addressedTo == COLUMBI_BIKE && legEvent?.event == LegEvent.Event.START_FINISHING) {
+        // Trigger randomized demo workflow when START_FINISHING is received for BASIM_BIKE
+        if (addressedTo == BASIM_BIKE && legEvent?.event == LegEvent.Event.START_FINISHING) {
             if (Random.nextBoolean()) {
                 eventScheduler160.startFullStationFlow(id)
             } else {
@@ -44,8 +44,8 @@ class TripExecutionService(
             }
         }
 
-        if (addressedTo == COLUMBI_BIKE && legEvent?.event == LegEvent.Event.FINISH) {
-            throw IllegalStateException("Illegal event: COLUMBI_BIKE should not send FINISH. Leg $id.")
+        if (addressedTo == BASIM_BIKE && legEvent?.event == LegEvent.Event.FINISH) {
+            throw IllegalStateException("Illegal event: BASIM_BIKE should not send FINISH. Leg $id.")
         }
 
         return leg.copy(

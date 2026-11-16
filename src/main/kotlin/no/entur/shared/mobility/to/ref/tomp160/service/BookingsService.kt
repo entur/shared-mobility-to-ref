@@ -2,7 +2,6 @@ package no.entur.shared.mobility.to.ref.tomp160.service
 
 import no.entur.shared.mobility.to.ref.config.TransportOperator.ALL_IMPLEMENTING_OPERATOR
 import no.entur.shared.mobility.to.ref.config.TransportOperator.BASIM_BIKE
-import no.entur.shared.mobility.to.ref.config.TransportOperator.COLUMBI_BIKE
 import no.entur.shared.mobility.to.ref.config.TransportOperator.EVIE_SCOOTERS_NO_DEPOSIT
 import no.entur.shared.mobility.to.ref.config.TransportOperator.EZIO_SCOOTERS_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE
 import no.entur.shared.mobility.to.ref.tomp160.data.booking
@@ -28,7 +27,7 @@ class BookingsService {
                 EVIE_SCOOTERS_NO_DEPOSIT -> bookingWithoutDeposit.copy(pricing = finalFareWithFee(25.00F))
                 EZIO_SCOOTERS_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> bookingHigherDepositAmountThanTotalAmount
                 BASIM_BIKE -> booking.copy(pricing = finalFare(15.00F))
-                COLUMBI_BIKE, ALL_IMPLEMENTING_OPERATOR -> booking
+                ALL_IMPLEMENTING_OPERATOR -> booking
                 else -> throw NotImplementedError()
             }
         return booking.copy(id = id)

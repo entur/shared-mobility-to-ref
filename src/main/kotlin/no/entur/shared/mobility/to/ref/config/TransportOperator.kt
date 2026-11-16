@@ -4,7 +4,6 @@ object TransportOperator {
     const val BASIM_BIKE = "YBA:Operator:Basim"
     const val EVIE_SCOOTERS_NO_DEPOSIT = "YEV:Operator:Evie"
     const val EZIO_SCOOTERS_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE = "YEZ:Operator:Ezio"
-    const val COLUMBI_BIKE = "YCO:Operator:columbi"
     const val ALL_IMPLEMENTING_OPERATOR = "ALL:Operator:all_implementing_operator"
 }
 
@@ -13,14 +12,12 @@ val operators =
         TransportOperator.BASIM_BIKE,
         TransportOperator.EVIE_SCOOTERS_NO_DEPOSIT,
         TransportOperator.EZIO_SCOOTERS_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE,
-        TransportOperator.COLUMBI_BIKE,
         TransportOperator.ALL_IMPLEMENTING_OPERATOR,
     )
 
 val bikeOperators =
     setOf(
         TransportOperator.BASIM_BIKE,
-        TransportOperator.COLUMBI_BIKE,
     )
 val scooterOperators =
     setOf(
