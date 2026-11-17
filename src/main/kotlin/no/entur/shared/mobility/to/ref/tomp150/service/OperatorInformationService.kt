@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp150.service
 
-import no.entur.shared.mobility.to.ref.config.TransportOperator.ALL_IMPLEMENTING_OPERATOR
 import no.entur.shared.mobility.to.ref.config.bikeOperators
 import no.entur.shared.mobility.to.ref.config.scooterOperators
 import no.entur.shared.mobility.to.ref.tomp150.data.MetaProvider
@@ -20,7 +19,6 @@ class OperatorInformationService(
         when (addressedTo) {
             in scooterOperators -> metaProvider.scooterOperatorEndpointImplementations()
             in bikeOperators -> metaProvider.bikeOperatorEndpointImplementations()
-            ALL_IMPLEMENTING_OPERATOR -> metaProvider.allEndpointImplementations()
             else -> emptyList()
         }
 }

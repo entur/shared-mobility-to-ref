@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp160.service
 
-import no.entur.shared.mobility.to.ref.config.TransportOperator.ALL_IMPLEMENTING_OPERATOR
 import no.entur.shared.mobility.to.ref.config.TransportOperator.BASIM_BIKE
 import no.entur.shared.mobility.to.ref.config.TransportOperator.EVIE_SCOOTERS_NO_DEPOSIT
 import no.entur.shared.mobility.to.ref.config.TransportOperator.EZIO_SCOOTERS_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE
@@ -32,7 +31,7 @@ class TripExecutionService(
             when (addressedTo) {
                 EVIE_SCOOTERS_NO_DEPOSIT -> legWithoutDeposit
                 EZIO_SCOOTERS_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> legWithHighDepositAmount
-                in bikeOperators, ALL_IMPLEMENTING_OPERATOR -> leg
+                in bikeOperators -> leg
                 else -> throw NotImplementedError()
             }
         // Trigger randomized demo workflow when START_FINISHING is received for BASIM_BIKE
@@ -85,7 +84,7 @@ class TripExecutionService(
             when (addressedTo) {
                 EVIE_SCOOTERS_NO_DEPOSIT -> legWithoutDeposit
                 EZIO_SCOOTERS_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> legWithHighDepositAmount
-                in bikeOperators, ALL_IMPLEMENTING_OPERATOR -> leg
+                in bikeOperators -> leg
                 else -> throw NotImplementedError()
             }
         return leg.copy(id = id)

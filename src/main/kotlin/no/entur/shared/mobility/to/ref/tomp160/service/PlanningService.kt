@@ -1,6 +1,5 @@
 package no.entur.shared.mobility.to.ref.tomp160.service
 
-import no.entur.shared.mobility.to.ref.config.TransportOperator.ALL_IMPLEMENTING_OPERATOR
 import no.entur.shared.mobility.to.ref.config.TransportOperator.EVIE_SCOOTERS_NO_DEPOSIT
 import no.entur.shared.mobility.to.ref.config.TransportOperator.EZIO_SCOOTERS_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE
 import no.entur.shared.mobility.to.ref.config.bikeOperators
@@ -39,9 +38,7 @@ class PlanningService(
             when (addressedTo) {
                 EVIE_SCOOTERS_NO_DEPOSIT -> bookingWithoutDeposit
                 EZIO_SCOOTERS_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> bookingHigherDepositAmountThanTotalAmount
-                in bikeOperators,
-                ALL_IMPLEMENTING_OPERATOR,
-                -> booking
+                in bikeOperators -> booking
 
                 else -> throw NotImplementedError()
             }
@@ -96,7 +93,6 @@ class PlanningService(
                     bikeBooking
                 }
 
-                ALL_IMPLEMENTING_OPERATOR -> booking
                 else -> throw NotImplementedError()
             }
         return booking.copy(

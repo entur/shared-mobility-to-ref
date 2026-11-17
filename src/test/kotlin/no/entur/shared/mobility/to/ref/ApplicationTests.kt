@@ -44,7 +44,7 @@ class ApplicationTests {
                     .header("Api", "TOMP")
                     .header("Api-Version", "1.6.0")
                     .header("maas-id", "entur:maas:shared-mobility")
-                    .header("addressed-to", TransportOperator.ALL_IMPLEMENTING_OPERATOR)
+                    .header("addressed-to", TransportOperator.EVIE_SCOOTERS_NO_DEPOSIT)
                     .build(),
                 HttpResponse.BodyHandlers.discarding(),
             ).statusCode()
