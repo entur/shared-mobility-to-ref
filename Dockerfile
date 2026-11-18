@@ -12,5 +12,9 @@ LABEL maintainer="Team Delingsmobilitet"
 # Specify which port the application listens on
 EXPOSE 8080
 
+# Mitigation for CVE-2026-114938 (Java4Shell): disable the vulnerable Base64 AVX-512 intrinsic.
+# Remove once the base image ships a patched OpenJDK 25 (fixed line 25.0.5.1).
+ENV JAVA_TOOL_OPTIONS="-XX:-UseBASE64Intrinsics"
+
 # Run the JAR file when the container starts
 CMD ["application.jar"]
