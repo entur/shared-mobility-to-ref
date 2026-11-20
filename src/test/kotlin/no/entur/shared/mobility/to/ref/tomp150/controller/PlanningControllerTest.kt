@@ -20,7 +20,7 @@ class PlanningControllerTest {
             api = "TOMP",
             apiVersion = "1.5.0",
             maasId = "entur:maas:shared-mobility",
-            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
+            addressedTo = TransportOperator.EVIE_SCOOTERS_NO_DEPOSIT,
             oneStopBookingRequest = OneStopBookingRequest(from = place),
         )
     }
@@ -32,7 +32,7 @@ class PlanningControllerTest {
             api = "TOMP",
             apiVersion = "1.5.0",
             maasId = "entur:maas:shared-mobility",
-            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
+            addressedTo = TransportOperator.EVIE_SCOOTERS_NO_DEPOSIT,
             planningRequest = null,
         )
     }

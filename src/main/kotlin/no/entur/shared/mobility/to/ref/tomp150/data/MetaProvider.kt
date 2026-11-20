@@ -69,12 +69,6 @@ class MetaProvider(
                             method = POST,
                             path = EndpointType.LEGS_ID_EVENTS_POST.path,
                             status = Status.IMPLEMENTED,
-                            eventType = EventType.FINISH,
-                        ),
-                        Endpoint(
-                            method = POST,
-                            path = EndpointType.LEGS_ID_EVENTS_POST.path,
-                            status = Status.IMPLEMENTED,
                             eventType = EventType.CANCEL,
                         ),
                         Endpoint(method = GET, path = EndpointType.LEGS_ID_GET.path, status = Status.IMPLEMENTED),

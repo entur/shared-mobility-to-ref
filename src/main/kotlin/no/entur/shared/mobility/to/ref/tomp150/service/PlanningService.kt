@@ -1,10 +1,7 @@
 package no.entur.shared.mobility.to.ref.tomp150.service
 
-import no.entur.shared.mobility.to.ref.config.TransportOperator.ALL_IMPLEMENTING_OPERATOR
-import no.entur.shared.mobility.to.ref.config.TransportOperator.ALTAIR_SCOOTERS
 import no.entur.shared.mobility.to.ref.config.TransportOperator.EVIE_SCOOTERS_NO_DEPOSIT
 import no.entur.shared.mobility.to.ref.config.TransportOperator.EZIO_SCOOTERS_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE
-import no.entur.shared.mobility.to.ref.config.TransportOperator.KENWAY_SCOOTERS
 import no.entur.shared.mobility.to.ref.config.bikeOperators
 import no.entur.shared.mobility.to.ref.tomp150.data.asset
 import no.entur.shared.mobility.to.ref.tomp150.data.booking
@@ -41,11 +38,7 @@ class PlanningService(
             when (addressedTo) {
                 EVIE_SCOOTERS_NO_DEPOSIT -> bookingWithoutDeposit
                 EZIO_SCOOTERS_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> bookingHigherDepositAmountThanTotalAmount
-                ALTAIR_SCOOTERS,
-                KENWAY_SCOOTERS,
-                in bikeOperators,
-                ALL_IMPLEMENTING_OPERATOR,
-                -> booking
+                in bikeOperators -> booking
 
                 else -> throw NotImplementedError()
             }
@@ -93,8 +86,6 @@ class PlanningService(
             when (addressedTo) {
                 EVIE_SCOOTERS_NO_DEPOSIT -> bookingWithoutDeposit
                 EZIO_SCOOTERS_OPERATOR_DEPOSIT_HIGHER_THAN_TOTAL_PRICE -> bookingHigherDepositAmountThanTotalAmount
-                ALTAIR_SCOOTERS -> booking.copy(pricing = finalFare(25.00F))
-                KENWAY_SCOOTERS -> booking.copy(pricing = finalFare(5.00F))
                 in bikeOperators -> {
                     val notStartedLeg = leg.copy(state = LegState.NOT_STARTED)
                     val bikeBooking = booking.copy(legs = listOf(notStartedLeg))
@@ -102,7 +93,6 @@ class PlanningService(
                     bikeBooking
                 }
 
-                ALL_IMPLEMENTING_OPERATOR -> booking
                 else -> throw NotImplementedError()
             }
         return booking.copy(

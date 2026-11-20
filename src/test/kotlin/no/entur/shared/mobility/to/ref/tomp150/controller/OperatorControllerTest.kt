@@ -16,7 +16,7 @@ class OperatorControllerTest {
         operatorController.operatorMetaGet(
             acceptLanguage = "NOB",
             maasId = "entur:maas:shared-mobility",
-            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
+            addressedTo = TransportOperator.EVIE_SCOOTERS_NO_DEPOSIT,
         )
     }
 }

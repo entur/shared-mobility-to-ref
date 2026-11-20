@@ -9,14 +9,6 @@
       "url": "BASE_URL/mobility/v2/gbfs/v2/basimbysykkel/gbfs"
     },
     {
-      "id": "kenwaybysykkel",
-      "url": "BASE_URL/mobility/v2/gbfs/v2/kenwaybysykkel/gbfs"
-    },
-    {
-      "id": "altairtrondheim",
-      "url": "BASE_URL/mobility/v2/gbfs/v2/altairtrondheim/gbfs"
-    },
-    {
       "id": "eziotrondheim",
       "url": "BASE_URL/mobility/v2/gbfs/v2/eziotrondheim/gbfs"
     }

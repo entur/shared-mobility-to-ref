@@ -2,7 +2,7 @@ package no.entur.shared.mobility.to.ref.tomp150.service
 
 import io.mockk.mockk
 import io.mockk.verify
-import no.entur.shared.mobility.to.ref.config.TransportOperator.COLUMBI_BIKE
+import no.entur.shared.mobility.to.ref.config.TransportOperator.BASIM_BIKE
 import no.entur.shared.mobility.to.ref.config.bikeOperators
 import no.entur.shared.mobility.to.ref.config.operators
 import no.entur.shared.mobility.to.ref.tomp150.dto.Coordinates
@@ -23,7 +23,7 @@ class PlanningServiceTest {
             "",
             "",
             "",
-            COLUMBI_BIKE,
+            BASIM_BIKE,
             OneStopBookingRequest(
                 customer = Customer(""),
                 from = Place(coordinates = Coordinates(0.0F, 0.0F)),
@@ -31,7 +31,7 @@ class PlanningServiceTest {
             ),
         )
 
-        verify(exactly = 1) { eventScheduler150.addTakeBikeMessage(any(), any(), COLUMBI_BIKE) }
+        verify(exactly = 1) { eventScheduler150.addTakeBikeMessage(any(), any(), BASIM_BIKE) }
     }
 
     @Test

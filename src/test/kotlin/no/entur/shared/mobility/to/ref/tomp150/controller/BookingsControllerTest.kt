@@ -19,7 +19,7 @@ class BookingsControllerTest {
             api = "TOMP",
             apiVersion = "1.5.0",
             maasId = "entur:maas:shared-mobility",
-            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
+            addressedTo = TransportOperator.EVIE_SCOOTERS_NO_DEPOSIT,
             id = UUID.randomUUID().toString(),
         )
     }

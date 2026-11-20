@@ -16,54 +16,6 @@ class GbfsControllerTest {
     }
 
     @Test
-    fun `kenwaybysykkelGbfs returns valid json`() {
-        val json = gbfsController.kenwaybysykkelGbfs()
-        json shouldNotBe null
-        val jsonTree = jacksonObjectMapper().readTree(json)
-        jsonTree.get("data") shouldNotBe null
-    }
-
-    @Test
-    fun `kenwaybysykkelStationInformation returns valid json`() {
-        val json = gbfsController.kenwaybysykkelStationInformation()
-        json shouldNotBe null
-        val jsonTree = jacksonObjectMapper().readTree(json)
-        jsonTree.get("data") shouldNotBe null
-    }
-
-    @Test
-    fun `kenwaybysykkelStationStatus returns valid json`() {
-        val json = gbfsController.kenwaybysykkelStationStatus()
-        json shouldNotBe null
-        val jsonTree = jacksonObjectMapper().readTree(json)
-        jsonTree.get("data") shouldNotBe null
-    }
-
-    @Test
-    fun `kenwaybysykkelSystemInformation returns valid json`() {
-        val json = gbfsController.kenwaybysykkelSystemInformation()
-        json shouldNotBe null
-        val jsonTree = jacksonObjectMapper().readTree(json)
-        jsonTree.get("data") shouldNotBe null
-    }
-
-    @Test
-    fun `kenwaybysykkelSystemPricingPlans returns valid json`() {
-        val json = gbfsController.kenwaybysykkelSystemPricingPlans()
-        json shouldNotBe null
-        val jsonTree = jacksonObjectMapper().readTree(json)
-        jsonTree.get("data") shouldNotBe null
-    }
-
-    @Test
-    fun `kenwaybysykkelVehicleTypes returns valid json`() {
-        val json = gbfsController.kenwaybysykkelVehicleTypes()
-        json shouldNotBe null
-        val jsonTree = jacksonObjectMapper().readTree(json)
-        jsonTree.get("data") shouldNotBe null
-    }
-
-    @Test
     fun `eziotrondheimFreeBikeStatus returns valid json`() {
         val json = gbfsController.eziotrondheimFreeBikeStatus()
         json shouldNotBe null
@@ -122,54 +74,6 @@ class GbfsControllerTest {
     @Test
     fun `eziotrondheimVehicleTypes returns valid json`() {
         val json = gbfsController.eziotrondheimVehicleTypes()
-        json shouldNotBe null
-        val jsonTree = jacksonObjectMapper().readTree(json)
-        jsonTree.get("data") shouldNotBe null
-    }
-
-    @Test
-    fun `altairtrondheimFreeBikeStatus returns valid json`() {
-        val json = gbfsController.altairtrondheimFreeBikeStatus()
-        json shouldNotBe null
-        val jsonTree = jacksonObjectMapper().readTree(json)
-        jsonTree.get("data") shouldNotBe null
-    }
-
-    @Test
-    fun `altairtrondheimGbfs returns valid json`() {
-        val json = gbfsController.altairtrondheimGbfs()
-        json shouldNotBe null
-        val jsonTree = jacksonObjectMapper().readTree(json)
-        jsonTree.get("data") shouldNotBe null
-    }
-
-    @Test
-    fun `altairtrondheimGeofencingZones returns valid json`() {
-        val json = gbfsController.altairtrondheimGeofencingZones()
-        json shouldNotBe null
-        val jsonTree = jacksonObjectMapper().readTree(json)
-        jsonTree.get("data") shouldNotBe null
-    }
-
-    @Test
-    fun `altairtrondheimSystemInformation returns valid json`() {
-        val json = gbfsController.altairtrondheimSystemInformation()
-        json shouldNotBe null
-        val jsonTree = jacksonObjectMapper().readTree(json)
-        jsonTree.get("data") shouldNotBe null
-    }
-
-    @Test
-    fun `altairtrondheimSystemPricingPlans returns valid json`() {
-        val json = gbfsController.altairtrondheimSystemPricingPlans()
-        json shouldNotBe null
-        val jsonTree = jacksonObjectMapper().readTree(json)
-        jsonTree.get("data") shouldNotBe null
-    }
-
-    @Test
-    fun `altairtrondheimVehicleTypes returns valid json`() {
-        val json = gbfsController.altairtrondheimVehicleTypes()
         json shouldNotBe null
         val jsonTree = jacksonObjectMapper().readTree(json)
         jsonTree.get("data") shouldNotBe null
