@@ -11,14 +11,6 @@
         "propulsion_type": "electric",
         "max_range_meters": 80000.0,
         "name": "scooter"
-      },
-      {
-        "vehicle_type_id": "YEV:VehicleType:evie_bike",
-        "form_factor": "bicycle",
-        "rider_capacity": 1,
-        "propulsion_type": "electric_assist",
-        "max_range_meters": 80000.0,
-        "name": "bicycle"
       }
     ]
   }
