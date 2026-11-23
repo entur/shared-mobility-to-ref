@@ -428,7 +428,7 @@ TO-ref simulates how a transport operator can support delivery of urban bikes, i
 
 ### 2. Start finishing
 
-When MaaS sends `START_FINISHING` for a `COLUMBI_BIKE` leg:
+When MaaS sends `START_FINISHING` for a `BASIM_BIKE` leg:
 
 * TO-ref selects one of two flows:
 
@@ -564,7 +564,7 @@ Scheduler operations are resilient to failures.
 
 ## 🎲 Flow selection
 
-For `COLUMBI_BIKE`, TO-ref randomly selects between:
+For `BASIM_BIKE`, TO-ref randomly selects between:
 
 * **50% → Normal flow**
 * **50% → Guided drop-off flow**
@@ -662,7 +662,7 @@ TO-ref uses a Spring `@Scheduled` job.
 * Failures are retried automatically
 * Auto-finish ensures trips never get stuck
 * `FINISH` is **always sent by TO-ref**
-* MaaS must **not** send `FINISH` for `COLUMBI_BIKE`
+* MaaS must **not** send `FINISH` for `BASIM_BIKE`
 
 ---
 

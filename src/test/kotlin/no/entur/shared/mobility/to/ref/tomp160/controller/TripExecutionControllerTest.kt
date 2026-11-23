@@ -22,7 +22,7 @@ class TripExecutionControllerTest {
             apiVersion = "1.5.0",
             maasId = "entur:maas:shared-mobility",
             id = UUID.randomUUID().toString(),
-            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
+            addressedTo = TransportOperator.EVIE_SCOOTERS_NO_DEPOSIT,
             legEvent = LegEvent(event = LegEvent.Event.SET_IN_USE, time = OffsetDateTime.now()),
         )
     }
@@ -35,7 +35,7 @@ class TripExecutionControllerTest {
             apiVersion = "1.5.0",
             maasId = "entur:maas:shared-mobility",
             id = UUID.randomUUID().toString(),
-            addressedTo = TransportOperator.ALL_IMPLEMENTING_OPERATOR,
+            addressedTo = TransportOperator.EVIE_SCOOTERS_NO_DEPOSIT,
         )
     }
 }
